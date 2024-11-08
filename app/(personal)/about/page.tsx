@@ -15,9 +15,11 @@ export default async function IndexRoute() {
     return <HomePagePreview initial={initial} />
   }
 
-  if (!initial.data) {
+ /*  if (!initial.data) {
     return redirect('/')
-  }
+  } */
 
-  return <AboutPage data={initial.data} />
+  return <div>
+    We are gems
+    {/* <AboutPage data={initial.data} /> */}</div>
 }

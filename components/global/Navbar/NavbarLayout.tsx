@@ -22,7 +22,21 @@ export default function Navbar(props: NavbarProps) {
   const logoImageUrl = customLogo && urlForLogo(customLogo)?.url()
 
   return (
-    <div className="flex flex-wrap justify-between items-center gap-x-5 px-4 py-4 md:px-5 md:py-4 lg:px-5">
+    <div className="flex text-black fixed w-full flex-wrap justify-between items-center gap-x-5 px-4 py-4 md:px-5 md:py-4 lg:px-5">
+     <div className='flex justify-between px-4 w-full'>
+     <Link href={"/"} className='top-4 right-4 text-[40px]'>ROJ THE GOAT</Link>
+      <div className='text-[10px] mx-auto'>
+
+      Motion Designer & Art Director 
+      <div>
+      Lagos, Nigeria: 12:00 WAT</div> 
+      </div>
+    <div className='flex gap-x-8 text-[1.7vw]'>
+  {[{name: "Work", link: "/about"}, {name: "Info", link: "/projects/alpha"}].map((ite, i)=>{
+    return <Link key={i} href={ite.link}>{ite.name}</Link>
+  })}
+    </div>
+     </div>
       {customLogo && customLogo ? (
         <Link
           href={`/`}

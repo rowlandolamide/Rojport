@@ -1,7 +1,11 @@
-import './globals.css'
 
+import ContextWrapper from '@/components/global/ContextWrapper'
+import './globals.css'
+import LenisHorizontalWrapper from '@/components/pages/home/LenisHorizontalWrapper'
+import { LayoutTransition } from '@/components/global/LayoutTransition'
 // import { Inter } from 'next/font/google'
 import { loadSettings } from '@/sanity/loader/loadQuery'
+import { AnimatePresence } from 'framer-motion'
 
 // const sans = Inter({
 //   variable: '--font-sans',
@@ -21,14 +25,23 @@ export default async function RootLayout({
   const rgbaBgColor = `${settings?.bgColor?.r || 255}, ${settings?.bgColor?.g || 255}, ${settings?.bgColor?.b || 255}`
   const rgbaTextColor = `${settings?.textColor?.r || 0}, ${settings?.textColor?.g || 0}, ${settings?.textColor?.b || 0}`
 
+
   return (
     <html
       lang="en"
       // Assign custom color css variables for Tailwind to use as Tailwind variables
       style={{ ['--color-primary' as any]: rgbaBgColor, ['--color-secondary' as any]: rgbaTextColor }}
-      className={`bg-primary`}
+     
     >
-      <body>{children}</body>
+   
+    <body className='text-black cursor-none'>
+   <ContextWrapper>
+   <LenisHorizontalWrapper>
+   {children}
+</LenisHorizontalWrapper>
+   </ContextWrapper>
+      </body>
+
     </html>
   )
 }

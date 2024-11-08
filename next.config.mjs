@@ -3,6 +3,8 @@ const config = {
   images: {
     remotePatterns: [
       { hostname: 'cdn.sanity.io' },
+      { hostname: 'vimeo.com' },
+      { hostname: 'modii.org' },
     ],
   },
   typescript: {

@@ -1,4 +1,6 @@
+import PageTransitionEffect from '@/components/global/PageTransitionEffect'
 import '@/styles/index.css'
+import LenisHorizontalWrapper from '@/components/pages/home/LenisHorizontalWrapper'
 
 import type { Metadata, Viewport } from 'next'
 import dynamic from 'next/dynamic'
@@ -67,8 +69,9 @@ export default async function IndexRoute({
   children: React.ReactNode
 }) {
   return (
-    <>
-      <div className="flex min-h-screen flex-col text-secondary">
+   <PageTransitionEffect>
+     <>
+      <div className="flex min-h-screen flex-col text-black">
         <Suspense>
           <Navbar />
         </Suspense>
@@ -81,5 +84,6 @@ export default async function IndexRoute({
       </div>
       {draftMode().isEnabled && <LiveVisualEditing />}
     </>
+   </PageTransitionEffect>
   )
 }

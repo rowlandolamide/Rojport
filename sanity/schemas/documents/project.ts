@@ -1,4 +1,5 @@
 import { ImageIcon, PlayIcon, StarIcon, TextIcon } from '@sanity/icons'
+import { list, rule } from 'postcss'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
 export default defineType({
@@ -40,6 +41,14 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'mainVideo',
+      title: 'Main Video',
+      description:
+        'This image will be used as the main video for the project.',
+      type: 'string',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'overview',
       description:
         'Used both for project subheader, and the <meta> description tag for SEO.',
@@ -47,24 +56,7 @@ export default defineType({
       type: 'array',
       of: [
         // Paragraphs
-        defineArrayMember({
-          lists: [],
-          marks: {
-            annotations: [],
-            decorators: [
-              {
-                title: 'Italic',
-                value: 'em',
-              },
-              {
-                title: 'Strong',
-                value: 'strong',
-              },
-            ],
-          },
-          styles: [],
-          type: 'block',
-        }),
+       {type: "block"}
       ],
       validation: (rule) => rule.max(155).required(),
     }),
@@ -76,7 +68,7 @@ export default defineType({
       type: 'string',
     }),
     defineField({
-      name: 'site',
+      name: 'live',
       title: 'Website link',
       description: '(Optional) External link related to your project, it is displayed below your project overview text.',
       type: 'object',
@@ -96,6 +88,7 @@ export default defineType({
         },
       ],
     }),
+   
     // Content blocks
     defineField({
       title: 'Content builder',
@@ -185,45 +178,19 @@ export default defineType({
           name: 'textBlock',
           type: 'object',
           icon: TextIcon,
+
           fields: [
             {
               name: 'description',
               title: 'Text Block',
               type: 'array',
               of: [
-                defineArrayMember({
-                  lists: [],
-                  marks: {
-                    annotations: [
-                      {
-                        name: 'link',
-                        type: 'object',
-                        title: 'Link',
-                        fields: [
-                          {
-                            name: 'href',
-                            type: 'url',
-                            title: 'Url',
-                          },
-                        ],
-                      },
-                    ],
-                    decorators: [
-                      {
-                        title: 'Italic',
-                        value: 'em',
-                      },
-                      {
-                        title: 'Strong',
-                        value: 'strong',
-                      },
-                    ],
-                  },
-                  styles: [],
-                  type: 'block',
-                }),
+                { type: "block" }
               ],
             },
+            {name: "textBlockType",  validation: rule => rule.required(),  title: "Type of Text Block", type: "string", initialValue: "Process", options: {
+              list: [{title: "Process", value: "process"}, {title: "Credit", value: "credit"}]
+            } }
           ],
           preview: {
             select: {
