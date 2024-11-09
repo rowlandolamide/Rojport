@@ -10,10 +10,10 @@ import { MainContextWrapperType, ContextMain } from '@/components/global/Context
 function ProjectImage(props: {img: string}) {
     const {overlay, handleOverlay} = useContext(ContextMain) as MainContextWrapperType
     return (
-        <div onClick={()=>{
+        <div  onClick={()=>{
             handleOverlay({...overlay, item: props.img, open: true, })
         }}>
-            <Image src={props.img} width={100} height={100} className='w-screen ' alt={"projectImage"}></Image>
+            <Image  unoptimized src={props.img} width={100} height={100} className='w-screen h-full  rounded-[4px] border border-black' alt={"projectImage"}></Image>
         </div>
     );
 }

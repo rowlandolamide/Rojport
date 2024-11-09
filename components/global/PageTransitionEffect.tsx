@@ -1,9 +1,10 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { usePathname } from 'next/navigation';
+import { usePathname, } from 'next/navigation';
 import { LayoutRouterContext } from 'next/dist/shared/lib/app-router-context.shared-runtime';
-import { useContext, useRef } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { route } from 'sanity/router';
 
 function FrozenRouter(props: { children: React.ReactNode }) {
   const context = useContext(LayoutRouterContext);
@@ -24,22 +25,27 @@ function FrozenRouter(props: { children: React.ReactNode }) {
 
 const variants = {
   hidden: { opacity: 0, y: 100 },
-  enter: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -100 },
+  enter: { opacity: 1, y: "0" },
+  exit: { opacity: 0, y: "-100",  },
 };
 
 const PageTransitionEffect = ({ children }: { children: React.ReactNode }) => {
   // The `key` is tied to the url using the `usePathname` hook.
   const key = usePathname();
 
+  const [active, setActive] = useState(true)
+
+  
+
   return (
     <AnimatePresence initial={false} mode="popLayout">
-      <motion.div
+   <motion.div
         key={key}
         initial="hidden"
         animate="enter"
         exit="exit"
         variants={variants}
+     
         transition={{ ease: 'easeInOut', duration: 0.75 }}
       >
         <FrozenRouter>{children}</FrozenRouter>

@@ -68,22 +68,22 @@ export default async function IndexRoute({
 }: {
   children: React.ReactNode
 }) {
-  return (
-   <PageTransitionEffect>
-     <>
-      <div className="flex min-h-screen flex-col text-black">
+  return (     <>
+    <div className="flex min-h-screen flex-col text-black">
+      <Suspense>
+        <Navbar />
+      </Suspense>
+      <div className="mt-16 flex-grow px-4 md:px-5 lg:px-5">
         <Suspense>
-          <Navbar />
-        </Suspense>
-        <div className="mt-16 flex-grow px-4 md:px-5 lg:px-5">
-          <Suspense>{children}</Suspense>
-        </div>
-        <Suspense>
-          <Footer />
+          <PageTransitionEffect>{children}</PageTransitionEffect>
         </Suspense>
       </div>
-      {draftMode().isEnabled && <LiveVisualEditing />}
-    </>
-   </PageTransitionEffect>
+      <Suspense>
+        <Footer />
+      </Suspense>
+    </div>
+    {draftMode().isEnabled && <LiveVisualEditing />}
+  </>
+ 
   )
 }

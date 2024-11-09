@@ -24,7 +24,7 @@ export default function Navbar(props: NavbarProps) {
   return (
     <div className="flex text-black fixed w-full flex-wrap justify-between items-center gap-x-5 px-4 py-4 md:px-5 md:py-4 lg:px-5">
      <div className='flex justify-between px-4 w-full'>
-     <Link href={"/"} className='top-4 right-4 text-[40px]'>ROJ THE GOAT</Link>
+     <Link href={"/"} className='top-4 right-4 text-[40px] font-PPn'>ROJ THE GOAT</Link>
       <div className='text-[10px] mx-auto'>
 
       Motion Designer & Art Director 
@@ -37,54 +37,7 @@ export default function Navbar(props: NavbarProps) {
   })}
     </div>
      </div>
-      {customLogo && customLogo ? (
-        <Link
-          href={`/`}
-          className={`h-full text-xl hover:text-secondary md:text-2xl`}
-        >
-          <div className="flex h-6">
-            <Image
-              alt={title}
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{ width: 'auto', height: 'auto' }}
-              src={logoImageUrl}
-            />
-          </div>
-        </Link>
-      ) : (
-        <Link
-          href={`/`}
-          className={`h-full text-2xl hover:text-secondary md:text-2xl`}
-        >
-          {title}
-        </Link>
-      )}
-      <div className="flex flex-wrap gap-3 mt-4 md:mt-0">
-        {menuPages &&
-          menuPages.map((menuItem, key) => {
-            const href = resolveHref(menuItem?._type, menuItem?.slug)
-            if (!href) {
-              return null
-            }
-            return <HeaderLinks key={key} href={href} title={menuItem.title} />
-          })}
-
-        {menuLinks &&
-          menuLinks.map((menuItem, key) => {
-            return (
-              <Link
-                key={key}
-                target="_blank"
-                className={`text-lg px-3 py-1 text-secondary border-secondary border rounded hover:text-primary hover:bg-secondary md:text-2xl`}
-                href={menuItem.url!}
-              >
-                ↗ {menuItem.title}
-              </Link>
-            )
-          })}
-      </div>
+ 
     </div>
   )
 }

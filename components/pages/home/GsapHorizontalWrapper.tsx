@@ -44,9 +44,9 @@ function GsapHorizontalWrapper() {
    , [x])
     return (
 <div className="slider-cont">
-<div className="flex gap-x-4 cont cards ">
+<div className="flex gap-x-4 cont cards z-0">
             {Array.from({length: 10}).map((i, k)=>{
-                return <section key={k} className=" px-[20px]  flex flex-col gap-y-4 relative ">
+                return <section key={k} className=" px-[20px]  flex flex-col gap-y-4 ">
                    
                 <ProjectCard discipline="sd" name={k.toString()}></ProjectCard>
                 <ProjectCard discipline="sd" name="dsfdf"></ProjectCard>

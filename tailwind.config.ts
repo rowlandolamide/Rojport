@@ -22,6 +22,8 @@ module.exports = {
   theme: {
       ...theme,
   	fontFamily: {
+		PP: " PPmondest, sans",
+		PPn: " PPneue, sans",
   		sans: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
   	},
   	extend: {

@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 function ProjectWrapper(props: {children: React.ReactNode}) {
     
     return (
-        <div>
+        <div className='px-[21vw]'>
 
             <Suspense>{props.children}</Suspense>
         </div>

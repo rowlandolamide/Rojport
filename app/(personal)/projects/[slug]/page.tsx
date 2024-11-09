@@ -72,9 +72,15 @@ export default async function ProjectSlugRoute({ params }: Props) {
     <ProjectImage img='https://modii.org/wp-content/uploads/2020/12/random.png'></ProjectImage>
     <ProjectMainVideo></ProjectMainVideo>
     {initial.data?.content?.map((item:any, i)=>{
+      const isLastImageType =  ()=>{
+        if(!initial) return false
+        if(!initial.data) return false
+        if(!initial.data.content) return false
+        return initial.data?.content[i + 1]._type.toLowerCase().includes("image") && initial.data?.content[i]._type.toLowerCase().includes("image")
+      }
      if(item._type === "textBlock"){
       console.log("john",item)
-      return <ProjectText key={i} body={item.description}></ProjectText>
+      return <div key={i} className='py-[58px]'> <ProjectText key={i} body={item.description}></ProjectText></div>
      }
      else if(item._type.toLowerCase().includes("image")){
      const isSingleImage = !item.photoOne
@@ -82,10 +88,10 @@ export default async function ProjectSlugRoute({ params }: Props) {
      const secongImageUrl: any = urlForImage(item.photoTwo)?.url()
      if(isSingleImage){
       
-      return <ProjectImage key={i} img={singleImageUrl}></ProjectImage>
+      return <div key={i} className='py-[22px]'><ProjectImage  key={i} img={singleImageUrl}></ProjectImage></div>
      }
      else{
-      return <div key={i}>
+      return <div className={`grid grid-cols-2 gap-x-[22px]  ${isLastImageType() && "pb-[22px]"}`} key={i}>
       <ProjectImage img={singleImageUrl}></ProjectImage>
       <ProjectImage img={secongImageUrl}></ProjectImage>
       </div>
