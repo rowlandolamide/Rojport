@@ -16,8 +16,10 @@ export interface MainContextWrapperType{
         open: boolean,
         index: number;
         item: string
+        isVideo?: boolean;
+   
     }
-    handleOverlay: (obj: MainContextWrapperType["overlay"] )=>void
+    handleOverlay: (obj: MainContextWrapperType["overlay"] , isVideo?: boolean)=>void
 
     mouseStates:{
         x: number,
@@ -45,8 +47,8 @@ function FrozenRouter(props: { children: React.ReactNode }) {
 
 
 function ContextWrapper(props: {children: React.ReactNode}) {
-    const ref = useRef(null)
-    const mouse = useMouse(ref, { enterDelay: 100, leaveDelay: 100 })
+    const mouseref = useRef(null)
+    const mouse = useMouse(mouseref, { enterDelay: 100, leaveDelay: 100 })
     const [mouseStates, setMouseStates] = useState({x: 0, y: 0})
     const [overlay, setOverlay] = useState<MainContextWrapperType["overlay"]>({open: false, index: 0, item: ""})
     const handleOverlay = (obj: MainContextWrapperType["overlay"])=>{
@@ -65,7 +67,7 @@ function ContextWrapper(props: {children: React.ReactNode}) {
       
 
     return (
-        <div ref={ref} >
+        <div className="" ref={mouseref} >
             <ContextMain.Provider value={{x:"Job", mouseStates: {x: mouse.clientX || 0, y: mouse.clientY || 0}, overlay: overlay, handleOverlay: handleOverlay}}>
 {/* <AnimatePresence  mode="popLayout" >
 <motion.div   
@@ -84,7 +86,7 @@ function ContextWrapper(props: {children: React.ReactNode}) {
 </AnimatePresence> */}
 
 {overlay.open &&     <div className="fixed z-30 w-full">
-        <Overlay obj={overlay} ></Overlay>
+        <Overlay closeOverlay={()=>{setOverlay(prev => {return {...prev, open: false}})}} setIsVideoFalse={()=>{setOverlay(prev =>{return {...prev, isVideo: false}})}} obj={overlay} ></Overlay>
       </div>}
             {props.children}
             </ContextMain.Provider>

@@ -1,7 +1,7 @@
 import PageTransitionEffect from '@/components/global/PageTransitionEffect'
 import '@/styles/index.css'
 import LenisHorizontalWrapper from '@/components/pages/home/LenisHorizontalWrapper'
-
+import ProjectsPageLenis from '@/components/global/ProjectsPageLenis'
 import type { Metadata, Viewport } from 'next'
 import dynamic from 'next/dynamic'
 import { draftMode } from 'next/headers'
@@ -68,12 +68,11 @@ export default async function IndexRoute({
 }: {
   children: React.ReactNode
 }) {
-  return (     <>
-    <div className="flex min-h-screen flex-col text-black">
-      <Suspense>
-        <Navbar />
-      </Suspense>
-      <div className="mt-16 flex-grow px-4 md:px-5 lg:px-5">
+  return (     <ProjectsPageLenis>
+    <>
+    <div className="flex min-h-screen flex-col text-black ">
+     
+      <div className="mt-16 flex-grow  md:px-5 lg:px-5">
         <Suspense>
           <PageTransitionEffect>{children}</PageTransitionEffect>
         </Suspense>
@@ -84,6 +83,7 @@ export default async function IndexRoute({
     </div>
     {draftMode().isEnabled && <LiveVisualEditing />}
   </>
+  </ProjectsPageLenis>
  
   )
 }

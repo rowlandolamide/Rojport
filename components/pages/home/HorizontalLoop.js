@@ -103,7 +103,7 @@ export function horizontalLoop(items, config) {
       vars.overwrite = true;
       return tl.tweenTo(time, vars);
     }
-    tl.next = (vars) => toIndex(curIndex + 1, vars);
+    tl.next = (vars) => toIndex(curIndex + 2, vars);
     tl.previous = (vars) => toIndex(curIndex - 1, vars);
     tl.current = () => curIndex;
     tl.toIndex = (index, vars) => toIndex(index, vars);

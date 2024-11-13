@@ -68,9 +68,13 @@ export default async function ProjectSlugRoute({ params }: Props) {
     })
 
   return <ProjectWrapper>
-    <div>
-    <ProjectImage img='https://modii.org/wp-content/uploads/2020/12/random.png'></ProjectImage>
-    <ProjectMainVideo></ProjectMainVideo>
+    <div className=''>
+      <div className='w-full pb-[58px] '>
+        
+    <ProjectMainVideo url='https://vimeo.com/664718350'></ProjectMainVideo>
+      </div>
+  {/*   <ProjectImage img='https://modii.org/wp-content/uploads/2020/12/random.png'></ProjectImage> */}
+   
     {initial.data?.content?.map((item:any, i)=>{
       const isLastImageType =  ()=>{
         if(!initial) return false
@@ -91,7 +95,7 @@ export default async function ProjectSlugRoute({ params }: Props) {
       return <div key={i} className='py-[22px]'><ProjectImage  key={i} img={singleImageUrl}></ProjectImage></div>
      }
      else{
-      return <div className={`grid grid-cols-2 gap-x-[22px]  ${isLastImageType() && "pb-[22px]"}`} key={i}>
+      return <div className={`grid grid-cols-1 xl:grid-cols-2 gap-x-[22px] xl:gap-y-0 gap-y-[22px] ${isLastImageType() && "pb-[22px]"}`} key={i}>
       <ProjectImage img={singleImageUrl}></ProjectImage>
       <ProjectImage img={secongImageUrl}></ProjectImage>
       </div>

@@ -6,9 +6,9 @@ import { resolveHref, urlForLogo } from '@/sanity/lib/utils'
 import type { LinkItem, PageItem, SettingsPayload } from '@/types'
 
 interface NavbarProps {
-  data: SettingsPayload
-  title: string | null
-  logo: any | null
+  data?: SettingsPayload
+  title?: string | null
+  logo?: any | null
 }
 export default function Navbar(props: NavbarProps) {
   const { data } = props
@@ -22,16 +22,16 @@ export default function Navbar(props: NavbarProps) {
   const logoImageUrl = customLogo && urlForLogo(customLogo)?.url()
 
   return (
-    <div className="flex text-black fixed w-full flex-wrap justify-between items-center gap-x-5 px-4 py-4 md:px-5 md:py-4 lg:px-5">
+    <div className="flex text-black z-50 fixed w-screen xl:w-full flex-wrap justify-between items-center gap-x-5 px-4 py-4 md:px-5 md:py-4 lg:px-5">
      <div className='flex justify-between px-4 w-full'>
-     <Link href={"/"} className='top-4 right-4 text-[40px] font-PPn'>ROJ THE GOAT</Link>
-      <div className='text-[10px] mx-auto'>
+     <Link href={"/"} className='top-4 right-4 text-[20px] md:text-[40px] font-PPn'>ROJ THE GOAT</Link>
+      <div className='text-[10px] mx-auto md:block hidden'>
 
       Motion Designer & Art Director 
       <div>
       Lagos, Nigeria: 12:00 WAT</div> 
       </div>
-    <div className='flex gap-x-8 text-[1.7vw]'>
+    <div className='flex gap-x-8 items-center  text-[10px] md:text-[1.7vw]'>
   {[{name: "Work", link: "/about"}, {name: "Info", link: "/projects/alpha"}].map((ite, i)=>{
     return <Link key={i} href={ite.link}>{ite.name}</Link>
   })}

@@ -4,6 +4,7 @@ import {motion} from "framer-motion"
 
 
 function CustomMouse(props: {x: number, y:number,}) {
+    {console.log(props.x, props.y)}
 
     return (
         <motion.div  animate={{x: props.x, y: props.y}} className='w-[40px] h-[40px] bg-red-500 z-50 absolute'>

@@ -71,3 +71,8 @@
   font-family: PPneue;
   src: url('public/Fonts/PPNeueBit-Bold.otf');
 }
+
+@font-face {
+  font-family: Ingram;
+  src: url("public/Fonts/ingram-mono-regular.ttf");
+}

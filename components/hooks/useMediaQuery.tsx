@@ -14,7 +14,7 @@ function useMediaQuery() {
         }
         window.addEventListener("resize", resize )
         return ()=> window.removeEventListener("resize",resize)
-    }, [window])
+    }, [])
 
     return media
 }

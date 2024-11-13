@@ -1,4 +1,4 @@
-
+import Navbar from '@/components/global/Navbar/NavbarLayout'
 import ContextWrapper from '@/components/global/ContextWrapper'
 import './globals.css'
 import LenisHorizontalWrapper from '@/components/pages/home/LenisHorizontalWrapper'
@@ -6,6 +6,7 @@ import { LayoutTransition } from '@/components/global/LayoutTransition'
 // import { Inter } from 'next/font/google'
 import { loadSettings } from '@/sanity/loader/loadQuery'
 import { AnimatePresence } from 'framer-motion'
+import { Suspense } from 'react'
 
 // const sans = Inter({
 //   variable: '--font-sans',
@@ -29,12 +30,16 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
+      className='font-Ingram'
       // Assign custom color css variables for Tailwind to use as Tailwind variables
       style={{ ['--color-primary' as any]: rgbaBgColor, ['--color-secondary' as any]: rgbaTextColor }}
      
     >
    
-    <body className='text-black cursor-none'>
+    <body className='text-black relative  '>
+    <Suspense>
+ <Navbar></Navbar>
+      </Suspense>
    <ContextWrapper>
    <LenisHorizontalWrapper>
    {children}
