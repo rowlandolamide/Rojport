@@ -18,8 +18,8 @@ function LenisHorizontalWrapper(props: LenisHorizontalWrapperprops) {
      <div>
             <div className={` h-screen  static w-full `} >
           <div  className="h-8 w-8 fixed top-2 left-8 z-50">
-         {/*    
-            <CustomMouse x={mouseStates.x || 0} y={mouseStates.y|| 0}></CustomMouse> */}
+            
+            <CustomMouse x={mouseStates.x || 0} y={mouseStates.y|| 0}></CustomMouse>
             </div>
 
            {props.children} 
