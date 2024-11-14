@@ -21,7 +21,7 @@ export default function Navbar(props: NavbarProps) {
   const customLogo = props?.logo
   const logoImageUrl = customLogo && urlForLogo(customLogo)?.url()
 
-  return (
+return (
     <div className="flex text-black z-50 fixed w-screen xl:w-full flex-wrap justify-between items-center gap-x-5 px-4 py-4 md:px-5 md:py-4 lg:px-5">
      <div className='flex justify-between px-4 w-full'>
      <Link href={"/"} scroll={false} className='top-4 right-4 text-[20px] md:text-[40px] font-PPn'>ROJ THE GOAT</Link>
