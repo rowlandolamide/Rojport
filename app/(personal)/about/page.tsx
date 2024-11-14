@@ -1,12 +1,12 @@
-import dynamic from 'next/dynamic'
+/* import dynamic from 'next/dynamic' */
 import { draftMode } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 import { AboutPage } from '@/components/pages/about/AboutPage'
 import { getAboutPage } from '@/sanity/loader/loadQuery'
-const HomePagePreview = dynamic(
+/* const HomePagePreview = dynamic(
   () => import('@/components/pages/home/HomePagePreview'),
-)
+) */
 
 export default async function IndexRoute() {
 /*   const initial = await getAboutPage() */
