@@ -7,6 +7,7 @@ import { useQuery } from '@/sanity/loader/useQuery'
 import { HomePagePayload } from '@/types'
 
 import HomePage from './HomePage'
+import { useEffect, useState } from 'react'
 
 type Props = {
   initial: QueryResponseInitial<HomePagePayload | null>
@@ -19,6 +20,10 @@ export default function HomePagePreview(props: Props) {
     {},
     { initial },
   )
+  const [load, setLoad] = useState(false)
+  useEffect(()=>{
+    setLoad(true)
+  }, [])
 
   if (!data) {
     return (
@@ -28,5 +33,5 @@ export default function HomePagePreview(props: Props) {
     )
   }
 
-  return <HomePage data={data} encodeDataAttribute={encodeDataAttribute} />
+  return load ?  <HomePage data={data} encodeDataAttribute={encodeDataAttribute} />: <></>
 }

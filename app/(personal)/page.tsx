@@ -13,7 +13,7 @@ const HomePagePreview = dynamic(
 export default async function IndexRoute() {
   const initial = await loadHomePage()
 
-  console.log("dd",initial)
+
 
   if (draftMode().isEnabled) {
     return <HomePagePreview initial={initial} />
