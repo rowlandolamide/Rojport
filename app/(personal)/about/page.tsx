@@ -1,9 +1,9 @@
 /* import dynamic from 'next/dynamic' */
-import { draftMode } from 'next/headers'
+/* import { draftMode } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 import { AboutPage } from '@/components/pages/about/AboutPage'
-import { getAboutPage } from '@/sanity/loader/loadQuery'
+import { getAboutPage } from '@/sanity/loader/loadQuery' */
 /* const HomePagePreview = dynamic(
   () => import('@/components/pages/home/HomePagePreview'),
 ) */
