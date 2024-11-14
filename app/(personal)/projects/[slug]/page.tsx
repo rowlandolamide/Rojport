@@ -61,11 +61,7 @@ export default async function ProjectSlugRoute({ params }: Props) {
     notFound()
   } */
 
-    const TextData:any = initial.data?.content?.map((item: any)=>{
-      if(item._type === "textBlock"){
-        return <ProjectText body={item.description}></ProjectText>
-      }else return <div></div>
-    })
+
 
   return <ProjectWrapper>
     <div className=''>
@@ -95,7 +91,7 @@ export default async function ProjectSlugRoute({ params }: Props) {
       return <div key={i} className='py-[22px]'><ProjectImage  key={i} img={singleImageUrl}></ProjectImage></div>
      }
      else{
-      return <div className={`grid grid-cols-1 xl:grid-cols-2 gap-x-[22px] xl:gap-y-0 gap-y-[22px] ${isLastImageType() && "pb-[22px]"}`} key={i}>
+      return <div  className={`grid grid-cols-1 xl:grid-cols-2 gap-x-[22px] xl:gap-y-0 gap-y-[22px] ${isLastImageType() && "pb-[22px]"}`} key={i}>
       <ProjectImage img={singleImageUrl}></ProjectImage>
       <ProjectImage img={secongImageUrl}></ProjectImage>
       </div>
