@@ -37,9 +37,9 @@ export default async function RootLayout({
     >
    
     <body className='text-black relative  '>
-    <Suspense>
+    
  <Navbar></Navbar>
-      </Suspense>
+   
    <ContextWrapper>
    <LenisHorizontalWrapper>
    {children}
