@@ -1,6 +1,6 @@
 "use client"
 import React, { Suspense, useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
+
 import { MainContextWrapperType } from './ContextWrapper';
 import Image from 'next/image';
 import ReactPlayer from 'react-player';
@@ -8,7 +8,7 @@ import ReactPlayer from 'react-player';
 
 
 function Overlay(props: {obj:  MainContextWrapperType["overlay"], setIsVideoFalse: ()=> void, closeOverlay: ()=> void}) {
-  const {obj} = props
+  const {obj, setIsVideoFalse, closeOverlay} = props
 
     const ref: any = useRef(null)
     useEffect(()=>{
@@ -20,14 +20,14 @@ function Overlay(props: {obj:  MainContextWrapperType["overlay"], setIsVideoFals
               // Clicked in box
             } else{
               // Clicked outside the box
-              props.closeOverlay()
+              closeOverlay()
 
             }
           }
         window.addEventListener('mousedown', onClick);
 ()=> {
     window.removeEventListener("mousedown", onClick)
-    props.setIsVideoFalse()
+    setIsVideoFalse()
 }
     }, [])
 
