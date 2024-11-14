@@ -49,7 +49,7 @@ function ContextWrapper(props: {children: React.ReactNode}) {
 
 
     return (
-       load ?  <div className="" ref={mouseref} >
+       <div className="" ref={mouseref} >
        <ContextMain.Provider value={{x:"Job", mouseStates: {x: mouse.clientX || 0, y: mouse.clientY || 0}, overlay: overlay, handleOverlay: handleOverlay}}>
 
 
@@ -59,7 +59,7 @@ function ContextWrapper(props: {children: React.ReactNode}) {
        {props.children}
        </ContextMain.Provider>
   
-   </div>: <></>
+   </div>
     );
 }
 
