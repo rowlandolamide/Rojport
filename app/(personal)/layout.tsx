@@ -1,6 +1,6 @@
 import PageTransitionEffect from '@/components/global/PageTransitionEffect'
 import '@/styles/index.css'
-import LenisHorizontalWrapper from '@/components/pages/home/LenisHorizontalWrapper'
+
 import ProjectsPageLenis from '@/components/global/ProjectsPageLenis'
 import type { Metadata, Viewport } from 'next'
 import dynamic from 'next/dynamic'
@@ -71,7 +71,9 @@ export default async function IndexRoute({
   return (     <ProjectsPageLenis>
     <>
     <div className="flex min-h-screen flex-col text-black ">
-     
+      <Suspense>
+        <Navbar />
+      </Suspense>
       <div className="mt-16 flex-grow  md:px-5 lg:px-5">
         <Suspense>
           <PageTransitionEffect>{children}</PageTransitionEffect>

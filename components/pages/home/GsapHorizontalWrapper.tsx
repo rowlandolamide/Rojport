@@ -1,18 +1,19 @@
 "use client"
 import {gsap} from "gsap"
 import React, { useEffect, useRef , useLayoutEffect, useState} from 'react';
-import PropTypes from 'prop-types';
+
 import {horizontalLoop} from "./HorizontalLoop"
 import Observer from "gsap/dist/Observer";
 import {motion} from "framer-motion"
+import PixelTransition from "@/components/PixelTransition/PixelTransition";
 import IPadHorizontalScroll from "@/components/global/IPadHorizontalScroll";
 import ProjectCard from "./ProjectCard";
-import PixelTransition from "@/components/PixelTransition/PixelTransition";
+
 import { urlForImage } from "@/sanity/lib/utils";
-import dynamic from "next/dynamic";
+
 import useMediaQuery from "@/components/hooks/useMediaQuery";
 import type { HomePagePayload } from "@/types";
-import ReactLenis from "@studio-freight/react-lenis/types";
+
 
 
 GsapHorizontalWrapper.propTypes = {
@@ -23,7 +24,7 @@ gsap.registerPlugin(Observer)
 
 function GsapHorizontalWrapper({data}: {data: HomePagePayload | null}) {
     const {x} = useMediaQuery()
-    const contRef = useRef()
+   
     const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
     const modifiedData  = data?.showcaseProjects?.map((item)=>{
@@ -109,17 +110,14 @@ function GsapHorizontalWrapper({data}: {data: HomePagePayload | null}) {
    }, [])
 
     return (
-<div className="">
+<motion.div  transition={{duration: 0.6}} animate={{opacity: 1, transition: {delay: 1}}} initial={{opacity: 0}} className="">
 <div className="w-full hidden sm:block xl:hidden">
     <IPadHorizontalScroll>
-    <motion.div /* animate={{x: xMov}} */ className="flex flex-wrap gap-x-4 z-0  gap-y-5">
+    <div  className="flex flex-wrap gap-x-4 z-0  gap-y-5">
             {modifiedData && modifiedData.map((i, k)=>{
-                let number = k === 0 ? k : k%2 === 0 ? k : k+2
-                let altNumber = k%2 === 0 ? number + 1 : number + 1
+                
                 const currentObj = modifiedData[k]
-                const nextObj =  modifiedData[number + 1]
-
-                console.log(k, currentObj, nextObj)
+            
                 return <section key={k} className=" px-[20px]  gap-y-4 ">
                   
                 { <ProjectCard media={currentObj.imgUrl} discipline="sdd" name={currentObj.title || ""}></ProjectCard>}
@@ -127,18 +125,17 @@ function GsapHorizontalWrapper({data}: {data: HomePagePayload | null}) {
                    
                 </section>
             })}
-        </motion.div> 
+        </div> 
     </IPadHorizontalScroll>
 </div>
     <div className="sm:hidden flex flex-col items-center justify-center w-full ">
-    <motion.div /* animate={{x: xMov}} */ className="flex flex-col gap-y-[22px]">
+    <div className="flex flex-col gap-y-[22px]">
             {modifiedData && modifiedData.map((i, k)=>{
-                let number = k === 0 ? k : k%2 === 0 ? k : k+2
-                let altNumber = k%2 === 0 ? number + 1 : number + 1
+                
                 const currentObj = modifiedData[k]
-                const nextObj =  modifiedData[number + 1]
+            
 
-                console.log(k, currentObj, nextObj)
+               
                 return <section key={k} className="   gap-y-4 ">
                   
                 { <ProjectCard media={currentObj.imgUrl} discipline="sd" name={currentObj.title || ""}></ProjectCard>}
@@ -146,9 +143,9 @@ function GsapHorizontalWrapper({data}: {data: HomePagePayload | null}) {
                    
                 </section>
             })}
-        </motion.div> 
+        </div> 
     </div>
-  {/*  {window &&  <PixelTransition menuIsActive={xMov} dimensions={{width: window.innerWidth, height: window.innerHeight}}></PixelTransition>} */}
+
 <div className="slider-cont hidden xl:block">
     <button className="button bg-blue-500 text-white mb-2" >next</button>
     <motion.div /* animate={{x: xMov}} */ className="grid grid-rows-2 gap-x-4 cont cards z-0 grid-flow-col gap-y-5">
@@ -167,43 +164,9 @@ function GsapHorizontalWrapper({data}: {data: HomePagePayload | null}) {
                 </section>
             })}
         </motion.div> 
- {/* <div className="flex gap-x-4 cont cards z-0">
-            {modifiedData && modifiedData.map((i, k)=>{
-                let number = k === 0 ? k : k%2 === 0 ? k : k+2
-                let altNumber = k%2 === 0 ? number + 1 : number + 1
-                const currentObj = modifiedData[number]
-                const nextObj =  modifiedData[number + 1]
 
-                console.log(k, currentObj, nextObj)
-                return <section key={k} className=" px-[20px]  flex flex-col gap-y-4 ">
-                   {k}
-                {currentObj && <ProjectCard media={currentObj.imgUrl} discipline="sd" name={currentObj.title || ""}></ProjectCard>}
-               {nextObj &&  <ProjectCard media={nextObj.imgUrl} discipline="sd" name={nextObj.title || ""}></ProjectCard>}
-                   
-                </section>
-            })}
-        </div>  */}
-{/*  <div className="flex gap-x-4 cont cards z-0">
-            {arrayMain && arrayMain.map((item, k)=>{
-                console.log("f", item)
-  
-
-                return item.map((it, y)=>{
-                    const currentObj = item[0]
-                    const nextObj =  item[1]
-                    console.log("j",it, currentObj, nextObj)
-                    if(y%2 === 0) return null
-                     return <section key={y} className=" px-[20px]  flex flex-col gap-y-4 ">
-                    {k}
-                 {currentObj && <ProjectCard media={currentObj.imgUrl} discipline="sd" name={currentObj.title || ""}></ProjectCard>}
-                {nextObj &&  <ProjectCard media={nextObj.imgUrl} discipline="sd" name={nextObj.title || ""}></ProjectCard>}
-                    
-                 </section>
-                })
-            })}
-        </div>  */}
 </div>
-</div>
+</motion.div>
     );
 }
 

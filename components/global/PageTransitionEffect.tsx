@@ -1,10 +1,10 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { usePathname, } from 'next/navigation';
+import { motion, AnimatePresence, animate } from 'framer-motion';
+import { usePathname,useRouter } from 'next/navigation';
 import { LayoutRouterContext } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { useContext, useEffect, useRef, useState } from 'react';
-import { route } from 'sanity/router';
+import PixelTransition from '../PixelTransition/PixelTransition';
 
 function FrozenRouter(props: { children: React.ReactNode }) {
   const context = useContext(LayoutRouterContext);
@@ -24,31 +24,47 @@ function FrozenRouter(props: { children: React.ReactNode }) {
 }
 
 const variants = {
-  hidden: { opacity: 0, y: 100 },
-  enter: { opacity: 1, y: "0" },
-  exit: { opacity: 0, y: "-100",  },
+  hidden: { opacity: 0, y: 0 },
+  enter: { opacity: 1, y: "0", },
+  exit: { opacity: 0, y: "0",  },
 };
 
 const PageTransitionEffect = ({ children }: { children: React.ReactNode }) => {
   // The `key` is tied to the url using the `usePathname` hook.
   const key = usePathname();
 
-  const [active, setActive] = useState(true)
+  const [active, setActive] = useState(false)
+  const router = useRouter()
 
+  useEffect(()=>{
+    
+  }, [])
   
 
   return (
-    <AnimatePresence initial={false} mode="popLayout">
+    <AnimatePresence  presenceAffectsLayout  initial={false} mode="sync">
    <motion.div
         key={key}
         initial="hidden"
         animate="enter"
         exit="exit"
         variants={variants}
+        onAnimationStart={()=>{
+          setActive(true)
+        }}
+      
+        onAnimationComplete={()=>{
+          setActive(false)
+        }}
+     
      className=''
-        transition={{ ease: 'easeInOut', duration: 0.75 }}
-      >
-        <FrozenRouter>{children}</FrozenRouter>
+        transition={{ ease: 'easeInOut', duration: 1.3}}
+      >   <div className={`fixed top-0 left-0 z-50`}>
+         {window && <PixelTransition onAnimationEnd={()=>{setActive(false)}} menuIsActive={active} dimensions={{width: window.innerWidth, height: window.innerHeight}}></PixelTransition>} 
+      </div>
+        <FrozenRouter>
+          <motion.div transition={{duration: 0.6}} animate={active && {opacity: 1, transition: {delay: 0.6}}} initial={{opacity: 0}}>{children}</motion.div>
+        </FrozenRouter>
       </motion.div>
     </AnimatePresence>
   );

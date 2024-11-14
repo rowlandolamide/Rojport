@@ -2,10 +2,10 @@ import Navbar from '@/components/global/Navbar/NavbarLayout'
 import ContextWrapper from '@/components/global/ContextWrapper'
 import './globals.css'
 import LenisHorizontalWrapper from '@/components/pages/home/LenisHorizontalWrapper'
-import { LayoutTransition } from '@/components/global/LayoutTransition'
+
 // import { Inter } from 'next/font/google'
 import { loadSettings } from '@/sanity/loader/loadQuery'
-import { AnimatePresence } from 'framer-motion'
+
 import { Suspense } from 'react'
 
 // const sans = Inter({

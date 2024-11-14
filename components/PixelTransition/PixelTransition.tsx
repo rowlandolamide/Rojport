@@ -1,6 +1,6 @@
 "use client"
-import React, { useState, useEffect } from 'react'
-import styles from './style.module.scss';
+import React, { useEffect, useState }  from 'react'
+
 import { motion } from 'framer-motion';
 
 const anim = {
@@ -9,17 +9,25 @@ const anim = {
     },
     open: (i) => ({
         opacity: 1,
-        transition: {duration: 0, delay: 0.07 * i}
+        transition: {duration: 0.1, delay: 0.08 * i}
     }),
     closed: (i) => ({
         opacity: 0,
-        transition: {duration: 0, delay: 0.07 * i}
+        transition: {duration: 0.1, delay: 0.08 * i}
     })
 }
 
-export default function PixelTransition({menuIsActive, dimensions}) {
+export default function PixelTransition({menuIsActive, dimensions, onAnimationEnd}) {
     const { width, height } = dimensions;
+    const [open, setOpen] = useState(false)
 
+    
+
+  useEffect(()=>{
+    setOpen(true)
+        setTimeout(()=>{setOpen(false)}, 3000)
+    }, [])
+  
     /**
      * Shuffles array in place (Fisher–Yates shuffle).
      * @param {Array} a items An array containing the items.
@@ -43,6 +51,7 @@ export default function PixelTransition({menuIsActive, dimensions}) {
         return shuffledIndexes.map( (randomIndex, index) => {
             return (
                 <motion.div 
+            
                     key={index} 
                     className={`w-[100%] h-[5vw] bg-blue-500`}
                     variants={anim}
@@ -55,8 +64,8 @@ export default function PixelTransition({menuIsActive, dimensions}) {
     }
 
     return (
-        <div className={`h-[100vh] overflow-hidden relative z-50 flex pointer-none`}>
-            {
+        <div className={`${open ? "h-[100vh] w-[100vw]": ""} overflow-hidden relative fixed z-50 top-0 left-0 flex pointer-none `}>
+            {open &&
                 [...Array(20)].map( (_, index) => {
                     return <div key={index} className={`w-[5vw] h-[100%] flex flex-col `}>
                         {

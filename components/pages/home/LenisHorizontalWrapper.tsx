@@ -1,11 +1,9 @@
 "use client"
-import GsapInfintiteWrapper from './GsapInfintiteWrapper';
-import React, {useRef} from 'react';
-import { useRouter , usePathname} from 'next/navigation';
-import { ReactLenis } from "@studio-freight/react-lenis";
+
+import React from 'react';
+
 import { useContext } from 'react';
-import useMouse from '@react-hook/mouse-position';
-import GsapHorizontalWrapper from './GsapHorizontalWrapper';
+
 import CustomMouse from '@/components/global/CustomMouse';
 import { ContextMain, MainContextWrapperType } from '@/components/global/ContextWrapper';
 interface LenisHorizontalWrapperprops {
@@ -15,9 +13,7 @@ interface LenisHorizontalWrapperprops {
 
 function LenisHorizontalWrapper(props: LenisHorizontalWrapperprops) {
     const {mouseStates} = useContext(ContextMain) as MainContextWrapperType
-    const pathName = usePathname()
 
-    const isHorizonatal = pathName === "/"
     return (
      <div>
             <div className={` h-screen  static w-full `} >
