@@ -33,11 +33,7 @@ export const ContextMain = createContext<MainContextWrapperType | null>(null)
 
 
 function ContextWrapper(props: {children: React.ReactNode}) {
-    const [load, setLoad]= useState(false)
-
-    useEffect(()=>{
-        setLoad(true)
-    }, [])
+ 
     const mouseref = useRef(null)
     const mouse = useMouse(mouseref, { enterDelay: 100, leaveDelay: 100 })
 

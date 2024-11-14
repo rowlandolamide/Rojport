@@ -20,10 +20,7 @@ export default function HomePagePreview(props: Props) {
     {},
     { initial },
   )
-  const [load, setLoad] = useState(false)
-  useEffect(()=>{
-    setLoad(true)
-  }, [])
+  
 
   if (!data) {
     return (
