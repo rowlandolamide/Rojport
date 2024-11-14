@@ -8,10 +8,11 @@ import ReactPlayer from 'react-player';
 
 
 function Overlay(props: {obj:  MainContextWrapperType["overlay"], setIsVideoFalse: ()=> void, closeOverlay: ()=> void}) {
-  const {obj, setIsVideoFalse, closeOverlay} = props
+  const {obj} = props
 
     const ref: any = useRef(null)
     useEffect(()=>{
+      const { setIsVideoFalse, closeOverlay} = props
         const onClick = (e)=>{ 
             if(!ref) return
             if(!ref.current) return  
