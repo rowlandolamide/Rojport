@@ -10,10 +10,10 @@ const HomePagePreview = dynamic(
 
 export default async function IndexRoute() {
   const initial = await getAboutPage()
-
+/* 
   if (draftMode().isEnabled) {
     return <HomePagePreview initial={initial} />
-  }
+  } */
 
  /*  if (!initial.data) {
     return redirect('/')
