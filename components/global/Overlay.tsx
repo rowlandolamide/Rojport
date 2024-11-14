@@ -30,7 +30,7 @@ function Overlay(props: {obj:  MainContextWrapperType["overlay"], setIsVideoFals
     window.removeEventListener("mousedown", onClick)
     setIsVideoFalse()
 }
-    }, [])
+    }, [props])
 
 
    
