@@ -9,6 +9,7 @@ import ReactPlayer from 'react-player';
 
 function Overlay(props: {obj:  MainContextWrapperType["overlay"], setIsVideoFalse: ()=> void, closeOverlay: ()=> void}) {
   const {obj} = props
+  const {open} = obj
     const ref: any = useRef(null)
     useEffect(()=>{
         const onClick = (e)=>{ 
@@ -28,7 +29,7 @@ function Overlay(props: {obj:  MainContextWrapperType["overlay"], setIsVideoFals
     window.removeEventListener("mousedown", onClick)
     props.setIsVideoFalse()
 }
-    }, [obj.open])
+    }, [open])
 
 
    
