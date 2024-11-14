@@ -1,5 +1,5 @@
 "use client"
-import { createContext, useState} from "react";
+import { createContext, useEffect, useState} from "react";
 import useMouse from "@react-hook/mouse-position"
 import { useRef } from 'react'
 
@@ -33,6 +33,11 @@ export const ContextMain = createContext<MainContextWrapperType | null>(null)
 
 
 function ContextWrapper(props: {children: React.ReactNode}) {
+    const [load, setLoad]= useState(false)
+
+    useEffect(()=>{
+        setLoad(true)
+    }, [])
     const mouseref = useRef(null)
     const mouse = useMouse(mouseref, { enterDelay: 100, leaveDelay: 100 })
 
@@ -44,17 +49,17 @@ function ContextWrapper(props: {children: React.ReactNode}) {
 
 
     return (
-        <div className="" ref={mouseref} >
-            <ContextMain.Provider value={{x:"Job", mouseStates: {x: mouse.clientX || 0, y: mouse.clientY || 0}, overlay: overlay, handleOverlay: handleOverlay}}>
+       load ?  <div className="" ref={mouseref} >
+       <ContextMain.Provider value={{x:"Job", mouseStates: {x: mouse.clientX || 0, y: mouse.clientY || 0}, overlay: overlay, handleOverlay: handleOverlay}}>
 
 
 {overlay.open &&     <div className="fixed z-30 w-full">
-        <Overlay closeOverlay={()=>{setOverlay(prev => {return {...prev, open: false}})}} setIsVideoFalse={()=>{setOverlay(prev =>{return {...prev, isVideo: false}})}} obj={overlay} ></Overlay>
-      </div>}
-            {props.children}
-            </ContextMain.Provider>
-       
-        </div>
+   <Overlay closeOverlay={()=>{setOverlay(prev => {return {...prev, open: false}})}} setIsVideoFalse={()=>{setOverlay(prev =>{return {...prev, isVideo: false}})}} obj={overlay} ></Overlay>
+ </div>}
+       {props.children}
+       </ContextMain.Provider>
+  
+   </div>: <></>
     );
 }
 
