@@ -21,13 +21,13 @@ function ProjectsPageLenis(props: {children: React.ReactNode}) {
         setLoad(true)
     }, [])
     return (
-      <ReactLenis 
- options={lenisOptions}>
+ load ?        <ReactLenis 
+ options={{ orientation:  "vertical", gestureOrientation: "both" }}>
 
 {props.children}
 
 
- </ReactLenis>
+ </ReactLenis>: <></>
     );
 }
 
