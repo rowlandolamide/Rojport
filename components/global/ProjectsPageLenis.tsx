@@ -21,13 +21,13 @@ function ProjectsPageLenis(props: {children: React.ReactNode}) {
         setLoad(true)
     }, [])
     return (
- load ?        <ReactLenis 
+      <ReactLenis 
  options={lenisOptions}>
 
 {props.children}
 
 
- </ReactLenis>: <></>
+ </ReactLenis>
     );
 }
 
