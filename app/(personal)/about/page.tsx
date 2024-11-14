@@ -8,7 +8,7 @@ import { getAboutPage } from '@/sanity/loader/loadQuery'
   () => import('@/components/pages/home/HomePagePreview'),
 ) */
 
-export default async function IndexRoute() {
+export default function IndexRoute() {
 /*   const initial = await getAboutPage() */
 /* 
   if (draftMode().isEnabled) {
