@@ -1,17 +1,18 @@
 "use client"
 import {gsap} from "gsap"
-import React, { useEffect, useRef , useLayoutEffect, useState} from 'react';
+import React, { useEffect, useLayoutEffect, useMemo, useRef} from 'react';
 
 import {horizontalLoop} from "./HorizontalLoop"
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Observer from "gsap/dist/Observer";
 import {motion} from "framer-motion"
-import PixelTransition from "@/components/PixelTransition/PixelTransition";
-import IPadHorizontalScroll from "@/components/global/IPadHorizontalScroll";
+import dynamic from "next/dynamic";
+
 import ProjectCard from "./ProjectCard";
 
+const IPadHorizontalScroll = dynamic(()=>import("@/components/global/IPadHorizontalScroll"))
 import { urlForImage } from "@/sanity/lib/utils";
 
-import useMediaQuery from "@/components/hooks/useMediaQuery";
 import type { HomePagePayload } from "@/types";
 
 
@@ -21,9 +22,16 @@ GsapHorizontalWrapper.propTypes = {
 };
 
 gsap.registerPlugin(Observer)
+gsap.registerPlugin(ScrollTrigger)
+
+const useGsapContext = (scope) => {
+    const ctx = useMemo(() => gsap.context(() => {}, scope), [scope]);
+    return ctx;
+  };
 
 function GsapHorizontalWrapper({data}: {data: HomePagePayload | null}) {
-    const {x} = useMediaQuery()
+    const ref = useRef(null);
+    const ctx = useGsapContext(ref);
    
     const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
@@ -32,42 +40,60 @@ function GsapHorizontalWrapper({data}: {data: HomePagePayload | null}) {
         return {title: item.title, img: item.coverImage, imgUrl: imgUrl }
     })
 
-    function divideArray(nums:any[] | undefined, K, N) {
-        if(!nums) return
-        let ans: any = [];
-        let temp: any = [];
-        for (let i = 0; i < N; i++) {
-            temp.push(nums[i]);
-            if (((i + 1) % K) == 0) {
-                ans.push(temp);
-                temp = [];
-            }
-        }
-         
-        // If last group doesn't have enough 
-        // elements then add 0 to it
-        if (temp.length != 0) {
-            let a = temp.length;
-            while (a != K) {
-                temp.push(0);
-                a++;
-            }
-            ans.push(temp);
-        }
-        return ans;
-    }
 
 
 
+    useIsomorphicLayoutEffect(() => {
+        ctx.add(() => {
+          const evenLoop = horizontalLoop(".cards section", {
+            repeat: -1,
+          });
+        
+    
+          let evenSlow = gsap.to(evenLoop, { timeScale: 0 });
+      
+          evenLoop.timeScale(0);
+        
+    
+          ScrollTrigger.clearScrollMemory();
+          window.history.scrollRestoration = 'manual';
+    
+          ScrollTrigger.observe({
+            wheelSpeed: 0.2,
+            type: 'pointer,touch,wheel,scroll',
+            onChange: (self) => {
+              ScrollTrigger.clearScrollMemory();
+    
+              evenLoop.timeScale(
+                Math.abs(self.deltaX) > Math.abs(self.deltaY)
+                  ? self.deltaX
+                  : self.deltaY
+              );
+        
+              evenSlow.invalidate().restart();
+           
+            },
+          });
+
+          const Btn = document.querySelector(".button")
+      
+          Btn && Btn.addEventListener("click", () => evenLoop.next({duration: 0.4, ease: "power1.inOut",   onComplete: () => {
+             evenLoop.timeScale(0).resume();
+         }}));
+    
+          return () => ctx.revert();
+        });
+      }, []);
+  
+
+  /*  useIsomorphicLayoutEffect(()=>{
 
 
   
-
-   useIsomorphicLayoutEffect(()=>{
    const ctx = gsap.context(()=>{
     let loop = horizontalLoop(".cards section", {repeat: -1, draggable: true,  center: true})
 
-    let slow = gsap.to(loop, {timeScale: 0, duration: 0.5})
+    let slow = gsap.to(loop, {timeScale: 0})
     loop.timeScale(0)
 
 
@@ -75,9 +101,10 @@ function GsapHorizontalWrapper({data}: {data: HomePagePayload | null}) {
     Observer.create({
         target: ".cards",
         type: "pointer,touch,wheel",
-        wheelSpeed: -0.3,
+        wheelSpeed: 0.1,
 
         onChange: self => {
+            
           loop.timeScale(Math.abs(self.deltaX) > Math.abs(self.deltaY) ? -self.deltaX : -self.deltaY); // whichever direction is bigger
           slow.invalidate().restart(); // now decelerate
         }
@@ -95,22 +122,15 @@ function GsapHorizontalWrapper({data}: {data: HomePagePayload | null}) {
    })
    return ()=> ctx.revert()
    }
-   , [x])
-
-   const arrayMain : any[][] = divideArray(modifiedData, 2, modifiedData?.length)
+   , []) */
 
    modifiedData?.push(modifiedData[2], modifiedData[3], modifiedData[4])
 /* 
    modifiedData?.unshift({title: "Talk", img: modifiedData[2].img, imgUrl: urlForImage(modifiedData[2].img)?.url()}) */
 
-   const [xMov, setXMov] = useState(false)
-
-   useEffect(()=>{
-    setXMov(true)
-   }, [])
-
+  
     return (
-<motion.div  transition={{duration: 0.6}} animate={{opacity: 1, transition: {delay: 1}}} initial={{opacity: 0}} className="">
+<motion.div ref={ref}  transition={{duration: 0.6}} animate={{opacity: 1, transition: {delay: 1}}} initial={{opacity: 0}} className="">
 <div className="w-full hidden sm:block xl:hidden">
     <IPadHorizontalScroll>
     <div  className="flex flex-wrap gap-x-4 z-0  gap-y-5">
@@ -151,7 +171,7 @@ function GsapHorizontalWrapper({data}: {data: HomePagePayload | null}) {
     <motion.div /* animate={{x: xMov}} */ className="grid grid-rows-2 gap-x-4 cont cards z-0 grid-flow-col gap-y-5">
             {modifiedData && modifiedData.map((i, k)=>{
                 let number = k === 0 ? k : k%2 === 0 ? k : k+2
-                let altNumber = k%2 === 0 ? number + 1 : number + 1
+               
                 const currentObj = modifiedData[k]
                 const nextObj =  modifiedData[number + 1]
 
