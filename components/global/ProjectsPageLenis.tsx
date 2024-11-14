@@ -27,7 +27,7 @@ function ProjectsPageLenis(props: {children: React.ReactNode}) {
 {props.children}
 
 
- </ReactLenis>: <></>
+ </ReactLenis>: <>{props.children}</>
     );
 }
 

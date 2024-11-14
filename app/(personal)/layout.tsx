@@ -68,8 +68,7 @@ export default async function IndexRoute({
 }: {
   children: React.ReactNode
 }) {
-  return (     <ProjectsPageLenis>
-    <>
+  return (        <>
     <div className="flex min-h-screen flex-col text-black ">
       <Suspense>
         <Navbar />
@@ -85,7 +84,6 @@ export default async function IndexRoute({
     </div>
     {draftMode().isEnabled && <LiveVisualEditing />}
   </>
-  </ProjectsPageLenis>
  
   )
 }
