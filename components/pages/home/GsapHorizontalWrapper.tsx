@@ -205,7 +205,7 @@ right: 200,
                 const currentObj = modifiedData[k]
                 const nextObj =  modifiedData[number + 1]
 
-                console.log(k, currentObj, nextObj)
+
                 return <section unselectable="on" draggable={false} key={k} className=" px-[20px]  gap-y-4 relative ">
                   
                 { <ProjectCard isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sd" name={currentObj.title || ""}></ProjectCard>}
@@ -240,14 +240,14 @@ const ref = useRef(null)
 
   return <div className="flex flex-col">
     <motion.div className=" bg-bl h-8 w-8
-fixed z-50 hover:bg-blue-700" drag={"x"}    dragConstraints={{
+fixed z-50 hover:bg-blue-700 text-[16px] leading-[16px]" drag={"x"}    dragConstraints={{
 right: 200,
   left: 0,
 
 }} onDrag={(e, i)=>{
   console.log(i.offset.x)
   setMajorX(i.offset.x > 200 ? 200:  i.offset.x)
-}} dragControls={controls}   />
+}} dragControls={controls}   >experimental cursor <span className="text-red-500">(In development)</span></motion.div>
 
   <motion.div ref={ref}  animate={{x: -majorX * 2, transition:{ease: "linear",  duration: 0.3}}}  className="grid border  grid-rows-2 gap-x-4 z-0 grid-flow-col gap-y-5 ">
   
@@ -257,7 +257,6 @@ right: 200,
       const currentObj = modifiedData[k]
       const nextObj =  modifiedData[number + 1]
 
-      console.log(k, currentObj, nextObj)
       return <section unselectable="on" draggable={false} key={k} className=" px-[20px]  gap-y-4 relative ">
         
       { <ProjectCard isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sd" name={currentObj.title || ""}></ProjectCard>}

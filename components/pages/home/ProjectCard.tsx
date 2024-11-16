@@ -23,7 +23,7 @@ export default function ProjectCard(props: ProjectCardProps){
             
         </div>
         <div className=" w-full overflow-hidden h-[25vh] xl:h-[27.5vh] xl:min-h-[198px]  border border-black rounded-[5px] ">
-            <Image unoptimized unselectable={"off"} width={100} height={100} className="w-full image-cover  " alt={props.name + "cover image"}  src={props.media || "null"}></Image>
+            <Image unoptimized unselectable={"off"} width={100} height={100} className="w-full scale-[1.2] image-cover  " alt={props.name + "cover image"}  src={props.media || "null"}></Image>
         </div>
     </div> </Link>:            <div className=" w-full h-full flex items-center justify-center">   <Image unoptimized width={100} height={100} className="w-2/5 image-cover h-fit " alt={props.name + "cover image"}  src={props.media || "null"}></Image></div>}
     

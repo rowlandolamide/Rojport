@@ -51,7 +51,6 @@ export default async function ProjectSlugRoute({ params }: Props) {
   const initial = await loadProject(params.slug)
   const moreProjects = await loadMoreProjects()
 
-  console.log("maybe",initial)
 
   if (draftMode().isEnabled) {
     return <ProjectPreview params={params} initial={initial} />
