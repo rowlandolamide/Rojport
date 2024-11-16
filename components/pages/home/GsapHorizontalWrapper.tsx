@@ -236,17 +236,20 @@ modifiedData?.splice(3,0, {...modifiedData[4], imgUrl: Smile.src, isProject: fal
 const controls = useDragControls()
 const [majorX, setMajorX] = useState(0)
 
+const ref = useRef(null)
+
   return <div className="flex flex-col">
     <motion.div className=" bg-bl h-8 w-8
-fixed z-50 hover:bg-red-500" drag={"x"}    dragConstraints={{
+fixed z-50 hover:bg-blue-700" drag={"x"}    dragConstraints={{
 right: 200,
   left: 0,
 
 }} onDrag={(e, i)=>{
-  setMajorX(i.point.x)
+  console.log(i.offset.x)
+  setMajorX(i.offset.x > 200 ? 200:  i.offset.x)
 }} dragControls={controls}   />
-<motion.div animate={{x: majorX * 10, transition:{ease: "linear",  duration: 0.3}}} className="w-8 h-8 bg-red-500">{majorX}</motion.div>
-  <motion.div   animate={{x: -majorX * 3, transition:{ease: "linear",  duration: 0.3}}}  className="grid border  grid-rows-2 gap-x-4 z-0 grid-flow-col gap-y-5 ">
+
+  <motion.div ref={ref}  animate={{x: -majorX * 2, transition:{ease: "linear",  duration: 0.3}}}  className="grid border  grid-rows-2 gap-x-4 z-0 grid-flow-col gap-y-5 ">
   
   {modifiedData && modifiedData.map((i, k)=>{
       let number = k === 0 ? k : k%2 === 0 ? k : k+2
