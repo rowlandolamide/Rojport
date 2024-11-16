@@ -1,10 +1,11 @@
 "use client"
 
 import React from 'react';
-
+import { ReactLenis } from "@studio-freight/react-lenis";
+import { usePathname } from 'next/navigation';
 import { useContext } from 'react';
 
-import CustomMouse from '@/components/global/CustomMouse';
+/* import CustomMouse from '@/components/global/CustomMouse'; */
 import { ContextMain, MainContextWrapperType } from '@/components/global/ContextWrapper';
 interface LenisHorizontalWrapperprops {
     children?: React.ReactNode
@@ -12,27 +13,33 @@ interface LenisHorizontalWrapperprops {
 } 
 
 function LenisHorizontalWrapper(props: LenisHorizontalWrapperprops) {
+    const pathname = usePathname()
     const {mouseStates} = useContext(ContextMain) as MainContextWrapperType
 
     return (
      <div>
-            <div className={` h-screen  static w-full `} >
-          <div  className="h-8 w-8 fixed top-2 left-8 z-50">
-            
-            <CustomMouse x={mouseStates.x || 0} y={mouseStates.y|| 0}></CustomMouse>
-            </div>
 
-           {props.children} 
-          </div>
-    {/*        <ReactLenis root
-        options={{ orientation: isHorizonatal ? "horizontal": "vertical", gestureOrientation: "both" }}>
+           <ReactLenis root
+        options={{ orientation: pathname === "/" ? "horizontal": "vertical", gestureOrientation: "both" }}>
    
 
-
+  {props.children} 
        
-        </ReactLenis> */}
+        </ReactLenis> 
      </div>
     );
 }
 
 export default LenisHorizontalWrapper;
+
+/*             <div  className={` h-screen  static w-full `} >
+           <div  className="h-8 w-8 fixed top-2 left-8 z-50">
+            
+            <CustomMouse x={mouseStates.x || 0} y={mouseStates.y|| 0}></CustomMouse>
+            </div> 
+
+            {props.children} 
+            </div> */
+
+
+     

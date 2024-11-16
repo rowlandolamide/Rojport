@@ -24,7 +24,7 @@ export default function Navbar(props: NavbarProps) {
 return (
     <div className="flex text-black z-50 fixed w-screen xl:w-full flex-wrap justify-between items-center gap-x-5 px-4 py-4 md:px-5 md:py-4 lg:px-5">
      <div className='flex justify-between px-4 w-full'>
-     <Link href={"/"} scroll={false} className='top-4 right-4 text-[20px] md:text-[40px] font-PPn'>ROJ THE GOAT</Link>
+     <Link href={"/"} scroll={false} className=' hover:text-bl top-4 right-4 text-[20px] md:text-[40px] font-PPn'>ROJ THE GOAT</Link>
       <div className='text-[10px] mx-auto md:block hidden'>
 
       Motion Designer & Art Director 
@@ -33,7 +33,7 @@ return (
       </div>
     <div className='flex gap-x-8 items-center  text-[10px] md:text-[1.7vw]'>
   {[{name: "Work", link: "/about"}, {name: "Info", link: "/projects/alpha"}].map((ite, i)=>{
-    return <Link scroll={false} key={i} href={ite.link}>{ite.name}</Link>
+    return <Link className='hover:text-bl' scroll={false} key={i} href={ite.link}>{ite.name}</Link>
   })}
     </div>
      </div>

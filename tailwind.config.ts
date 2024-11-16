@@ -29,6 +29,7 @@ module.exports = {
   	},
   	extend: {
   		colors: {
+			bl: "#000AFF",
   			primary: {
   				DEFAULT: 'hsl(var(--primary))',
   				foreground: 'hsl(var(--primary-foreground))'

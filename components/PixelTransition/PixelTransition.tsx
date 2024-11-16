@@ -53,7 +53,7 @@ export default function PixelTransition({menuIsActive, dimensions, onAnimationEn
                 <motion.div 
             
                     key={index} 
-                    className={`w-[100%] h-[5vw] bg-blue-500`}
+                    className={`w-[100%] h-[5vw] bg-[#000AFF]`}
                     variants={anim}
                     initial="initial"
                     animate={menuIsActive ? "open" : "closed"}

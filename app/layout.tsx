@@ -6,7 +6,7 @@ import LenisHorizontalWrapper from '@/components/pages/home/LenisHorizontalWrapp
 // import { Inter } from 'next/font/google'
 import { loadSettings } from '@/sanity/loader/loadQuery'
 
-import { Suspense } from 'react'
+
 
 // const sans = Inter({
 //   variable: '--font-sans',

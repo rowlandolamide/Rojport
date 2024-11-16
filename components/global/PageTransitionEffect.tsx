@@ -60,7 +60,7 @@ const PageTransitionEffect = ({ children }: { children: React.ReactNode }) => {
      className=''
         transition={{ ease: 'easeInOut', duration: 1.3}}
       >   <div className={`fixed top-0 left-0 z-50`}>
-         {window && <PixelTransition onAnimationEnd={()=>{setActive(false)}} menuIsActive={active} dimensions={{width: window.innerWidth, height: window.innerHeight}}></PixelTransition>} 
+         {typeof window === "object" && <PixelTransition onAnimationEnd={()=>{setActive(false)}} menuIsActive={active} dimensions={{width: window.innerWidth, height: window.innerHeight}}></PixelTransition>} 
       </div>
         <FrozenRouter>
           <motion.div transition={{duration: 0.6}} animate={active && {opacity: 1, transition: {delay: 0.6}}} initial={{opacity: 0}}>{children}</motion.div>
