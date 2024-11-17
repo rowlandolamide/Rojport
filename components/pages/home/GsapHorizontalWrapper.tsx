@@ -245,11 +245,15 @@ right: 200,
   left: 0,
 
 }} onDrag={(e, i)=>{
+  const rightValue = ()=>{
+ 
+   return i.offset.x > 200 ? 200:  i.offset.x
+  }
   console.log(i.offset.x)
-  setMajorX(i.offset.x > 200 ? 200:  i.offset.x)
-}} dragControls={controls}   >experimental cursor <span className="text-red-500">(In development)</span></motion.div>
+  setMajorX(rightValue())
+}} dragControls={controls}   >experimental cursor <span className="text-red-500">{Math.abs(majorX)}</span></motion.div>
 
-  <motion.div ref={ref}  animate={{x: -majorX * 2, transition:{ease: "linear",  duration: 0.3}}}  className="grid border  grid-rows-2 gap-x-4 z-0 grid-flow-col gap-y-5 ">
+  <motion.div ref={ref}  animate={{x: -majorX * 2, transition:{ease: "linear",  duration: 0.3}}}  className="grid border   grid-rows-2 gap-x-4 z-0 grid-flow-col gap-y-5 ">
   
   {modifiedData && modifiedData.map((i, k)=>{
       let number = k === 0 ? k : k%2 === 0 ? k : k+2
