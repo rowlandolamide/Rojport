@@ -11,6 +11,7 @@ export const homePageQuery = groq`
     customLogo,
     showcaseProjects[]->{
       _type,
+      disci,
       coverImage{
         _type,
         asset,
@@ -75,6 +76,7 @@ export const projectBySlugQuery = groq`
     description,
     overview,
     site,
+    disci,
     "slug": slug.current,
     title,
     content[]{

@@ -19,7 +19,19 @@ export default function IndexRoute() {
     return redirect('/')
   } */
 
-  return <div>
-    We are gems
+  return <div className="">
+<div className=" w-fit h-screen flex ">
+  <div className="w-[300px] h-[400px] bg-red-500">We are gems</div>
+  <div className="w-[300px] h-[400px] bg-red-500">We are gems</div>
+  <div className="w-[300px] h-[400px] bg-red-500">We are gems</div>
+  <div className="w-[300px] h-[400px] bg-red-500">We are gems</div>
+  <div className="w-[300px] h-[400px] bg-red-500">We are gems</div>
+  <div className="w-[300px] h-[400px] bg-red-500">We are gems</div>
+  <div className="w-[300px] h-[400px] bg-red-500">We are gems</div>
+  <div className="w-[300px] h-[400px] bg-red-500">We are gems</div>
+  <div className="w-[300px] h-[400px] bg-red-500">We are gems</div>
+  <div className="w-[300px] h-[400px] bg-red-500">We are gems</div>
+
+      </div>
     {/* <AboutPage data={initial.data} /> */}</div>
 }

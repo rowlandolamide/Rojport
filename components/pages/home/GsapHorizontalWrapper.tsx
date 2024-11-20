@@ -1,6 +1,6 @@
 "use client"
 import {gsap} from "gsap"
-import React, { useEffect, useLayoutEffect, useMemo, useRef, useState} from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useMemo, useRef, useState} from 'react';
 import Smile from "../../../app/public/Icons/Smile Icon.svg"
 import Rook from "../../../app/public/Icons/Rook.svg"
 import SunIcon from "../../../app/public/Icons/Sun Icon.svg"
@@ -10,13 +10,14 @@ import { useDragControls } from "framer-motion";
 import Observer from "gsap/dist/Observer";
 import {motion} from "framer-motion"
 import dynamic from "next/dynamic";
+
 import ScrollSmoother from "gsap/dist/ScrollSmoother";
 import ProjectCard from "./ProjectCard";
-import Draggable from "gsap-trial/Draggable";
-
+import { Draggable } from "gsap/Draggable";
+import {ContextMain, MainContextWrapperType} from "@/components/global/ContextWrapper";
 const IPadHorizontalScroll = dynamic(()=>import("@/components/global/IPadHorizontalScroll"))
 import { urlForImage } from "@/sanity/lib/utils";
-
+import LenisHorizontalWrapper from "./LenisHorizontalWrapper";
 import type { HomePagePayload } from "@/types";
 import ProjectsPageLenis from "@/components/global/ProjectsPageLenis";
 
@@ -27,7 +28,7 @@ GsapHorizontalWrapper.propTypes = {
 };
 
 gsap.registerPlugin(Observer)
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger, Draggable)
 
 const useGsapContext = (scope) => {
     const ctx = useMemo(() => gsap.context(() => {}, scope), [scope]);
@@ -223,37 +224,87 @@ right: 200,
     );
 }
 
-/*  export default GsapHorizontalWrapper; */
+
 
 
 export default function GsapAlt({data}: {data: HomePagePayload | null}){
+
+  const {lenisCurrent} = useContext(ContextMain) as MainContextWrapperType
+
+
   const modifiedData  = data?.showcaseProjects?.map((item)=>{
     const imgUrl = item.coverImage ? urlForImage(item.coverImage)?.quality(50)?.format("webp")?.url() : ""
     return {title: item.title, img: item.coverImage, imgUrl: imgUrl,  isProject: true}
 })
-modifiedData?.push({...modifiedData[2], imgUrl: SunIcon.src, isProject: false}, modifiedData[3])
+const modifiedDataTwo  = data?.showcaseProjects?.map((item)=>{
+  const imgUrl = item.coverImage ? urlForImage(item.coverImage)?.quality(50)?.format("webp")?.url() : ""
+  return {title: item.title, img: item.coverImage, imgUrl: imgUrl,  isProject: true}
+})
+modifiedData?.splice(modifiedData.length, 0,{...modifiedData[2], imgUrl: SunIcon.src, isProject: false}, modifiedData[3])
 modifiedData?.splice(3,0, {...modifiedData[4], imgUrl: Smile.src, isProject: false})
 const controls = useDragControls()
 const [majorX, setMajorX] = useState(0)
 
+
 const ref = useRef(null)
+const gsapDragRef = useRef(null)
+const dragInstance:any = useRef(null);
 
-  return <div className="flex flex-col">
-    <motion.div className=" bg-bl h-8 w-8
-fixed z-50 hover:bg-blue-700 text-[16px] leading-[16px]" drag={"x"}    dragConstraints={{
-right: 200,
-  left: 0,
+/* Use Effect to initialize gsap drag for Horizontal wrapper for desktop screen */
+useEffect(()=>{
+  if(!lenisCurrent || !gsapDragRef.current || !ref.current) return
+  
+  dragInstance.current = Draggable.create(gsapDragRef.current, {
+    type: "x",
+    bounds: {minX: 10, maxX: ref.current.getBoundingClientRect().width - window.innerWidth, minY: 50, maxY: 500},
+    inertia: true,
+    onDrag: ()=>{
+      console.log("counting",dragInstance[0])
+      lenisCurrent.scrollTo(dragInstance.current[0].x)
+      
+    }
+  })
+  gsap.to(".tab-display", { y: 1000 * lenisCurrent.progress, duration: 1 , scrollTrigger: {scrub: 1, trigger: "top"}});
+}, [lenisCurrent, gsapDragRef.current, ref.current])
+  return <div className="xl:h-[90vh]  xl:flex items-center">
+  <div className="w-full hidden sm:block xl:hidden data-lenis-prevent Js-lenis">
+    <IPadHorizontalScroll>
+    <div  className="flex flex-wrap gap-x-4 z-0  gap-y-5 justify-center items-center">
+            {modifiedDataTwo && modifiedDataTwo.map((i, k)=>{
+                
+                const currentObj = modifiedDataTwo[k]
+            
+                return <section key={k} className=" px-[20px]  gap-y-4 ">
+                  
+                { <ProjectCard isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sdd" name={currentObj.title || ""}></ProjectCard>}
 
-}} onDrag={(e, i)=>{
-  const rightValue = ()=>{
- 
-   return i.offset.x > 200 ? 200:  i.offset.x
-  }
-  console.log(i.offset.x)
-  setMajorX(rightValue())
-}} dragControls={controls}   >experimental cursor <span className="text-red-500">{Math.abs(majorX)}</span></motion.div>
+                   
+                </section>
+            })}
+        </div> 
+    </IPadHorizontalScroll>
+</div>
+    <div className="Js-lenis sm:hidden flex flex-col items-center justify-center w-full tab-display data-lenis-prevent">
+    <div className="flex flex-col gap-y-[22px]">
+            {modifiedDataTwo && modifiedDataTwo.map((i, k)=>{
+                
+                const currentObj = modifiedDataTwo[k]
+            
 
-  <motion.div ref={ref}  animate={{x: -majorX * 2, transition:{ease: "linear",  duration: 0.3}}}  className="grid border   grid-rows-2 gap-x-4 z-0 grid-flow-col gap-y-5 ">
+               
+                return <section key={k} className="   gap-y-4 ">
+                  
+                { <ProjectCard isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sd" name={currentObj.title || ""}></ProjectCard>}
+
+                   
+                </section>
+            })}
+        </div> 
+    </div>
+  <div className="xl:flex hidden flex-col  h-fit py-auto w-fit ">
+
+<div ref={gsapDragRef } className="w-8 h-8 bg-green-500 line fixed border border-red-500 z-50 "></div>
+  <motion.div ref={ref}   animate={{x: majorX}}  className="grid border w-fit   grid-rows-2 gap-x-4 z-0 grid-flow-col gap-y-5 ">
   
   {modifiedData && modifiedData.map((i, k)=>{
       let number = k === 0 ? k : k%2 === 0 ? k : k+2
@@ -261,12 +312,14 @@ right: 200,
       const currentObj = modifiedData[k]
       const nextObj =  modifiedData[number + 1]
 
+      console.log(k,k === modifiedData.length - 1)
+
       return <section unselectable="on" draggable={false} key={k} className=" px-[20px]  gap-y-4 relative ">
         
-      { <ProjectCard isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sd" name={currentObj.title || ""}></ProjectCard>}
+      { <ProjectCard animate={k === modifiedData.length - 1} isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sd" name={currentObj.title || ""}></ProjectCard>}
 
          
       </section>
   })}
-</motion.div> </div>
+</motion.div> </div></div>
 }

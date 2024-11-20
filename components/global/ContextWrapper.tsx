@@ -23,6 +23,9 @@ export interface MainContextWrapperType{
         x: number,
         y: number
     }
+
+    lenisCurrent: any
+    setLenisCurrent: (current: any)=> void
 }
 
 
@@ -33,8 +36,9 @@ export const ContextMain = createContext<MainContextWrapperType | null>(null)
 
 
 function ContextWrapper(props: {children: React.ReactNode}) {
- 
+    
     const mouseref = useRef(null)
+    const [lenisCurrent, setLenisCurrent] = useState(null)
     const mouse = useMouse(mouseref, { enterDelay: 100, leaveDelay: 100 })
 
     const [overlay, setOverlay] = useState<MainContextWrapperType["overlay"]>({open: false, index: 0, item: ""})
@@ -42,11 +46,14 @@ function ContextWrapper(props: {children: React.ReactNode}) {
         setOverlay(obj)
     }
 
+    const setLenis = (current: any)=>{
+        setLenisCurrent(current)
+    }
 
 
     return (
        <div className="" ref={mouseref} >
-       <ContextMain.Provider value={{x:"Job", mouseStates: {x: mouse.clientX || 0, y: mouse.clientY || 0}, overlay: overlay, handleOverlay: handleOverlay}}>
+       <ContextMain.Provider value={{x:"Job", lenisCurrent, setLenisCurrent: setLenis, mouseStates: {x: mouse.clientX || 0, y: mouse.clientY || 0}, overlay: overlay, handleOverlay: handleOverlay}}>
 
 
 {overlay.open &&     <div className="fixed z-30 w-full">

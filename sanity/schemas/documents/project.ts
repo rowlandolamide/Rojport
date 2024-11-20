@@ -61,6 +61,18 @@ export default defineType({
       validation: (rule) => rule.max(155).required(),
     }),
     defineField({
+      name: 'disci',
+      description:
+        'Discipline of projects',
+      title: 'Discipline',
+      type: 'array',
+      of: [
+        // Paragraphs
+       {type: "string"}
+      ],
+      validation: (rule) => rule.max(155).required(),
+    }),
+    defineField({
       name: 'year',
       description: 
         '(Optional) This freeform field is for year or type of your project. It will be displayed next to title in the projects list within the homepage and below title at project page.',

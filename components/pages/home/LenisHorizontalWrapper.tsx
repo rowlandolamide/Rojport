@@ -1,10 +1,12 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from 'react';
-import { ReactLenis } from "@studio-freight/react-lenis";
-import { usePathname } from 'next/navigation';
+import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
+import { ReactLenis , useLenis} from "@studio-freight/react-lenis";
+import { usePathname , useRouter, } from 'next/navigation';
+
 import { useContext } from 'react';
 import Lenis from "lenis"
+import useMediaQuery from '@/components/hooks/useMediaQuery';
 import { cancelFrame, frame , motion} from 'framer-motion';
 import { useDragControls } from "framer-motion";
 
@@ -16,19 +18,126 @@ interface LenisHorizontalWrapperprops {
     
 } 
 
+const ReturnDisplay = (props: {children: ReactNode, isVertical: boolean, ref: any})=>{
+
+  return     <ReactLenis root 
+  ref={props.ref}
+
+
+
+options={{ orientation: !props.isVertical ? "horizontal": "vertical", gestureOrientation: "both", }}>
+
+
+{props.children} 
+
+</ReactLenis> 
+
+}
+
 function LenisHorizontalWrapper(props: LenisHorizontalWrapperprops) {
     const pathname = usePathname()
-    const {mouseStates} = useContext(ContextMain) as MainContextWrapperType
+    const { setLenisCurrent} = useContext(ContextMain) as MainContextWrapperType
     const lenisRef:any = useRef()
+   
     const controls = useDragControls()
     const [majorX, setMajorX] = useState(0)
-    useEffect(() => {
+    const {x, otherStuff} = useMediaQuery()
+    const router = useRouter()
+   
+    
+  
+
+    const isHome = pathname === "/"
+    const isProjects = pathname.includes("projects")
+    const isAbout = pathname === "/about"
+    const isLaptop = x > 1279
+
+    
+
+    const isHorizontal = ()=>{
+      if(isHome){
+        console.log("ran home")
+        return isLaptop
+      }
+      else if(isProjects){
+        return false
+      }else if(isAbout){
+        return isLaptop
+      }else return true
+    }
+
+
+    const ReturnDisplayForPage = (props: {children: ReactNode})=>{
+      if(isProjects){
+        
+          return <ReturnDisplay ref={lenisRef} children={props.children} isVertical={false}></ReturnDisplay>}
+      else return <>{props.children}</>
+    }
+
+  
+  
+const MemonizedComp = ()=>{
+  return useMemo(()=> <ReturnDisplay isVertical={!isLaptop} ref={lenisRef} children={props.children}></ReturnDisplay>, [x])
+}
+
+const [, updateState] = React.useState();
+const [run, setRun] = useState(false)
+const forceUpdate = React.useCallback(() => updateState({}), [ x, otherStuff]);
+
+
+
+
+
+/* Lenis Raw Js */
+const lenis = new Lenis({prevent: (node)=>node.classList.contains('Js-lenis')})
+useEffect(()=>{
+
+
+lenis.on('scroll', (e) => {
+  console.log(e)
+})
+
+function raf(time) {
+  lenis.raf(time)
+  requestAnimationFrame(raf)
+}
+
+requestAnimationFrame(raf)
+}, [])
+
+/* End */
+
+
+useEffect(()=>{
  
+  
+  setRun(prev => true)
+  setTimeout(()=> forceUpdate(), 300)
+  setTimeout(()=> {
+    console.log("ran force update")
+    forceUpdate()
+  }, 3000)
+  
+  router.refresh()
+
+  lenisRef.current?.lenis?.stop()
+lenisRef.current?.lenis?.start() 
+
+}, [pathname , router, isHorizontal(), run, x, otherStuff])
+
+useEffect(()=>
+  {
+    console.log("x")
+    forceUpdate()}, [x, pathname, lenisRef.current, isHorizontal(), isAbout])
+    useEffect(() => {
+      if(!lenisRef.current?.lenis) return
+      lenisRef.current.lenis.p
       function update(time) {
         console.log(time)
         lenisRef.current?.lenis?.raf(time)
       }
       
+    setLenisCurrent(lenisRef.current?.lenis)
 
    /*    frame.update(update, true) */
 
@@ -37,40 +146,138 @@ function LenisHorizontalWrapper(props: LenisHorizontalWrapperprops) {
       return () => cancelAnimationFrame(rafId)
   
       return () => cancelFrame(update)
-    }, [])
+    }, [lenisRef.current, pathname])
+
+    
     return (
-     <div>
-    <motion.div style={{zIndex:999}} className=" bg-bl h-8 w-8
+     <div >
+    <motion.div animate={{x: 400 }} style={{zIndex:999}}   dragElastic={run ? false: true}  className=" bg-bl h-8 w-8
 fixed z-50 hover:bg-blue-700 text-[16px] top-[60px] leading-[16px]" drag={"x"}    dragConstraints={{
-right: 200,
+right: 400,
   left: 0,
 
 }} onDrag={(e, i)=>{
+  if(!lenisRef.current) return
   const rightValue = ()=>{
  
-   return i.offset.x > 200 ? 200:  i.offset.x
+   return i.offset.x > 400 ? 400:  i.offset.x
   }
   console.log(i.offset.x)
-  lenisRef.current?.lenis?.scrollTo(rightValue())
-
-}} dragControls={controls}   >experimental cursor <span className="text-red-500">{Math.abs(majorX)}</span></motion.div>
-           <ReactLenis root 
-           ref={lenisRef}
-           autoRaf={true}
+  
+lenisRef.current?.lenis?.stop()
+setMajorX(rightValue())
+lenisRef.current?.lenis?.start()
 
 
-        options={{ orientation: pathname === "/" ? "horizontal": "vertical", gestureOrientation: "both", }}>
-   
 
-  {props.children} 
-       
-        </ReactLenis> 
+
+
+}} dragControls={controls}   >experimental cursor <span className="text-red-500">{Math.abs(400 )}</span></motion.div>
+  <div className=''>   <ReactLenis  root
+      ref={lenisRef}
+
+
+
+   options={{ orientation:  isHorizontal() ? "horizontal": "vertical", gestureOrientation: "both",  }}>
+
+
+{props.children} 
+  
+   </ReactLenis> </div>
+  
+
      </div>
     );
 }
 
+/* 
+export default LenisHorizontalWrapper */
 
-export default LenisHorizontalWrapper
+
+export default function LenisHorizontalWrapperAlt(props: {children: ReactNode}){
+  /* Hooks */
+  const pathname = usePathname()
+  const {x} = useMediaQuery()
+  const { setLenisCurrent} = useContext(ContextMain) as MainContextWrapperType
+  const lenisRef:any = useRef()
+  /* End */
+
+  /* Framer motion Draggable init */
+  const controls = useDragControls()
+  /* End */
+
+  
+  /* Global pathname variables */
+  const isHome = pathname === "/"
+  const isProjects = pathname.includes("projects")
+  const isAbout = pathname === "/about"
+  const isLaptop = x > 1279
+  /* End */
+
+
+  /* Lenis isHorizontal Variable */
+  const isHorizontal = ()=>{
+    if(isHome){
+      console.log("ran home")
+      return isLaptop
+    }
+    else if(isProjects){
+      return false
+    }else if(isAbout){
+      return isLaptop
+    }else return true
+  }
+/* End */
+
+
+/* Set lenisCurrent is Global Context that is Used in GSAPhorizontal wrapper */
+useEffect(()=>{
+  
+  if(!lenisRef.current) return
+  setLenisCurrent(lenisRef.current?.lenis)
+}, [lenisRef.current])
+/* End */
+
+  
+  return  <div >
+  <motion.div animate={{x: 400 }} style={{zIndex:999}}   dragElastic={true}  className=" bg-bl h-8 w-8
+fixed z-50 hover:bg-blue-700 text-[16px] top-[60px] leading-[16px]" drag={"x"}    dragConstraints={{
+right: 400,
+left: 0,
+
+}} onDrag={(e, i)=>{
+if(!lenisRef.current) return
+const rightValue = ()=>{
+
+ return i.offset.x > 400 ? 400:  i.offset.x
+}
+console.log(i.offset.x)
+
+lenisRef.current?.lenis?.stop()
+
+lenisRef.current?.lenis?.start()
+
+
+
+
+
+}} dragControls={controls}   >experimental cursor <span className="text-red-500">{Math.abs(400 )}</span></motion.div>
+<div className=''>   <ReactLenis  root
+    ref={lenisRef}
+
+
+
+ options={{ orientation:  isHorizontal() ? "horizontal": "vertical", gestureOrientation: "both",  }}>
+
+
+{props.children} 
+
+ </ReactLenis> </div>
+
+
+   </div>
+
+}
 
 /* export default function LenisHorizontalWrapp(props: LenisHorizontalWrapperprops){
     useEffect(()=>{

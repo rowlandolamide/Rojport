@@ -1,8 +1,9 @@
 import Navbar from '@/components/global/Navbar/NavbarLayout'
 import ContextWrapper from '@/components/global/ContextWrapper'
 import './globals.css'
-import LenisHorizontalWrapper from '@/components/pages/home/LenisHorizontalWrapper'
+const LenisHorizontalWrapper = dynamic(()=> import("@/components/pages/home/LenisHorizontalWrapper"), )
 
+import dynamic from 'next/dynamic'
 // import { Inter } from 'next/font/google'
 import { loadSettings } from '@/sanity/loader/loadQuery'
 
@@ -41,9 +42,9 @@ export default async function RootLayout({
  <Navbar></Navbar>
    
    <ContextWrapper>
-   <LenisHorizontalWrapper>
+{children &&    <LenisHorizontalWrapper>
    {children}
-</LenisHorizontalWrapper>
+</LenisHorizontalWrapper>}
    </ContextWrapper>
       </body>
 
