@@ -32,7 +32,7 @@ return (
       Lagos, Nigeria: 12:00 WAT</div> 
       </div>
     <div className='flex gap-x-8 items-center  text-[10px] md:text-[1.7vw]'>
-  {[{name: "Work", link: "/about"}, {name: "Info", link: "/projects/alpha"}].map((ite, i)=>{
+  {[{name: "Work", link: "/"}, {name: "Info", link: "/about"}].map((ite, i)=>{
     return <Link className='hover:text-bl' scroll={false} key={i} href={ite.link}>{ite.name}</Link>
   })}
     </div>

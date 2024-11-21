@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState }  from 'react'
-
-import { motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
+import { motion ,} from 'framer-motion';
 
 const anim = {
     initial: {
@@ -20,8 +20,10 @@ const anim = {
 export default function PixelTransition({menuIsActive, dimensions, onAnimationEnd}) {
     const { width, height } = dimensions;
     const [open, setOpen] = useState(false)
+    const params = usePathname()
 
-    
+    const displayedText = params === "/" ? "/": params.split("/")[2]
+   
 
   useEffect(()=>{
     setOpen(true)
@@ -74,6 +76,9 @@ export default function PixelTransition({menuIsActive, dimensions, onAnimationEn
                     </div>
                 })
             }
+            <motion.div animate={{opacity: 0,}} transition={{delay: 1.5}} className='text-white text-center w-full h-full font-PP text-[14vw] absolute top-0 left-0 flex items-center justify-center'>
+                {displayedText}
+            </motion.div>
         </div>
     )
 }

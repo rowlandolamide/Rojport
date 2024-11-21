@@ -80,9 +80,9 @@ const MemonizedComp = ()=>{
   return useMemo(()=> <ReturnDisplay isVertical={!isLaptop} ref={lenisRef} children={props.children}></ReturnDisplay>, [x])
 }
 
-const [, updateState] = React.useState();
+const [, updateState] = React.useState<any>();
 const [run, setRun] = useState(false)
-const forceUpdate = React.useCallback(() => updateState({}), [ x, otherStuff]);
+const forceUpdate = React.useCallback(() => {updateState({})}, [ x, otherStuff]);
 
 
 
@@ -240,7 +240,7 @@ useEffect(()=>{
 
   
   return  <div >
-  <motion.div animate={{x: 400 }} style={{zIndex:999}}   dragElastic={true}  className=" bg-bl h-8 w-8
+  <motion.div animate={{x: 400 }} style={{zIndex:999}}   dragElastic={true}  className=" bg-bl hidden h-8 w-8
 fixed z-50 hover:bg-blue-700 text-[16px] top-[60px] leading-[16px]" drag={"x"}    dragConstraints={{
 right: 400,
 left: 0,

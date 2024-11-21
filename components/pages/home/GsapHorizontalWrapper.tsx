@@ -43,7 +43,7 @@ function GsapHorizontalWrapper({data}: {data: HomePagePayload | null}) {
 
     const modifiedData  = data?.showcaseProjects?.map((item)=>{
         const imgUrl = item.coverImage ? urlForImage(item.coverImage)?.quality(50)?.format("webp")?.url() : ""
-        return {title: item.title, img: item.coverImage, imgUrl: imgUrl,  isProject: true}
+        return {title: item.title, img: item.coverImage, imgUrl: imgUrl,  isProject: true, slug: item.slug}
     })
 
 
@@ -152,7 +152,7 @@ const [majorX, setMajorX] = useState(0)
   
     return (
 <motion.div ref={ref}  transition={{duration: 0.6}} animate={{opacity: 1, transition: {delay: 1}}} initial={{opacity: 0}} className="relative">
-  <div className="dr w-8 h-8 bg-green-500 absolute"></div>
+  <div className="dr w-8 h-8 bg-bl absolute"></div>
 <motion.div className=" bg-bl h-8 w-8
 fixed z-50 hover:bg-red-500" drag={"x"}    dragConstraints={{
 right: 200,
@@ -170,7 +170,7 @@ right: 200,
             
                 return <section key={k} className=" px-[20px]  gap-y-4 ">
                   
-                { <ProjectCard isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sdd" name={currentObj.title || ""}></ProjectCard>}
+                { <ProjectCard slug={i.slug || "/"}  isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sdd" name={currentObj.title || ""}></ProjectCard>}
 
                    
                 </section>
@@ -188,7 +188,7 @@ right: 200,
                
                 return <section key={k} className="   gap-y-4 ">
                   
-                { <ProjectCard isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sd" name={currentObj.title || ""}></ProjectCard>}
+                { <ProjectCard slug={i.slug || "/"}  isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sd" name={currentObj.title || ""}></ProjectCard>}
 
                    
                 </section>
@@ -209,7 +209,7 @@ right: 200,
 
                 return <section unselectable="on" draggable={false} key={k} className=" px-[20px]  gap-y-4 relative ">
                   
-                { <ProjectCard isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sd" name={currentObj.title || ""}></ProjectCard>}
+                { <ProjectCard slug={i.slug || "/"}   isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sd" name={currentObj.title || ""}></ProjectCard>}
 
                    
                 </section>
@@ -233,12 +233,13 @@ export default function GsapAlt({data}: {data: HomePagePayload | null}){
 
 
   const modifiedData  = data?.showcaseProjects?.map((item)=>{
-    const imgUrl = item.coverImage ? urlForImage(item.coverImage)?.quality(50)?.format("webp")?.url() : ""
-    return {title: item.title, img: item.coverImage, imgUrl: imgUrl,  isProject: true}
+    const imgUrl = item.coverImage ? urlForImage(item.coverImage)?.quality(100)?.format("webp")?.url() : ""
+    return {title: item.title, slug: item.slug, img: item.coverImage, imgUrl: imgUrl,  isProject: true}
 })
 const modifiedDataTwo  = data?.showcaseProjects?.map((item)=>{
-  const imgUrl = item.coverImage ? urlForImage(item.coverImage)?.quality(50)?.format("webp")?.url() : ""
-  return {title: item.title, img: item.coverImage, imgUrl: imgUrl,  isProject: true}
+  
+  const imgUrl = item.coverImage ? urlForImage(item.coverImage)?.quality(100)?.format("webp")?.url() : ""
+  return {title: item.title, slug: item.slug, img: item.coverImage, imgUrl: imgUrl,  isProject: true}
 })
 modifiedData?.splice(modifiedData.length, 0,{...modifiedData[2], imgUrl: SunIcon.src, isProject: false}, modifiedData[3])
 modifiedData?.splice(3,0, {...modifiedData[4], imgUrl: Smile.src, isProject: false})
@@ -246,7 +247,7 @@ const controls = useDragControls()
 const [majorX, setMajorX] = useState(0)
 
 
-const ref = useRef(null)
+const ref:any = useRef(null)
 const gsapDragRef = useRef(null)
 const dragInstance:any = useRef(null);
 
@@ -266,7 +267,7 @@ useEffect(()=>{
   })
   gsap.to(".tab-display", { y: 1000 * lenisCurrent.progress, duration: 1 , scrollTrigger: {scrub: 1, trigger: "top"}});
 }, [lenisCurrent, gsapDragRef.current, ref.current])
-  return <div className="xl:h-[90vh]  xl:flex items-center">
+  return <div className="xl:h-[85vh]  xl:flex items-center">
   <div className="w-full hidden sm:block xl:hidden data-lenis-prevent Js-lenis">
     <IPadHorizontalScroll>
     <div  className="flex flex-wrap gap-x-4 z-0  gap-y-5 justify-center items-center">
@@ -276,7 +277,7 @@ useEffect(()=>{
             
                 return <section key={k} className=" px-[20px]  gap-y-4 ">
                   
-                { <ProjectCard isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sdd" name={currentObj.title || ""}></ProjectCard>}
+                { <ProjectCard slug={i.slug || "/"}  isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sdd" name={currentObj.title || ""}></ProjectCard>}
 
                    
                 </section>
@@ -294,7 +295,7 @@ useEffect(()=>{
                
                 return <section key={k} className="   gap-y-4 ">
                   
-                { <ProjectCard isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sd" name={currentObj.title || ""}></ProjectCard>}
+                { <ProjectCard slug={i.slug || "/"} isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sd" name={currentObj.title || ""}></ProjectCard>}
 
                    
                 </section>
@@ -303,7 +304,7 @@ useEffect(()=>{
     </div>
   <div className="xl:flex hidden flex-col  h-fit py-auto w-fit ">
 
-<div ref={gsapDragRef } className="w-8 h-8 bg-green-500 line fixed border border-red-500 z-50 "></div>
+<div ref={gsapDragRef } className="w-8 h-8 bg-bl line fixed border  z-50 rounded-full"></div>
   <motion.div ref={ref}   animate={{x: majorX}}  className="grid border w-fit   grid-rows-2 gap-x-4 z-0 grid-flow-col gap-y-5 ">
   
   {modifiedData && modifiedData.map((i, k)=>{
@@ -316,7 +317,7 @@ useEffect(()=>{
 
       return <section unselectable="on" draggable={false} key={k} className=" px-[20px]  gap-y-4 relative ">
         
-      { <ProjectCard animate={k === modifiedData.length - 1} isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sd" name={currentObj.title || ""}></ProjectCard>}
+      { <ProjectCard slug={i.slug || "/"} animate={k === modifiedData.length - 1} isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sd" name={currentObj.title || ""}></ProjectCard>}
 
          
       </section>
