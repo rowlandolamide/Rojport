@@ -67,22 +67,20 @@ function LenisHorizontalWrapper(props: LenisHorizontalWrapperprops) {
     }
 
 
-    const ReturnDisplayForPage = (props: {children: ReactNode})=>{
+    const ReturnDisplayForPage = (props: {children: ReactNode}, i)=>{
       if(isProjects){
         
-          return <ReturnDisplay ref={lenisRef} children={props.children} isVertical={false}></ReturnDisplay>}
+          return <ReturnDisplay key={i} ref={lenisRef} children={props.children} isVertical={false}></ReturnDisplay>}
       else return <>{props.children}</>
     }
 
   
   
-const MemonizedComp = ()=>{
-  return useMemo(()=> <ReturnDisplay isVertical={!isLaptop} ref={lenisRef} children={props.children}></ReturnDisplay>, [x])
-}
+
 
 const [, updateState] = React.useState<any>();
 const [run, setRun] = useState(false)
-const forceUpdate = React.useCallback(() => {updateState({})}, [ x, otherStuff]);
+const forceUpdate = React.useCallback(() => {updateState({})}, []);
 
 
 
@@ -130,8 +128,8 @@ useEffect(()=>
     console.log("x")
     forceUpdate()}, [x, pathname, lenisRef.current, isHorizontal(), isAbout])
     useEffect(() => {
-      if(!lenisRef.current?.lenis) return
-      lenisRef.current.lenis.p
+      if(!lenisRef.current) return
+ 
       function update(time) {
         console.log(time)
         lenisRef.current?.lenis?.raf(time)
@@ -146,7 +144,7 @@ useEffect(()=>
       return () => cancelAnimationFrame(rafId)
   
       return () => cancelFrame(update)
-    }, [lenisRef.current, pathname])
+    }, [])
 
     
     return (

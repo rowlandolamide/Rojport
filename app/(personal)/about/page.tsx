@@ -33,7 +33,7 @@ export default function IndexRoute() {
 
   /* Gsap Try */
   useEffect(()=>{
-
+    if(!ref.current) return
     dragInstance.current = Draggable.create(ref.current, {
       type: "x,y",
       inertia: true
