@@ -304,7 +304,7 @@ useEffect(()=>{
     </div>
   <div className="xl:flex hidden flex-col  h-fit py-auto w-fit ">
 
-<div ref={gsapDragRef } className="w-8 h-8 bg-bl line fixed border  z-50 rounded-full"></div>
+<div ref={gsapDragRef } className="w-8 h-8 bg-blue-500 shadow-lg line fixed   z-50 rounded-sm"></div>
   <motion.div ref={ref}   animate={{x: majorX}}  className="grid border w-fit   grid-rows-2 gap-x-4 z-0 grid-flow-col gap-y-5 ">
   
   {modifiedData && modifiedData.map((i, k)=>{

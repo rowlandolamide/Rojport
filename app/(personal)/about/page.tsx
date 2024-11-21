@@ -22,7 +22,7 @@ const DeskTopDesignDisplay = (props: {text: string})=>{
 
   return <div className="rounded-[5px] p-[4px] pt-0 bg-[#6599FF]">
     <div className="flex justify-end py-[8px]"><Image width={12} className="" height={15}  alt="About" src={FungSwayIcon.src}></Image></div>
-    <motion.div  className="px-[35px] font-Ingram text-[11px] leading-[21px] border border-black rounded-[4px] bg-[#F2F2F2]">{props.text}</motion.div>
+    <motion.div  className="px-[35px] py-[30px] font-Ingram text-[11px] leading-[21px] border border-black rounded-[4px] bg-[#F2F2F2]">{props.text}</motion.div>
   </div>
 }
 
@@ -66,12 +66,12 @@ export default function IndexRoute() {
 <DeskTopDesignDisplay text={textOne}></DeskTopDesignDisplay>
 </div>
 
-<div className="flex flex-col xl:text-[13.9vw] absolute right-[41vw]  leading-[10vw] border h-screen top-0  justify-center">
+<div className="flex flex-col xl:text-[13.9vw] absolute right-[41vw]  leading-[10vw]  h-[90vh] top-0  justify-center">
   <span className="font-PPn">ROJ’ THE GOAT</span>
   <span className="font-PPn">MOTION DESIGNER</span>
   <span className="font-PPn">ART DIRECTOR</span>
 </div>
-  <div  className="w-[300px] h-[400px] bg-pink-500 absolute top-[30px] left-[100px]">We are gems</div>
+  <div  className="w-[300px] h-[400px] bg-pink-500 absolute top-[30px] left-[100px]"></div>
   <div className="w-[300px] h-[400px] "></div>
   <div className="w-[300px] h-[400px] "></div>
   <div className="w-[300px] h-[400px] "></div>
