@@ -251,6 +251,18 @@ const ref:any = useRef(null)
 const gsapDragRef = useRef(null)
 const dragInstance:any = useRef(null);
 
+
+
+
+const [isRender, setRender] = useState(false)
+
+useEffect(()=>{
+  if(lenisCurrent && gsapDragRef.current && ref.current){
+    setRender(true)
+  }
+
+}, [isRender])
+
 /* Use Effect to initialize gsap drag for Horizontal wrapper for desktop screen */
 useEffect(()=>{
   if(!lenisCurrent || !gsapDragRef.current || !ref.current) return
@@ -266,7 +278,7 @@ useEffect(()=>{
     }
   })
   gsap.to(".tab-display", { y: 1000 * lenisCurrent.progress, duration: 1 , scrollTrigger: {scrub: 1, trigger: "top"}});
-}, [lenisCurrent, gsapDragRef.current, ref.current])
+}, [gsapDragRef.current, ref.current.innerHTML])
   return <div className="xl:h-[85vh]  xl:flex items-center">
   <div className="w-full hidden sm:block xl:hidden data-lenis-prevent Js-lenis">
     <IPadHorizontalScroll>
