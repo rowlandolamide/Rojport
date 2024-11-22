@@ -277,7 +277,7 @@ useEffect(()=>{
     }
   })
   gsap.to(".tab-display", { y: 1000 * lenisCurrent.progress, duration: 1 , scrollTrigger: {scrub: 1, trigger: "top"}});
-}, [toggle, lenisCurrent])
+}, [toggle, lenisCurrent, gsapDragRef])
 
 
   return <div className="xl:h-[85vh]  xl:flex items-center">
