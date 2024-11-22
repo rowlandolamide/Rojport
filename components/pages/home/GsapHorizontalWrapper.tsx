@@ -326,8 +326,7 @@ useEffect(()=>{
       const currentObj = modifiedData[k]
       const nextObj =  modifiedData[number + 1]
 
-      console.log(k,k === modifiedData.length - 1)
-
+     
       return <section unselectable="on" draggable={false} key={k} className=" px-[20px]  gap-y-4 relative ">
         
       { <ProjectCard slug={i.slug || "/"} animate={k === modifiedData.length - 1} isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sd" name={currentObj.title || ""}></ProjectCard>}

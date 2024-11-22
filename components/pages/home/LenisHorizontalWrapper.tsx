@@ -1,6 +1,6 @@
 "use client"
 
-import React, { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { ReactLenis , useLenis} from "@studio-freight/react-lenis";
 import { usePathname , useRouter, } from 'next/navigation';
 
@@ -43,11 +43,20 @@ export default LenisHorizontalWrapper */
 export default function LenisHorizontalWrapperAlt(props: {children: ReactNode}){
 
 
+  /* New callback */
   
+  const [lenisRef, setLenisRef] = React.useState<any>()
+  const lenisRefCall:any = React.useCallback((node) => {
+   console.log(node)
+    if(node){
+      setLenisRef(node)
+    }
+  }, [])
+  /* End */
 
   /* State useRef with useCallbackHook */
 const [toggle, refCallback, myRef] = useRefWithCallback<HTMLSpanElement>();
-const lenisRef:any = useRef()
+//const lenisRef:any = useRef()
 /* End */
 
   /* Hooks */
@@ -73,7 +82,7 @@ const lenisRef:any = useRef()
   /* Lenis isHorizontal Variable */
   const isHorizontal = ()=>{
     if(isHome){
-      console.log("ran home")
+      
       return isLaptop
     }
     else if(isProjects){
@@ -89,16 +98,15 @@ const lenisRef:any = useRef()
 
 /* Set lenisCurrent is Global Context that is Used in GSAPhorizontal wrapper */
 useEffect(()=>{
-  
-  if(!lenisRef.current) return
-  console.log("sd",lenisRef.current)
-  setLenisCurrent(lenisRef.current?.lenis)
-}, [lenisRef.current])
+  if(!lenisRef) return
+
+  setLenisCurrent(lenisRef.lenis)
+}, [toggle, x, lenisRef ])
 /* End */
 
   
-  return  <div >
-  <motion.div animate={{x: 400 }} style={{zIndex:999}}   dragElastic={true}  className=" bg-bl hidden h-8 w-8
+  return  <div  ref={refCallback}>
+  <motion.div  animate={{x: 400 }} style={{zIndex:999}}   dragElastic={true}  className=" bg-bl hidden h-8 w-8
 fixed z-50 hover:bg-blue-700 text-[16px] top-[60px] leading-[16px]" drag={"x"}    dragConstraints={{
 right: 400,
 left: 0,
@@ -120,8 +128,8 @@ lenisRef.current?.lenis?.start()
 
 
 }} dragControls={controls}   >experimental cursor <span className="text-red-500">{Math.abs(400 )}</span></motion.div>
-<div className=''>   <ReactLenis  root
-    ref={lenisRef}
+<div className=''>   <ReactLenis   root
+    ref={lenisRefCall}
 
 
 

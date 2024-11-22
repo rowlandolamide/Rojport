@@ -2,6 +2,9 @@
 import React, { useEffect, useState }  from 'react'
 import { usePathname } from 'next/navigation';
 import { motion ,} from 'framer-motion';
+import useMediaQuery from '../hooks/useMediaQuery';
+
+
 
 const anim = {
     initial: {
@@ -21,6 +24,7 @@ export default function PixelTransition({menuIsActive, dimensions, onAnimationEn
     const { width, height } = dimensions;
     const [open, setOpen] = useState(false)
     const params = usePathname()
+    const {x} = useMediaQuery()
 
     const displayedText = !params.includes("project") ? "/" +params.split("/")[1]: params.split("/")[2] 
    
