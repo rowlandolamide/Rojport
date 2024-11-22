@@ -101,7 +101,7 @@ useEffect(()=>{
   if(!lenisRef) return
 
   setLenisCurrent(lenisRef.lenis)
-}, [toggle, x, lenisRef ])
+}, [toggle, x, lenisRef,setLenisCurrent ])
 /* End */
 
   
