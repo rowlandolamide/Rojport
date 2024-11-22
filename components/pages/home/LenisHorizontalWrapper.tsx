@@ -195,6 +195,8 @@ export default LenisHorizontalWrapper */
 export default function LenisHorizontalWrapperAlt(props: {children: ReactNode}){
 
 
+  
+
   /* State useRef with useCallbackHook */
 const [toggle, refCallback, myRef] = useRefWithCallback<HTMLSpanElement>();
 const lenisRef:any = useRef()
