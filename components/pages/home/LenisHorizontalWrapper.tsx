@@ -70,7 +70,7 @@ function LenisHorizontalWrapper(props: LenisHorizontalWrapperprops) {
     const ReturnDisplayForPage = (props: {children: ReactNode}, i)=>{
       if(isProjects){
         
-          return <ReturnDisplay key={i} ref={lenisRef} children={props.children} isVertical={false}></ReturnDisplay>}
+          return <ReturnDisplay key={i} ref={lenisRef}  isVertical={false}>{props.children}</ReturnDisplay>}
       else return <>{props.children}</>
     }
 
@@ -101,7 +101,7 @@ function raf(time) {
 }
 
 requestAnimationFrame(raf)
-}, [])
+}, [lenis])
 
 /* End */
 
@@ -121,12 +121,12 @@ useEffect(()=>{
   lenisRef.current?.lenis?.stop()
 lenisRef.current?.lenis?.start() 
 
-}, [pathname , router, isHorizontal(), run, x, otherStuff])
+}, [pathname , isHorizontal(), run, x, otherStuff])
 
 useEffect(()=>
   {
-    console.log("x")
-    forceUpdate()}, [x, pathname, lenisRef.current, isHorizontal(), isAbout])
+   
+    forceUpdate()}, [x, pathname, isHorizontal(), isAbout])
     useEffect(() => {
       if(!lenisRef.current) return
  
@@ -144,7 +144,7 @@ useEffect(()=>
       return () => cancelAnimationFrame(rafId)
   
       return () => cancelFrame(update)
-    }, [])
+    }, [forceUpdate, setLenisCurrent])
 
     
     return (
