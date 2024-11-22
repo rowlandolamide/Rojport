@@ -1,6 +1,6 @@
 "use client"
 
-import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ReactLenis , useLenis} from "@studio-freight/react-lenis";
 import { usePathname , useRouter, } from 'next/navigation';
 
@@ -9,7 +9,7 @@ import Lenis from "lenis"
 import useMediaQuery from '@/components/hooks/useMediaQuery';
 import { cancelFrame, frame , motion} from 'framer-motion';
 import { useDragControls } from "framer-motion";
-
+import useRefWithCallback from "@/components/hooks/useRerenderCallback";
 
 /* import CustomMouse from '@/components/global/CustomMouse'; */
 import { ContextMain, MainContextWrapperType } from '@/components/global/ContextWrapper';
@@ -193,11 +193,18 @@ export default LenisHorizontalWrapper */
 
 
 export default function LenisHorizontalWrapperAlt(props: {children: ReactNode}){
+
+
+  /* State useRef with useCallbackHook */
+const [toggle, refCallback, myRef] = useRefWithCallback<HTMLSpanElement>();
+const lenisRef:any = useRef()
+/* End */
+
   /* Hooks */
   const pathname = usePathname()
   const {x} = useMediaQuery()
   const { setLenisCurrent} = useContext(ContextMain) as MainContextWrapperType
-  const lenisRef:any = useRef()
+  
   /* End */
 
   /* Framer motion Draggable init */
@@ -228,10 +235,13 @@ export default function LenisHorizontalWrapperAlt(props: {children: ReactNode}){
 /* End */
 
 
+
+
 /* Set lenisCurrent is Global Context that is Used in GSAPhorizontal wrapper */
 useEffect(()=>{
   
   if(!lenisRef.current) return
+  console.log("sd",lenisRef.current)
   setLenisCurrent(lenisRef.current?.lenis)
 }, [lenisRef.current])
 /* End */

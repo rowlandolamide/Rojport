@@ -1,6 +1,6 @@
 "use client"
 import {gsap} from "gsap"
-import React, { useContext, useEffect, useLayoutEffect, useMemo, useRef, useState} from 'react';
+import React, { useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState} from 'react';
 import Smile from "../../../app/public/Icons/Smile Icon.svg"
 import Rook from "../../../app/public/Icons/Rook.svg"
 import SunIcon from "../../../app/public/Icons/Sun Icon.svg"
@@ -10,7 +10,7 @@ import { useDragControls } from "framer-motion";
 import Observer from "gsap/dist/Observer";
 import {motion} from "framer-motion"
 import dynamic from "next/dynamic";
-
+import useRefWithCallback from "@/components/hooks/useRerenderCallback";
 import ScrollSmoother from "gsap/dist/ScrollSmoother";
 import ProjectCard from "./ProjectCard";
 import { Draggable } from "gsap/Draggable";
@@ -247,25 +247,24 @@ const controls = useDragControls()
 const [majorX, setMajorX] = useState(0)
 
 
+/* Use Callback */
+const [toggle, refCallback, myRef] = useRefWithCallback<HTMLSpanElement>();
+
 const ref:any = useRef(null)
-const gsapDragRef = useRef(null)
+const gsapDragRef = myRef
 const dragInstance:any = useRef(null);
 
 
 
 
-const [isRender, setRender] = useState(false)
 
-useEffect(()=>{
-  if(lenisCurrent && gsapDragRef.current && ref.current){
-    setRender(true)
-  }
 
-}, [isRender])
+
+
 
 /* Use Effect to initialize gsap drag for Horizontal wrapper for desktop screen */
 useEffect(()=>{
-  if(!lenisCurrent || !gsapDragRef.current || !ref.current) return
+  if(!gsapDragRef.current || !lenisCurrent) return
   
   dragInstance.current = Draggable.create(gsapDragRef.current, {
     type: "x",
@@ -278,7 +277,9 @@ useEffect(()=>{
     }
   })
   gsap.to(".tab-display", { y: 1000 * lenisCurrent.progress, duration: 1 , scrollTrigger: {scrub: 1, trigger: "top"}});
-}, [gsapDragRef.current, ref.current.innerHTML])
+}, [toggle, lenisCurrent])
+
+
   return <div className="xl:h-[85vh]  xl:flex items-center">
   <div className="w-full hidden sm:block xl:hidden data-lenis-prevent Js-lenis">
     <IPadHorizontalScroll>
@@ -316,7 +317,7 @@ useEffect(()=>{
     </div>
   <div className="xl:flex hidden flex-col  h-fit py-auto w-fit ">
 
-<div ref={gsapDragRef } className="w-8 h-8 bg-blue-500 shadow-lg line fixed   z-50 rounded-sm"></div>
+<div ref={refCallback } className="w-8 h-8 bg-blue-500 shadow-lg line fixed   z-50 rounded-sm"></div>
   <motion.div ref={ref}   animate={{x: majorX}}  className="grid border w-fit   grid-rows-2 gap-x-4 z-0 grid-flow-col gap-y-5 ">
   
   {modifiedData && modifiedData.map((i, k)=>{
