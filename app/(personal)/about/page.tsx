@@ -40,7 +40,7 @@ export default function IndexRoute() {
     })
 
 
-  }, [ref.current])
+  }, [ref])
 
 
 
