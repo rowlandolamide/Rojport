@@ -264,7 +264,7 @@ const dragInstance:any = useRef(null);
 
 /* Use Effect to initialize gsap drag for Horizontal wrapper for desktop screen */
 useEffect(()=>{
-  if(!gsapDragRef.current || !lenisCurrent) return
+  if(!lenisCurrent) return
   
   dragInstance.current = Draggable.create(gsapDragRef.current, {
     type: "x",
