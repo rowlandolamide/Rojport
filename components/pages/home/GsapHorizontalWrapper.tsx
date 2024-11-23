@@ -1,8 +1,8 @@
 "use client"
 import {gsap} from "gsap"
-import React, { useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState} from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useMemo, useRef, useState} from 'react';
 import Smile from "../../../app/public/Icons/Smile Icon.svg"
-import Rook from "../../../app/public/Icons/Rook.svg"
+
 import SunIcon from "../../../app/public/Icons/Sun Icon.svg"
 import {horizontalLoop} from "./HorizontalLoop"
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -11,15 +11,15 @@ import Observer from "gsap/dist/Observer";
 import {motion} from "framer-motion"
 import dynamic from "next/dynamic";
 import useRefWithCallback from "@/components/hooks/useRerenderCallback";
-import ScrollSmoother from "gsap/dist/ScrollSmoother";
+
 import ProjectCard from "./ProjectCard";
 import { Draggable } from "gsap/Draggable";
 import {ContextMain, MainContextWrapperType} from "@/components/global/ContextWrapper";
 const IPadHorizontalScroll = dynamic(()=>import("@/components/global/IPadHorizontalScroll"))
 import { urlForImage } from "@/sanity/lib/utils";
-import LenisHorizontalWrapper from "./LenisHorizontalWrapper";
+
 import type { HomePagePayload } from "@/types";
-import ProjectsPageLenis from "@/components/global/ProjectsPageLenis";
+
 
 
 
