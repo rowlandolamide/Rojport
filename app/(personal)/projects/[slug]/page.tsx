@@ -82,17 +82,25 @@ console.log("sds",initial)
       return <div key={i} className='py-[58px]'> <ProjectText key={i} body={item.description}></ProjectText></div>
      }
      else if(item._type.toLowerCase().includes("image")){
+      /* Logic for two images */
      const isSingleImage = !item.photoOne
-     const singleImageUrl:any = urlForImage(item.photoOne)?.url()
-     const secongImageUrl: any = urlForImage(item.photoTwo)?.url()
+     const firstImageUrl:any = urlForImage(item.photoOne)?.url()
+     const secondImageUrl: any = urlForImage(item.photoTwo)?.url()
+     /* End */
+
+
+     /* Logic for single images */
+     const singleImageUrl = urlForImage(item.photo)?.url()
+     /* End */
+
      if(isSingleImage){
       
-      return <div key={i} className='py-[22px]'><ProjectImage  key={i} img={singleImageUrl}></ProjectImage></div>
+      return <div key={i} className='py-[22px]'><ProjectImage  key={i} img={singleImageUrl || ""}></ProjectImage></div>
      }
      else{
       return <div  className={`grid grid-cols-1 xl:grid-cols-2 gap-x-[22px] xl:gap-y-0 gap-y-[22px] ${isLastImageType() && "pb-[22px]"}`} key={i}>
-      <ProjectImage img={singleImageUrl}></ProjectImage>
-      <ProjectImage img={secongImageUrl}></ProjectImage>
+      <ProjectImage img={firstImageUrl}></ProjectImage>
+      <ProjectImage img={secondImageUrl}></ProjectImage>
       </div>
      }
      
