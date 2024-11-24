@@ -60,6 +60,7 @@ export interface ProjectPayload {
   slug: string
   tags?: string[]
   title?: string
+  mainVideo?:string
   content?: Content[]
 }
 

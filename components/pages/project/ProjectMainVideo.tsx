@@ -4,9 +4,11 @@ import { useContext } from "react"
 import { Slider } from "@/components/ui/Slider"
 import { useRef, useState } from "react"
 import ReactPlayer from "react-player"
+import React from 'react'
 import useMediaQuery from "@/components/hooks/useMediaQuery"
 import { MainContextWrapperType, ContextMain } from "@/components/global/ContextWrapper"
-
+import Video from "next-video"
+import getStarted from '/videos/get-started.mp4';
   
 /* import {FastRewind, FastForward} from "@material-ui/icons" */
 
@@ -31,7 +33,7 @@ const SliderVolume = (props: {setVolume: (val: number)=>void})=>{
 }
 
 export default function ProjectMainVideo({url}:{url: string}){
-  const {handleOverlay,overlay } = useContext(ContextMain) as MainContextWrapperType
+  /* const {handleOverlay,overlay } = useContext(ContextMain) as MainContextWrapperType */
     const ref:any = useRef(null)
     const [videoStates, setVideoStates] = useState({isPlaying: false, volume: 0.5})
 
@@ -39,6 +41,7 @@ export default function ProjectMainVideo({url}:{url: string}){
 
     const beginningHandler = () => {
       const videoTag = videoRef.current.getInternalPlayer() as HTMLVideoElement;
+     
       videoTag.style.objectFit = 'cover';
     }
 
@@ -56,9 +59,9 @@ export default function ProjectMainVideo({url}:{url: string}){
     }else return "50vw"
     }
 
-    return <div onClick={()=>{
+    return <div /* onClick={()=>{
       handleOverlay({...overlay, open: true, isVideo: true, item: url })
-    }}  className="z-0 items-center justify-center flex w-full border border-black rounded-[10px] overflow-hidden">
+    }}  */ className="z-0 items-center justify-center flex w-full border border-black rounded-[10px] overflow-hidden">
     <div  className="absolute z-20">
             {PlayPause(()=>(setVideoStates(prev =>  ({...prev, isPlaying: !prev.isPlaying}))))}
         </div> 
@@ -68,7 +71,7 @@ export default function ProjectMainVideo({url}:{url: string}){
         }} className="absolute z-20">
             <RewindFastFoward></RewindFastFoward>
         </button> */}
-
-      {  <ReactPlayer ref={videoRef} onStart={beginningHandler} height={"100%"} width={"100%"} style={{zIndex: 0, position: "relative", height: "auto !important", aspectRatio: "16/9"}}  volume={videoStates.volume}    url={"https://vimeo.com/664718350"}></ReactPlayer>}
+{/* <Video  src={getStarted}></Video> */}
+     {  <ReactPlayer playsinline={true}  ref={videoRef} controls={true} onStart={beginningHandler} height={"100%"} width={"100%"} style={{zIndex: 0, position: "relative", height: "auto !important", aspectRatio: "16/9"}}  volume={videoStates.volume}    url={url}></ReactPlayer>}
     </div>
 }

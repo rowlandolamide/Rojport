@@ -2,7 +2,7 @@ import Navbar from '@/components/global/Navbar/NavbarLayout'
 import ContextWrapper from '@/components/global/ContextWrapper'
 import './globals.css'
 const LenisHorizontalWrapper = dynamic(()=> import("@/components/pages/home/LenisHorizontalWrapper"), )
-
+import ProjectMainVideo from '@/components/pages/project/ProjectMainVideo'
 import dynamic from 'next/dynamic'
 // import { Inter } from 'next/font/google'
 import { loadSettings } from '@/sanity/loader/loadQuery'
@@ -36,11 +36,11 @@ export default async function RootLayout({
       style={{ ['--color-primary' as any]: rgbaBgColor, ['--color-secondary' as any]: rgbaTextColor }}
      
     >
-   
+{/*   <meta http-equiv="Content-Security-Policy" content="default-src  'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'"></meta> */}
     <body className='text-black relative  '>
-    
+
  <Navbar></Navbar>
-   
+
    <ContextWrapper>
 {children &&    <LenisHorizontalWrapper>
    {children}

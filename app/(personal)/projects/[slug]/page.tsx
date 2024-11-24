@@ -66,7 +66,7 @@ console.log("sds",initial)
     <div className=''>
       <div className='w-full pb-[58px] '>
         
-    <ProjectMainVideo url='https://vimeo.com/664718350'></ProjectMainVideo>
+    <ProjectMainVideo url={initial.data?.mainVideo || ""}></ProjectMainVideo>
       </div>
   {/*   <ProjectImage img='https://modii.org/wp-content/uploads/2020/12/random.png'></ProjectImage> */}
    

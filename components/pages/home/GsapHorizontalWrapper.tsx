@@ -154,7 +154,7 @@ const [majorX, setMajorX] = useState(0)
 <motion.div ref={ref}  transition={{duration: 0.6}} animate={{opacity: 1, transition: {delay: 1}}} initial={{opacity: 0}} className="relative">
   <div className="dr w-8 h-8 bg-bl absolute"></div>
 <motion.div className=" bg-bl h-8 w-8
-fixed z-50 hover:bg-red-500" drag={"x"}    dragConstraints={{
+fixed z-50 " drag={"x"}    dragConstraints={{
 right: 200,
   left: 0,
 

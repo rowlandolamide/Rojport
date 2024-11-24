@@ -56,7 +56,7 @@ function ContextWrapper(props: {children: React.ReactNode}) {
        <ContextMain.Provider value={{x:"Job", lenisCurrent, setLenisCurrent: setLenis, mouseStates: {x: mouse.clientX || 0, y: mouse.clientY || 0}, overlay: overlay, handleOverlay: handleOverlay}}>
 
 
-{overlay.open &&     <div className="fixed z-30 w-full">
+{overlay.open &&     <div className="fixed z-50 w-full ">
    <Overlay closeOverlay={()=>{setOverlay(prev => {return {...prev, open: false}})}} setIsVideoFalse={()=>{setOverlay(prev =>{return {...prev, isVideo: false}})}} obj={overlay} ></Overlay>
  </div>}
        {props.children}

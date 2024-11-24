@@ -7,9 +7,10 @@ import ReactPlayer from 'react-player';
 
 
 
+
 function Overlay(props: {obj:  MainContextWrapperType["overlay"], setIsVideoFalse: ()=> void, closeOverlay: ()=> void}) {
   const {obj} = props
-
+  const reactRef:any  = useRef(null)
     const ref: any = useRef(null)
     useEffect(()=>{
       const { setIsVideoFalse, closeOverlay} = props
@@ -33,18 +34,38 @@ function Overlay(props: {obj:  MainContextWrapperType["overlay"], setIsVideoFals
     }, [props])
 
 
+    useEffect(()=>{
+      if(reactRef.current)
+      {
+        const videoCurrent= reactRef.current.getInternalPlayer()
+       if(videoCurrent){
+        videoCurrent.addEventListener("mouseover", ()=>{
+          console.log(reactRef.current)
+        })
+       }
+      }
+
+      
+    
+    }, [])
+
+
    
 
     const [rend, setRend] = useState(false)
 
     return (
   <div className='w-screen h-screen flex items-center justify-center bg-gray-100/[0.5]'>
-          <div ref={ref} className='w-[80%] h-screen flex justify-center items-center '>
-   {props.obj.isVideo ?         <div className='flex items-center justify-center'><div  className={`${rend ? "hidden": ""} w-full h-[500px] animate-pulse bg-gray-400`}></div> <ReactPlayer style={{display: rend ?"": "hidden"}} previewTabIndex={2} onReady={()=>{setRend(true)
-   }}  controls width={"80vw"} height={"100vh"} url={props.obj.item}></ReactPlayer></div>:
 
-<Image ref={ref} unoptimized alt='something' width={100} height={100} className='w-fit h-screen' src={obj.item}></Image>   }         
-        </div>
+ {/*    <ReactPlayer playing  style={{display: rend ?"": "hidden"}} previewTabIndex={2} onReady={()=>{setRend(true)
+   }}  controls={true} width={"80vw"} height={"100vh"}  url={props.obj.item}></ReactPlayer> */}
+          <div ref={ref} className='w-[80%] h-screen flex justify-center items-center '>
+   {props.obj.isVideo ?         <div className='flex items-center justify-center  '><div  className={`${rend ? "hidden": ""} w-full h-[500px] animate-pulse bg-gray-400`}></div> 
+   <ReactPlayer playing  style={{display: rend ?"": "hidden"}} previewTabIndex={2} onReady={()=>{setRend(true)
+   }}  controls width={"80vw"} height={"100vh"}  url={props.obj.item}></ReactPlayer></div>:
+
+<Image ref={ref} unoptimized alt='something' width={100} height={100} className='w-full' src={obj.item}></Image>   }         
+        </div> 
   </div>
     );
 }
