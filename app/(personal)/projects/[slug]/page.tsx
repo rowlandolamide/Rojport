@@ -48,10 +48,11 @@ export function generateStaticParams() {
 }
 
 export default async function ProjectSlugRoute({ params }: Props) {
-  const initial = await loadProject(params.slug)
+  console.log("nn",params.slug)
+  const initial = await loadProject(params.slug.trim())
   const moreProjects = await loadMoreProjects()
 
-console.log("sds",initial)
+console.log("sds",initial, moreProjects)
   if (draftMode().isEnabled) {
     return <ProjectPreview params={params} initial={initial} />
   }
@@ -108,6 +109,7 @@ console.log("sds",initial)
     
     })}
   </div> 
+  
   </ProjectWrapper>
 }
 

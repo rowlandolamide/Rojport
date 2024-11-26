@@ -20,7 +20,7 @@ export default function ProjectCard(props: ProjectCardProps){
     return <>
     {props.isProject ? <Link href={`/projects/${props.slug}`}><div draggable={false} className="removeHigh hover:bg-bl xl:w-[25vw] w-[80vw] sm:w-[24vw] xl:min-w-[327px]  h-fit bg-[#FDFEC0] rounded-[5px] p-[4px] border border-black duration-300">
         <div className="flex justify-between py-4">
-            <div className="xl:text-[3vw] sm:text-[2.5vw] text-[8vw] font-PP">{props.name}</div>
+            <div className="xl:text-[3vw] 2xl:text-[2.5vw] sm:text-[2.5vw] text-[8vw] font-PP">{props.name}</div>
             <div className="text-[10px] pr-4">{props.discipline} -{x}</div>
             
         </div>

@@ -28,7 +28,7 @@ export default function Footer(props: FooterProps) {
       </div>
       <div className='px-2 py-1  xl:mr-[40px]  text-center'>
    {FooterLinsk.map((ite, i)=>{
-    return <Link key={i} href={"/"}>{ite.name} {i != FooterLinsk.length -1 && ","}</Link>
+    return <Link className='ml-[10px]' key={i} href={"/"}>{ite.name}</Link>
    })}
       </div>
   </div>

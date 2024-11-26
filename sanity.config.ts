@@ -29,6 +29,7 @@ export default defineConfig({
   projectId: projectId || '',
   dataset: dataset || '',
   title,
+ 
   icon: Logo,
   schema: {
     // If you want more content types, you can add them to this array
@@ -41,6 +42,7 @@ export default defineConfig({
       project,
     ],
   },
+
   plugins: [
     structureTool({
       structure: pageStructure([home, settings, about]),

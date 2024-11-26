@@ -21,6 +21,7 @@ interface LenisHorizontalWrapperprops {
 const ReturnDisplay = (props: {children: ReactNode, isVertical: boolean, ref: any})=>{
 
   return     <ReactLenis root 
+ 
   ref={props.ref}
 
 
@@ -130,10 +131,11 @@ lenisRef.current?.lenis?.start()
 }} dragControls={controls}   >experimental cursor <span className="text-red-500">{Math.abs(400 )}</span></motion.div>
 <div className=''>   <ReactLenis   root
     ref={lenisRefCall}
+    
 
 
 
- options={{ orientation:  isHorizontal() ? "horizontal": "vertical", gestureOrientation: "both",  }}>
+ options={{ orientation:  isHorizontal() ? "horizontal": "vertical", syncTouch: true, gestureOrientation: "both", smoothWheel: true , }}>
 
 
 {props.children} 

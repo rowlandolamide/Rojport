@@ -22,6 +22,7 @@ import {
 
 const serverClient = client.withConfig({
   token,
+
   // Enable stega if it's a Vercel preview deployment, as the Vercel Toolbar has controls that shows overlays
   stega: process.env.VERCEL_ENV === 'preview',
 })
@@ -34,7 +35,8 @@ const serverClient = client.withConfig({
  */
 queryStore.setServerClient(serverClient)
 
-const usingCdn = serverClient.config().useCdn
+const usingCdn = serverClient.config().useCdn 
+console.log("woww",usingCdn)
 // Automatically handle draft mode
 export const loadQuery = ((query, params = {}, options = {}) => {
   const {
@@ -105,9 +107,10 @@ export function getAboutPage() {
 }
 
 export function loadProject(slug: string) {
+  console.log("damsn",slug)
   return loadQuery<ProjectPayload | null>(
     projectBySlugQuery,
-    { slug },
+    { slug},
     { next: { tags: [`project:${slug}`] } },
   )
 }
