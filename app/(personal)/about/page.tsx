@@ -92,12 +92,13 @@ export default function IndexRoute() {
 useEffect(()=>{
   if(lenisCurrent){
     lenisCurrent.scrollTo(0)
+    lenisCurrent.resize()
   }
 }, [lenisCurrent])
 
 
   /* Framer motion Draggable */
-  const control = useDragControls()
+
 /*   const initial = await getAboutPage() */
 /* 
   if (draftMode().isEnabled) {
