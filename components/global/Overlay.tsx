@@ -18,7 +18,7 @@ function Overlay(props: {obj:  MainContextWrapperType["overlay"], setIsVideoFals
             if(!ref) return
             if(!ref.current) return  
             if (ref.current.contains(e.target)){
-                console.log("cll")
+               
               // Clicked in box
             } else{
               // Clicked outside the box
@@ -40,7 +40,7 @@ function Overlay(props: {obj:  MainContextWrapperType["overlay"], setIsVideoFals
         const videoCurrent= reactRef.current.getInternalPlayer()
        if(videoCurrent){
         videoCurrent.addEventListener("mouseover", ()=>{
-          console.log(reactRef.current)
+         
         })
        }
       }

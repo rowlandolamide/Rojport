@@ -48,7 +48,7 @@ export default function LenisHorizontalWrapperAlt(props: {children: ReactNode}){
   
   const [lenisRef, setLenisRef] = React.useState<any>()
   const lenisRefCall:any = React.useCallback((node) => {
-   console.log(node)
+
     if(node){
       setLenisRef(node)
     }
@@ -118,7 +118,6 @@ const rightValue = ()=>{
 
  return i.offset.x > 400 ? 400:  i.offset.x
 }
-console.log(i.offset.x)
 
 lenisRef.current?.lenis?.stop()
 

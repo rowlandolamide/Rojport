@@ -14,7 +14,7 @@ function FrozenRouter(props: { children: React.ReactNode }) {
     return <>{props.children}</>;
   }
 
-  console.log("something",frozen)
+
 
   return (
     <LayoutRouterContext.Provider value={frozen}>

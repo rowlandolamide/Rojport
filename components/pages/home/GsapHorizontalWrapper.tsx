@@ -319,7 +319,7 @@ useEffect(()=>{
     bounds: {minX: 10, maxX: ref.current.getBoundingClientRect().width - window.innerWidth, minY: 50, maxY: 500},
     inertia: true,
     onDrag: ()=>{
-      console.log("counting",dragInstance[0])
+    
       lenisCurrent.scrollTo(dragInstance.current[0].x)
       
     }

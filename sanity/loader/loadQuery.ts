@@ -36,7 +36,7 @@ const serverClient = client.withConfig({
 queryStore.setServerClient(serverClient)
 
 const usingCdn = serverClient.config().useCdn 
-console.log("woww",usingCdn)
+
 // Automatically handle draft mode
 export const loadQuery = ((query, params = {}, options = {}) => {
   const {
@@ -107,7 +107,7 @@ export function getAboutPage() {
 }
 
 export function loadProject(slug: string) {
-  console.log("damsn",slug)
+ 
   return loadQuery<ProjectPayload | null>(
     projectBySlugQuery,
     { slug},

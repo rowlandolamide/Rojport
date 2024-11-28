@@ -48,11 +48,11 @@ export function generateStaticParams() {
 }
 
 export default async function ProjectSlugRoute({ params }: Props) {
-  console.log("nn",params.slug)
+  
   const initial = await loadProject(params.slug.trim())
   const moreProjects = await loadMoreProjects()
 
-console.log("sds",initial, moreProjects)
+
   if (draftMode().isEnabled) {
     return <ProjectPreview params={params} initial={initial} />
   }
@@ -79,7 +79,7 @@ console.log("sds",initial, moreProjects)
         return initial.data?.content[i + 1]._type.toLowerCase().includes("image") && initial.data?.content[i]._type.toLowerCase().includes("image")
       }
      if(item._type === "textBlock"){
-      console.log("john",item)
+     
       return <div key={i} className='py-[58px]  w-full flex items-center justify-center'> 
       <div className='2xl:max-w-[31vw] 3xl:max-w-[28vw] max-w-[450px] mx-auto'><ProjectText key={i} body={item.description}></ProjectText></div></div>
      }
