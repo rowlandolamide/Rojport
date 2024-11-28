@@ -93,7 +93,7 @@ useEffect(()=>{
   if(lenisCurrent){
     lenisCurrent.scrollTo(0)
   }
-}, [])
+}, [lenisCurrent])
 
 
   /* Framer motion Draggable */
