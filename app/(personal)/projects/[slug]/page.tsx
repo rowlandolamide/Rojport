@@ -80,7 +80,8 @@ console.log("sds",initial, moreProjects)
       }
      if(item._type === "textBlock"){
       console.log("john",item)
-      return <div key={i} className='py-[58px]'> <ProjectText key={i} body={item.description}></ProjectText></div>
+      return <div key={i} className='py-[58px]  w-full flex items-center justify-center'> 
+      <div className='2xl:max-w-[31vw] 3xl:max-w-[28vw] max-w-[450px] mx-auto'><ProjectText key={i} body={item.description}></ProjectText></div></div>
      }
      else if(item._type.toLowerCase().includes("image")){
       /* Logic for two images */

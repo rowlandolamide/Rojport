@@ -135,7 +135,7 @@ lenisRef.current?.lenis?.start()
 
 
 
- options={{ orientation:  isHorizontal() ? "horizontal": "vertical", syncTouch: true, gestureOrientation: "both", smoothWheel: true , }}>
+ options={{autoResize: true, orientation:  isHorizontal() ? "horizontal": "vertical", syncTouch: true, gestureOrientation: "both", smoothWheel: true , }}>
 
 
 {props.children} 

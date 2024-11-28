@@ -384,7 +384,9 @@ useEffect(()=>{
       const nextObj =  modifiedData[number + 1]
 
      
-      return <section unselectable="on" draggable={false} key={k} className=" px-[20px]  h-full relative ">
+      return <section onDrag={(e)=>{
+        e.stopPropagation()
+      }} unselectable="on" draggable={false} key={k} className=" px-[20px]  h-full relative ">
         
       { <ProjectCard slug={i.slug || "/"} animate={k === modifiedData.length - 1} isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sd" name={currentObj.title || ""}></ProjectCard>}
 
