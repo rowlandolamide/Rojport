@@ -17,7 +17,7 @@ import ProfilePicture from "../../../app/public/Images/Profile Image.png"
 import MicDrop from "../../public/Images/Mic Drop.png"
 import {gsap} from "gsap"
 import {Draggable} from "gsap/Draggable"
-import { useEffect, useRef } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { useContext } from "react"
 import { MainContextWrapperType, ContextMain } from "@/components/global/ContextWrapper"
@@ -40,6 +40,7 @@ const DeskTopDesignDisplay = (props: {text: string , header ?: string})=>{
 export default function IndexRoute() {
 
   const {lenisCurrent} = useContext(ContextMain) as MainContextWrapperType
+  
 
   const dragInstance:any = useRef(null)
   const ref:any = useRef()
@@ -89,12 +90,23 @@ export default function IndexRoute() {
 
   }, [ref, refFour, refTwo, refThree, lenisCurrent])
 
+  /* ContainerRef */
+  const [containerRef, setContainerRef] = useState<any>()
+
+  const containerRefCallBack: any = useCallback((node)=>{
+    if(node){
+      setContainerRef(node)
+    }
+  }, [])
+ 
+  /* End */
+
 useEffect(()=>{
-  if(lenisCurrent){
+  if(lenisCurrent && containerRef){
     lenisCurrent.scrollTo(0)
     lenisCurrent.resize()
   }
-}, [lenisCurrent])
+}, [lenisCurrent, containerRef])
 
 
   /* Framer motion Draggable */
@@ -115,7 +127,7 @@ useEffect(()=>{
     const textOne = "I'm Olamide Rowland – a motion design enthusiast and creative problem-solver. I thrive on empowering brands, startups, and companies to flourish. From collaborating with top studios like Yellow Lab and Funken Studio to leading as Creative Director at Brass Bank, each project fuels my growth and innovation.let’s collaborate on something Olamide@rojthegoat.com"
 
   return <div>
-    <div className="xl:block hidden w-[200vw]">
+    <div ref={containerRefCallBack} className="xl:block hidden w-[200vw]">
   {/* background Image */}
   <Image width={100} height={100} alt="Horizontal Bg" className="w-full  fixed left-0 h-full scale-y-[2] z-30 top-0" unoptimized src={HorizontalBackground.src}></Image>
   {/* End */}
