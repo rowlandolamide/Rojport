@@ -136,7 +136,7 @@ const onScrollBarMouseMove =  useCallback((e) =>{
   
       lenisCurrent.scrollTo(lenisCurrent.scroll + actualMovement)
   }
-}, [scrollBarDown.status])
+}, [scrollBarDown.status, lenisCurrent,scrollBarDown.position])
 
 /* End */
 
@@ -165,7 +165,7 @@ return
   })
   /* gsap.timeline({}).to(gsapDragRef.current, {y: 300 * lenisCurrent.progress, duration: 0.1}) */
   }
-}, [lenisCurrent, gsapDragRef, dragInstance])
+}, [lenisCurrent, gsapDragRef, dragInstance, gsapTime])
 
 
 
