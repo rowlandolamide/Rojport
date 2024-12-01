@@ -2,11 +2,11 @@
 import {gsap} from "gsap"
 import React, { useContext, useEffect, useLayoutEffect, useMemo, useRef, useState} from 'react';
 import Smile from "../../../app/public/Icons/Smile Icon.svg"
-import { ReactLenis , useLenis} from "@studio-freight/react-lenis";
+
 import SunIcon from "../../../app/public/Icons/Sun Icon.svg"
-import {horizontalLoop} from "./HorizontalLoop"
+
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useDragControls } from "framer-motion";
+
 import Observer from "gsap/dist/Observer";
 import {motion} from "framer-motion"
 import dynamic from "next/dynamic";
@@ -29,10 +29,6 @@ import type { HomePagePayload } from "@/types";
 gsap.registerPlugin(Observer)
 gsap.registerPlugin(ScrollTrigger, Draggable)
 
-const useGsapContext = (scope) => {
-    const ctx = useMemo(() => gsap.context(() => {}, scope), [scope]);
-    return ctx;
-  };
 
 
 
@@ -54,8 +50,7 @@ const modifiedDataTwo  = data?.showcaseProjects?.map((item)=>{
 })
 modifiedData?.splice(modifiedData.length, 0,{...modifiedData[2], imgUrl: SunIcon.src, isProject: false}, modifiedData[3])
 modifiedData?.splice(3,0, {...modifiedData[4], imgUrl: Smile.src, isProject: false})
-const controls = useDragControls()
-const [majorX, setMajorX] = useState(0)
+
 
 
 /* Use Callback */
@@ -63,10 +58,10 @@ const [toggle, refCallback, myRef] = useRefWithCallback<HTMLSpanElement>();
 
 const ref:any = useRef(null)
 const gsapDragRef = myRef
+
 const dragInstance:any = useRef(null);
 
-/* Desktop Draggable */
-const dragInstanceDesktop:any = useRef(null)
+
 
 
 /* Media Query */
@@ -89,13 +84,88 @@ const onMouseUp = useCallback((e)=>{
 }, [])
 
 const onMouseMove =  useCallback((e) =>{
+ 
   if(lenisCurrent && lenisCurrent.scrollTo && down.status === true ) {
+
       const p = down.position - e.pageX
+
       lenisCurrent.scrollTo(lenisCurrent.scroll + p)
   }
 },[down, lenisCurrent])
 /* End */
 
+
+/* New Events for Draggable Scrollbar */
+const [scrollBarDown, setisScrollBarDown] = useState({status: false, position: 0, animatedPosition: 0})
+
+const onScrollBarMouseDown = (e) => {
+  e.preventDefault()
+ 
+  setisScrollBarDown(prev => ({...prev, status: true, animatedPosition: e.clientY, position: e.pageY }))
+  console.log(scrollBarDown)
+}
+
+const onScrollBarMouseLeave = (e) => {
+  e.preventDefault()
+  setisScrollBarDown(prev => ({ ...prev, status: false}))
+}
+
+const onScrollBarMouseUp = (e)=>{
+  e.preventDefault()
+  setisScrollBarDown(prev => ({...prev, status: false}))
+}
+
+const onScrollBarMouseMove =  useCallback((e) =>{
+  e.preventDefault()
+ 
+  console.log("something moved", e)
+  if(!scrollBarDown.status) return
+  
+
+ setisScrollBarDown(prev => {
+  const isUp = e.movementY >= 0 
+  const mainDifference = e.movementY >= 0 ? e.clientY :   prev.position - e.clientY
+  console.log(e.movementY, mainDifference, e.pageY, e.clientY)
+  const otherMainDifference = prev.position - e.clientY
+
+  return {...prev, position: isUp ? mainDifference : prev.position + mainDifference , animatedPosition: scrollBarDown.status ? e.clientY: prev.animatedPosition}
+ })
+  const proportionalMovement = (ref.current.getBoundingClientRect().width - window.innerWidth)/300
+  const actualMovement = proportionalMovement * scrollBarDown.position
+  if(lenisCurrent && lenisCurrent.scrollTo && scrollBarDown.status === true ) {
+  
+      lenisCurrent.scrollTo(lenisCurrent.scroll + actualMovement)
+  }
+}, [scrollBarDown.status])
+
+/* End */
+
+
+/* check if its dragging */
+const [isDragging, setIsDragging] = useState(false)
+/* End */
+const gsapTime =  gsap.timeline({})
+
+useEffect(()=>{
+  if(lenisCurrent && gsapDragRef.current){
+    
+  
+  let ySetter = gsap.quickSetter(gsapDragRef.current, "y", "px",)
+
+  lenisCurrent.on('scroll', ()=>{
+    if(dragInstance.current[0].isDragging){
+gsapTime.pause()
+return
+    }
+   
+  /*  ySetter(300 * lenisCurrent.progress) */
+
+   gsapTime.play().to(gsapDragRef.current, {parseTransform:true,translateY: 300 * lenisCurrent.progress, duration: 0, }).to(".decoy",  {parseTransform:true,translateY: 300 * lenisCurrent.progress > 300 ? 300 : 300 * lenisCurrent.progress, duration: 0, })
+   dragInstance.current[0].update()
+  })
+  /* gsap.timeline({}).to(gsapDragRef.current, {y: 300 * lenisCurrent.progress, duration: 0.1}) */
+  }
+}, [lenisCurrent, gsapDragRef, dragInstance])
 
 
 
@@ -103,39 +173,48 @@ const onMouseMove =  useCallback((e) =>{
 /* Use Effect to initialize gsap drag for Horizontal wrapper for desktop screen */
 useEffect(()=>{
   if(!lenisCurrent) return
-  
-  /* Draggable instance for Desktop */
-/*   dragInstanceDesktop.current = Draggable.create(ref.current, {
-    type: "x",
-    bounds: {minX: -((ref.current.getBoundingClientRect().width - x)), maxX: 0, minY: 50, maxY: 500},
-   inertia: true,
-    onDrag: ()=>{
-      const percentageReal = dragInstanceDesktop.current[0].x /(ref.current.getBoundingClientRect().width - window.innerWidth)
-      console.log("counting",  dragInstanceDesktop.current[0].x, dragInstanceDesktop.current[0], dragInstanceDesktop.current[0].x /(ref.current.getBoundingClientRect().width - window.innerWidth), ref.current.getBoundingClientRect().width , window.innerWidth )
-      lenisCurrent.scrollTo( dragInstanceDesktop.current[0].x)
-    },
-    onDragEnd: ()=>{
-      lenisCurrent.scrollTo( dragInstanceDesktop.current[0].x)
-      console.log(lenisCurrent)
-    }
-  }) */
-  /* End */
 
   dragInstance.current = Draggable.create(gsapDragRef.current, {
-    type: "x",
-    bounds: {minX: 10, maxX: ref.current.getBoundingClientRect().width - window.innerWidth, minY: 50, maxY: 500},
-    inertia: true,
+    type: "y",
+    bounds: {minY: 0, maxY: 300},
+    inertia: false,
+
     onDrag: ()=>{
-    
-      lenisCurrent.scrollTo(dragInstance.current[0].x)
+   
+      console.log(lenisCurrent.progress)
+      const proportionalMovement = (ref.current.getBoundingClientRect().width - window.innerWidth)/300
+      lenisCurrent.scrollTo(dragInstance.current[0].y * proportionalMovement)
+      dragInstance.current[0].update()
+     
+    },
+    onDragEnd: ()=>{
+      dragInstance.current[0].update()
       
+    },
+    onPress: ()=>{
+      dragInstance.current[0].update()
+    },
+    onRelease: ()=>{
+      dragInstance.current[0].update()
     }
+  
+  
+
+    
   })
-  gsap.to(".tab-display", { y: 1000 * lenisCurrent.progress, duration: 1 , scrollTrigger: {scrub: 1, trigger: "top"}});
-}, [toggle, lenisCurrent, gsapDragRef,x])
+ 
+  /*  Quick Setter */
+  
+  /* End */
 
 
-  return <div className="xl:h-[100vh] xl:absolute top-0  xl:flex items-center xl:justify-center">
+  /* gsap.to(".tab-display", { y: 1000 * lenisCurrent.progress, duration: 1 , scrollTrigger: {scrub: 1, trigger: "top"}}); */
+}, [toggle, lenisCurrent, gsapDragRef,x, dragInstance])
+
+
+ 
+
+  return <div /* onMouseMove={onScrollBarMouseMove} */ className="xl:h-[100vh] xl:absolute top-0  xl:flex items-center xl:justify-center">
 
     {/* Mobile View */}
     <div className="Js-lenis sm:hidden flex flex-col items-center justify-center w-full tab-display data-lenis-prevent">
@@ -160,8 +239,7 @@ useEffect(()=>{
 
     {/* Tab View */}
   <div className="w-full hidden sm:block xl:hidden data-lenis-prevent Js-lenis">
-    <IPadHorizontalScroll>
-    <div  className="flex flex-wrap gap-x-4 z-0  gap-y-5 justify-center items-center">
+  <div  className="flex flex-wrap gap-x-4 z-0  gap-y-5 justify-center items-center">
             {modifiedDataTwo && modifiedDataTwo.map((i, k)=>{
                 
                 const currentObj = modifiedDataTwo[k]
@@ -174,28 +252,30 @@ useEffect(()=>{
                 </section>
             })}
         </div> 
-    </IPadHorizontalScroll>
 </div>
 {/* End */}
 
 
     {/* Laptop View */}
 <div className="xl:flex hidden flex-col  h-fit py-auto w-fit ">
-<div ref={refCallback} className="w-8 h-8 bg-blue-500 shadow-lg line fixed   z-50 rounded-sm"></div>
-  <motion.div ref={ref} onMouseUp={onMouseUp} onMouseDown={onMouseDown} onMouseLeave={onMouseLeave} onMouseMove={onMouseMove}   className="grid h-full  w-fit   grid-rows-2 gap-x-4 z-0 grid-flow-col gap-y-2 ">
+<motion.div style={{y: scrollBarDown.position}}  onMouseDown={onScrollBarMouseDown} onMouseLeave={onScrollBarMouseLeave}  onMouseMove={onScrollBarMouseMove} onMouseUp={onScrollBarMouseUp}  className={`hidden w-8 h-8 bg-red-500 shadow-lg line fixed top-0    z-50 rounded-sm`}>{scrollBarDown.position}</motion.div>
+<div  ref={refCallback} className={` w-8 h-8 bg-red-500 z-20 shadow-lg line fixed  z-50 rounded-sm hidden`}>
+
+</div>  <div className={` w-8 h-8 bg-blue-500 shadow-lg line fixed  z-50 rounded-sm decoy z-10 hidden`}></div>
+  <motion.div ref={ref} onMouseUp={onMouseUp} onMouseDown={onMouseDown} onMouseLeave={onMouseLeave} onMouseMove={onMouseMove}   className="grid h-full  w-fit   grid-rows-2 z-0 grid-flow-col gap-6 3xl:gap-8">
   
-  {modifiedData && modifiedData.map((i, k)=>{
+  {modifiedDataTwo && modifiedDataTwo.map((i, k)=>{
       let number = k === 0 ? k : k%2 === 0 ? k : k+2
      
-      const currentObj = modifiedData[k]
-      const nextObj =  modifiedData[number + 1]
+      const currentObj = modifiedDataTwo[k]
+      const nextObj =  modifiedDataTwo[number + 1]
 
      
       return <section onDrag={(e)=>{
         e.stopPropagation()
-      }} unselectable="on" draggable={false} key={k} className=" px-[20px]  h-full relative ">
+      }} unselectable="on" draggable={false} key={k} className=" h-full relative ">
         
-      { <ProjectCard slug={i.slug || "/"} animate={k === modifiedData.length - 1} isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sd" name={currentObj.title || ""}></ProjectCard>}
+      { <ProjectCard slug={i.slug || "/"} animate={k === modifiedDataTwo.length - 1} isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sd" name={currentObj.title || ""}></ProjectCard>}
 
          
       </section>

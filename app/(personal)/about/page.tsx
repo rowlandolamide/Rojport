@@ -11,7 +11,7 @@ import { getAboutPage } from '@/sanity/loader/loadQuery' */
 
 import FungSwayIcon from "../../../app/public/Icons/FungSway.svg"
 import SmilingFace from "../../../app/public/Icons/Smile Icon.svg"
-import { useDragControls , motion} from "framer-motion"
+import {  motion} from "framer-motion"
 import HorizontalBackground from "../../public/Images/Horizontal Lines Container.svg"
 import ProfilePicture from "../../../app/public/Images/Profile Image.png"
 import MicDrop from "../../public/Images/Mic Drop.png"
@@ -155,7 +155,7 @@ useEffect(()=>{
   <span className="font-PPn flex"><span className="text-bl">✨</span>ART DIRECTOR</span>
 </div>
   <div  className="w-[300px] h-[400px] bg-pink-500 absolute top-[30px] left-[100px]"></div>
-  {/* <div className="w-[200vw] h-[400px] "></div> */}
+  
 
 
       </div>
