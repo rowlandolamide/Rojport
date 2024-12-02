@@ -128,13 +128,13 @@ lenisRef.current?.lenis?.start()
 
 
 }} dragControls={controls}   >experimental cursor <span className="text-red-500">{Math.abs(400 )}</span></motion.div>
-<div className=''>   <ReactLenis   root
+<div className=''>   <ReactLenis    root
     ref={lenisRefCall}
     
 
 
 
- options={{autoResize: true, orientation:  isHorizontal() ? "horizontal": "vertical", syncTouch: true, gestureOrientation: "both", smoothWheel: true , }}>
+ options={{autoResize: true, orientation:  isHorizontal() ? "horizontal": "vertical", syncTouch: true, gestureOrientation: "both",  lerp: 0.5}}>
 
 
 {props.children} 

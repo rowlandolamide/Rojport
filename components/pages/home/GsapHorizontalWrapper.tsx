@@ -48,6 +48,22 @@ const modifiedDataTwo  = data?.showcaseProjects?.map((item)=>{
   const imgUrl = item.coverImage ? urlForImage(item.coverImage)?.quality(100)?.format("webp")?.url() : ""
   return {title: item.title, slug: item.slug, img: item.coverImage, imgUrl: imgUrl,  isProject: true}
 })
+
+if(modifiedDataTwo){
+  let number = 0
+  const firstCount = modifiedDataTwo.length
+  const count = 8 - modifiedDataTwo?.length
+  if(number === count) return
+  for(let i=0; i < count; i++){
+   
+    for(let l=0; l < firstCount; l++){
+      modifiedDataTwo.push(modifiedDataTwo[l])
+      number = number + 1
+    }
+  }
+
+}
+
 modifiedData?.splice(modifiedData.length, 0,{...modifiedData[2], imgUrl: SunIcon.src, isProject: false}, modifiedData[3])
 modifiedData?.splice(3,0, {...modifiedData[4], imgUrl: Smile.src, isProject: false})
 
@@ -136,7 +152,7 @@ const onScrollBarMouseMove =  useCallback((e) =>{
   
       lenisCurrent.scrollTo(lenisCurrent.scroll + actualMovement)
   }
-}, [scrollBarDown.status, lenisCurrent,scrollBarDown.position])
+}, [scrollBarDown.status, lenisCurrent])
 
 /* End */
 
@@ -147,25 +163,28 @@ const [isDragging, setIsDragging] = useState(false)
 const gsapTime =  gsap.timeline({})
 
 useEffect(()=>{
+  
   if(lenisCurrent && gsapDragRef.current){
     
-  
-  let ySetter = gsap.quickSetter(gsapDragRef.current, "y", "px",)
+    console.log("ss",lenisCurrent.isScrolling)
+ 
 
   lenisCurrent.on('scroll', ()=>{
     if(dragInstance.current[0].isDragging){
 gsapTime.pause()
 return
     }
+    if(lenisCurrent.isScrolling == false) return
    
   /*  ySetter(300 * lenisCurrent.progress) */
-
-   gsapTime.play().to(gsapDragRef.current, {parseTransform:true,translateY: 300 * lenisCurrent.progress, duration: 0, }).to(".decoy",  {parseTransform:true,translateY: 300 * lenisCurrent.progress > 300 ? 300 : 300 * lenisCurrent.progress, duration: 0, })
+  if(dragInstance.current[0].isDragging) return
+ 
+   gsapTime.to(gsapDragRef.current, {parseTransform:true,y: 300 * lenisCurrent.progress, duration: 0, })
    dragInstance.current[0].update()
   })
   /* gsap.timeline({}).to(gsapDragRef.current, {y: 300 * lenisCurrent.progress, duration: 0.1}) */
   }
-}, [lenisCurrent, gsapDragRef, dragInstance, gsapTime])
+}, [lenisCurrent, gsapDragRef, ])
 
 
 
@@ -178,6 +197,9 @@ useEffect(()=>{
     type: "y",
     bounds: {minY: 0, maxY: 300},
     inertia: false,
+    onDragStart: ()=>{
+      gsapTime.pause()
+    },
 
     onDrag: ()=>{
    
@@ -192,11 +214,23 @@ useEffect(()=>{
       
     },
     onPress: ()=>{
+      dragInstance.current[0].enable()
       dragInstance.current[0].update()
     },
     onRelease: ()=>{
+      gsapTime.play()
+      dragInstance.current[0].update()
+    },
+    onLockAxis: ()=>{
+      dragInstance.current[0].disable()
+    },
+    onThrowUpdate: ()=>{
+      dragInstance.current[0].update()
+    },
+    onThrowComplete: ()=>{
       dragInstance.current[0].update()
     }
+   
   
   
 
@@ -214,7 +248,8 @@ useEffect(()=>{
 
  
 
-  return <div /* onMouseMove={onScrollBarMouseMove} */ className="xl:h-[100vh] xl:absolute top-0  xl:flex items-center xl:justify-center">
+  return <div  className="xl:h-[100vh] xl:absolute top-0  xl:flex items-center xl:justify-center">
+    <div className="fixed h-[320px] w-4 bg-red-500 left-[28px] top-[60px] z-10"></div>
 
     {/* Mobile View */}
     <div className="Js-lenis sm:hidden flex flex-col items-center justify-center w-full tab-display data-lenis-prevent">
@@ -258,10 +293,11 @@ useEffect(()=>{
 
     {/* Laptop View */}
 <div className="xl:flex hidden flex-col  h-fit py-auto w-fit ">
-<motion.div style={{y: scrollBarDown.position}}  onMouseDown={onScrollBarMouseDown} onMouseLeave={onScrollBarMouseLeave}  onMouseMove={onScrollBarMouseMove} onMouseUp={onScrollBarMouseUp}  className={`hidden w-8 h-8 bg-red-500 shadow-lg line fixed top-0    z-50 rounded-sm`}>{scrollBarDown.position}</motion.div>
-<div  ref={refCallback} className={` w-8 h-8 bg-red-500 z-20 shadow-lg line fixed  z-50 rounded-sm hidden`}>
+{/* <motion.div style={{y: scrollBarDown.position}}  onMouseDown={onScrollBarMouseDown} onMouseLeave={onScrollBarMouseLeave}  onMouseMove={onScrollBarMouseMove} onMouseUp={onScrollBarMouseUp}  className={`hidden w-8 h-8 bg-red-500 shadow-lg line fixed top-0    z-50 rounded-sm`}>{scrollBarDown.position}</motion.div> */}
+<div  ref={refCallback} className={` w-8 h-8 bg-red-500 z-20 shadow-lg line fixed  z-50 rounded-sm`}>
 
-</div>  <div className={` w-8 h-8 bg-blue-500 shadow-lg line fixed  z-50 rounded-sm decoy z-10 hidden`}></div>
+</div>
+
   <motion.div ref={ref} onMouseUp={onMouseUp} onMouseDown={onMouseDown} onMouseLeave={onMouseLeave} onMouseMove={onMouseMove}   className="grid h-full  w-fit   grid-rows-2 z-0 grid-flow-col gap-6 3xl:gap-8">
   
   {modifiedDataTwo && modifiedDataTwo.map((i, k)=>{
