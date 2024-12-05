@@ -45,7 +45,7 @@ export default function GsapAlt({data}: {data: HomePagePayload | null}){
   const laptopContainerPositionFromTop = laptopContRef.current ? laptopContRef.current.getBoundingClientRect().top : 40
   /* End */
 
-  console.log("sds",laptopContainerPositionFromTop)
+  
 
 
   const modifiedData  = data?.showcaseProjects?.map((item)=>{
@@ -88,6 +88,8 @@ const ref:any = useRef(null)
 const gsapDragRef = myRef
 
 const dragInstance:any = useRef(null);
+
+/* End */
 
 
 
