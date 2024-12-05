@@ -100,14 +100,14 @@ export default function ProjectMainVideo({url}:{url: string}){
             }
         })
 
-    }, [seekDragInstance, seekDraggable, videoContainerRef, x])
+    }, [seekDragInstance, seekDraggable, videoContainerRef, x, videoContainerWidth])
 
    useEffect(()=>{
       const durationSeconds =   videoRef.current.getDuration() 
       const playedSeconds  = videoRef.current.getCurrentTime()
 
       gsapTime.to(".progress-indicator", {x:  videoContainerWidth * playedSeconds/durationSeconds }).to(seekDraggable.current, {x: videoContainerWidth * playedSeconds/durationSeconds })
-    }, [played]) 
+    }, [played, gsapTime, videoContainerWidth]) 
 
   /* const {handleOverlay,overlay } = useContext(ContextMain) as MainContextWrapperType */
     const ref:any = useRef(null)

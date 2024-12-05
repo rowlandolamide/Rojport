@@ -139,7 +139,7 @@ return
   })
   /* gsap.timeline({}).to(gsapDragRef.current, {y: 300 * lenisCurrent.progress, duration: 0.1}) */
   }
-}, [lenisCurrent, gsapDragRef, ])
+}, [lenisCurrent, gsapDragRef,gsapTime ])
 
 
 
@@ -198,7 +198,7 @@ useEffect(()=>{
 
 
   /* gsap.to(".tab-display", { y: 1000 * lenisCurrent.progress, duration: 1 , scrollTrigger: {scrub: 1, trigger: "top"}}); */
-}, [toggle, lenisCurrent, gsapDragRef,x, dragInstance])
+}, [toggle, lenisCurrent, gsapDragRef,x, dragInstance, gsapTime])
 
 if(modifiedDataTwo){
   let number = 0
