@@ -61,20 +61,7 @@ const modifiedDataTwo  = data?.showcaseProjects?.map((item)=>{
 
 
 
-if(modifiedDataTwo){
-  let number = 0
-  const firstCount = modifiedDataTwo.length
-  const count = 8 - modifiedDataTwo?.length
-  if(number === count) return
-  for(let i=0; i < count; i++){
-   
-    for(let l=0; l < firstCount; l++){
-      modifiedDataTwo.push(modifiedDataTwo[l])
-      number = number + 1
-    }
-  }
 
-}
 
 modifiedData?.splice(modifiedData.length, 0,{...modifiedData[2], imgUrl: SunIcon.src, isProject: false}, modifiedData[3])
 modifiedData?.splice(3,0, {...modifiedData[4], imgUrl: Smile.src, isProject: false})
@@ -212,6 +199,21 @@ useEffect(()=>{
 
   /* gsap.to(".tab-display", { y: 1000 * lenisCurrent.progress, duration: 1 , scrollTrigger: {scrub: 1, trigger: "top"}}); */
 }, [toggle, lenisCurrent, gsapDragRef,x, dragInstance])
+
+if(modifiedDataTwo){
+  let number = 0
+  const firstCount = modifiedDataTwo.length
+  const count = 8 - modifiedDataTwo?.length
+  if(number === count) return
+  for(let i=0; i < count; i++){
+   
+    for(let l=0; l < firstCount; l++){
+      modifiedDataTwo.push(modifiedDataTwo[l])
+      number = number + 1
+    }
+  }
+
+}
 
 
  
