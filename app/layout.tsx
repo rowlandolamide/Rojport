@@ -37,13 +37,13 @@ export default async function RootLayout({
       style={{ ['--color-primary' as any]: rgbaBgColor, ['--color-secondary' as any]: rgbaTextColor }}
      
     >
-{/*   <meta http-equiv="Content-Security-Policy" content="default-src  'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'"></meta> */}
+
     <body className='text-black relative  '>
 
  <Navbar></Navbar>
 
    <ContextWrapper>
-{children &&    <LenisHorizontalWrapper>
+{  <LenisHorizontalWrapper>
    {children}
 </LenisHorizontalWrapper>}
    </ContextWrapper>

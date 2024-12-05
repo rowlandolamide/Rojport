@@ -1,8 +1,8 @@
 "use client"
-import { createContext, useEffect, useState} from "react";
+import { createContext,  useState} from "react";
 import useMouse from "@react-hook/mouse-position"
 import { useRef } from 'react'
-
+import CustomMouse from "./CustomMouse";
 import React from 'react';
 
 import Overlay from "./Overlay";
@@ -41,6 +41,8 @@ function ContextWrapper(props: {children: React.ReactNode}) {
     const [lenisCurrent, setLenisCurrent] = useState(null)
     const mouse = useMouse(mouseref, { enterDelay: 100, leaveDelay: 100 })
 
+    
+
     const [overlay, setOverlay] = useState<MainContextWrapperType["overlay"]>({open: false, index: 0, item: ""})
     const handleOverlay = (obj: MainContextWrapperType["overlay"])=>{
         setOverlay(obj)
@@ -52,14 +54,18 @@ function ContextWrapper(props: {children: React.ReactNode}) {
 
 
     return (
-       <div className="" ref={mouseref} >
+       <div className="relative" ref={mouseref} >
+         <div className="fixed z-50">
+<CustomMouse x={mouse.clientX ? mouse.clientX +2 : 0} y={mouse.clientY ? mouse.clientY + 2: 0}></CustomMouse>
+
+</div>
        <ContextMain.Provider value={{x:"Job", lenisCurrent, setLenisCurrent: setLenis, mouseStates: {x: mouse.clientX || 0, y: mouse.clientY || 0}, overlay: overlay, handleOverlay: handleOverlay}}>
 
-
-{overlay.open &&     <div className="fixed z-50 w-full ">
+{overlay.open &&     <div className="fixed z-50 w-full hidden ">
    <Overlay closeOverlay={()=>{setOverlay(prev => {return {...prev, open: false}})}} setIsVideoFalse={()=>{setOverlay(prev =>{return {...prev, isVideo: false}})}} obj={overlay} ></Overlay>
  </div>}
        {props.children}
+ 
        </ContextMain.Provider>
   
    </div>

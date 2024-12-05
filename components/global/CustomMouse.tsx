@@ -1,14 +1,14 @@
 import React from 'react';
 import {motion} from "framer-motion"
+import Image from 'next/image';
+import Mouse from "../../app/public/Icons/Mouse-New.svg"
 
 
-
-function CustomMouse(props: {x: number, y:number,}) {
-
-
+function CustomMouse(props: {x: number, y:number}) {
     return (
-        <motion.div  animate={{x: props.x, y: props.y}} className='w-[40px] h-[40px] bg-red-500 z-50 absolute'>
-            
+        <motion.div  animate={{x: props.x, y: props.y}} className=' pointer-events-none  z-30'>
+          
+            <Image src={Mouse.src} width={24} height={32} className='h-fit' alt='Mouse'></Image>
         </motion.div>
     );
 }

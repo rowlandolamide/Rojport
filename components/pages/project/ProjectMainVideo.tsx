@@ -1,29 +1,46 @@
 "use client"
 
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { Slider } from "@/components/ui/Slider"
 import { useRef, useState } from "react"
 import ReactPlayer from "react-player"
 import React from 'react'
 import useMediaQuery from "@/components/hooks/useMediaQuery"
-import { MainContextWrapperType, ContextMain } from "@/components/global/ContextWrapper"
-import Video from "next-video"
-import getStarted from '/videos/get-started.mp4';
-  
-/* import {FastRewind, FastForward} from "@material-ui/icons" */
+import { Draggable } from "gsap/Draggable";
+import {gsap} from "gsap"
+import {FastForward, Pause, Play} from "lucide-react"
+
+gsap.registerPlugin(Draggable)
 
 
 
-
-const RewindFastFoward = ()=>{
-    return <div className="w-[30px]">
-      {/*   <FastRewind></FastRewind>
-        <FastForward></FastForward> */}
+const RewindFastFoward = (props: {handlePausePlay: ()=> void, isPlaying: boolean, handleRewind: ()=> void, handleFastForward: ()=> void})=>{
+    return <div className=" flex gap-x-4">
+   <button onClick={()=>{
+        props.handleRewind()
+    }}>
+   <FastForward  className="rotate-[180deg] "></FastForward>
+   </button>
+    <button onClick={()=>{props.handlePausePlay()}}>{props.isPlaying ? <Pause></Pause>: <Play></Play>}</button>
+ <button onClick={()=>{
+        props.handleFastForward()
+    }}>
+ <FastForward ></FastForward> 
+ </button>
     </div>
 }
 
 const PlayPause = (onClick: ()=> void)=>{
-    return <button onClick={()=>{onClick()}} className="bg-[#000AFF] px-[54px] py-2 text-white">PLAY ALPHA +</button>
+    return <button onClick={()=>{onClick()}} className="hidden bg-[#000AFF] px-[54px] py-2 text-white">PLAY ALPHA +</button>
+}
+
+const Seek = (props: {ref: any, width: number})=>{
+    return <div style={{width: props.width}} className={` bg-white/[0.37] h-[3px] relative items-center flex`}>
+        <div ref={props.ref} className="absolute h-2 w-4 bg-red-500 z-20"></div>
+        <div style={{width: props.width, marginLeft: -props.width}} className={`h-[3px] progress-indicator   z-10 bg-bl`}>
+
+        </div>
+    </div>
 }
 
 const SliderVolume = (props: {setVolume: (val: number)=>void})=>{
@@ -33,11 +50,70 @@ const SliderVolume = (props: {setVolume: (val: number)=>void})=>{
 }
 
 export default function ProjectMainVideo({url}:{url: string}){
+
+    const gsapTime =  gsap.timeline({})
+
+    /* On Hover */
+    const [isHovered, setIsHovered] = useState(false)
+    /* End */
+
+
+    const {x, y} = useMediaQuery()
+
+    /* Is Video Playing */
+    const [isPlaying, setIsPlaying] = useState(false)
+    /* Set is Video Playing */
+
+    /* Current Second */
+    const [played, setPlayed] = useState(0)
+    /* End */
+    
+
+    /* Seek Draggable */
+    const seekDraggable: any = useRef(null)
+    const seekDragInstance: any =useRef(null)
+    /* End */
+
+    /* Video Container Ref */
+    const videoContainerRef:any = useRef(null)
+    /* End */
+
+    const videoRef = useRef<ReactPlayer>(null!)
+
+    const videoContainerWidth = videoContainerRef.current ? Math.floor(videoContainerRef.current.getBoundingClientRect().width) : 300
+
+
+    useEffect(()=>{
+       if(!videoContainerRef.current) return
+  
+        seekDragInstance.current = Draggable.create(seekDraggable.current, {
+            type: "x",
+            bounds: {minX: 0, maxX: videoContainerWidth - 32},
+            inertia: false,
+            onDragEnd: ()=>{
+               
+                if(videoContainerRef.current){
+                    console.log()
+                }
+                
+                videoRef.current.seekTo(seekDragInstance.current[0].x/seekDragInstance.current[0].maxX)
+            }
+        })
+
+    }, [seekDragInstance, seekDraggable, videoContainerRef, x])
+
+   useEffect(()=>{
+      const durationSeconds =   videoRef.current.getDuration() 
+      const playedSeconds  = videoRef.current.getCurrentTime()
+
+      gsapTime.to(".progress-indicator", {x:  videoContainerWidth * playedSeconds/durationSeconds }).to(seekDraggable.current, {x: videoContainerWidth * playedSeconds/durationSeconds })
+    }, [played]) 
+
   /* const {handleOverlay,overlay } = useContext(ContextMain) as MainContextWrapperType */
     const ref:any = useRef(null)
     const [videoStates, setVideoStates] = useState({isPlaying: false, volume: 0.5})
 
-    const videoRef = useRef<ReactPlayer>(null!)
+ 
 
     const beginningHandler = () => {
       const videoTag = videoRef.current.getInternalPlayer() as HTMLVideoElement;
@@ -46,12 +122,17 @@ export default function ProjectMainVideo({url}:{url: string}){
     }
 
     const RewindFunction = ()=>{
-        if(ref.current){
-            ref.current.seekTo(ref.current.getCurrentTime() + 5 )
+        if(videoRef.current){
+            videoRef.current.seekTo(videoRef.current.getCurrentTime() - 5 )
+        }
+    }
+    const FastForwardFunction = ()=>{
+        if(videoRef.current){
+            videoRef.current.seekTo(videoRef.current.getCurrentTime() + 5 )
         }
     }
 
-    const {x, y} = useMediaQuery()
+ 
 
     const returnWidth = ()=>{
     if( x > 1280){
@@ -59,19 +140,30 @@ export default function ProjectMainVideo({url}:{url: string}){
     }else return "50vw"
     }
 
-    return <div /* onClick={()=>{
+    return <div onMouseLeave={()=>{
+        setIsHovered(false)
+    }} onMouseOver={()=>{
+        setIsHovered(true)
+    }} ref={videoContainerRef} /* onClick={()=>{
       handleOverlay({...overlay, open: true, isVideo: true, item: url })
-    }}  */ className="z-0 items-center justify-center flex w-full border border-black rounded-[10px] overflow-hidden">
-    <div  className="absolute z-20">
-            {PlayPause(()=>(setVideoStates(prev =>  ({...prev, isPlaying: !prev.isPlaying}))))}
+    }}  */ className="z-0 items-center relative 2xl:p-[0.2vw] 2xl:pt-[1.3vw] p-[2px] pt-[20px] bg-bl justify-center flex w-full border border-black rounded-[3px] overflow-hidden">
+        
+   
+  <div  className={`${!isHovered ? "opacity-0" : "opacity-1"} duration-300 absolute z-20`}>
+            <RewindFastFoward handleFastForward={FastForwardFunction} handleRewind={RewindFunction} isPlaying={isPlaying} handlePausePlay={()=>{
+                setIsPlaying(prev => !prev)
+            }}></RewindFastFoward>
         </div> 
-         
-      {/*   <button onClick={()=>{
-            RewindFunction()
-        }} className="absolute z-20">
-            <RewindFastFoward></RewindFastFoward>
-        </button> */}
+        <div className={`${!isHovered ? "opacity-0" : "opacity-1"} duration-300 absolute bottom-[40px] z-20`}>
+            <Seek width={videoContainerWidth} ref={seekDraggable}></Seek>
+        </div>
 {/* <Video  src={getStarted}></Video> */}
-     {  <ReactPlayer playsinline={true}  ref={videoRef} controls={true} onStart={beginningHandler} height={"100%"} width={"100%"} style={{zIndex: 0, position: "relative", height: "auto !important", aspectRatio: "16/9"}}  volume={videoStates.volume}    url={url}></ReactPlayer>}
+  <div className="rounded-[3px] overflow-hidden w-full">
+  {  <ReactPlayer onProgress={(state)=>{
+   
+
+    setPlayed(state.played)
+  }}  playing={isPlaying} playsinline={true}  ref={videoRef} controls={false} onStart={beginningHandler} height={"100%"} width={"100%"} style={{zIndex: 0, position: "relative", height: "auto !important", aspectRatio: "16/9", borderRadius: 3}}  volume={videoStates.volume}    url={url}></ReactPlayer>}
+  </div>
     </div>
 }

@@ -1,6 +1,6 @@
 "use client"
 import {gsap} from "gsap"
-import React, { useContext, useEffect, useLayoutEffect, useMemo, useRef, useState} from 'react';
+import React, { useContext, useEffect, useRef, useState} from 'react';
 import Smile from "../../../app/public/Icons/Smile Icon.svg"
 
 import SunIcon from "../../../app/public/Icons/Sun Icon.svg"
@@ -9,14 +9,15 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Observer from "gsap/dist/Observer";
 import {motion} from "framer-motion"
-import dynamic from "next/dynamic";
+import Image from "next/image";
 import useMediaQuery from "@/components/hooks/useMediaQuery";
 import useRefWithCallback from "@/components/hooks/useRerenderCallback";
 import { useCallback } from "react";
 import ProjectCard from "./ProjectCard";
 import { Draggable } from "gsap/Draggable";
 import {ContextMain, MainContextWrapperType} from "@/components/global/ContextWrapper";
-const IPadHorizontalScroll = dynamic(()=>import("@/components/global/IPadHorizontalScroll"))
+import ScrollBarIcon from "../../../app/public/Icons/Cursor.svg"
+
 import { urlForImage } from "@/sanity/lib/utils";
 
 import type { HomePagePayload } from "@/types";
@@ -38,16 +39,27 @@ export default function GsapAlt({data}: {data: HomePagePayload | null}){
 
   const {lenisCurrent} = useContext(ContextMain) as MainContextWrapperType
 
+  /* Laptop Contaier Ref */
+  const laptopContRef:any = useRef(null)
+
+  const laptopContainerPositionFromTop = laptopContRef.current ? laptopContRef.current.getBoundingClientRect().top : 40
+  /* End */
+
+  console.log("sds",laptopContainerPositionFromTop)
+
 
   const modifiedData  = data?.showcaseProjects?.map((item)=>{
+   
     const imgUrl = item.coverImage ? urlForImage(item.coverImage)?.quality(100)?.format("webp")?.url() : ""
     return {title: item.title, slug: item.slug, img: item.coverImage, imgUrl: imgUrl,  isProject: true}
 })
 const modifiedDataTwo  = data?.showcaseProjects?.map((item)=>{
   
   const imgUrl = item.coverImage ? urlForImage(item.coverImage)?.quality(100)?.format("webp")?.url() : ""
-  return {title: item.title, slug: item.slug, img: item.coverImage, imgUrl: imgUrl,  isProject: true}
+  return {title: item.title, slug: item.slug, img: item.coverImage, imgUrl: imgUrl,  isProject: true, discipline: item.disci}
 })
+
+
 
 if(modifiedDataTwo){
   let number = 0
@@ -111,62 +123,16 @@ const onMouseMove =  useCallback((e) =>{
 /* End */
 
 
-/* New Events for Draggable Scrollbar */
-const [scrollBarDown, setisScrollBarDown] = useState({status: false, position: 0, animatedPosition: 0})
-
-const onScrollBarMouseDown = (e) => {
-  e.preventDefault()
- 
-  setisScrollBarDown(prev => ({...prev, status: true, animatedPosition: e.clientY, position: e.pageY }))
-  console.log(scrollBarDown)
-}
-
-const onScrollBarMouseLeave = (e) => {
-  e.preventDefault()
-  setisScrollBarDown(prev => ({ ...prev, status: false}))
-}
-
-const onScrollBarMouseUp = (e)=>{
-  e.preventDefault()
-  setisScrollBarDown(prev => ({...prev, status: false}))
-}
-
-const onScrollBarMouseMove =  useCallback((e) =>{
-  e.preventDefault()
- 
-  console.log("something moved", e)
-  if(!scrollBarDown.status) return
-  
-
- setisScrollBarDown(prev => {
-  const isUp = e.movementY >= 0 
-  const mainDifference = e.movementY >= 0 ? e.clientY :   prev.position - e.clientY
-  console.log(e.movementY, mainDifference, e.pageY, e.clientY)
-  const otherMainDifference = prev.position - e.clientY
-
-  return {...prev, position: isUp ? mainDifference : prev.position + mainDifference , animatedPosition: scrollBarDown.status ? e.clientY: prev.animatedPosition}
- })
-  const proportionalMovement = (ref.current.getBoundingClientRect().width - window.innerWidth)/300
-  const actualMovement = proportionalMovement * scrollBarDown.position
-  if(lenisCurrent && lenisCurrent.scrollTo && scrollBarDown.status === true ) {
-  
-      lenisCurrent.scrollTo(lenisCurrent.scroll + actualMovement)
-  }
-}, [scrollBarDown.status, lenisCurrent])
-
-/* End */
 
 
-/* check if its dragging */
-const [isDragging, setIsDragging] = useState(false)
-/* End */
+
 const gsapTime =  gsap.timeline({})
 
 useEffect(()=>{
   
   if(lenisCurrent && gsapDragRef.current){
     
-    console.log("ss",lenisCurrent.isScrolling)
+
  
 
   lenisCurrent.on('scroll', ()=>{
@@ -203,7 +169,7 @@ useEffect(()=>{
 
     onDrag: ()=>{
    
-      console.log(lenisCurrent.progress)
+     
       const proportionalMovement = (ref.current.getBoundingClientRect().width - window.innerWidth)/300
       lenisCurrent.scrollTo(dragInstance.current[0].y * proportionalMovement)
       dragInstance.current[0].update()
@@ -249,7 +215,15 @@ useEffect(()=>{
  
 
   return <div  className="xl:h-[100vh] xl:absolute top-0  xl:flex items-center xl:justify-center">
-    <div className="fixed h-[320px] w-4 bg-red-500 left-[28px] top-[60px] z-10"></div>
+   <div className="fixed relative right-[28px] xl:block hidden ">
+   <div style={{top: laptopContainerPositionFromTop}}  ref={refCallback} className={` w-fit z-20 shadow-lg line fixed top-[${Math.floor(laptopContainerPositionFromTop)}px] right-[25px] z-50 rounded-sm`}>
+<Image src={ScrollBarIcon.src} width={26} height={100} className="h-fit" alt="Scrollbar"></Image>
+</div>
+    <div style={{top: laptopContainerPositionFromTop}} className={`h-[350px] w-[20px] bg-bl/[0.11] right-[28px] top-[${Math.floor(laptopContainerPositionFromTop)}px] z-10 fixed`}>
+
+
+    </div>
+   </div>
 
     {/* Mobile View */}
     <div className="Js-lenis sm:hidden flex flex-col items-center justify-center w-full tab-display data-lenis-prevent">
@@ -262,7 +236,7 @@ useEffect(()=>{
                
                 return <section key={k} className="   gap-y-4 ">
                   
-                { <ProjectCard slug={i.slug || "/"} isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sd" name={currentObj.title || ""}></ProjectCard>}
+                { <ProjectCard slug={i.slug || "/"} isProject={currentObj.isProject} media={currentObj.imgUrl} discipline={currentObj.discipline} name={currentObj.title || ""}></ProjectCard>}
 
                    
                 </section>
@@ -278,10 +252,10 @@ useEffect(()=>{
             {modifiedDataTwo && modifiedDataTwo.map((i, k)=>{
                 
                 const currentObj = modifiedDataTwo[k]
-            
+              
                 return <section key={k} className=" px-[20px]  gap-y-4 ">
                   
-                { <ProjectCard slug={i.slug || "/"}  isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sdd" name={currentObj.title || ""}></ProjectCard>}
+                { <ProjectCard slug={i.slug || "/"}  isProject={currentObj.isProject} media={currentObj.imgUrl} discipline={currentObj.discipline} name={currentObj.title || ""}></ProjectCard>}
 
                    
                 </section>
@@ -292,13 +266,10 @@ useEffect(()=>{
 
 
     {/* Laptop View */}
-<div className="xl:flex hidden flex-col  h-fit py-auto w-fit ">
-{/* <motion.div style={{y: scrollBarDown.position}}  onMouseDown={onScrollBarMouseDown} onMouseLeave={onScrollBarMouseLeave}  onMouseMove={onScrollBarMouseMove} onMouseUp={onScrollBarMouseUp}  className={`hidden w-8 h-8 bg-red-500 shadow-lg line fixed top-0    z-50 rounded-sm`}>{scrollBarDown.position}</motion.div> */}
-<div  ref={refCallback} className={` w-8 h-8 bg-red-500 z-20 shadow-lg line fixed  z-50 rounded-sm`}>
+<div ref={laptopContRef} className="xl:flex hidden flex-col  h-fit py-auto w-fit ">
 
-</div>
 
-  <motion.div ref={ref} onMouseUp={onMouseUp} onMouseDown={onMouseDown} onMouseLeave={onMouseLeave} onMouseMove={onMouseMove}   className="grid h-full  w-fit   grid-rows-2 z-0 grid-flow-col gap-6 3xl:gap-8">
+  <motion.div ref={ref} onMouseUp={onMouseUp} onMouseDown={onMouseDown} onMouseLeave={onMouseLeave} onMouseMove={onMouseMove}   className="grid h-full  w-fit  px-4 grid-rows-2 z-0 grid-flow-col gap-6 3xl:gap-8">
   
   {modifiedDataTwo && modifiedDataTwo.map((i, k)=>{
       let number = k === 0 ? k : k%2 === 0 ? k : k+2
@@ -311,7 +282,7 @@ useEffect(()=>{
         e.stopPropagation()
       }} unselectable="on" draggable={false} key={k} className=" h-full relative ">
         
-      { <ProjectCard slug={i.slug || "/"} animate={k === modifiedDataTwo.length - 1} isProject={currentObj.isProject} media={currentObj.imgUrl} discipline="sd" name={currentObj.title || ""}></ProjectCard>}
+      { <ProjectCard slug={i.slug || "/"} animate={k === modifiedDataTwo.length - 1} isProject={currentObj.isProject} media={currentObj.imgUrl} discipline={currentObj.discipline} name={currentObj.title || ""}></ProjectCard>}
 
          
       </section>

@@ -1,12 +1,8 @@
-import dynamic from 'next/dynamic'
-import { draftMode } from 'next/headers'
 
-import GsapHorizontalWrapper from '@/components/pages/home/GsapHorizontalWrapper'
+
+import HomePageHorizontal from '@/components/pages/home/HomePageHorizontal'
 import { loadHomePage } from '@/sanity/loader/loadQuery'
 
-const HomePagePreview = dynamic(
-  () => import('@/components/pages/home/HomePagePreview'),
-)
 
 
 
@@ -14,22 +10,21 @@ export default async function IndexRoute() {
   const initial = await loadHomePage()
 
 
-  if (draftMode().isEnabled) {
-    return <HomePagePreview initial={initial} />
-  }
+
+
 
   if (initial.data) {
     return (
       <div className="text-center text-2xl w-full ">
       
 
-  <div className='pt-4 w-full '> <GsapHorizontalWrapper data={initial.data}>
+  <div className='pt-4 w-full '> <HomePageHorizontal data={initial.data}>
    
-   </GsapHorizontalWrapper></div>
+   </HomePageHorizontal></div>
 
       </div>
     )
   }
 
-/*   return <HomePage data={initial.data} /> */
+
 }

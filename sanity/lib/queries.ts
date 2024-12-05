@@ -10,6 +10,7 @@ export const homePageQuery = groq`
     },
     customLogo,
     showcaseProjects[]->{
+     ...,
       _type,
       disci,
       coverImage{

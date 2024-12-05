@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence, animate } from 'framer-motion';
-import { usePathname,useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { LayoutRouterContext } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { useContext, useEffect, useRef, useState } from 'react';
 import PixelTransition from '../PixelTransition/PixelTransition';
@@ -34,7 +34,7 @@ const PageTransitionEffect = ({ children }: { children: React.ReactNode }) => {
   const key = usePathname();
 
   const [active, setActive] = useState(false)
-  const router = useRouter()
+
 
   useEffect(()=>{
     

@@ -12,11 +12,11 @@ const anim = {
     },
     open: (i) => ({
         opacity: 1,
-        transition: {duration: 0.1, delay: 0.08 * i}
+        transition: {duration: 0.1, delay: window.innerWidth < 1280 ? 0.05 * i: 0.075 * i}
     }),
     closed: (i) => ({
         opacity: 0,
-        transition: {duration: 0.1, delay: 0.08 * i}
+        transition: {duration: 0.1, delay: window.innerWidth < 1280 ? 0.05 * i: 0.075 * i}
     })
 }
 
@@ -26,6 +26,12 @@ export default function PixelTransition({menuIsActive, dimensions, onAnimationEn
     const params = usePathname()
     const {x} = useMediaQuery()
 
+    const values = ()=>{
+        if(x > 1280){
+            return {sizeOfBlocks: 0.05, height: `5vw`, width: `5vw`, number: 20}
+        }
+        else return {sizeOfBlocks: 0.1, height: `20vh`, width: `10vw`, number: 10}
+    }
     const displayedText = !params.includes("project") ? "/" +params.split("/")[1]: params.split("/")[2] 
    
 
@@ -51,7 +57,7 @@ export default function PixelTransition({menuIsActive, dimensions, onAnimationEn
 
     const getBlocks = () => {
         const { innerWidth, innerHeight } = window;
-        const blockSize = innerWidth * 0.05;
+        const blockSize =  innerWidth * values().sizeOfBlocks
         const nbOfBlocks = Math.ceil(innerHeight / blockSize);
         const shuffledIndexes = shuffle([...Array(nbOfBlocks)].map( (_, i) => i))
         return shuffledIndexes.map( (randomIndex, index) => {
@@ -59,7 +65,7 @@ export default function PixelTransition({menuIsActive, dimensions, onAnimationEn
                 <motion.div 
             
                     key={index} 
-                    className={`w-[100%] h-[5vw] bg-[#000AFF]`}
+                    className={`w-[100%] h-[${values().height}] bg-[#000AFF]`}
                     variants={anim}
                     initial="initial"
                     animate={menuIsActive ? "open" : "closed"}
@@ -70,10 +76,10 @@ export default function PixelTransition({menuIsActive, dimensions, onAnimationEn
     }
 
     return (
-        <div className={`${open ? "h-[100vh] w-[100vw]": ""} overflow-hidden relative fixed z-50 top-0 left-0 flex pointer-none `}>
+        <div className={`${open ? "h-[100vh] w-[100vw]": ""} overflow-hidden relative fixed z-50 top-0 left-0  flex pointer-none flex-wrap `}>
             {open &&
-                [...Array(20)].map( (_, index) => {
-                    return <div key={index} className={`w-[5vw] h-[100%] flex flex-col `}>
+                [...Array(values().number)].map( (_, index) => {
+                    return <div key={index} className={`w-[${values().width}] h-[100%] flex flex-col `}>
                         {
                             getBlocks()
                         }

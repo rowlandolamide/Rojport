@@ -2,7 +2,7 @@
 import type { Metadata, ResolvingMetadata } from 'next'
 import dynamic from 'next/dynamic'
 import { draftMode } from 'next/headers'
-
+import Head from 'next/head'
 import { toPlainText } from 'next-sanity'
 import ProjectText from '@/components/pages/project/ProjectText'
 import ProjectImage from '@/components/pages/project/ProjectImage'
@@ -64,6 +64,17 @@ export default async function ProjectSlugRoute({ params }: Props) {
 
 
   return <ProjectWrapper>
+     <Head>
+        <title>{`${initial.data?.title} | ROJ THE GOAT`}</title>
+        <meta
+          content={`${initial.data?.description}`}
+          name="about"
+        />
+        <meta
+          name="description"
+          content={`${initial.data?.description}`}
+        />
+      </Head>
     <div className=''>
       <div className='w-full pb-[58px] '>
         
@@ -115,4 +126,3 @@ export default async function ProjectSlugRoute({ params }: Props) {
 }
 
 
-{/* <ProjectPage data={initial.data} moreProjects={moreProjects.data} /> */}

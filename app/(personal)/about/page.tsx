@@ -17,14 +17,15 @@ import ProfilePicture from "../../../app/public/Images/Profile Image.png"
 import MicDrop from "../../public/Images/Mic Drop.png"
 import {gsap} from "gsap"
 import {Draggable} from "gsap/Draggable"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { ReactNode, useCallback, useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { useContext } from "react"
+import useCurrentTime from "@/components/hooks/useCurrentTime"
 import { MainContextWrapperType, ContextMain } from "@/components/global/ContextWrapper"
 
 gsap.registerPlugin(Draggable)
 
-const DeskTopDesignDisplay = (props: {text: string , header ?: string})=>{
+const DeskTopDesignDisplay = (props: {text: ReactNode , header ?: string})=>{
 
   return <div className="rounded-[5px] p-[4px] pt-0 bg-[#6599FF] border border-black">
     <div className="flex justify-end py-[8px] ">
@@ -41,6 +42,10 @@ export default function IndexRoute() {
 
   const {lenisCurrent} = useContext(ContextMain) as MainContextWrapperType
   
+ /* Current Time */
+ const value = useCurrentTime()
+ /* End */
+
 
   const dragInstance:any = useRef(null)
   const ref:any = useRef()
@@ -123,8 +128,8 @@ useEffect(()=>{
     
 
     const textThree = "When I'm not working, I like to watch movies from the 1980s, collect old cameras, and add to my ever-growing collection of toys. I think being creative is a way of life, so I'm always looking for new ideas and ways to express myself."
-    const textTwo = "Focus: Motion Design | Art Direction | Web Design | Animation | Brand Design Capabilities: Proficient in Cinema 4D, Redshift, Octane, Arnold, X Particles, Blender, After Effects, Illustrator, Davinci Resolve, web design with Figma"
-    const textOne = "I'm Olamide Rowland – a motion design enthusiast and creative problem-solver. I thrive on empowering brands, startups, and companies to flourish. From collaborating with top studios like Yellow Lab and Funken Studio to leading as Creative Director at Brass Bank, each project fuels my growth and innovation.let’s collaborate on something Olamide@rojthegoat.com"
+    const textTwo = <div>Focus: Motion Design | Art Direction | Web Design | Animation | Brand Design <div className="mt-4">Capabilities: Proficient in Cinema 4D, Redshift, Octane, Arnold, X Particles, Blender, After Effects, Illustrator, Davinci Resolve, web design with Figma</div></div>
+    const textOne = <div>I'm Olamide Rowland – a motion design enthusiast and creative problem-solver. I thrive on empowering brands, startups, and companies to flourish. From collaborating with top studios like Yellow Lab and Funken Studio to leading as Creative Director at Brass Bank, each project fuels my growth and innovation. <div className="mt-4">let’s collaborate on something Olamide@rojthegoat.com</div></div>
 
   return <div>
     <div ref={containerRefCallBack} className="xl:block hidden w-[200vw]">
@@ -161,10 +166,21 @@ useEffect(()=>{
       </div>
     </div>
   </div>
-  <div className="xl:hidden">
-   <div className="px-[20px]"> <Image unoptimized src={ProfilePicture.src} width={100} height={100} className="w-full rounded-[4px]" alt="Roj's picyure"></Image></div>
-<div className="flex items-center justify-center text-[32px] text-center flex-col leading-[32px]">   <div>  <span className="font-PPn ">ROJ’ THE GOAT MOTION DESIGNER <span className="text-bl">✨ </span>ART DIRECTOR <span className="text-bl"></span></span>
-</div></div>
+  <div className="xl:hidden ">
+<div className="px-[20px]">   <div className=" overflow-hidden rounded-[4px]"> <Image unoptimized src={ProfilePicture.src} width={100} height={100} className="w-full rounded-[4px] scale-[1.1]" alt="Roj's picyure"></Image></div></div>
+<div className="flex items-center justify-center text-[12vw] text-center flex-col leading-[8.6vw] mt-[20px]">   <div>  <span className="font-PPn ">ROJ’ THE GOAT  <div> MOTION DESIGNER <span className="text-bl">✨ </span></div>ART DIRECTOR <span className="text-bl"></span></span>
+</div >
+
+</div>
+<div className="flex flex-col items-center justify-center px-[20px] mt-[40px] gap-y-[30px] w-full text-[14px] max-w-[600px] mx-auto">
+Lagos, Nigeria  {value.getTime()} GMT+1
+<DeskTopDesignDisplay text={textOne}></DeskTopDesignDisplay>
+<DeskTopDesignDisplay header="CAPABILITIES" text={textTwo}></DeskTopDesignDisplay>
+<DeskTopDesignDisplay header="BONUS" text={textThree}></DeskTopDesignDisplay>
+
+<Image width={100} unoptimized height={100} alt="Mic" className="w-full border border-black rounded-[4px]" src={MicDrop.src}></Image>
+</div>
+
   </div>
   <div>
 

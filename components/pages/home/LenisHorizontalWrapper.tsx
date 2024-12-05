@@ -1,44 +1,22 @@
 "use client"
 
-import React, { ReactNode, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { ReactLenis , useLenis} from "@studio-freight/react-lenis";
-import { usePathname , useRouter, } from 'next/navigation';
+import React, { ReactNode,  useEffect, } from 'react';
+import { ReactLenis ,} from "@studio-freight/react-lenis";
+import { usePathname ,  } from 'next/navigation';
 
 import { useContext } from 'react';
-import Lenis from "lenis"
+
 import useMediaQuery from '@/components/hooks/useMediaQuery';
-import { cancelFrame, frame , motion} from 'framer-motion';
+import { motion} from 'framer-motion';
 import { useDragControls } from "framer-motion";
 import useRefWithCallback from "@/components/hooks/useRerenderCallback";
 
 /* import CustomMouse from '@/components/global/CustomMouse'; */
 import { ContextMain, MainContextWrapperType } from '@/components/global/ContextWrapper';
-interface LenisHorizontalWrapperprops {
-    children?: React.ReactNode
-    
-} 
-
-const ReturnDisplay = (props: {children: ReactNode, isVertical: boolean, ref: any})=>{
-
-  return     <ReactLenis root 
- 
-  ref={props.ref}
 
 
 
-options={{ orientation: !props.isVertical ? "horizontal": "vertical", gestureOrientation: "both", }}>
 
-
-{props.children} 
-
-</ReactLenis> 
-
-}
-
-
-
-/* 
-export default LenisHorizontalWrapper */
 
 
 export default function LenisHorizontalWrapperAlt(props: {children: ReactNode}){
@@ -134,7 +112,7 @@ lenisRef.current?.lenis?.start()
 
 
 
- options={{autoResize: true, orientation:  isHorizontal() ? "horizontal": "vertical", syncTouch: true, gestureOrientation: "both",  lerp: 0.5}}>
+ options={{autoResize: true, orientation:  isHorizontal() ? "horizontal": "vertical", syncTouch: true, gestureOrientation: "both",  lerp: 0.4}}>
 
 
 {props.children} 
