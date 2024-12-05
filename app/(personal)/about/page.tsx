@@ -129,7 +129,7 @@ useEffect(()=>{
 
     const textThree = "When I'm not working, I like to watch movies from the 1980s, collect old cameras, and add to my ever-growing collection of toys. I think being creative is a way of life, so I'm always looking for new ideas and ways to express myself."
     const textTwo = <div>Focus: Motion Design | Art Direction | Web Design | Animation | Brand Design <div className="mt-4">Capabilities: Proficient in Cinema 4D, Redshift, Octane, Arnold, X Particles, Blender, After Effects, Illustrator, Davinci Resolve, web design with Figma</div></div>
-    const textOne = <div>I'm Olamide Rowland – a motion design enthusiast and creative problem-solver. I thrive on empowering brands, startups, and companies to flourish. From collaborating with top studios like Yellow Lab and Funken Studio to leading as Creative Director at Brass Bank, each project fuels my growth and innovation. <div className="mt-4">let’s collaborate on something Olamide@rojthegoat.com</div></div>
+    const textOne = <div>I&apos;m Olamide Rowland – a motion design enthusiast and creative problem-solver. I thrive on empowering brands, startups, and companies to flourish. From collaborating with top studios like Yellow Lab and Funken Studio to leading as Creative Director at Brass Bank, each project fuels my growth and innovation. <div className="mt-4">let&apos;s collaborate on something Olamide@rojthegoat.com</div></div>
 
   return <div>
     <div ref={containerRefCallBack} className="xl:block hidden w-[200vw]">
