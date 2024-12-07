@@ -1,6 +1,6 @@
 "use client"
 import {gsap} from "gsap"
-import React, { useContext, useEffect, useRef, useState} from 'react';
+import React, { useContext, useEffect, useMemo, useRef, useState} from 'react';
 import Smile from "../../../app/public/Icons/Smile Icon.svg"
 
 import SunIcon from "../../../app/public/Icons/Sun Icon.svg"
@@ -39,12 +39,27 @@ export default function GsapAlt({data}: {data: HomePagePayload | null}){
 
   const {lenisCurrent} = useContext(ContextMain) as MainContextWrapperType
 
+
+  /* Media Query */
+const {x, y} = useMediaQuery()
+/* End */
+
   /* Laptop Contaier Ref */
   const laptopContRef:any = useRef(null)
 
   const laptopContainerPositionFromTop = laptopContRef.current ? laptopContRef.current.getBoundingClientRect().top : 40
   /* End */
 
+
+  /* ScrollBar Lenght */
+
+  const scrollBarLength = useMemo(()=>{
+ return y * 30/100
+  }, [y, x])
+
+  
+
+  /* End */
   
 
 
@@ -81,8 +96,7 @@ const dragInstance:any = useRef(null);
 
 
 
-/* Media Query */
-const {x} = useMediaQuery()
+
 
 
 /* New Events for draggable */
@@ -117,6 +131,11 @@ const onMouseMove =  useCallback((e) =>{
 
 const gsapTime =  gsap.timeline({})
 
+
+/* Y setter */
+const ySetter = gsap.quickSetter(gsapDragRef.current, "y", "px")
+/* End */
+
 useEffect(()=>{
   
   if(lenisCurrent && gsapDragRef.current){
@@ -130,14 +149,16 @@ gsapTime.pause()
 return
     }
     if(lenisCurrent.isScrolling == false) return
+
    
-  /*  ySetter(300 * lenisCurrent.progress) */
+   
+  
   if(dragInstance.current[0].isDragging) return
  
-   gsapTime.to(gsapDragRef.current, {parseTransform:true,y: 300 * lenisCurrent.progress, duration: 0, })
-   dragInstance.current[0].update()
+   ySetter(scrollBarLength * lenisCurrent.progress)
+
   })
-  /* gsap.timeline({}).to(gsapDragRef.current, {y: 300 * lenisCurrent.progress, duration: 0.1}) */
+
   }
 }, [lenisCurrent, gsapDragRef,gsapTime ])
 
@@ -150,14 +171,14 @@ useEffect(()=>{
 
   dragInstance.current = Draggable.create(gsapDragRef.current, {
     type: "y",
-    bounds: {minY: 0, maxY: 300},
+    bounds: {minY: 0, maxY: scrollBarLength},
     inertia: false,
 
 
     onDrag: ()=>{
    
      
-      const proportionalMovement = (ref.current.getBoundingClientRect().width - window.innerWidth)/300
+      const proportionalMovement = (ref.current.getBoundingClientRect().width - window.innerWidth)/scrollBarLength
       lenisCurrent.scrollTo(dragInstance.current[0].y * proportionalMovement)
       dragInstance.current[0].update()
      
@@ -190,12 +211,10 @@ useEffect(()=>{
     
   })
  
-  /*  Quick Setter */
-  
-  /* End */
+ 
 
 
-  /* gsap.to(".tab-display", { y: 1000 * lenisCurrent.progress, duration: 1 , scrollTrigger: {scrub: 1, trigger: "top"}}); */
+
 }, [toggle, lenisCurrent, gsapDragRef,x, dragInstance])
 
 if(modifiedDataTwo){
@@ -221,7 +240,7 @@ if(modifiedDataTwo){
    <div style={{top: laptopContainerPositionFromTop}}  ref={refCallback} className={` w-fit z-20 shadow-lg line fixed top-[${Math.floor(laptopContainerPositionFromTop)}px] right-[25px] z-50 rounded-sm`}>
 <Image src={ScrollBarIcon.src} width={26} height={100} className="h-fit" alt="Scrollbar"></Image>
 </div>
-    <div style={{top: laptopContainerPositionFromTop}} className={`h-[350px] w-[20px] bg-bl/[0.11] right-[28px] top-[${Math.floor(laptopContainerPositionFromTop)}px] z-10 fixed`}>
+    <div  style={{top: laptopContainerPositionFromTop, height: scrollBarLength + 50}} className={` w-[20px] bg-bl/[0.11] right-[28px] top-[${Math.floor(laptopContainerPositionFromTop)}px] z-10 fixed`}>
 
 
     </div>
