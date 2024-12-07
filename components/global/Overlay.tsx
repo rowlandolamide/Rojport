@@ -23,6 +23,7 @@ function Overlay(props: {obj:  MainContextWrapperType["overlay"], setIsVideoFals
             } else{
               // Clicked outside the box
               closeOverlay()
+              setIsVideoFalse()
 
             }
           }

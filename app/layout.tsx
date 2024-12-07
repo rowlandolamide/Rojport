@@ -42,7 +42,7 @@ export default async function RootLayout({
 
  <Navbar></Navbar>
 
-   <ContextWrapper>
+   <ContextWrapper >
 {  <LenisHorizontalWrapper>
    {children}
 </LenisHorizontalWrapper>}

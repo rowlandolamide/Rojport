@@ -152,9 +152,7 @@ useEffect(()=>{
     type: "y",
     bounds: {minY: 0, maxY: 300},
     inertia: false,
-    onDragStart: ()=>{
-      gsapTime.pause()
-    },
+
 
     onDrag: ()=>{
    
@@ -173,7 +171,7 @@ useEffect(()=>{
       dragInstance.current[0].update()
     },
     onRelease: ()=>{
-      gsapTime.play()
+  
       dragInstance.current[0].update()
     },
     onLockAxis: ()=>{
@@ -198,7 +196,7 @@ useEffect(()=>{
 
 
   /* gsap.to(".tab-display", { y: 1000 * lenisCurrent.progress, duration: 1 , scrollTrigger: {scrub: 1, trigger: "top"}}); */
-}, [toggle, lenisCurrent, gsapDragRef,x, dragInstance, gsapTime])
+}, [toggle, lenisCurrent, gsapDragRef,x, dragInstance])
 
 if(modifiedDataTwo){
   let number = 0

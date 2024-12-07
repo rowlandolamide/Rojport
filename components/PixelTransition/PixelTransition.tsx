@@ -21,7 +21,7 @@ const anim = {
 }
 
 export default function PixelTransition({menuIsActive, dimensions, onAnimationEnd}) {
-    const { width, height } = dimensions;
+const { width, height } = dimensions;
     const [open, setOpen] = useState(false)
     const params = usePathname()
     const {x} = useMediaQuery()
@@ -63,7 +63,7 @@ export default function PixelTransition({menuIsActive, dimensions, onAnimationEn
         return shuffledIndexes.map( (randomIndex, index) => {
             return (
                 <motion.div 
-            
+            style={{height: `${values().height}`}}
                     key={index} 
                     className={`w-[100%] h-[${values().height}] bg-[#000AFF]`}
                     variants={anim}
@@ -79,7 +79,7 @@ export default function PixelTransition({menuIsActive, dimensions, onAnimationEn
         <div className={`${open ? "h-[100vh] w-[100vw]": ""} overflow-hidden relative fixed z-50 top-0 left-0  flex pointer-none flex-wrap `}>
             {open &&
                 [...Array(values().number)].map( (_, index) => {
-                    return <div key={index} className={`w-[${values().width}] h-[100%] flex flex-col `}>
+                    return <div style={{width: `${values().width}`}} key={index} className={`w-[${values().width}] h-[100%] flex flex-col `}>
                         {
                             getBlocks()
                         }

@@ -9,8 +9,13 @@ import useMediaQuery from "@/components/hooks/useMediaQuery"
 import { Draggable } from "gsap/Draggable";
 import {gsap} from "gsap"
 import {FastForward, Pause, Play} from "lucide-react"
+import Image from "next/image"
+import { MainContextWrapperType, ContextMain } from '@/components/global/ContextWrapper';
+
 
 gsap.registerPlugin(Draggable)
+
+import closeIconForVideo from "../../../app/public/Icons/closeIconForVideo.svg"
 
 
 
@@ -36,7 +41,7 @@ const PlayPause = (onClick: ()=> void)=>{
 
 const Seek = (props: {ref: any, width: number})=>{
     return <div style={{width: props.width}} className={` bg-white/[0.37] h-[3px] relative items-center flex`}>
-        <div ref={props.ref} className="absolute h-2 w-4 bg-red-500 z-20"></div>
+        <div ref={props.ref} className="absolute h-2 w-4 bg-blue-500 z-20"></div>
         <div style={{width: props.width, marginLeft: -props.width}} className={`h-[3px] progress-indicator   z-10 bg-bl`}>
 
         </div>
@@ -50,6 +55,10 @@ const SliderVolume = (props: {setVolume: (val: number)=>void})=>{
 }
 
 export default function ProjectMainVideo({url}:{url: string}){
+
+    /* Main Context */
+    const {overlay, handleOverlay} = useContext(ContextMain) as MainContextWrapperType
+    /* End */
 
     const gsapTime =  gsap.timeline({})
 
@@ -106,7 +115,7 @@ export default function ProjectMainVideo({url}:{url: string}){
       const durationSeconds =   videoRef.current.getDuration() 
       const playedSeconds  = videoRef.current.getCurrentTime()
 
-      gsapTime.to(".progress-indicator", {x:  videoContainerWidth * playedSeconds/durationSeconds }).to(seekDraggable.current, {x: videoContainerWidth * playedSeconds/durationSeconds })
+      gsapTime.to(seekDraggable.current, {x: videoContainerWidth * playedSeconds/durationSeconds }).to(".progress-indicator", {x:  videoContainerWidth * playedSeconds/durationSeconds })
     }, [played, gsapTime, videoContainerWidth]) 
 
   /* const {handleOverlay,overlay } = useContext(ContextMain) as MainContextWrapperType */
@@ -144,10 +153,13 @@ export default function ProjectMainVideo({url}:{url: string}){
         setIsHovered(false)
     }} onMouseOver={()=>{
         setIsHovered(true)
-    }} ref={videoContainerRef} /* onClick={()=>{
+    }} ref={videoContainerRef} onClick={()=>{
       handleOverlay({...overlay, open: true, isVideo: true, item: url })
-    }}  */ className="z-0 items-center relative 2xl:p-[0.2vw] 2xl:pt-[1.3vw] p-[2px] pt-[20px] bg-bl justify-center flex w-full border border-black rounded-[3px] overflow-hidden">
-        
+    }}   className="z-0 items-center relative 2xl:p-[0.2vw]  p-[2px] bg-bl justify-center flex-col flex w-full border border-black rounded-[3px] overflow-hidden">
+<div className="text-white bg-bl text-[0.55vw] 2xl:text-[0.65vw] flex justify-between w-full px-2 items-center">
+<div  className="self-start ">ALPHA - THE FUTURE LAPTOP</div>
+<button><Image src={closeIconForVideo.src} width={30} height={30} className="w-[0.48vw] 2xl:w-[0.55vw] " alt="closeIcon" ></Image></button>
+</div>
    
   <div  className={`${!isHovered ? "opacity-0" : "opacity-1"} duration-300 absolute z-20`}>
             <RewindFastFoward handleFastForward={FastForwardFunction} handleRewind={RewindFunction} isPlaying={isPlaying} handlePausePlay={()=>{
