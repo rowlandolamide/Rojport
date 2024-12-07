@@ -16,7 +16,7 @@ import { useCallback } from "react";
 import ProjectCard from "./ProjectCard";
 import { Draggable } from "gsap/Draggable";
 import {ContextMain, MainContextWrapperType} from "@/components/global/ContextWrapper";
-import ScrollBarIcon from "../../../app/public/Icons/Cursor.svg"
+import ScrollBarIcon from "../../../app/public/Icons/Scrollbar.svg"
 
 import { urlForImage } from "@/sanity/lib/utils";
 
@@ -47,7 +47,7 @@ const {x, y} = useMediaQuery()
   /* Laptop Contaier Ref */
   const laptopContRef:any = useRef(null)
 
-  const laptopContainerPositionFromTop = laptopContRef.current ? laptopContRef.current.getBoundingClientRect().top : 40
+  const laptopContainerPositionFromTop = laptopContRef.current ? laptopContRef.current.getBoundingClientRect().top +20 : 40
   /* End */
 
 

@@ -76,7 +76,7 @@ const { width, height } = dimensions;
     }
 
     return (
-        <div className={`${open ? "h-[100vh] w-[100vw]": ""} overflow-hidden relative fixed z-50 top-0 left-0  flex pointer-none flex-wrap `}>
+        <div style={{zIndex: 999}} className={`${open ? "h-[100vh] w-[100vw]": ""} overflow-hidden relative fixed z-50 top-0 left-0  flex pointer-none flex-wrap `}>
             {open &&
                 [...Array(values().number)].map( (_, index) => {
                     return <div style={{width: `${values().width}`}} key={index} className={`w-[${values().width}] h-[100%] flex flex-col `}>
