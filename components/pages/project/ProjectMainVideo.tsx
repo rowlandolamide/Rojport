@@ -39,7 +39,7 @@ const PlayPause = (onClick: ()=> void)=>{
     return <button onClick={()=>{onClick()}} className="hidden bg-[#000AFF] px-[54px] py-2 text-white">PLAY ALPHA +</button>
 }
 
-const Seek = (props: {ref: any, width: number})=>{
+const Seek = (props: {ref: any, width: number, draggableWidth: number})=>{
     return <div style={{width: props.width}} className={` bg-white/[0.37] h-[3px] relative items-center flex`}>
         <div ref={props.ref} className="absolute h-2 w-4 bg-blue-500 z-20"></div>
         <div style={{width: props.width, marginLeft: -props.width}} className={`h-[3px] progress-indicator   z-10 bg-bl`}>
@@ -89,7 +89,11 @@ export default function ProjectMainVideo({url}:{url: string}){
 
     const videoRef = useRef<ReactPlayer>(null!)
 
-    const videoContainerWidth = videoContainerRef.current ? Math.floor(videoContainerRef.current.getBoundingClientRect().width) : 300
+    /* Width of Seeking Draggable */
+    const widthOfSeekingDraggable = 32
+    /* End */
+
+    const videoContainerWidth = videoContainerRef.current ? Math.floor(videoContainerRef.current.getBoundingClientRect().width) -widthOfSeekingDraggable : 300
 
 
     useEffect(()=>{
@@ -167,7 +171,7 @@ export default function ProjectMainVideo({url}:{url: string}){
             }}></RewindFastFoward>
         </div> 
         <div className={`${!isHovered ? "opacity-0" : "opacity-1"} duration-300 absolute bottom-[40px] z-20`}>
-            <Seek width={videoContainerWidth} ref={seekDraggable}></Seek>
+            <Seek draggableWidth={widthOfSeekingDraggable} width={videoContainerWidth} ref={seekDraggable}></Seek>
         </div>
 {/* <Video  src={getStarted}></Video> */}
   <div className="rounded-[3px] overflow-hidden w-full">
