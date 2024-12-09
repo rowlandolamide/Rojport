@@ -9,13 +9,13 @@ import useMediaQuery from "@/components/hooks/useMediaQuery"
 import { Draggable } from "gsap/Draggable";
 import {gsap} from "gsap"
 import {FastForward, Pause, Play} from "lucide-react"
-import Image from "next/image"
+
 import { MainContextWrapperType, ContextMain } from '@/components/global/ContextWrapper';
 
 
 gsap.registerPlugin(Draggable)
 
-import closeIconForVideo from "../../../app/public/Icons/closeIconForVideo.svg"
+
 
 
 
@@ -50,10 +50,10 @@ const Seek = (props: {ref: any, width: number, draggableWidth: number})=>{
 export default function ProjectMainVideo({url}:{url: string}){
 
     /* Main Context */
-    const {overlay, handleOverlay, closeOverlay} = useContext(ContextMain) as MainContextWrapperType
+    const { closeOverlay} = useContext(ContextMain) as MainContextWrapperType
     /* End */
 
-    const gsapTime =  gsap.timeline({})
+    
 
     
 
@@ -62,7 +62,7 @@ export default function ProjectMainVideo({url}:{url: string}){
     /* End */
 
 
-    const {x, y} = useMediaQuery()
+    const {x,} = useMediaQuery()
 
     /* Is Video Playing */
     const [isPlaying, setIsPlaying] = useState(false)
@@ -89,7 +89,7 @@ export default function ProjectMainVideo({url}:{url: string}){
     /* End */
 
     const videoContainerWidth = videoContainerRef.current ? Math.floor(videoContainerRef.current.getBoundingClientRect().width) -widthOfSeekingDraggable : 300
-
+    const gsapTime =  gsap.timeline({})
 
     useEffect(()=>{
        if(!videoContainerRef.current) return
@@ -111,6 +111,7 @@ export default function ProjectMainVideo({url}:{url: string}){
     }, [seekDragInstance, seekDraggable, videoContainerRef, x, videoContainerWidth])
 
    useEffect(()=>{
+    
       const durationSeconds =   videoRef.current.getDuration() 
       const playedSeconds  = videoRef.current.getCurrentTime()
 
@@ -121,6 +122,8 @@ export default function ProjectMainVideo({url}:{url: string}){
       }else{
         gsapTime.to(".progress-indicator", {x:  videoContainerWidth * playedSeconds/durationSeconds }, 0).to(seekDraggable.current, {x: videoContainerWidth * playedSeconds/durationSeconds }, 0)
       }
+
+      
 
      
     }, [played,  videoContainerWidth]) 
