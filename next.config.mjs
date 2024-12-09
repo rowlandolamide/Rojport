@@ -1,4 +1,4 @@
-import { withNextVideo } from "next-video/process";
+
 /** @type {import('next').NextConfig} */
 
 
@@ -67,4 +67,4 @@ const config = {
 
 
 
-export default withNextVideo(config);
+export default config
