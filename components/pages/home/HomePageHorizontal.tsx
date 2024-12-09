@@ -55,7 +55,7 @@ const {x, y} = useMediaQuery()
 
   const scrollBarLength = useMemo(()=>{
  return y * 30/100
-  }, [y, x])
+  }, [y])
 
   /* End */
   
@@ -158,7 +158,7 @@ return
   })
 
   }
-}, [lenisCurrent, gsapDragRef,gsapTime ])
+}, [lenisCurrent, gsapDragRef,gsapTime, scrollBarLength, ySetter ])
 
 
 
@@ -209,7 +209,7 @@ useEffect(()=>{
 
 
 
-}, [toggle, lenisCurrent, gsapDragRef,x, dragInstance])
+}, [toggle, lenisCurrent, gsapDragRef,x, dragInstance, scrollBarLength])
 
 if(modifiedDataTwo){
   let number = 0
@@ -231,7 +231,7 @@ if(modifiedDataTwo){
 
   return <div  className="xl:h-[100vh] xl:absolute top-0  xl:flex items-center xl:justify-center">
    <div className="fixed relative right-[28px] xl:block hidden ">
-   <div style={{top: laptopContainerPositionFromTop}}  ref={refCallback} className={` w-fit z-20 shadow-lg line fixed top-[${Math.floor(laptopContainerPositionFromTop)}px] right-[25px] z-50 rounded-sm`}>
+   <div style={{top: laptopContainerPositionFromTop}}  ref={refCallback} className={` w-fit  shadow-lg line fixed top-[${Math.floor(laptopContainerPositionFromTop)}px] right-[25px] z-30 rounded-sm`}>
 <Image src={ScrollBarIcon.src} width={26} height={100} className="h-fit" alt="Scrollbar"></Image>
 </div>
     <div  style={{top: laptopContainerPositionFromTop, height: scrollBarLength + 50}} className={` w-[20px] bg-bl/[0.11] right-[28px] top-[${Math.floor(laptopContainerPositionFromTop)}px] z-10 fixed`}>
