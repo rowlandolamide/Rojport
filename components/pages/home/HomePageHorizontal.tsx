@@ -35,7 +35,7 @@ gsap.registerPlugin(ScrollTrigger, Draggable)
 
 
 
-export default function GsapAlt({data}: {data: HomePagePayload | null}){
+export default function HomePageHorizontal({data}: {data: HomePagePayload | null}){
 
   const {lenisCurrent} = useContext(ContextMain) as MainContextWrapperType
 
@@ -51,13 +51,11 @@ const {x, y} = useMediaQuery()
   /* End */
 
 
-  /* ScrollBar Lenght */
+  /* ScrollBar Length */
 
   const scrollBarLength = useMemo(()=>{
  return y * 30/100
   }, [y, x])
-
-  
 
   /* End */
   
@@ -204,10 +202,6 @@ useEffect(()=>{
     onThrowComplete: ()=>{
       dragInstance.current[0].update()
     }
-   
-  
-  
-
     
   })
  
@@ -246,44 +240,7 @@ if(modifiedDataTwo){
     </div>
    </div>
 
-    {/* Mobile View */}
-    <div className="Js-lenis sm:hidden flex flex-col items-center justify-center w-full tab-display data-lenis-prevent">
-    <div className="flex flex-col gap-y-[22px]">
-            {modifiedDataTwo && modifiedDataTwo.map((i, k)=>{
-                
-                const currentObj = modifiedDataTwo[k]
-            
-
-               
-                return <section key={k} className="   gap-y-4 ">
-                  
-                { <ProjectCard slug={i.slug || "/"} isProject={currentObj.isProject} media={currentObj.imgUrl} discipline={currentObj.discipline} name={currentObj.title || ""}></ProjectCard>}
-
-                   
-                </section>
-            })}
-        </div> 
-    </div>
-    {/* End */}
-
-
-    {/* Tab View */}
-  <div className="w-full hidden sm:block xl:hidden data-lenis-prevent Js-lenis">
-  <div  className="flex flex-wrap gap-x-4 z-0  gap-y-5 justify-center items-center">
-            {modifiedDataTwo && modifiedDataTwo.map((i, k)=>{
-                
-                const currentObj = modifiedDataTwo[k]
-              
-                return <section key={k} className=" px-[20px]  gap-y-4 ">
-                  
-                { <ProjectCard slug={i.slug || "/"}  isProject={currentObj.isProject} media={currentObj.imgUrl} discipline={currentObj.discipline} name={currentObj.title || ""}></ProjectCard>}
-
-                   
-                </section>
-            })}
-        </div> 
-</div>
-{/* End */}
+  
 
 
     {/* Laptop View */}
