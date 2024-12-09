@@ -17,7 +17,8 @@ export interface MainContextWrapperType{
         isVideo?: boolean;
    
     }
-    handleOverlay: (obj: MainContextWrapperType["overlay"] , isVideo?: boolean)=>void
+    handleOverlay: (obj: MainContextWrapperType["overlay"] , isVideo?: boolean)=>void,
+    closeOverlay: ()=> void,
 
     mouseStates:{
         x: number,
@@ -52,16 +53,20 @@ function ContextWrapper(props: {children: React.ReactNode}) {
         setLenisCurrent(current)
     }
 
+    const closeOverlay = ()=>{
+        setOverlay(prev => ({...prev, open: false}))
+    }
+
 
     return (
        <div className="relative" ref={mouseref} >
-         <div className="fixed z-50">
+         <div style={{zIndex: 1000}} className="fixed z-50">
 <CustomMouse x={mouse.clientX ? mouse.clientX +2 : 0} y={mouse.clientY ? mouse.clientY + 2: 0}></CustomMouse>
 
 </div>
-       <ContextMain.Provider value={{x:"Job", lenisCurrent, setLenisCurrent: setLenis, mouseStates: {x: mouse.clientX || 0, y: mouse.clientY || 0}, overlay: overlay, handleOverlay: handleOverlay}}>
+       <ContextMain.Provider value={{x:"Job", closeOverlay, lenisCurrent, setLenisCurrent: setLenis, mouseStates: {x: mouse.clientX || 0, y: mouse.clientY || 0}, overlay: overlay, handleOverlay: handleOverlay}}>
 
-{overlay.open &&     <div className="fixed z-50 w-full ">
+{overlay.open &&     <div style={{zIndex: 99}} className="fixed z-30 w-full ">
    <Overlay closeOverlay={()=>{setOverlay(prev => {return {...prev, open: false}})}} setIsVideoFalse={()=>{setOverlay(prev =>{return {...prev, isVideo: false}})}} obj={overlay} ></Overlay>
  </div>}
        {props.children}

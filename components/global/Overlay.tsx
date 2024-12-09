@@ -4,6 +4,7 @@ import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { MainContextWrapperType } from './ContextWrapper';
 import Image from 'next/image';
 import ReactPlayer from 'react-player';
+import ProjectMainVideo from '../pages/project/ProjectMainVideo';
 
 
 
@@ -61,9 +62,8 @@ function Overlay(props: {obj:  MainContextWrapperType["overlay"], setIsVideoFals
  {/*    <ReactPlayer playing  style={{display: rend ?"": "hidden"}} previewTabIndex={2} onReady={()=>{setRend(true)
    }}  controls={true} width={"80vw"} height={"100vh"}  url={props.obj.item}></ReactPlayer> */}
           <div ref={ref} className='w-[80%] h-screen flex justify-center items-center '>
-   {props.obj.isVideo ?         <div className='flex items-center justify-center  '><div  className={`${rend ? "hidden": ""} w-full h-[500px] animate-pulse bg-gray-400`}></div> 
-   <ReactPlayer playing  style={{display: rend ?"": "hidden"}} previewTabIndex={2} onReady={()=>{setRend(true)
-   }}  controls width={"80vw"} height={"100vh"}  url={props.obj.item}></ReactPlayer></div>:
+   {props.obj.isVideo ?         <div className='flex w-full items-center justify-center  p-[60px]'>
+   <ProjectMainVideo   url={props.obj.item}></ProjectMainVideo></div>:
 
 <Image ref={ref} unoptimized alt='something' width={100} height={100} className='w-full' src={obj.item}></Image>   }         
         </div> 

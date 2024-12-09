@@ -1,8 +1,8 @@
 
 
-import HomePageHorizontal from '@/components/pages/home/HomePageHorizontal'
-import { loadHomePage } from '@/sanity/loader/loadQuery'
 
+import { loadHomePage } from '@/sanity/loader/loadQuery'
+import HomePage from '@/components/pages/home/HomePage'
 
 
 
@@ -18,9 +18,9 @@ export default async function IndexRoute() {
       <div className="text-center text-2xl w-full ">
       
 
-  <div className='pt-4 w-full '> <HomePageHorizontal data={initial.data}>
-   
-   </HomePageHorizontal></div>
+  <div className='pt-4 w-full '> 
+    <HomePage data={initial.data}></HomePage>
+  </div>
 
       </div>
     )

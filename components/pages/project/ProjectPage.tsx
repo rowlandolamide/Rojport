@@ -16,7 +16,6 @@ export interface ProjectPageProps {
 export function ProjectPage({
   data,
   moreProjects,
-  encodeDataAttribute,
 }: ProjectPageProps) {
   // Default to an empty object to allow previews on non-existent documents
   const { year, overview, site, title, content, slug } = data ?? {}

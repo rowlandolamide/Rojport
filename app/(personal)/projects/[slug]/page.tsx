@@ -15,6 +15,9 @@ import { loadProject } from '@/sanity/loader/loadQuery'
 const ProjectPreview = dynamic(
   () => import('@/components/pages/project/ProjectPreview'),
 )
+
+import ProjectDisplayVideo from '@/components/pages/project/ProjectDisplayVideo'
+
 const ProjectWrapper = dynamic(
   () => import('@/components/pages/project/ProjectWrapper'), {ssr: false}
 )
@@ -78,9 +81,9 @@ export default async function ProjectSlugRoute({ params }: Props) {
     <div className=''>
       <div className='w-full pb-[58px] '>
         
-    <ProjectMainVideo url={initial.data?.mainVideo || ""}></ProjectMainVideo>
+    <ProjectDisplayVideo url={initial.data?.mainVideo || ""}></ProjectDisplayVideo>
       </div>
-  {/*   <ProjectImage img='https://modii.org/wp-content/uploads/2020/12/random.png'></ProjectImage> */}
+  
    
     {initial.data?.content?.map((item:any, i)=>{
       const isLastImageType =  ()=>{
