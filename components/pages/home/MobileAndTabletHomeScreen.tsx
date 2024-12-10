@@ -6,14 +6,10 @@ import ProjectCard from './ProjectCard';
 function MobileAndTabletHomeScreen({data}: {data: HomePagePayload |null}) {
 
 
-    const modifiedData  = data?.showcaseProjects?.map((item)=>{
-   
-        const imgUrl = item.coverImage ? urlForImage(item.coverImage)?.quality(100)?.format("webp")?.url() : ""
-        return {title: item.title, slug: item.slug, img: item.coverImage, imgUrl: imgUrl,  isProject: true}
-    })
+
     const modifiedDataTwo  = data?.showcaseProjects?.map((item)=>{
       
-      const imgUrl = item.coverImage ? urlForImage(item.coverImage)?.quality(100)?.format("webp")?.url() : ""
+      const imgUrl = item.coverImage ? urlForImage(item.coverImage)?.quality(100)?.format("webp")?.width(500).url() : ""
       return {title: item.title, slug: item.slug, img: item.coverImage, imgUrl: imgUrl,  isProject: true, discipline: item.disci}
     })
     
@@ -24,7 +20,7 @@ function MobileAndTabletHomeScreen({data}: {data: HomePagePayload |null}) {
     <div className="flex flex-col gap-y-[22px]">
             {modifiedDataTwo && modifiedDataTwo.map((i, k)=>{
                 
-                const currentObj = modifiedDataTwo[k]
+                const currentObj = i
             
 
                
