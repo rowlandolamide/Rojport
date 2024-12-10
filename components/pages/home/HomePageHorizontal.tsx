@@ -44,6 +44,10 @@ export default function HomePageHorizontal({data}: {data: HomePagePayload | null
 const {x, y} = useMediaQuery()
 /* End */
 
+/* Laptop Total Container Ref */
+const laptopTotalContainerRef: any = useRef()
+/* End */
+
   /* Laptop Contaier Ref */
   const laptopContRef:any = useRef(null)
 
@@ -61,23 +65,15 @@ const {x, y} = useMediaQuery()
   
 
 
-  const modifiedData  = data?.showcaseProjects?.map((item)=>{
-   
-    const imgUrl = item.coverImage ? urlForImage(item.coverImage)?.quality(100)?.format("webp")?.url() : ""
-    return {title: item.title, slug: item.slug, img: item.coverImage, imgUrl: imgUrl,  isProject: true}
-})
-const modifiedDataTwo  = data?.showcaseProjects?.map((item)=>{
+const modifiedDataTwo  = useMemo(()=>{
+  return  data?.showcaseProjects?.map((item)=>{
   
-  const imgUrl = item.coverImage ? urlForImage(item.coverImage)?.quality(100)?.format("webp")?.url() : ""
-  return {title: item.title, slug: item.slug, img: item.coverImage, imgUrl: imgUrl,  isProject: true, discipline: item.disci}
-})
+    const imgUrl = item.coverImage ? urlForImage(item.coverImage)?.quality(100)?.format("webp")?.url() : ""
+    return {title: item.title, slug: item.slug, img: item.coverImage, imgUrl: imgUrl,  isProject: true, discipline: item.disci}
+  })
+}, [data])
 
 
-
-
-
-modifiedData?.splice(modifiedData.length, 0,{...modifiedData[2], imgUrl: SunIcon.src, isProject: false}, modifiedData[3])
-modifiedData?.splice(3,0, {...modifiedData[4], imgUrl: Smile.src, isProject: false})
 
 
 
@@ -132,7 +128,7 @@ const onMouseMove =  useCallback((e) =>{
 
 
 useEffect(()=>{
-  const gsapTime =  gsap.timeline({})
+/*   const gsapTime =  gsap.timeline({}) */
 /* Y setter */
 const ySetter = gsap.quickSetter(gsapDragRef.current, "y", "px")
 /* End */
@@ -142,10 +138,10 @@ const ySetter = gsap.quickSetter(gsapDragRef.current, "y", "px")
  
 
   lenisCurrent.on('scroll', ()=>{
-    if(dragInstance.current[0].isDragging){
+/*     if(dragInstance.current[0].isDragging){
 gsapTime.pause()
 return
-    }
+    } */
     if(lenisCurrent.isScrolling == false) return
 
    
@@ -154,8 +150,14 @@ return
   if(dragInstance.current[0].isDragging) return
  
    ySetter(scrollBarLength * lenisCurrent.progress)
+   
 
   })
+
+/*   return ()=>{
+    gsapTime.clear()
+
+  } */
 
   }
 }, [lenisCurrent, gsapDragRef, scrollBarLength])
@@ -167,49 +169,53 @@ return
 useEffect(()=>{
   if(!lenisCurrent) return
 
-  dragInstance.current = Draggable.create(gsapDragRef.current, {
-    type: "y",
-    bounds: {minY: 0, maxY: scrollBarLength},
-    inertia: false,
-
-
-    onDrag: ()=>{
-   
-     
-      const proportionalMovement = (ref.current.getBoundingClientRect().width - window.innerWidth)/scrollBarLength
-      lenisCurrent.scrollTo(dragInstance.current[0].y * proportionalMovement)
-      dragInstance.current[0].update()
-     
-    },
-    onDragEnd: ()=>{
-      dragInstance.current[0].update()
-      
-    },
-    onPress: ()=>{
-      dragInstance.current[0].enable()
-      dragInstance.current[0].update()
-    },
-    onRelease: ()=>{
+  let ctx = gsap.context(()=>{
+    dragInstance.current = Draggable.create(gsapDragRef.current, {
+      type: "y",
+      bounds: {minY: 0, maxY: scrollBarLength},
+      inertia: false,
   
-      dragInstance.current[0].update()
-    },
-    onLockAxis: ()=>{
-      dragInstance.current[0].disable()
-    },
-    onThrowUpdate: ()=>{
-      dragInstance.current[0].update()
-    },
-    onThrowComplete: ()=>{
-      dragInstance.current[0].update()
-    }
+  
+      onDrag: ()=>{
+     
+       
+        const proportionalMovement = (ref.current.getBoundingClientRect().width - window.innerWidth)/scrollBarLength
+        lenisCurrent.scrollTo(dragInstance.current[0].y * proportionalMovement)
+        dragInstance.current[0].update()
+       
+      },
+      onDragEnd: ()=>{
+        dragInstance.current[0].update()
+        
+      },
+      onPress: ()=>{
+        dragInstance.current[0].enable()
+        dragInstance.current[0].update()
+      },
+      onRelease: ()=>{
     
-  })
+        dragInstance.current[0].update()
+      },
+      onLockAxis: ()=>{
+        dragInstance.current[0].disable()
+      },
+      onThrowUpdate: ()=>{
+        dragInstance.current[0].update()
+      },
+      onThrowComplete: ()=>{
+        dragInstance.current[0].update()
+      }
+      
+    })
+   
+  }, laptopTotalContainerRef)
+
+  
  
- 
 
+return ()=> ctx.clear()
 
-
-}, [toggle, lenisCurrent, gsapDragRef,x, dragInstance, scrollBarLength])
+}, [ lenisCurrent, gsapDragRef,x, dragInstance, scrollBarLength, laptopTotalContainerRef])
 
 if(modifiedDataTwo){
   let number = 0
@@ -229,7 +235,7 @@ if(modifiedDataTwo){
 
  
 
-  return <div  className="xl:h-[100vh] xl:absolute top-0  xl:flex items-center xl:justify-center">
+  return <div ref={laptopTotalContainerRef}  className="xl:h-[100vh] xl:absolute top-0  xl:flex items-center xl:justify-center">
    <div className="fixed relative right-[28px] xl:block hidden ">
    <div style={{top: laptopContainerPositionFromTop}}  ref={refCallback} className={` w-fit  shadow-lg line fixed top-[${Math.floor(laptopContainerPositionFromTop)}px] right-[25px] z-30 rounded-sm`}>
 <Image src={ScrollBarIcon.src} width={26} height={100} className="h-fit" alt="Scrollbar"></Image>
