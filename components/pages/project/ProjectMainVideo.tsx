@@ -53,7 +53,7 @@ export default function ProjectMainVideo({url}:{url: string}){
     const { closeOverlay, lenisCurrent} = useContext(ContextMain) as MainContextWrapperType
     /* End */
 
-    const gsapTime =  gsap.timeline({})
+    
    
     
 
@@ -112,7 +112,7 @@ export default function ProjectMainVideo({url}:{url: string}){
 
    useEffect(()=>{
  
-    
+    const gsapTime =  gsap.timeline({})
       const durationSeconds =   videoRef.current.getDuration() 
       const playedSeconds  = videoRef.current.getCurrentTime()
 
