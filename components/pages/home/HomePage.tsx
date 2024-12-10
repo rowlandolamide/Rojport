@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { useContext } from 'react';
 import { MainContextWrapperType, ContextMain } from '@/components/global/ContextWrapper';
 import MobileAndTabletHomeScreen from "./MobileAndTabletHomeScreen";
- import HomePageHorizontal from './HomePageHorizontal';
+/*  import HomePageHorizontal from './HomePageHorizontal'; */
 /* const HomePageHorizontal = dynamic(()=>import("./HomePageHorizontal"))  */
 import useMediaQuery from "@/components/hooks/useMediaQuery";
 
@@ -19,7 +19,8 @@ function HomePage(props: {data: HomePagePayload | null}) {
     const isLaptop = lenisCurrent ? x > 1279: false
     return (
         <div>
-            {isLaptop ? <HomePageHorizontal data={props.data}></HomePageHorizontal> : <MobileAndTabletHomeScreen data={props.data}></MobileAndTabletHomeScreen>}
+            <MobileAndTabletHomeScreen data={props.data}></MobileAndTabletHomeScreen>
+        {/*     {isLaptop ? <HomePageHorizontal data={props.data}></HomePageHorizontal> : <MobileAndTabletHomeScreen data={props.data}></MobileAndTabletHomeScreen>} */}
         </div>
     );
 }
