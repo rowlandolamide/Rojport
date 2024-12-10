@@ -114,7 +114,7 @@ const onMouseUp = useCallback((e)=>{
 
 const onMouseMove =  useCallback((e) =>{
  
-  if(lenisCurrent && lenisCurrent.scrollTo && down.status === true ) {
+  if(lenisCurrent &&  down.status === true ) {
 
       const p = down.position - e.pageX
 
@@ -127,15 +127,15 @@ const onMouseMove =  useCallback((e) =>{
 
 
 
-const gsapTime =  gsap.timeline({})
 
 
+
+
+useEffect(()=>{
+  const gsapTime =  gsap.timeline({})
 /* Y setter */
 const ySetter = gsap.quickSetter(gsapDragRef.current, "y", "px")
 /* End */
-
-useEffect(()=>{
-  
   if(lenisCurrent && gsapDragRef.current){
     
 
@@ -158,7 +158,7 @@ return
   })
 
   }
-}, [lenisCurrent, gsapDragRef,gsapTime, scrollBarLength, ySetter ])
+}, [lenisCurrent, gsapDragRef, scrollBarLength])
 
 
 

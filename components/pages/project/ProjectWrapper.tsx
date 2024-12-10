@@ -8,9 +8,7 @@ function ProjectWrapper(props: {children: React.ReactNode}) {
     return (
         <div className=' w-full px-[10px] lg:px-[21vw]'>
 
-            <Suspense>
-                <div className=''>{props.children}</div>
-            </Suspense>
+<div className=''>{props.children}</div>
         </div>
     );
 }

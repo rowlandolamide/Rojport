@@ -50,11 +50,11 @@ const Seek = (props: {ref: any, width: number, draggableWidth: number})=>{
 export default function ProjectMainVideo({url}:{url: string}){
 
     /* Main Context */
-    const { closeOverlay} = useContext(ContextMain) as MainContextWrapperType
+    const { closeOverlay, lenisCurrent} = useContext(ContextMain) as MainContextWrapperType
     /* End */
 
-    
-
+    const gsapTime =  gsap.timeline({})
+   
     
 
     /* On Hover */
@@ -89,7 +89,7 @@ export default function ProjectMainVideo({url}:{url: string}){
     /* End */
 
     const videoContainerWidth = videoContainerRef.current ? Math.floor(videoContainerRef.current.getBoundingClientRect().width) -widthOfSeekingDraggable : 300
-    const gsapTime =  gsap.timeline({})
+   
 
     useEffect(()=>{
        if(!videoContainerRef.current) return
@@ -111,6 +111,7 @@ export default function ProjectMainVideo({url}:{url: string}){
     }, [seekDragInstance, seekDraggable, videoContainerRef, x, videoContainerWidth])
 
    useEffect(()=>{
+ 
     
       const durationSeconds =   videoRef.current.getDuration() 
       const playedSeconds  = videoRef.current.getCurrentTime()
@@ -124,9 +125,12 @@ export default function ProjectMainVideo({url}:{url: string}){
       }
 
       
-
+return ()=>{
+    
+    gsapTime.clear()
+}
      
-    }, [played,  videoContainerWidth]) 
+    }, [played,  videoContainerWidth, x,]) 
 
   /* const {handleOverlay,overlay } = useContext(ContextMain) as MainContextWrapperType */
 

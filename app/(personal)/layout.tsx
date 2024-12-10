@@ -70,17 +70,11 @@ export default async function IndexRoute({
 }) {
   return (        <>
     <div className="flex min-h-screen flex-col text-black ">
-      <Suspense>
-        <Navbar />
-      </Suspense>
+    <Navbar />
       <div className="mt-16 flex-grow  md:px-5 lg:px-5">
-        <Suspense>
-          <PageTransitionEffect>{children}</PageTransitionEffect>
-        </Suspense>
+      <PageTransitionEffect>{children}</PageTransitionEffect>
       </div>
-      <Suspense>
-        <Footer />
-      </Suspense>
+      <Footer />
     </div>
     {draftMode().isEnabled && <LiveVisualEditing />}
   </>

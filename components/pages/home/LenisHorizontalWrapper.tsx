@@ -83,6 +83,8 @@ useEffect(()=>{
 }, [toggle, x, lenisRef,setLenisCurrent ])
 /* End */
 
+
+
   
   return  <div  ref={refCallback}>
   <motion.div  animate={{x: 400 }} style={{zIndex:999}}   dragElastic={true}  className=" bg-bl hidden h-8 w-8
@@ -97,9 +99,7 @@ const rightValue = ()=>{
  return i.offset.x > 400 ? 400:  i.offset.x
 }
 
-lenisRef.current?.lenis?.stop()
 
-lenisRef.current?.lenis?.start()
 
 
 
@@ -124,37 +124,6 @@ lenisRef.current?.lenis?.start()
 
 }
 
-/* export default function LenisHorizontalWrapp(props: LenisHorizontalWrapperprops){
-    useEffect(()=>{
-        const lenis = new Lenis();
-
-// Listen for the scroll event and log the event data
-lenis.on('scroll', (e) => {
-  console.log(e);
-});
-
-// Use requestAnimationFrame to continuously update the scroll
-function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
-
-requestAnimationFrame(raf);
-        
-    },[])
-    return  <div>
-{props.children}
-    </div>
-} */
-
-/*             <div  className={` h-screen  static w-full `} >
-           <div  className="h-8 w-8 fixed top-2 left-8 z-50">
-            
-            <CustomMouse x={mouseStates.x || 0} y={mouseStates.y|| 0}></CustomMouse>
-            </div> 
-
-            {props.children} 
-            </div> */
 
 
      
