@@ -19,7 +19,7 @@ function HomePage(props: {data: HomePagePayload | null}) {
     const isLaptop = lenisCurrent ? x > 1279: false
     return (
         <div>
-            <div className='xl:hidden w-full'> <HomePageHorizontal data={props.data}></HomePageHorizontal></div>
+            <div className='hidden xl:block w-full'> <HomePageHorizontal data={props.data}></HomePageHorizontal></div>
             <MobileAndTabletHomeScreen data={props.data}></MobileAndTabletHomeScreen>
         {/*     {isLaptop ? <HomePageHorizontal data={props.data}></HomePageHorizontal> : <MobileAndTabletHomeScreen data={props.data}></MobileAndTabletHomeScreen>} */}
         </div>

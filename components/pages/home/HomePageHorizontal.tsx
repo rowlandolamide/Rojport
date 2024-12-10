@@ -1,9 +1,7 @@
 "use client"
 import {gsap} from "gsap"
 import React, { useContext, useEffect, useMemo, useRef, useState} from 'react';
-import Smile from "../../../app/public/Icons/Smile Icon.svg"
 
-import SunIcon from "../../../app/public/Icons/Sun Icon.svg"
 
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -68,7 +66,7 @@ const laptopTotalContainerRef: any = useRef()
 const modifiedDataTwo  = useMemo(()=>{
   return  data?.showcaseProjects?.map((item)=>{
   
-    const imgUrl = item.coverImage ? urlForImage(item.coverImage)?.quality(100)?.format("webp")?.url() : ""
+    const imgUrl = item.coverImage ? urlForImage(item.coverImage)?.quality(100)?.format("webp")?.width(600).url() : ""
     return {title: item.title, slug: item.slug, img: item.coverImage, imgUrl: imgUrl,  isProject: true, discipline: item.disci}
   })
 }, [data])
