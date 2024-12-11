@@ -1,12 +1,10 @@
 "use client"
 import React from 'react';
-import dynamic from "next/dynamic";
-import { useContext } from 'react';
-import { MainContextWrapperType, ContextMain } from '@/components/global/ContextWrapper';
+
 import MobileAndTabletHomeScreen from "./MobileAndTabletHomeScreen";
 import HomePageHorizontal from './HomePageHorizontal'; 
-/* const HomePageHorizontal = dynamic(()=>import("./HomePageHorizontal"))  */
-import useMediaQuery from "@/components/hooks/useMediaQuery";
+
+
 
 
 import type { HomePagePayload } from "@/types";
@@ -14,8 +12,7 @@ import type { HomePagePayload } from "@/types";
 
 
 function HomePage(props: {data: HomePagePayload | null}) {
-    const {lenisCurrent} = useContext(ContextMain) as MainContextWrapperType
-    const {x} = useMediaQuery()
+ 
    
     return (
         <div>
