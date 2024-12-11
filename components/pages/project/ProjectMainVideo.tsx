@@ -37,7 +37,7 @@ const RewindFastFoward = (props: {handlePausePlay: ()=> void, isPlaying: boolean
 
 
 const Seek = (props: {ref: any, width: number, draggableWidth: number})=>{
-    return <div style={{width: props.width}} className={` bg-white/[0.37] h-[3px] relative items-center flex`}>
+    return <div style={{width: props.width}} className={` bg-white/[0.37] h-[3px] relative items-center flex seek`}>
         <div ref={props.ref} className="absolute h-2 w-4 bg-blue-500 z-20"></div>
         <div style={{width: props.width, marginLeft: -props.width}} className={`h-[3px] progress-indicator   z-10 bg-bl`}>
 
@@ -109,25 +109,27 @@ export default function ProjectMainVideo({url}:{url: string}){
         })
 
     }, [seekDragInstance, seekDraggable, videoContainerRef, x, videoContainerWidth])
-
+    const gsapTime =  gsap.timeline({})
    useEffect(()=>{
  
-    const gsapTime =  gsap.timeline({})
-      const durationSeconds =   videoRef.current.getDuration() 
-      const playedSeconds  = videoRef.current.getCurrentTime()
+ let ctx = gsap.context(()=>{
+    
+    const durationSeconds =   videoRef.current.getDuration() 
+    const playedSeconds  = videoRef.current.getCurrentTime()
 
-      const draggableCurrent = seekDragInstance.current[0]
- 
-      if( draggableCurrent.isDragging){
-        gsapTime.to(".progress-indicator", {x:  draggableCurrent.x}, 0)
-      }else{
-        gsapTime.to(".progress-indicator", {x:  videoContainerWidth * playedSeconds/durationSeconds }, 0).to(seekDraggable.current, {x: videoContainerWidth * playedSeconds/durationSeconds }, 0)
-      }
+    const draggableCurrent = seekDragInstance.current[0]
 
+    if( draggableCurrent.isDragging){
+      gsapTime.to(".progress-indicator", {x:  draggableCurrent.x}, 0)
+    }else{
+      gsapTime.to(".progress-indicator", {x:  videoContainerWidth * playedSeconds/durationSeconds }, 0).to(seekDraggable.current, {x: videoContainerWidth * playedSeconds/durationSeconds }, 0)
+    }
+
+ }, ".seek")
       
 return ()=>{
     
-    gsapTime.clear()
+    ctx.clear()
 }
      
     }, [played,  videoContainerWidth, x,]) 

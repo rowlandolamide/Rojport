@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { toPlainText } from 'next-sanity'
 import ProjectText from '@/components/pages/project/ProjectText'
 import ProjectImage from '@/components/pages/project/ProjectImage'
-import ProjectMainVideo from '@/components/pages/project/ProjectMainVideo'
+
 
 import { urlForOpenGraphImage } from '@/sanity/lib/utils'
 import { generateStaticSlugs } from '@/sanity/loader/generateStaticSlugs'
@@ -95,7 +95,7 @@ export default async function ProjectSlugRoute({ params }: Props) {
      if(item._type === "textBlock"){
      
       return <div key={i} className='py-[58px] 3xl:py-[5vw]  w-full flex items-center justify-center'> 
-      <div className='2xl:max-w-[31vw] 3xl:max-w-[28vw] max-w-[450px] mx-auto'><ProjectText key={i} body={item.description}></ProjectText></div></div>
+      <div className='2xl:max-w-[31vw] 3xl:max-w-[28vw] max-w-[450px] mx-auto w-full'><ProjectText key={i} body={item.description}></ProjectText></div></div>
      }
      else if(item._type.toLowerCase().includes("image")){
       /* Logic for two images */

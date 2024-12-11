@@ -215,20 +215,25 @@ return ()=> ctx.clear()
 
 }, [ lenisCurrent, gsapDragRef,x, dragInstance, scrollBarLength, laptopTotalContainerRef])
 
+
+let finalModifiedArray:any[] = []
+
 if(modifiedDataTwo){
   let number = 0
-  const firstCount = modifiedDataTwo.length
+
   const count = 8 - modifiedDataTwo?.length
+
+
   if(number === count) return
-  for(let i=0; i < count; i++){
-   
-    for(let l=0; l < firstCount; l++){
-      modifiedDataTwo.push(modifiedDataTwo[l])
-      number = number + 1
-    }
+  for(let l=0; l < count; l++){
+    finalModifiedArray.push(modifiedDataTwo[l])
+  
   }
 
+  finalModifiedArray = [...modifiedDataTwo, ...finalModifiedArray]
 }
+
+
 
 
  
@@ -253,18 +258,18 @@ if(modifiedDataTwo){
 
   <motion.div ref={ref} onMouseUp={onMouseUp} onMouseDown={onMouseDown} onMouseLeave={onMouseLeave} onMouseMove={onMouseMove}   className="grid h-full  w-fit  px-4 grid-rows-2 z-0 grid-flow-col gap-6 3xl:gap-8">
   
-  {modifiedDataTwo && modifiedDataTwo.map((i, k)=>{
+  {finalModifiedArray && finalModifiedArray.map((i, k)=>{
       let number = k === 0 ? k : k%2 === 0 ? k : k+2
      
-      const currentObj = modifiedDataTwo[k]
-      const nextObj =  modifiedDataTwo[number + 1]
+      const currentObj = finalModifiedArray[k]
+     
 
      
       return <section onDrag={(e)=>{
         e.stopPropagation()
       }} unselectable="on" draggable={false} key={k} className=" h-full relative ">
         
-      { <ProjectCard slug={i.slug || "/"} animate={k === modifiedDataTwo.length - 1} isProject={currentObj.isProject} media={currentObj.imgUrl} discipline={currentObj.discipline} name={currentObj.title || ""}></ProjectCard>}
+      { <ProjectCard slug={i.slug || "/"} animate={k === finalModifiedArray.length - 1} isProject={currentObj.isProject} media={currentObj.imgUrl} discipline={currentObj.discipline} name={currentObj.title || ""}></ProjectCard>}
 
          
       </section>

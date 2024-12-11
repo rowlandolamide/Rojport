@@ -1,9 +1,9 @@
-import Image from 'next/image'
+"use client"
 import Link from 'next/link'
+import useCurrentTime from "@/components/hooks/useCurrentTime"
 
-import { HeaderLinks } from '@/components/shared/HeaderLinks'
-import { resolveHref, urlForLogo } from '@/sanity/lib/utils'
-import type { LinkItem, PageItem, SettingsPayload } from '@/types'
+
+import type {  SettingsPayload } from '@/types'
 
 interface NavbarProps {
   data?: SettingsPayload
@@ -11,15 +11,17 @@ interface NavbarProps {
   logo?: any | null
 }
 export default function Navbar(props: NavbarProps) {
-  const { data } = props
-  const title = props.title ?? ''
 
-  const menuItems = data?.menuItems ?? {}
-  const menuPages = menuItems?.page || ([] as PageItem[])
-  const menuLinks = menuItems?.link || ([] as LinkItem[])
 
-  const customLogo = props?.logo
-  const logoImageUrl = customLogo && urlForLogo(customLogo)?.url()
+   /* Current Time */
+ const value = useCurrentTime()
+ /* End */
+
+
+
+
+
+
 
 return (
     <div className="flex text-black z-50 fixed w-screen xl:w-full flex-wrap justify-between items-center gap-x-5 px-4 py-4 md:px-5 md:py-4 lg:px-5">
@@ -29,7 +31,7 @@ return (
 
       Motion Designer & Art Director 
       <div>
-      Lagos, Nigeria: 12:00 WAT</div> 
+      Lagos, Nigeria: {value.getUTCHours() + 1}:{value.getUTCMinutes()} WAT</div> 
       </div>
     <div className='flex gap-x-4 xl:gap-x-8 items-center  text-[14px] md:text-[1.7vw] 3xl:text-[1.4vw]'>
   {[{name: "Work", link: "/"}, {name: "Info", link: "/about"}].map((ite, i)=>{

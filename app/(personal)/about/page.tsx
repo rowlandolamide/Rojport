@@ -1,16 +1,9 @@
 "use client"
-/* import dynamic from 'next/dynamic' */
-/* import { draftMode } from 'next/headers'
-import { redirect } from 'next/navigation'
 
-import { AboutPage } from '@/components/pages/about/AboutPage'
-import { getAboutPage } from '@/sanity/loader/loadQuery' */
-/* const HomePagePreview = dynamic(
-  () => import('@/components/pages/home/HomePagePreview'),
-) */
 
 import FungSwayIcon from "../../../app/public/Icons/FungSway.svg"
 import SmilingFace from "../../../app/public/Icons/Smile Icon.svg"
+import SunIcon from "../../../app/public/Icons/Sun Icon.svg"
 import {  motion} from "framer-motion"
 import HorizontalBackground from "../../public/Images/Horizontal Lines Container.svg"
 import ProfilePicture from "../../../app/public/Images/Profile Image.png"
@@ -25,15 +18,13 @@ import { MainContextWrapperType, ContextMain } from "@/components/global/Context
 
 gsap.registerPlugin(Draggable)
 
-const DeskTopDesignDisplay = (props: {text: ReactNode , header ?: string})=>{
+const DeskTopDesignDisplay = (props: {text: ReactNode , header ?: string, Icon ?: string})=>{
 
-  return <div className="rounded-[5px] p-[4px] pt-0 bg-[#6599FF] border border-black">
-    <div className="flex justify-end py-[8px] ">
-    
-      <Image width={12} className="" height={15}  alt="About" src={FungSwayIcon.src}></Image></div>
+  return <div className="rounded-[5px] p-[4px] 2xl:p-[0.3vw] pt-0  border border-black bg-[#F2F2F2]">
 
-    <motion.div  className="px-[35px] py-[30px] font-Ingram text-[11px] leading-[21px] border border-black rounded-[4px] bg-[#F2F2F2]">
-      <div className="justify-between items-center flex text-[24px]">  <div>{props.header}</div><Image width={37} height={37} alt="smilling face" className="pb-4" src={SmilingFace.src}></Image></div>
+
+    <motion.div  className="px-[35px] py-[30px] 2xl:py-[2vw] 2xl:px-[2.1vw] font-Ingram text-[11px] leading-[21px] xl:text-[0.7vw] xl:leading-[1.4vw]  ">
+      <div className="justify-between items-center flex xl:text-[1.6vw] text-[24px]">  <div>{props.header}</div><Image width={37} height={37} alt="smilling face" className={`${props.Icon ?"": "hidden"} pb-4 xl:w-[2.4vw]`} src={props.Icon || ""}></Image></div>
       {props.text}</motion.div>
   </div>
 }
@@ -114,17 +105,6 @@ useEffect(()=>{
 }, [lenisCurrent, containerRef])
 
 
-  /* Framer motion Draggable */
-
-/*   const initial = await getAboutPage() */
-/* 
-  if (draftMode().isEnabled) {
-    return <HomePagePreview initial={initial} />
-  } */
-
- /*  if (!initial.data) {
-    return redirect('/')
-  } */
     
 
     const textThree = "When I'm not working, I like to watch movies from the 1980s, collect old cameras, and add to my ever-growing collection of toys. I think being creative is a way of life, so I'm always looking for new ideas and ways to express myself."
@@ -140,18 +120,18 @@ useEffect(()=>{
       
 <div className=" w-full  h-full flex relative items-center  ">
 
-<div ref={ref} className="absolute left-[6.7vw] w-[345px] z-30">
+<div ref={ref} className="absolute left-[6.7vw] 2xl:w-[23.9vw] w-[345px] z-30">
 <DeskTopDesignDisplay text={textOne}></DeskTopDesignDisplay>
 </div>
-<div ref={refTwo} className="absolute right-[70vw] w-[310px] z-30">
-<DeskTopDesignDisplay header="CAPABILITIES" text={textTwo}></DeskTopDesignDisplay>
+<div ref={refTwo} className="absolute right-[70vw] 2xl:w-[20vw] w-[310px] z-30">
+<DeskTopDesignDisplay Icon={SmilingFace.src} header="CAPABILITIES" text={textTwo}></DeskTopDesignDisplay>
 </div>
-<div ref={refThree} className="absolute right-[7vw] w-[310px] z-30">
-<DeskTopDesignDisplay header="BONUS" text={textThree}></DeskTopDesignDisplay>
+<div ref={refThree} className="absolute right-[7vw] 2xl:w-[20vw] w-[310px] z-30">
+<DeskTopDesignDisplay Icon={SunIcon.src} header="BONUS" text={textThree}></DeskTopDesignDisplay>
 </div>
 
 <div ref={refFour} className="absolute right-[27.2vw]  z-30">
-<Image width={100} unoptimized height={100} alt="Mic" className="w-[550px] border border-black rounded-[4px]" src={MicDrop.src}></Image>
+<Image width={100} unoptimized height={100} alt="Mic" className="w-[550px] 2xl:w-[38vw] border border-black rounded-[4px]" src={MicDrop.src}></Image>
 </div>
 
 <div className=" flex flex-col xl:text-[13.9vw] 2xl:leading-[7.5vw] 2xl:text-[11vw] absolute left-[41vw]  xl:leading-[10vw]  h-[90vh] top-0  justify-center">
@@ -173,10 +153,10 @@ useEffect(()=>{
 
 </div>
 <div className="flex flex-col items-center justify-center px-[20px] mt-[40px] gap-y-[30px] w-full text-[14px] max-w-[600px] mx-auto">
-Lagos, Nigeria  {value.getTime()} GMT+1
+Lagos, Nigeria  {value.getUTCHours()+ 1}:{value.getUTCMinutes()} GMT+1
 <DeskTopDesignDisplay text={textOne}></DeskTopDesignDisplay>
-<DeskTopDesignDisplay header="CAPABILITIES" text={textTwo}></DeskTopDesignDisplay>
-<DeskTopDesignDisplay header="BONUS" text={textThree}></DeskTopDesignDisplay>
+<DeskTopDesignDisplay header="CAPABILITIES" Icon={SmilingFace.src}  text={textTwo}></DeskTopDesignDisplay>
+<DeskTopDesignDisplay header="BONUS" text={textThree} Icon={SunIcon.src}></DeskTopDesignDisplay>
 
 <Image width={100} unoptimized height={100} alt="Mic" className="w-full border border-black rounded-[4px]" src={MicDrop.src}></Image>
 </div>

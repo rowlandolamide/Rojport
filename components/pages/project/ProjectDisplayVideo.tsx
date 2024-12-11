@@ -30,7 +30,7 @@ function ProjectDisplayVideo(props: {
         <div className='overflow-hidden w-full border border-black rounded-[4px] flex  relative items-center justify-center' onClick={()=>{
             handleOverlay({...overlay, open: true, isVideo: true, item: url })
           }}>
-            <button className='text-[0.7vw] w-[180px] h-[26px] flex items-center justify-center bg-bl text-white absolute z-20 rounded-[2px]'>PLAY ALPHA +</button>
+            <button className='text-[0.7vw] w-[12.5vw] h-[1.8vw] flex items-center justify-center bg-bl text-white absolute z-20 rounded-[2px]'>PLAY ALPHA +</button>
             <ReactPlayer height={"100%"} width={"100%"} style={{zIndex: 0, position: "relative", height: "auto !important", aspectRatio: "16/9", borderRadius: 3}} url={url} onStart={beginningHandler}ref={videoRef}></ReactPlayer>
             
         </div>
