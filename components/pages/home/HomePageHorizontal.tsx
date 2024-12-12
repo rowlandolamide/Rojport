@@ -38,6 +38,7 @@ export default function HomePageHorizontal({data}: {data: HomePagePayload | null
   const {lenisCurrent} = useContext(ContextMain) as MainContextWrapperType
 
 
+
   /* Media Query */
 const {x, y} = useMediaQuery()
 /* End */
@@ -70,6 +71,8 @@ const modifiedDataTwo  = useMemo(()=>{
     return {title: item.title, slug: item.slug, img: item.coverImage, imgUrl: imgUrl,  isProject: true, discipline: item.disci}
   })
 }, [data])
+
+
 
 
 
@@ -158,7 +161,7 @@ return
   } */
 
   }
-}, [lenisCurrent, gsapDragRef, scrollBarLength])
+}, [lenisCurrent, gsapDragRef, scrollBarLength, toggle])
 
 
 

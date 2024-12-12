@@ -1,7 +1,7 @@
 "use client"
 
 
-import FungSwayIcon from "../../../app/public/Icons/FungSway.svg"
+
 import SmilingFace from "../../../app/public/Icons/Smile Icon.svg"
 import SunIcon from "../../../app/public/Icons/Sun Icon.svg"
 import {  motion} from "framer-motion"
