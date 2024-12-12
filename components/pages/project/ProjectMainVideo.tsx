@@ -20,26 +20,26 @@ gsap.registerPlugin(Draggable)
 
 
 const RewindFastFoward = (props: {handlePausePlay: ()=> void, isPlaying: boolean, handleRewind: ()=> void, handleFastForward: ()=> void})=>{
-    return <div className=" flex gap-x-4 duration-300">
+    return <div className=" flex gap-x-4 duration-300 2xl:scale-[2] 3xl:scale-[2.5]">
    <button onClick={()=>{
         props.handleRewind()
     }}>
-   <FastForward  className="rotate-[180deg] hover:text-bl"></FastForward>
+   <FastForward   className="rotate-[180deg] hover:text-bl"></FastForward>
    </button>
     <button  onClick={()=>{props.handlePausePlay()}}>{props.isPlaying ? <Pause className="hover:text-bl"></Pause>: <Play className="hover:text-bl"></Play>}</button>
  <button onClick={()=>{
         props.handleFastForward()
     }}>
- <FastForward className="hover:text-bl"></FastForward> 
+ <FastForward className="hover:text-bl "></FastForward> 
  </button>
     </div>
 }
 
 
 const Seek = (props: {ref: any, width: number, draggableWidth: number})=>{
-    return <div style={{width: props.width}} className={` bg-white/[0.37] h-[3px] relative items-center flex seek`}>
-        <div ref={props.ref} className="absolute h-2 w-4 bg-blue-500 z-20"></div>
-        <div style={{width: props.width, marginLeft: -props.width}} className={`h-[3px] progress-indicator   z-10 bg-bl`}>
+    return <div style={{width: props.width}} className={` bg-white/[0.37] h-[3px] 2xl:h-[0.2vw] relative items-center flex seek`}>
+        <div ref={props.ref} className="absolute h-[14px] 2xl:h-[0.4vw] rounded-[2px] shadow-md w-4 bg-blue-500 z-20"></div>
+        <div style={{width: props.width, marginLeft: -props.width}} className={`h-[3px] 2xl:h-[0.2vw] progress-indicator   z-10 bg-bl`}>
 
         </div>
     </div>
@@ -72,6 +72,7 @@ export default function ProjectMainVideo({url}:{url: string}){
     const [played, setPlayed] = useState(0)
     /* End */
     
+    
 
     /* Seek Draggable */
     const seekDraggable: any = useRef(null)
@@ -98,6 +99,10 @@ export default function ProjectMainVideo({url}:{url: string}){
             type: "x",
             bounds: {minX: 0, maxX: videoContainerWidth - 32},
             inertia: false,
+            allowEventDefault: true,
+            edgeResistance: 0.65,
+           
+    
             onDragEnd: ()=>{
                
                 if(videoContainerRef.current){
@@ -105,24 +110,31 @@ export default function ProjectMainVideo({url}:{url: string}){
                 }
                 
                 videoRef.current.seekTo(seekDragInstance.current[0].x/seekDragInstance.current[0].maxX)
+                
             }
         })
 
     }, [seekDragInstance, seekDraggable, videoContainerRef, x, videoContainerWidth])
-    const gsapTime =  gsap.timeline({})
-   useEffect(()=>{
  
- let ctx = gsap.context(()=>{
+   useEffect(()=>{
     
+ let ctx = gsap.context(()=>{
+    const draggableCurrent = seekDragInstance.current[0]
+/* 
+    if(draggableCurrent.isPressed) return */
+       
+    const gsapTime =  gsap.timeline({})
+
     const durationSeconds =   videoRef.current.getDuration() 
     const playedSeconds  = videoRef.current.getCurrentTime()
 
-    const draggableCurrent = seekDragInstance.current[0]
+  
 
-    if( draggableCurrent.isDragging){
+    if( draggableCurrent.isPressed){
+       
       gsapTime.to(".progress-indicator", {x:  draggableCurrent.x}, 0)
     }else{
-      gsapTime.to(".progress-indicator", {x:  videoContainerWidth * playedSeconds/durationSeconds }, 0).to(seekDraggable.current, {x: videoContainerWidth * playedSeconds/durationSeconds }, 0)
+      gsapTime.to(seekDraggable.current, {x: videoContainerWidth * playedSeconds/durationSeconds, overwrite: true }, 0).to(".progress-indicator", {x:  videoContainerWidth * playedSeconds/durationSeconds , overwrite: true, }, 0)
     }
 
  }, ".seek")
@@ -159,11 +171,7 @@ return ()=>{
 
  
 
-    const returnWidth = ()=>{
-    if( x > 1280){
-      return "31.1vw"
-    }else return "50vw"
-    }
+  
 
     return <div onMouseLeave={()=>{
         setIsHovered(false)
