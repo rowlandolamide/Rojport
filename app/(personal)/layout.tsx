@@ -1,12 +1,11 @@
 import PageTransitionEffect from '@/components/global/PageTransitionEffect'
 import '@/styles/index.css'
 
-import ProjectsPageLenis from '@/components/global/ProjectsPageLenis'
 import type { Metadata, Viewport } from 'next'
 import dynamic from 'next/dynamic'
 import { draftMode } from 'next/headers'
 import { toPlainText } from 'next-sanity'
-import { Suspense } from 'react'
+
 
 import { Footer } from '@/components/global/Footer'
 import { Navbar } from '@/components/global/Navbar'

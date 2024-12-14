@@ -135,3 +135,19 @@ html.lenis, html.lenis body {
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }
+
+*,
+*:before,
+*:after {
+  @apply cursor-default;
+}
+
+
+a, button, link, section {
+  @apply cursor-pointer;
+}
+
+
+.sb{
+  will-change: transform
+}

@@ -24,7 +24,7 @@ const DeskTopDesignDisplay = (props: {text: ReactNode , header ?: string, Icon ?
 
 
     <motion.div  className="px-[35px] py-[30px] 2xl:py-[2vw] 2xl:px-[2.1vw] font-Ingram text-[11px] leading-[21px] xl:text-[0.7vw] xl:leading-[1.4vw]  ">
-      <div className="justify-between items-center flex xl:text-[1.6vw] text-[24px]">  <div>{props.header}</div><Image width={37} height={37} alt="smilling face" className={`${props.Icon ?"": "hidden"} pb-4 xl:w-[2.4vw]`} src={props.Icon || ""}></Image></div>
+      <div className="justify-between items-center flex xl:text-[1.6vw] text-[24px]">  <div>{props.header}</div><Image width={37} height={37} alt="smilling face" className={`${props.Icon ?"": "hidden"} pb-4 xl:w-[2.4vw]`} src={props.Icon ? props.Icon : SmilingFace.src}></Image></div>
       {props.text}</motion.div>
   </div>
 }
@@ -38,7 +38,7 @@ export default function IndexRoute() {
  /* End */
 
 
-  const dragInstance:any = useRef(null)
+  const dragInstanceOne:any = useRef(null)
   const ref:any = useRef()
 
   /* Drag Instance Two */
@@ -58,32 +58,34 @@ export default function IndexRoute() {
 
   /* Gsap Try */
   useEffect(()=>{
-    if(!ref.current) return
-    dragInstance.current = Draggable.create(ref.current, {
-      type: "x,y",
-      inertia: true
-    })
+const ctx = gsap.context(()=>{
+  if(!ref.current) return
+  dragInstanceOne.current = Draggable.create(ref.current, {
+    type: "x,y",
+    inertia: true
+  })
 
-    if(!refTwo.current) return
-    dragInstanceTwo.current = Draggable.create(refTwo.current, {
-      type: "x,y",
-      inertia: true
-    })
+  if(!refTwo.current) return
+  dragInstanceTwo.current = Draggable.create(refTwo.current, {
+    type: "x,y",
+    inertia: true
+  })
 
-    if(!refThree.current) return
-    dragInstanceThree.current = Draggable.create(refThree.current, {
-      type: "x,y",
-      inertia: true
-    })
+  if(!refThree.current) return
+  dragInstanceThree.current = Draggable.create(refThree.current, {
+    type: "x,y",
+    inertia: true
+  })
 
-    if(!refFour.current) return
-    dragInstanceFour.current = Draggable.create(refFour.current, {
-      type: "x,y",
-      inertia: true
-    })
+  if(!refFour.current) return
+  dragInstanceFour.current = Draggable.create(refFour.current, {
+    type: "x,y",
+    inertia: true
+  })
+})
 /* End */
 
-
+return ()=> ctx.clear()
   }, [ref, refFour, refTwo, refThree, lenisCurrent])
 
   /* ContainerRef */

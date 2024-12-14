@@ -7,10 +7,10 @@ import React from 'react';
 
 function ProjectText(props: {body: any}) {
     return (
-        <div className="pb-[40px] w-full pt-[35px] leading-[21px] rounded-[4px] px-[30px] border border-black text-[10px] 2xl:text-[0.7vw] 3xl:text-[0.6vw] 2xl:leading-[1.2vw] 3xl:leading-[1vw]">
-            <div className="flex justify-between mb-[44px]">
-                <div className="text-[24px]">ALPHA</div>
-                <div><Image src={RookIcon.src} alt="Kinf"width={30} height={30}></Image></div>
+        <div className="pb-[40px] 2xl:pb-[2.78vw] 2xl:pt-[2.4vw] 2xl:px-[2vw] w-full pt-[35px] leading-[21px] rounded-[4px] px-[30px] border border-black text-[14px] 2xl:text-[0.7vw] 3xl:text-[0.65vw] 2xl:leading-[1.2vw] 3xl:leading-[1vw]">
+            <div className="flex justify-between mb-[44px] items-center">
+                <div className="text-[24px] 2xl:text-[1.6vw]">ALPHA</div>
+                <div><Image className="2xl:w-[1.6vw]" src={RookIcon.src} alt="Kinf"width={30} height={30}></Image></div>
             </div>
             <PortableText value={props.body}></PortableText>
         </div>

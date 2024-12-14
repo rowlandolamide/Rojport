@@ -105,9 +105,7 @@ export default function ProjectMainVideo({url}:{url: string}){
     
             onDragEnd: ()=>{
                
-                if(videoContainerRef.current){
-                    console.log()
-                }
+               
                 
                 videoRef.current.seekTo(seekDragInstance.current[0].x/seekDragInstance.current[0].maxX)
                 

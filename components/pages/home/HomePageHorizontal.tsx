@@ -1,6 +1,7 @@
 "use client"
 import {gsap} from "gsap"
 import React, { useContext, useEffect, useMemo, useRef, useState} from 'react';
+import { useRouter, usePathname } from "next/navigation";
 
 
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -37,6 +38,9 @@ export default function HomePageHorizontal({data}: {data: HomePagePayload | null
 
   const {lenisCurrent} = useContext(ContextMain) as MainContextWrapperType
 
+  const routerPage = usePathname()
+
+
 
 
   /* Media Query */
@@ -57,8 +61,8 @@ const laptopTotalContainerRef: any = useRef()
   /* ScrollBar Length */
 
   const scrollBarLength = useMemo(()=>{
- return y * 30/100
-  }, [y])
+ return window.innerHeight * 30/100
+  }, [y, data,window])
 
   /* End */
   
@@ -73,7 +77,7 @@ const modifiedDataTwo  = useMemo(()=>{
 }, [data])
 
 
-
+let finalModifiedArray:any[] = []
 
 
 
@@ -129,8 +133,10 @@ const onMouseMove =  useCallback((e) =>{
 
 
 useEffect(()=>{
-/*   const gsapTime =  gsap.timeline({}) */
-/* Y setter */
+  
+  const ctx = gsap.context(()=>{
+
+
 const ySetter = gsap.quickSetter(gsapDragRef.current, "y", "px")
 /* End */
   if(lenisCurrent && gsapDragRef.current){
@@ -149,20 +155,30 @@ return
    
   
   if(dragInstance.current[0].isDragging) return
- 
+
+
+
    ySetter(scrollBarLength * lenisCurrent.progress)
    
 
   })
 
-/*   return ()=>{
-    gsapTime.clear()
 
-  } */
 
   }
-}, [lenisCurrent, gsapDragRef, scrollBarLength, toggle])
+  }, laptopTotalContainerRef)
 
+
+  return ()=> ctx.clear()
+  
+
+}, [lenisCurrent, gsapDragRef.current, scrollBarLength, routerPage])
+
+
+useEffect(()=>{
+  if(!lenisCurrent) return
+  lenisCurrent.scrollTo(0)
+}, [])
 
 
 
@@ -219,7 +235,6 @@ return ()=> ctx.clear()
 }, [ lenisCurrent, gsapDragRef,x, dragInstance, scrollBarLength, laptopTotalContainerRef])
 
 
-let finalModifiedArray:any[] = []
 
 if(modifiedDataTwo){
   let number = 0
@@ -243,7 +258,7 @@ if(modifiedDataTwo){
 
   return <div ref={laptopTotalContainerRef}  className="xl:h-[100vh] xl:absolute top-0  xl:flex items-center xl:justify-center">
    <div className="fixed relative right-[28px] xl:block hidden ">
-   <div style={{top: laptopContainerPositionFromTop}}  ref={refCallback} className={` w-fit  shadow-lg line fixed top-[${Math.floor(laptopContainerPositionFromTop)}px] right-[25px] z-30 rounded-sm`}>
+   <div style={{top: laptopContainerPositionFromTop}}  ref={refCallback} className={` w-fit  shadow-lg line fixed sb right-[25px] z-30 rounded-sm`}>
 <Image src={ScrollBarIcon.src} width={26} height={100} className="h-fit" alt="Scrollbar"></Image>
 </div>
     <div  style={{top: laptopContainerPositionFromTop, height: scrollBarLength + 50}} className={` w-[20px] bg-bl/[0.11] right-[28px] top-[${Math.floor(laptopContainerPositionFromTop)}px] z-10 fixed`}>
@@ -270,7 +285,7 @@ if(modifiedDataTwo){
      
       return <section onDrag={(e)=>{
         e.stopPropagation()
-      }} unselectable="on" draggable={false} key={k} className=" h-full relative ">
+      }} unselectable="on" draggable={false} key={k} className=" h-full relative cursor-pointer ">
         
       { <ProjectCard slug={i.slug || "/"} animate={k === finalModifiedArray.length - 1} isProject={currentObj.isProject} media={currentObj.imgUrl} discipline={currentObj.discipline} name={currentObj.title || ""}></ProjectCard>}
 

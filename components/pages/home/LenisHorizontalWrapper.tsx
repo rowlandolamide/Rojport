@@ -1,7 +1,7 @@
 "use client"
 
 import React, { ReactNode,  useEffect, } from 'react';
-import { ReactLenis ,} from "@studio-freight/react-lenis";
+import { Lenis, ReactLenis ,} from "@studio-freight/react-lenis";
 import { usePathname ,  } from 'next/navigation';
 
 import { useContext } from 'react';
@@ -75,44 +75,37 @@ const [toggle, refCallback, myRef] = useRefWithCallback<HTMLSpanElement>();
 
 
 
+
+
 /* Set lenisCurrent is Global Context that is Used in GSAPhorizontal wrapper */
 useEffect(()=>{
   if(!lenisRef) return
 
   setLenisCurrent(lenisRef.lenis)
-}, [toggle, x, lenisRef,setLenisCurrent ])
+}, [toggle, x, lenisRef,setLenisCurrent, pathname ])
 /* End */
+
+
+useEffect(()=>{
+  if(!lenisRef) return
+  if(!lenisRef.lenis) return
+
+
+setTimeout(()=>{lenisRef.lenis.resize()}, 1500)
+}, [pathname, lenisRef])
 
 
 
   
   return  <div  ref={refCallback}>
-  <motion.div  animate={{x: 400 }} style={{zIndex:999}}   dragElastic={true}  className=" bg-bl hidden h-8 w-8
-fixed z-50 hover:bg-blue-700 text-[16px] top-[60px] leading-[16px]" drag={"x"}    dragConstraints={{
-right: 400,
-left: 0,
-
-}} onDrag={(e, i)=>{
-if(!lenisRef.current) return
-const rightValue = ()=>{
-
- return i.offset.x > 400 ? 400:  i.offset.x
-}
-
-
-
-
-
-
-
-}} dragControls={controls}   >experimental cursor <span className="text-red-500">{Math.abs(400 )}</span></motion.div>
-<div className=''>   <ReactLenis    root
+ 
+<div className=''>   <ReactLenis    root 
     ref={lenisRefCall}
     
 
 
 
- options={{autoResize: true, orientation:  isHorizontal() ? "horizontal": "vertical", syncTouch: true, gestureOrientation: "both",  lerp: 0.4}}>
+ options={{autoResize: true, orientation:  isHorizontal() ? "horizontal": "vertical", syncTouch: true, gestureOrientation: "both",  lerp: 0.4,  }}>
 
 
 {props.children} 
