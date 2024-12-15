@@ -61,6 +61,7 @@ const laptopTotalContainerRef: any = useRef()
   /* ScrollBar Length */
 
   const scrollBarLength = useMemo(()=>{
+    if(!y) 200
  return y * 30/100
   }, [y])
 
@@ -196,7 +197,7 @@ useEffect(()=>{
       onDrag: ()=>{
      
        
-        const proportionalMovement = (ref.current.getBoundingClientRect().width - window.innerWidth)/scrollBarLength
+        const proportionalMovement = (ref.current.getBoundingClientRect().width - x)/scrollBarLength
         lenisCurrent.scrollTo(dragInstance.current[0].y * proportionalMovement)
         dragInstance.current[0].update()
        
@@ -261,7 +262,7 @@ if(modifiedDataTwo){
    <div style={{top: laptopContainerPositionFromTop}}  ref={refCallback} className={` w-fit  shadow-lg line fixed sb right-[26px]  3xl:right-[24px] z-30 rounded-sm`}>
 <Image src={ScrollBarIcon.src} width={26} height={100} className="h-fit 2xl:w-[1.5vw]" alt="Scrollbar"></Image>
 </div>
-    <div  style={{top: laptopContainerPositionFromTop, height: scrollBarLength + (0.0388 * window.innerHeight)}} className={`2xl:w-[1.28vw] w-[20px] bg-bl/[0.11] right-[28px] top-[${Math.floor(laptopContainerPositionFromTop)}px] z-10 fixed`}>
+    <div  style={{top: laptopContainerPositionFromTop, height: scrollBarLength + (0.0388 * y)}} className={`2xl:w-[1.28vw] w-[20px] bg-bl/[0.11] right-[28px] top-[${Math.floor(laptopContainerPositionFromTop)}px] z-10 fixed`}>
 
 
     </div>
