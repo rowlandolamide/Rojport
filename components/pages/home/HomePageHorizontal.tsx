@@ -61,8 +61,8 @@ const laptopTotalContainerRef: any = useRef()
   /* ScrollBar Length */
 
   const scrollBarLength = useMemo(()=>{
- return window.innerHeight * 30/100
-  }, [y, data,window])
+ return y * 30/100
+  }, [y])
 
   /* End */
   
@@ -172,13 +172,13 @@ return
   return ()=> ctx.clear()
   
 
-}, [lenisCurrent, gsapDragRef.current, scrollBarLength, routerPage])
+}, [lenisCurrent, gsapDragRef, scrollBarLength, routerPage])
 
 
 useEffect(()=>{
   if(!lenisCurrent) return
   lenisCurrent.scrollTo(0)
-}, [])
+}, [lenisCurrent])
 
 
 
