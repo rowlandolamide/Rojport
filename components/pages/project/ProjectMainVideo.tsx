@@ -10,6 +10,7 @@ import { Draggable } from "gsap/Draggable";
 import {gsap} from "gsap"
 import {FastForward, Pause, Play} from "lucide-react"
 
+
 import { MainContextWrapperType, ContextMain } from '@/components/global/ContextWrapper';
 
 
@@ -20,28 +21,47 @@ gsap.registerPlugin(Draggable)
 
 
 const RewindFastFoward = (props: {handlePausePlay: ()=> void, isPlaying: boolean, handleRewind: ()=> void, handleFastForward: ()=> void})=>{
-    return <div className=" flex gap-x-4 duration-300 2xl:scale-[2] 3xl:scale-[2.5]">
-   <button onClick={()=>{
+    useEffect(()=>{}, [])
+    return <div className=" flex gap-x-4 duration-300 ">
+   <button   className="" onClick={()=>{
         props.handleRewind()
     }}>
-   <FastForward   className="rotate-[180deg] hover:text-bl"></FastForward>
+   <FastForward  className="rotate-[180deg] hover:text-bl 2xl:h-8 2xl:w-8 cursor-pointer"></FastForward>
    </button>
-    <button  onClick={()=>{props.handlePausePlay()}}>{props.isPlaying ? <Pause className="hover:text-bl"></Pause>: <Play className="hover:text-bl"></Play>}</button>
+    <button  onClick={()=>{props.handlePausePlay()}}>{props.isPlaying ? <Pause className="hover:text-bl 2xl:h-8 2xl:w-8 cursor-pointer"></Pause>: <Play className="hover:text-bl 2xl:h-8 2xl:w-8 cursor-pointer"></Play>}</button>
  <button onClick={()=>{
         props.handleFastForward()
     }}>
- <FastForward className="hover:text-bl "></FastForward> 
+ <FastForward className="hover:text-bl 2xl:h-8 2xl:w-8 cursor-pointer"></FastForward> 
  </button>
     </div>
 }
 
 
-const Seek = (props: {ref: any, width: number, draggableWidth: number})=>{
-    return <div style={{width: props.width}} className={` bg-white/[0.37] h-[3px] 2xl:h-[0.2vw] relative items-center flex seek`}>
-        <div ref={props.ref} className="absolute h-[14px] 2xl:h-[0.4vw] rounded-[2px] shadow-md w-4 bg-blue-500 z-20"></div>
-        <div style={{width: props.width, marginLeft: -props.width}} className={`h-[3px] 2xl:h-[0.2vw] progress-indicator   z-10 bg-bl`}>
+const Seek = (props: {ref: any, width: number, draggableWidth: number, videoRef:any})=>{
+    const mainSeekContRef:any = useRef(null)
+    const {mouseStates} = useContext(ContextMain) as MainContextWrapperType
+    
+    const handleOnClick = (e)=>{
+        if(mainSeekContRef && props.videoRef){
+            const duration = props.videoRef.current.getDuration()
+            if(!duration) return
+            const distanceFromX = mainSeekContRef.current.getBoundingClientRect().x
+            const calulatedDistance = mouseStates.x - distanceFromX ? mouseStates.x - distanceFromX : 0
+           
+            props.videoRef.current.seekTo(duration * (calulatedDistance /props.width))
+  
+        }
+    }
+   
+    return <div className="w-full relative flex items-center">
+                <div ref={props.ref} className="absolute  h-[14px] 2xl:h-[0.4vw]  rounded-[2px] shadow-md w-4 bg-blue-500 z-20"></div>
+        <div onClick={handleOnClick} ref={mainSeekContRef} style={{width: props.width}} className={`cursor-pointer bg-white/[0.37] h-[3px] 2xl:h-[0.2vw] relative items-center flex seek`}>
+
+        <div style={{width: props.width, marginLeft: -props.width}} className={`h-[3px] 2xl:h-[0.2vw] progress-indicator cursor-pointer  z-10 bg-bl`}>
 
         </div>
+    </div>
     </div>
 }
 
@@ -50,7 +70,7 @@ const Seek = (props: {ref: any, width: number, draggableWidth: number})=>{
 export default function ProjectMainVideo({url}:{url: string}){
 
     /* Main Context */
-    const { closeOverlay, lenisCurrent} = useContext(ContextMain) as MainContextWrapperType
+    const { closeOverlay, } = useContext(ContextMain) as MainContextWrapperType
     /* End */
 
     
@@ -89,7 +109,7 @@ export default function ProjectMainVideo({url}:{url: string}){
     const widthOfSeekingDraggable = 32
     /* End */
 
-    const videoContainerWidth = videoContainerRef.current ? Math.floor(videoContainerRef.current.getBoundingClientRect().width) -widthOfSeekingDraggable : 300
+    const videoContainerWidth = videoContainerRef.current ? Math.floor(videoContainerRef.current.getBoundingClientRect().width)  : 300
    
 
     useEffect(()=>{
@@ -176,11 +196,11 @@ return ()=>{
     }} onMouseOver={()=>{
         setIsHovered(true)
     }} ref={videoContainerRef}    className="z-0 items-center relative 2xl:p-[0.2vw] 2xl:pt-0 pt-0 p-[2px] bg-bl justify-center flex-col flex w-full border border-black rounded-[3px] overflow-hidden">
-<div className="text-white bg-bl text-[0.55vw] 2xl:text-[0.65vw] 3xl:text-[0.75vw] flex justify-between w-full px-2 items-center ">
+<div className="text-white bg-bl text-[10px] md:text-[0.55vw] 2xl:text-[0.65vw] 3xl:text-[0.75vw] flex justify-between w-full px-2 items-center ">
 <div  className=" self-center ">ALPHA - THE FUTURE LAPTOP</div>
 <button onClick={()=>{
     closeOverlay()
-}} className="text-[1vw] 3xl:text-[1.1vw] self-center text-[#72FF41] hover:text-red-500 duration-300">x</button>
+}} className="md:text-[1vw] text-[12px] 3xl:text-[1.1vw] self-center text-[#72FF41] hover:text-red-500 duration-300">x</button>
 </div>
    
   <div  className={`${!isHovered ? "opacity-0" : "opacity-1"} duration-300 absolute z-20`}>
@@ -189,7 +209,7 @@ return ()=>{
             }}></RewindFastFoward>
         </div> 
         <div className={`${!isHovered ? "opacity-0" : "opacity-1"} duration-300 absolute bottom-[40px] z-20`}>
-            <Seek draggableWidth={widthOfSeekingDraggable} width={videoContainerWidth} ref={seekDraggable}></Seek>
+            <Seek videoRef={videoRef} draggableWidth={widthOfSeekingDraggable} width={videoContainerWidth} ref={seekDraggable}></Seek>
         </div>
 
   <div className="rounded-[3px] overflow-hidden w-full">

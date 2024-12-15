@@ -41,6 +41,13 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "mainVideoTitle",
+      title: "Main Video Title",
+      description: "This is the title of the main video for the project",
+      type: "string",
+      validation: (rule) => rule.required()
+    }),
+    defineField({
       name: 'mainVideo',
       title: 'Main Video',
       description:
@@ -48,6 +55,7 @@ export default defineType({
       type: 'string',
       validation: (rule) => rule.required(),
     }),
+
     defineField({
       name: 'overview',
       description:

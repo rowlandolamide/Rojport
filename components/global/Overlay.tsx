@@ -61,7 +61,7 @@ function Overlay(props: {obj:  MainContextWrapperType["overlay"], setIsVideoFals
 
  {/*    <ReactPlayer playing  style={{display: rend ?"": "hidden"}} previewTabIndex={2} onReady={()=>{setRend(true)
    }}  controls={true} width={"80vw"} height={"100vh"}  url={props.obj.item}></ReactPlayer> */}
-          <div ref={ref} className='w-[80%] h-screen flex justify-center items-center '>
+          <div ref={ref} className='md:w-[80%] w-[98%] h-screen flex justify-center items-center '>
    {props.obj.isVideo ?         <div className='flex w-full items-center justify-center xl:p-[40px] p-[10px]  2xl:p-[4vw]'>
    <ProjectMainVideo   url={props.obj.item}></ProjectMainVideo></div>:
 
