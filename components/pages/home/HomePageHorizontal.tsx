@@ -258,10 +258,10 @@ if(modifiedDataTwo){
 
   return <div ref={laptopTotalContainerRef}  className="xl:h-[100vh] xl:absolute top-0  xl:flex items-center xl:justify-center">
    <div className="fixed relative right-[28px] xl:block hidden ">
-   <div style={{top: laptopContainerPositionFromTop}}  ref={refCallback} className={` w-fit  shadow-lg line fixed sb right-[25px] z-30 rounded-sm`}>
-<Image src={ScrollBarIcon.src} width={26} height={100} className="h-fit" alt="Scrollbar"></Image>
+   <div style={{top: laptopContainerPositionFromTop}}  ref={refCallback} className={` w-fit  shadow-lg line fixed sb right-[26px]  3xl:right-[24px] z-30 rounded-sm`}>
+<Image src={ScrollBarIcon.src} width={26} height={100} className="h-fit 2xl:w-[1.5vw]" alt="Scrollbar"></Image>
 </div>
-    <div  style={{top: laptopContainerPositionFromTop, height: scrollBarLength + 50}} className={` w-[20px] bg-bl/[0.11] right-[28px] top-[${Math.floor(laptopContainerPositionFromTop)}px] z-10 fixed`}>
+    <div  style={{top: laptopContainerPositionFromTop, height: scrollBarLength + (0.0388 * window.innerHeight)}} className={`2xl:w-[1.28vw] w-[20px] bg-bl/[0.11] right-[28px] top-[${Math.floor(laptopContainerPositionFromTop)}px] z-10 fixed`}>
 
 
     </div>

@@ -21,7 +21,7 @@ gsap.registerPlugin(Draggable)
 
 
 const RewindFastFoward = (props: {handlePausePlay: ()=> void, isPlaying: boolean, handleRewind: ()=> void, handleFastForward: ()=> void})=>{
-    useEffect(()=>{}, [])
+    
     return <div className=" flex gap-x-4 duration-300 ">
    <button   className="" onClick={()=>{
         props.handleRewind()
@@ -56,9 +56,9 @@ const Seek = (props: {ref: any, width: number, draggableWidth: number, videoRef:
    
     return <div className="w-full relative flex items-center">
                 <div ref={props.ref} className="absolute  h-[14px] 2xl:h-[0.4vw]  rounded-[2px] shadow-md w-4 bg-blue-500 z-20"></div>
-        <div onClick={handleOnClick} ref={mainSeekContRef} style={{width: props.width}} className={`cursor-pointer bg-white/[0.37] h-[3px] 2xl:h-[0.2vw] relative items-center flex seek`}>
+        <div onClick={handleOnClick} ref={mainSeekContRef} style={{width: props.width}} className={`cursor-pointer group hover:scale-y-150 duration-300 bg-white/[0.37] h-[3px] 2xl:h-[0.2vw] relative items-center flex seek`}>
 
-        <div style={{width: props.width, marginLeft: -props.width}} className={`h-[3px] 2xl:h-[0.2vw] progress-indicator cursor-pointer  z-10 bg-bl`}>
+        <div style={{width: props.width, marginLeft: -props.width}} className={`h-[3px] 2xl:h-[0.2vw] progress-indicator group-hover:scale-y-150  cursor-pointer  z-10 bg-bl`}>
 
         </div>
     </div>
@@ -106,7 +106,7 @@ export default function ProjectMainVideo({url}:{url: string}){
     const videoRef = useRef<ReactPlayer>(null!)
 
     /* Width of Seeking Draggable */
-    const widthOfSeekingDraggable = 32
+    const widthOfSeekingDraggable = 16
     /* End */
 
     const videoContainerWidth = videoContainerRef.current ? Math.floor(videoContainerRef.current.getBoundingClientRect().width)  : 300
@@ -117,7 +117,7 @@ export default function ProjectMainVideo({url}:{url: string}){
   
         seekDragInstance.current = Draggable.create(seekDraggable.current, {
             type: "x",
-            bounds: {minX: 0, maxX: videoContainerWidth - 32},
+            bounds: {minX: 0, maxX: videoContainerWidth - 16},
             inertia: false,
             allowEventDefault: true,
             edgeResistance: 0.65,
@@ -151,8 +151,9 @@ export default function ProjectMainVideo({url}:{url: string}){
     if( draggableCurrent.isPressed){
        
       gsapTime.to(".progress-indicator", {x:  draggableCurrent.x}, 0)
+
     }else{
-      gsapTime.to(seekDraggable.current, {x: videoContainerWidth * playedSeconds/durationSeconds, overwrite: true }, 0).to(".progress-indicator", {x:  videoContainerWidth * playedSeconds/durationSeconds , overwrite: true, }, 0)
+      gsapTime.to(seekDraggable.current, {x: (videoContainerWidth - 16) * playedSeconds/durationSeconds, overwrite: true }, 0).to(".progress-indicator", {x:  (videoContainerWidth -16) * playedSeconds/durationSeconds , overwrite: true, }, 0)
     }
 
  }, ".seek")
@@ -188,12 +189,20 @@ return ()=>{
     }
 
  
+ useEffect(()=>{
+    setInterval(()=>{
+    
+        setIsHovered(false)
+    }, 6000)
+ }, [])
 
   
 
-    return <div onMouseLeave={()=>{
+    return <div onMouseMove={()=>{
+        setIsHovered(true)
+    }} onMouseLeave={()=>{
         setIsHovered(false)
-    }} onMouseOver={()=>{
+    }} onMouseEnter={()=>{
         setIsHovered(true)
     }} ref={videoContainerRef}    className="z-0 items-center relative 2xl:p-[0.2vw] 2xl:pt-0 pt-0 p-[2px] bg-bl justify-center flex-col flex w-full border border-black rounded-[3px] overflow-hidden">
 <div className="text-white bg-bl text-[10px] md:text-[0.55vw] 2xl:text-[0.65vw] 3xl:text-[0.75vw] flex justify-between w-full px-2 items-center ">
@@ -213,7 +222,9 @@ return ()=>{
         </div>
 
   <div className="rounded-[3px] overflow-hidden w-full">
-  {  <ReactPlayer onProgress={(state)=>{
+  {  <ReactPlayer onEnded={()=>{
+    setIsPlaying(false)
+  }} onProgress={(state)=>{
    
 
     setPlayed(state.played)
