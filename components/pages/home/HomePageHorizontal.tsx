@@ -66,6 +66,10 @@ const laptopTotalContainerRef: any = useRef()
   }, [y])
 
   /* End */
+
+   /* Is Laptop */
+   const isLaptop = x> 1279
+   /* End */
   
 
 
@@ -178,7 +182,10 @@ return
 
 useEffect(()=>{
   if(!lenisCurrent) return
-  lenisCurrent.scrollTo(0)
+  if(isLaptop){
+    lenisCurrent.scrollTo(0)
+  }
+  
 }, [lenisCurrent])
 
 
