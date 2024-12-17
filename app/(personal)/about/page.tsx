@@ -114,7 +114,7 @@ useEffect(()=>{
     
     lenisCurrent.resize()
   }
-}, [lenisCurrent, containerRef])
+}, [lenisCurrent, containerRef, isLaptop])
 
 
     

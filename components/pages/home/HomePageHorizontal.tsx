@@ -186,7 +186,7 @@ useEffect(()=>{
     lenisCurrent.scrollTo(0)
   }
   
-}, [lenisCurrent])
+}, [lenisCurrent, isLaptop])
 
 
 
