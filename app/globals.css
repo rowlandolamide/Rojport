@@ -136,18 +136,27 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 
-*,
-*:before,
-*:after {
-  @apply cursor-default;
-}
-
 
 a, button, link, section {
   @apply cursor-pointer;
 }
 
+.grabb{
+  @apply cursor-grab
+
+  
+}
 
 .sb{
   will-change: transform
+}
+
+html{
+  cursor: url("/public/Icons/Grab Mouse.svg"), grab;
+}
+
+ *,
+*:before,
+*:after {
+  @apply cursor-default;
 }

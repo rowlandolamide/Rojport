@@ -99,6 +99,10 @@ module.exports = {
 		cursor: {
 			default: `url(public/Icons/Mouse-New.svg), default`,
 			pointer: `url(public/Icons/Pointer Mouse.svg), pointer`,
+			grab: `url(public/Icons/Grab Mouse.svg), grab`,
+			grabbing: `url(public/Icons/Grab Mouse.svg), grabbing`,
+			move: `url(public/Icons/Grab Mouse.svg), move`,
+
 		}
 		
   	}

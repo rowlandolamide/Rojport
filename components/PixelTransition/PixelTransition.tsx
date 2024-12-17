@@ -86,7 +86,7 @@ const { width, height } = dimensions;
                     </div>
                 })
             }
-            <motion.div animate={{opacity: 0,}} transition={{delay: 1.5}} className='text-white text-center w-full h-full font-PP text-[14vw] absolute overflow-hidden top-0 left-0 flex items-center justify-center'>
+            <motion.div animate={{opacity: 0,}} transition={{delay: 1.5}} className='text-white text-center w-full h-full font-PP text-[12vw] absolute overflow-hidden top-0 left-0 flex items-center justify-center'>
                 {displayedText}
             </motion.div>
         </div>

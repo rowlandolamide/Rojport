@@ -13,6 +13,7 @@ import {Draggable} from "gsap/Draggable"
 import { ReactNode, useCallback, useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { useContext } from "react"
+import useMediaQuery from "@/components/hooks/useMediaQuery"
 import useCurrentTime from "@/components/hooks/useCurrentTime"
 import { MainContextWrapperType, ContextMain } from "@/components/global/ContextWrapper"
 
@@ -20,16 +21,20 @@ gsap.registerPlugin(Draggable)
 
 const DeskTopDesignDisplay = (props: {text: ReactNode , header ?: string, Icon ?: string})=>{
 
-  return <div className="rounded-[5px] p-[4px] 2xl:p-[0.3vw] pt-0  border border-black bg-[#F2F2F2]">
+  return <div className=" rounded-[5px] cursor-grab p-[4px] 2xl:p-[0.3vw] pt-0  border border-black bg-[#F2F2F2]">
 
 
-    <motion.div  className="px-[35px] py-[30px] 2xl:py-[2vw] 2xl:px-[2.1vw] font-Ingram text-[11px] leading-[21px] xl:text-[0.7vw] xl:leading-[1.4vw]  ">
-      <div className="justify-between items-center flex xl:text-[1.6vw] text-[24px]">  <div>{props.header}</div><Image width={37} height={37} alt="smilling face" className={`${props.Icon ?"": "hidden"} pb-4 xl:w-[2.4vw]`} src={props.Icon ? props.Icon : SmilingFace.src}></Image></div>
+    <motion.div  className="px-[35px] cursor-grab py-[30px] 2xl:py-[2vw] 2xl:px-[2.1vw] font-Ingram text-[11px] leading-[21px] xl:text-[0.7vw] xl:leading-[1.4vw]  ">
+      <div className="justify-between cursor-grab items-center flex xl:text-[1.6vw] text-[24px]">  <div>{props.header}</div><Image width={37} height={37} alt="smilling face" className={`${props.Icon ?"": "hidden"} pb-4 xl:w-[2.4vw]`} src={props.Icon ? props.Icon : SmilingFace.src}></Image></div>
       {props.text}</motion.div>
   </div>
 }
 
 export default function IndexRoute() {
+
+
+  const {x} = useMediaQuery()
+  const isLaptop = x> 1279
 
   const {lenisCurrent} = useContext(ContextMain) as MainContextWrapperType
   
@@ -62,7 +67,9 @@ const ctx = gsap.context(()=>{
   if(!ref.current) return
   dragInstanceOne.current = Draggable.create(ref.current, {
     type: "x,y",
-    inertia: true
+    inertia: true,
+    cursor: "inherit",
+    activeCursor: "grab"
   })
 
   if(!refTwo.current) return
@@ -101,7 +108,10 @@ return ()=> ctx.clear()
 
 useEffect(()=>{
   if(lenisCurrent && containerRef){
-    lenisCurrent.scrollTo(0)
+    if(isLaptop){
+      lenisCurrent.scrollTo(0)
+    }
+    
     lenisCurrent.resize()
   }
 }, [lenisCurrent, containerRef])
@@ -122,10 +132,10 @@ useEffect(()=>{
       
 <div className=" w-full  h-full flex relative items-center  ">
 
-<div ref={ref} className="absolute left-[6.7vw] 2xl:w-[23.9vw] w-[345px] z-30">
+<div ref={ref} className="absolute  left-[6.7vw] 2xl:w-[23.9vw] w-[345px] z-30 ">
 <DeskTopDesignDisplay text={textOne}></DeskTopDesignDisplay>
 </div>
-<div ref={refTwo} className="absolute right-[70vw] 2xl:w-[20vw] w-[310px] z-30">
+<div ref={refTwo} className="grabb cursor-grab absolute right-[70vw] 2xl:w-[20vw] w-[310px] z-30">
 <DeskTopDesignDisplay Icon={SmilingFace.src} header="CAPABILITIES" text={textTwo}></DeskTopDesignDisplay>
 </div>
 <div ref={refThree} className="absolute right-[7vw] 2xl:w-[20vw] w-[310px] z-30">
@@ -136,7 +146,7 @@ useEffect(()=>{
 <Image width={100} unoptimized height={100} alt="Mic" className="w-[550px] 2xl:w-[38vw] border border-black rounded-[4px]" src={MicDrop.src}></Image>
 </div>
 
-<div className=" flex flex-col xl:text-[13.9vw] 2xl:leading-[7.5vw] 2xl:text-[11vw] absolute left-[41vw]  xl:leading-[10vw]  h-[90vh] top-0  justify-center">
+<div className=" flex flex-col  xl:text-[13.9vw] 2xl:leading-[7.5vw] 2xl:text-[11vw] absolute left-[41vw]  xl:leading-[10vw]  h-[90vh] top-0  justify-center">
   <span className="font-PPn flex items-center"><Image alt="" width={100} height={100} className="rounded-[10px] h-full w-fit mt-2" src={ProfilePicture.src}></Image>ROJ’ THE GOAT</span>
   <span className="font-PPn font-thin">MOTION DESIGNER</span>
   <span className="font-PPn flex"><span className="text-bl">✨</span>ART DIRECTOR</span>
