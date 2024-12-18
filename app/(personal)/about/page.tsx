@@ -75,19 +75,25 @@ const ctx = gsap.context(()=>{
   if(!refTwo.current) return
   dragInstanceTwo.current = Draggable.create(refTwo.current, {
     type: "x,y",
-    inertia: true
+    inertia: true,
+     cursor: "inherit",
+    activeCursor: "grab"
   })
 
   if(!refThree.current) return
   dragInstanceThree.current = Draggable.create(refThree.current, {
     type: "x,y",
-    inertia: true
+    inertia: true,
+     cursor: "inherit",
+    activeCursor: "grab"
   })
 
   if(!refFour.current) return
   dragInstanceFour.current = Draggable.create(refFour.current, {
     type: "x,y",
-    inertia: true
+    inertia: true,
+     cursor: "inherit",
+    activeCursor: "grab"
   })
 })
 /* End */
@@ -120,8 +126,8 @@ useEffect(()=>{
     
 
     const textThree = "When I'm not working, I like to watch movies from the 1980s, collect old cameras, and add to my ever-growing collection of toys. I think being creative is a way of life, so I'm always looking for new ideas and ways to express myself."
-    const textTwo = <div>Focus: Motion Design | Art Direction | Web Design | Animation | Brand Design <div className="mt-4">Capabilities: Proficient in Cinema 4D, Redshift, Octane, Arnold, X Particles, Blender, After Effects, Illustrator, Davinci Resolve, web design with Figma</div></div>
-    const textOne = <div>I&apos;m Olamide Rowland – a motion design enthusiast and creative problem-solver. I thrive on empowering brands, startups, and companies to flourish. From collaborating with top studios like Yellow Lab and Funken Studio to leading as Creative Director at Brass Bank, each project fuels my growth and innovation. <div className="mt-4">let&apos;s collaborate on something Olamide@rojthegoat.com</div></div>
+    const textTwo = <div className="grabb cursor-grab">Focus: Motion Design | Art Direction | Web Design | Animation | Brand Design <div className="mt-4 grabb cursor-grab">Capabilities: Proficient in Cinema 4D, Redshift, Octane, Arnold, X Particles, Blender, After Effects, Illustrator, Davinci Resolve, web design with Figma</div></div>
+    const textOne = <div className="grabb cursor-grab">I&apos;m Olamide Rowland – a motion design enthusiast and creative problem-solver. I thrive on empowering brands, startups, and companies to flourish. From collaborating with top studios like Yellow Lab and Funken Studio to leading as Creative Director at Brass Bank, each project fuels my growth and innovation. <div className="mt-4 grabb cursor-grab">let&apos;s collaborate on something Olamide@rojthegoat.com</div></div>
 
   return <div>
     <div ref={containerRefCallBack} className="xl:block hidden w-[200vw]">
@@ -132,17 +138,17 @@ useEffect(()=>{
       
 <div className=" w-full  h-full flex relative items-center  ">
 
-<div ref={ref} className="absolute  left-[6.7vw] 2xl:w-[23.9vw] w-[345px] z-30 ">
+<div ref={ref} className="absolute grabb cursor-grab  left-[6.7vw] 2xl:w-[23.9vw] w-[345px] z-30 ">
 <DeskTopDesignDisplay text={textOne}></DeskTopDesignDisplay>
 </div>
 <div ref={refTwo} className="grabb cursor-grab absolute right-[70vw] 2xl:w-[20vw] w-[310px] z-30">
 <DeskTopDesignDisplay Icon={SmilingFace.src} header="CAPABILITIES" text={textTwo}></DeskTopDesignDisplay>
 </div>
-<div ref={refThree} className="absolute right-[7vw] 2xl:w-[20vw] w-[310px] z-30">
+<div ref={refThree} className="absolute grabb cursor-grab right-[7vw] 2xl:w-[20vw] w-[310px] z-30">
 <DeskTopDesignDisplay Icon={SunIcon.src} header="BONUS" text={textThree}></DeskTopDesignDisplay>
 </div>
 
-<div ref={refFour} className="absolute right-[27.2vw]  z-30">
+<div ref={refFour} className="absolute grabb cursor-grab right-[27.2vw]  z-30">
 <Image width={100} unoptimized height={100} alt="Mic" className="w-[550px] 2xl:w-[38vw] border border-black rounded-[4px]" src={MicDrop.src}></Image>
 </div>
 

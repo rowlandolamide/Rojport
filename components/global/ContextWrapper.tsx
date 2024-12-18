@@ -2,7 +2,7 @@
 import { createContext,  useState} from "react";
 import useMouse from "@react-hook/mouse-position"
 import { useRef } from 'react'
-import CustomMouse from "./CustomMouse";
+
 import React from 'react';
 
 import Overlay from "./Overlay";
@@ -32,10 +32,6 @@ export interface MainContextWrapperType{
 
 export const ContextMain = createContext<MainContextWrapperType | null>(null)
 
-
-
-
-
 function ContextWrapper(props: {children: React.ReactNode}) {
     
     const mouseref = useRef(null)
@@ -61,7 +57,6 @@ function ContextWrapper(props: {children: React.ReactNode}) {
     return (
        <div className="relative" ref={mouseref} >
          <div style={{zIndex: 1000}} className="fixed z-50">
-<CustomMouse x={mouse.clientX ? mouse.clientX +2 : 0} y={mouse.clientY ? mouse.clientY + 2: 0}></CustomMouse>
 
 </div>
        <ContextMain.Provider value={{x:"Job", closeOverlay, lenisCurrent, setLenisCurrent: setLenis, mouseStates: {x: mouse.clientX || 0, y: mouse.clientY || 0}, overlay: overlay, handleOverlay: handleOverlay}}>

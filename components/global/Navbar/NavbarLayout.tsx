@@ -27,8 +27,8 @@ export default function Navbar(props: NavbarProps) {
 
 
 return (
-    <div className={`${isStudio ? "hidden": "flex "} text-black z-50 fixed w-screen xl:w-full flex-wrap justify-between items-center gap-x-5 px-4 py-4 md:px-5 md:py-4 lg:px-5`}>
-     <div className='flex justify-between px-2 xl:px-4 w-full items-center'>
+    <div className={`${isStudio ? "hidden": "flex "} text-black z-50 fixed w-screen xl:w-full flex-wrap justify-between items-center gap-x-5 px-[5vw]   py-4 md:px-5 md:py-4 lg:px-5`}>
+     <div className='flex justify-between sm:px-2 xl:px-4 w-full items-center'>
      <Link href={"/"} scroll={false} className=' hover:text-bl top-4 right-4 text-[32px] md:text-[40px] font-PPn 3xl:text-[1.8vw]'>ROJ THE GOAT</Link>
       <div className='text-[10px] mx-auto md:block hidden 2xl:text-[0.6vw] 3xl:text-[0.4vw]'>
 

@@ -85,7 +85,7 @@ export default function ProjectMainVideo({url}:{url: string}){
     const {x,} = useMediaQuery()
 
     /* Is Video Playing */
-    const [isPlaying, setIsPlaying] = useState(false)
+    const [isPlaying, setIsPlaying] = useState(true)
     /* Set is Video Playing */
 
     /* Current Second */

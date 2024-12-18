@@ -1,8 +1,8 @@
 "use client"
 import {gsap} from "gsap"
 import React, { useContext, useEffect, useMemo, useRef, useState} from 'react';
-import { useRouter, usePathname } from "next/navigation";
-
+import {  usePathname } from "next/navigation";
+import ReelVideo from "./ReelVideo";
 
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -68,7 +68,9 @@ const laptopTotalContainerRef: any = useRef()
   /* End */
 
    /* Is Laptop */
-   const isLaptop = x> 1279
+   const isLaptop = useMemo(()=>{
+    return x> 1279
+   }, [x])
    /* End */
   
 
@@ -76,7 +78,7 @@ const laptopTotalContainerRef: any = useRef()
 const modifiedDataTwo  = useMemo(()=>{
   return  data?.showcaseProjects?.map((item)=>{
   
-    const imgUrl = item.coverImage ? urlForImage(item.coverImage)?.quality(100)?.format("webp")?.width(600).url() : ""
+    const imgUrl = item.coverImage ? urlForImage(item.coverImage)?.quality(100)?.format("webp")?.width(800).url() : ""
     return {title: item.title, slug: item.slug, img: item.coverImage, imgUrl: imgUrl,  isProject: true, discipline: item.disci}
   })
 }, [data])
@@ -150,18 +152,9 @@ const ySetter = gsap.quickSetter(gsapDragRef.current, "y", "px")
  
 
   lenisCurrent.on('scroll', ()=>{
-/*     if(dragInstance.current[0].isDragging){
-gsapTime.pause()
-return
-    } */
-    if(lenisCurrent.isScrolling == false) return
-
-   
-   
+  if(lenisCurrent.isScrolling == false) return
   
   if(dragInstance.current[0].isDragging) return
-
-
 
    ySetter(scrollBarLength * lenisCurrent.progress)
    
@@ -247,7 +240,7 @@ return ()=> ctx.clear()
 if(modifiedDataTwo){
   let number = 0
 
-  const count = 8 - modifiedDataTwo?.length
+  const count = 9 - modifiedDataTwo?.length
 
 
   if(number === count) return
@@ -267,11 +260,9 @@ if(modifiedDataTwo){
   return <div ref={laptopTotalContainerRef}  className="xl:h-[100vh] xl:absolute top-0  xl:flex items-center xl:justify-center">
    <div className="fixed relative right-[28px] xl:block hidden ">
    <div style={{top: laptopContainerPositionFromTop}}  ref={refCallback} className={`grabb w-fit right-[26px] cursor-grab 3xl:right-[25px]  shadow-lg line fixed sb  z-30 rounded-sm`}>
-<Image src={ScrollBarIcon.src} width={26} height={100} className="h-fit 2xl:w-[24px] 3xl:w-[45px] grabb" alt="Scrollbar"></Image>
+<Image src={ScrollBarIcon.src} width={26} height={100} className="h-fit 2xl:w-[24px] 3xl:w-[45px] grabb cursor-grab" alt="Scrollbar"></Image>
 </div>
     <div  style={{top: laptopContainerPositionFromTop, height: scrollBarLength + (0.0388 * y)}} className={`3xl:w-[40px] w-[20px] bg-bl/[0.11] right-[28px] top-[${Math.floor(laptopContainerPositionFromTop)}px] z-10 fixed`}>
-
-
     </div>
    </div>
 
@@ -283,9 +274,9 @@ if(modifiedDataTwo){
 
 
   <motion.div ref={ref} onMouseUp={onMouseUp} onMouseDown={onMouseDown} onMouseLeave={onMouseLeave} onMouseMove={onMouseMove}   className="grid h-full  w-fit  px-4 grid-rows-2 z-0 grid-flow-col gap-6 3xl:gap-8">
-  
+  <ReelVideo url="https://res.cloudinary.com/doaahozax/video/upload/v1734541085/ROJ/reel_video_a9pssh.mp4"></ReelVideo>
   {finalModifiedArray && finalModifiedArray.map((i, k)=>{
-      let number = k === 0 ? k : k%2 === 0 ? k : k+2
+     
      
       const currentObj = finalModifiedArray[k]
      
@@ -293,7 +284,7 @@ if(modifiedDataTwo){
      
       return <section onDrag={(e)=>{
         e.stopPropagation()
-      }} unselectable="on" draggable={false} key={k} className=" h-full relative cursor-pointer ">
+      }} unselectable="on" draggable={false} key={k} className=" h-full pointerr relative cursor-pointer ">
         
       { <ProjectCard slug={i.slug || "/"} animate={k === finalModifiedArray.length - 1} isProject={currentObj.isProject} media={currentObj.imgUrl} discipline={currentObj.discipline} name={currentObj.title || ""}></ProjectCard>}
 
