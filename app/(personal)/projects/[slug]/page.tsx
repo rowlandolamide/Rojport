@@ -91,7 +91,7 @@ export default async function ProjectSlugRoute({ params }: Props) {
         if(!initial) return false
         if(!initial.data) return false
         if(!initial.data.content) return false
-        console.log(initial.data.content[i +1])
+       
         const lastType = initial.data.content[i +1]
       
         return lastType ? initial.data?.content[i + 1]._type.toLowerCase().includes("image") && initial.data?.content[i]._type.toLowerCase().includes("image") : true
