@@ -64,6 +64,7 @@ export default async function ProjectSlugRoute({ params }: Props) {
     notFound()
   } */
 
+    console.log(initial.data?.content)
 
 
   return <ProjectWrapper>
@@ -85,12 +86,15 @@ export default async function ProjectSlugRoute({ params }: Props) {
       </div>
   
    
-    {initial.data?.content?.map((item:any, i)=>{
+    {initial.data?.content && initial.data?.content?.map((item:any, i)=>{
       const isLastImageType =  ()=>{
         if(!initial) return false
         if(!initial.data) return false
         if(!initial.data.content) return false
-        return initial.data?.content[i + 1]._type.toLowerCase().includes("image") && initial.data?.content[i]._type.toLowerCase().includes("image")
+        console.log(initial.data.content[i +1])
+        const lastType = initial.data.content[i +1]
+      
+        return lastType ? initial.data?.content[i + 1]._type.toLowerCase().includes("image") && initial.data?.content[i]._type.toLowerCase().includes("image") : true
       }
      if(item._type === "textBlock"){
      

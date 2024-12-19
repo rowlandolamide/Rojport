@@ -238,19 +238,21 @@ return ()=> ctx.clear()
 
 
 if(modifiedDataTwo){
-  let number = 0
+ 
   
 
-  const count = 9 - modifiedDataTwo?.length ? 9 - modifiedDataTwo.length : 0
+  const count = 9 - modifiedDataTwo?.length
 
-
-  if(number === count) return
+ 
+ if(count){
+  
   for(let l=0; l < count; l++){
     finalModifiedArray.push(modifiedDataTwo[l])
   
   }
+ }
 
-  finalModifiedArray = [...modifiedDataTwo, ...finalModifiedArray]
+  finalModifiedArray =  [...modifiedDataTwo, ...finalModifiedArray]
 }
 
 
