@@ -239,8 +239,9 @@ return ()=> ctx.clear()
 
 if(modifiedDataTwo){
   let number = 0
+  
 
-  const count = 9 - modifiedDataTwo?.length
+  const count = 9 - modifiedDataTwo?.length ? 9 - modifiedDataTwo.length : 0
 
 
   if(number === count) return
@@ -271,7 +272,7 @@ if(modifiedDataTwo){
 
     {/* Laptop View */}
 <div ref={laptopContRef} className="xl:flex hidden flex-col  h-fit py-auto w-fit ">
-
+<div></div>
 
   <motion.div ref={ref} onMouseUp={onMouseUp} onMouseDown={onMouseDown} onMouseLeave={onMouseLeave} onMouseMove={onMouseMove}   className="grid h-full  w-fit  px-4 grid-rows-2 z-0 grid-flow-col gap-6 3xl:gap-8">
   <ReelVideo url="https://res.cloudinary.com/doaahozax/video/upload/v1734541085/ROJ/reel_video_a9pssh.mp4"></ReelVideo>
