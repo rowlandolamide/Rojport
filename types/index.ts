@@ -62,6 +62,7 @@ export interface ProjectPayload {
   tags?: string[]
   title?: string
   mainVideo?:string
+  mainVideoTitle ?: string;
   content?: Content[]
 }
 

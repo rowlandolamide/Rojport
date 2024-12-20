@@ -8,7 +8,7 @@ import React from 'react'
 import useMediaQuery from "@/components/hooks/useMediaQuery"
 import { Draggable } from "gsap/Draggable";
 import {gsap} from "gsap"
-import {FastForward, Pause, Play} from "lucide-react"
+import {FastForward, Pause, Play, X} from "lucide-react"
 
 
 import { MainContextWrapperType, ContextMain } from '@/components/global/ContextWrapper';
@@ -40,7 +40,7 @@ const RewindFastFoward = (props: {handlePausePlay: ()=> void, isPlaying: boolean
 
 const Seek = (props: {ref: any, width: number, draggableWidth: number, videoRef:any})=>{
     const mainSeekContRef:any = useRef(null)
-    const {mouseStates} = useContext(ContextMain) as MainContextWrapperType
+    const {mouseStates, } = useContext(ContextMain) as MainContextWrapperType
     
     const handleOnClick = (e)=>{
         if(mainSeekContRef && props.videoRef){
@@ -54,11 +54,11 @@ const Seek = (props: {ref: any, width: number, draggableWidth: number, videoRef:
         }
     }
    
-    return <div className="w-full relative flex items-center">
+    return <div className="w-full relative flex items-center ">
                 <div ref={props.ref} className="absolute  h-[14px] 2xl:h-[0.4vw]  rounded-[2px] shadow-md w-4 bg-blue-500 z-20"></div>
-        <div onClick={handleOnClick} ref={mainSeekContRef} style={{width: props.width}} className={`cursor-pointer group hover:scale-y-150 duration-300 bg-white/[0.37] h-[3px] 2xl:h-[0.2vw] relative items-center flex seek`}>
+        <div onClick={handleOnClick} ref={mainSeekContRef} style={{width: props.width}} className={`cursor-pointer overflow-x-hidden group hover:scale-y-150 duration-300 bg-white/[0.37] h-[3px] 2xl:h-[0.2vw] relative items-center flex seek`}>
 
-        <div style={{width: props.width, marginLeft: -props.width}} className={`h-[3px] 2xl:h-[0.2vw] progress-indicator group-hover:scale-y-150  cursor-pointer  z-10 bg-bl`}>
+        <div style={{width: props.width, marginLeft: -props.width }} className={`h-[3px] 2xl:h-[0.2vw] progress-indicator group-hover:scale-y-150  cursor-pointer  z-10 bg-bl`}>
 
         </div>
     </div>
@@ -67,10 +67,10 @@ const Seek = (props: {ref: any, width: number, draggableWidth: number, videoRef:
 
 
 
-export default function ProjectMainVideo({url}:{url: string}){
+export default function ProjectMainVideo({url, title}:{url: string, title: string}){
 
     /* Main Context */
-    const { closeOverlay, } = useContext(ContextMain) as MainContextWrapperType
+    const { closeOverlay,overlay } = useContext(ContextMain) as MainContextWrapperType
     /* End */
 
     
@@ -109,7 +109,7 @@ export default function ProjectMainVideo({url}:{url: string}){
     const widthOfSeekingDraggable = 16
     /* End */
 
-    const videoContainerWidth = videoContainerRef.current ? Math.floor(videoContainerRef.current.getBoundingClientRect().width)  : 300
+    const videoContainerWidth = videoContainerRef.current ? Math.floor(videoContainerRef.current.getBoundingClientRect().width) * 80/100  : 300
    
 
     useEffect(()=>{
@@ -205,11 +205,11 @@ return ()=>{
     }} onMouseEnter={()=>{
         setIsHovered(true)
     }} ref={videoContainerRef}    className="z-0 items-center relative 2xl:p-[0.2vw] 2xl:pt-0 pt-0 p-[2px] bg-bl justify-center flex-col flex w-full border border-black rounded-[3px] overflow-hidden">
-<div className="text-white bg-bl text-[10px] md:text-[0.55vw] 2xl:text-[0.65vw] 3xl:text-[0.75vw] flex justify-between w-full px-2 items-center ">
-<div  className=" self-center ">ALPHA - THE FUTURE LAPTOP</div>
+<div className="text-white bg-bl text-[10px] md:text-[0.7vw] 2xl:text-[0.65vw] 3xl:text-[0.75vw] flex justify-between w-full px-2 items-center ">
+<div  className=" self-center ">{overlay.videoTitle}</div>
 <button onClick={()=>{
     closeOverlay()
-}} className="md:text-[1vw] text-[12px] 3xl:text-[1.1vw] self-center text-[#72FF41] hover:text-red-500 duration-300">x</button>
+}} className="self-center text-[#72FF41] hover:text-red-500 duration-300 cursor-pointer"><X className="md:h-[0.8vw] cursor-pointer md:w-[0.8vw]  h-[12px] w-[12px] 3xl:h-[1.1vw] 3xl:w-[1.1vw] "></X></button>
 </div>
    
   <div  className={`${!isHovered ? "opacity-0" : "opacity-1"} duration-300 absolute z-20`}>

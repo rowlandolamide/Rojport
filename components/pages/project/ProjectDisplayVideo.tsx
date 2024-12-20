@@ -6,10 +6,11 @@ import { Plus } from 'lucide-react';
 
 function ProjectDisplayVideo(props: {
     url: string, 
+    videoTitle: string,
 }) {
 
     /* Props */
-    const {url} = props
+    const {url,videoTitle} = props
     /* End */
 
     /* Video Ref*/
@@ -29,11 +30,11 @@ function ProjectDisplayVideo(props: {
 
     return (
         <div className='overflow-hidden w-full border border-black rounded-[4px] flex  relative items-center justify-center' onClick={()=>{
-            handleOverlay({...overlay, open: true, isVideo: true, item: url })
+            handleOverlay({...overlay, open: true, isVideo: true, item: url , videoTitle: videoTitle})
           }}>
             <button className='xl:text-[0.7vw] xl:w-[12.5vw] xl:h-[1.8vw] xl:p-0 px-8 py-2 text-[12px] flex items-center justify-center bg-bl text-white absolute z-20 rounded-[2px] group' >PLAY ALPHA {" "
                 }  <span className='group-hover:rotate-[180deg] flex items-center  justify-center ml-2 group-hover:scale-[1.5] duration-300 h-[10px]'>
-                    <Plus size={10}></Plus></span></button>
+                    <Plus className='w-[10px] h-[10px] 2xl:w-[0.7vw] 2xl:h-[0.7vw] cursor-pointer ' size={10}></Plus></span></button>
             <ReactPlayer height={"100%"} width={"100%"} style={{zIndex: 0, position: "relative", height: "auto !important", aspectRatio: "16/9", borderRadius: 3}} url={url} onStart={beginningHandler}ref={videoRef}></ReactPlayer>
             
         </div>

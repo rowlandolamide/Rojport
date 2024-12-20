@@ -75,6 +75,7 @@ export const projectBySlugQuery = groq`
     year,
     coverImage{..., image},
     mainVideo,
+    mainVideoTitle,
     description,
     overview,
     site,

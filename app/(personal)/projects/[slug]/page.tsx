@@ -64,7 +64,7 @@ export default async function ProjectSlugRoute({ params }: Props) {
     notFound()
   } */
 
-    console.log(initial.data?.content)
+    console.log(initial)
 
 
   return <ProjectWrapper>
@@ -82,7 +82,7 @@ export default async function ProjectSlugRoute({ params }: Props) {
     <div className=''>
       <div className='w-full pb-[58px] '>
         
-    <ProjectDisplayVideo url={initial.data?.mainVideo || ""}></ProjectDisplayVideo>
+    <ProjectDisplayVideo videoTitle={initial.data?.mainVideoTitle || ""} url={initial.data?.mainVideo || ""}></ProjectDisplayVideo>
       </div>
   
    

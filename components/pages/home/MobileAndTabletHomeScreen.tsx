@@ -32,7 +32,7 @@ Lagos, Nigeria: {value.getUTCHours() + 1}:{value.getUTCMinutes()} WAT</div>
 </div>
     <div className="flex flex-col gap-y-[22px]">
 
-        <ReelVideo url="https://res.cloudinary.com/doaahozax/video/upload/v1734541085/ROJ/reel_video_a9pssh.mp4"></ReelVideo>
+        <ReelVideo url={process.env.NEXT_PUBLIC_REEL_DISPLAY_VIDEO || ""}></ReelVideo>
             {modifiedDataTwo && modifiedDataTwo.map((i, k)=>{
                 
                 const currentObj = i
@@ -54,7 +54,7 @@ Lagos, Nigeria: {value.getUTCHours() + 1}:{value.getUTCMinutes()} WAT</div>
     {/* Tab View */}
   <div className="w-full hidden sm:block xl:hidden data-lenis-prevent Js-lenis">
   <div  className="gap-x-4  grid grid-cols-2 z-0  gap-y-5  items-center justify-items-center">
- <div className='px-[20px]'> <ReelVideo url="https://res.cloudinary.com/doaahozax/video/upload/v1734541085/ROJ/reel_video_a9pssh.mp4"></ReelVideo></div>
+ <div className='px-[20px]'> <ReelVideo url={process.env.NEXT_PUBLIC_REEL_DISPLAY_VIDEO || ""}></ReelVideo></div>
             {modifiedDataTwo && modifiedDataTwo.map((i, k)=>{
                 
                 const currentObj = modifiedDataTwo[k]

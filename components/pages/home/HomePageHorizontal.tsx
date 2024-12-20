@@ -202,24 +202,30 @@ useEffect(()=>{
         dragInstance.current[0].update()
        
       },
+
       onDragEnd: ()=>{
         dragInstance.current[0].update()
         
       },
+
       onPress: ()=>{
         dragInstance.current[0].enable()
         dragInstance.current[0].update()
       },
+
       onRelease: ()=>{
     
         dragInstance.current[0].update()
       },
+
       onLockAxis: ()=>{
         dragInstance.current[0].disable()
       },
+
       onThrowUpdate: ()=>{
         dragInstance.current[0].update()
       },
+
       onThrowComplete: ()=>{
         dragInstance.current[0].update()
       }
@@ -277,7 +283,7 @@ if(modifiedDataTwo){
 <div></div>
 
   <motion.div ref={ref} onMouseUp={onMouseUp} onMouseDown={onMouseDown} onMouseLeave={onMouseLeave} onMouseMove={onMouseMove}   className="grid h-full  w-fit  px-4 grid-rows-2 z-0 grid-flow-col gap-6 3xl:gap-8">
-  <ReelVideo url="https://res.cloudinary.com/doaahozax/video/upload/v1734541085/ROJ/reel_video_a9pssh.mp4"></ReelVideo>
+  <ReelVideo url={process.env.NEXT_PUBLIC_REEL_DISPLAY_VIDEO || ""}></ReelVideo>
   {finalModifiedArray && finalModifiedArray.map((i, k)=>{
      
      

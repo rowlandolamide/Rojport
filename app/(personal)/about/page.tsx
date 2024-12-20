@@ -164,8 +164,8 @@ useEffect(()=>{
       </div>
     </div>
   </div>
-  <div className="xl:hidden ">
-<div className="px-[20px]">   <div className=" overflow-hidden rounded-[4px]"> <Image unoptimized src={ProfilePicture.src} width={100} height={100} className="w-full rounded-[4px] scale-[1.1]" alt="Roj's picyure"></Image></div></div>
+  <div className="xl:hidden sm:pt-[5vw]">
+<div className="px-[20px] sm:px-[10vw]">   <div className=" overflow-hidden rounded-[4px]"> <Image unoptimized src={ProfilePicture.src} width={100} height={100} className="w-full rounded-[4px] scale-[1.1]" alt="Roj's picyure"></Image></div></div>
 <div className="flex items-center justify-center text-[12vw] text-center flex-col leading-[8.6vw] mt-[20px]">   <div>  <span className="font-PPn ">ROJ’ THE GOAT  <div> MOTION DESIGNER <span className="text-bl">✨ </span></div>ART DIRECTOR <span className="text-bl"></span></span>
 </div >
 
@@ -176,7 +176,7 @@ Lagos, Nigeria  {value.getUTCHours()+ 1}:{value.getUTCMinutes()} GMT+1
 <DeskTopDesignDisplay header="CAPABILITIES" Icon={SmilingFace.src}  text={textTwo}></DeskTopDesignDisplay>
 <DeskTopDesignDisplay header="BONUS" text={textThree} Icon={SunIcon.src}></DeskTopDesignDisplay>
 
-<Image width={100} unoptimized height={100} alt="Mic" className="w-full border border-black rounded-[4px] sm:w-[40%]" src={MicDrop.src}></Image>
+<Image width={100} unoptimized height={100} alt="Mic" className="w-full border border-black rounded-[4px] " src={MicDrop.src}></Image>
 </div>
 
   </div>
