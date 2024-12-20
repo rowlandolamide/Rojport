@@ -152,10 +152,10 @@ useEffect(()=>{
 <Image width={100} unoptimized height={100} alt="Mic" className="w-[550px] 2xl:w-[38vw] border border-black rounded-[4px]" src={MicDrop.src}></Image>
 </div>
 
-<div className=" flex flex-col  xl:text-[13.9vw] 2xl:leading-[7.5vw] 2xl:text-[11vw] absolute left-[41vw]  xl:leading-[10vw]  h-[90vh] top-0  justify-center">
-  <span className="font-PPn flex items-center"><Image alt="" width={100} height={100} className="rounded-[10px] h-full w-fit mt-2" src={ProfilePicture.src}></Image>ROJ’ THE GOAT</span>
+<div className=" flex flex-col  xl:text-[13.9vw] 2xl:leading-[7.5vw]  2xl:text-[11vw] absolute left-[41vw]  xl:leading-[10vw]  h-[90vh] top-0  justify-center">
+  <span className="font-PPn flex items-center "><Image alt="" width={100} height={100} className="rounded-[10px] h-[80%] w-fit mt-[2.4%] mr-[2%]" src={ProfilePicture.src}></Image><span className="">ROJ’ THE GOAT</span></span>
   <span className="font-PPn font-thin">MOTION DESIGNER</span>
-  <span className="font-PPn flex"><span className="text-bl">✨</span>ART DIRECTOR</span>
+  <span className="font-PPn flex"><span className="text-bl mr-[2%]">✨</span>ART DIRECTOR</span>
 </div>
   <div  className="w-[300px] h-[400px] bg-pink-500 absolute top-[30px] left-[100px]"></div>
   
@@ -176,7 +176,7 @@ Lagos, Nigeria  {value.getUTCHours()+ 1}:{value.getUTCMinutes()} GMT+1
 <DeskTopDesignDisplay header="CAPABILITIES" Icon={SmilingFace.src}  text={textTwo}></DeskTopDesignDisplay>
 <DeskTopDesignDisplay header="BONUS" text={textThree} Icon={SunIcon.src}></DeskTopDesignDisplay>
 
-<Image width={100} unoptimized height={100} alt="Mic" className="w-full border border-black rounded-[4px]" src={MicDrop.src}></Image>
+<Image width={100} unoptimized height={100} alt="Mic" className="w-full border border-black rounded-[4px] sm:w-[40%]" src={MicDrop.src}></Image>
 </div>
 
   </div>
