@@ -64,7 +64,6 @@ export default async function ProjectSlugRoute({ params }: Props) {
     notFound()
   } */
 
-    console.log(initial)
 
 
   return <ProjectWrapper>
