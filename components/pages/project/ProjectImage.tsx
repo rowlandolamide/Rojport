@@ -7,7 +7,7 @@ import { MainContextWrapperType, ContextMain } from '@/components/global/Context
 
 
 
-function ProjectImage(props: {img: string}) {
+function ProjectImage(props: {img: string, highRes?: string}) {
     const {overlay, handleOverlay} = useContext(ContextMain) as MainContextWrapperType
     return (
         <div  onClick={()=>{

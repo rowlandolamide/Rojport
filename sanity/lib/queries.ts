@@ -112,6 +112,7 @@ export const projectBySlugQuery = groq`
         _type,
         _key,
         description,
+        textBlockType
       },
       _type == 'singleVideo' => {
         _type,

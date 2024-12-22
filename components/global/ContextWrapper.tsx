@@ -4,7 +4,7 @@ import useMouse from "@react-hook/mouse-position"
 import { useRef } from 'react'
 import { useCallback } from "react";
 import React from 'react';
-
+import {motion, AnimatePresence} from 'framer-motion'
 import Overlay from "./Overlay";
 
 
@@ -67,9 +67,13 @@ function ContextWrapper({children}: {children: React.ReactNode}) {
 </div>
        <ContextMain.Provider value={{x:"Job", setVideoTitle: setVideoTitle, closeOverlay, lenisCurrent, setLenisCurrent: setLenis, mouseStates: {x: mouse.clientX || 0, y: mouse.clientY || 0}, overlay: overlay, handleOverlay: handleOverlay}}>
 
-{overlay.open &&     <div style={{zIndex: 99}} className="fixed z-30 w-full ">
+<AnimatePresence>
+    <motion.div style={{zIndex: 99}} className="fixed z-30 w-full "  transition={{duration: 0.5}} animate={{opacity: 1}} exit={{opacity: 0}} initial={{opacity: 0}} key={overlay.open.toString()}>
+    {overlay.open &&     <div style={{zIndex: 99}} >
    <Overlay closeOverlay={()=>{setOverlay(prev => {return {...prev, open: false}})}} setIsVideoFalse={()=>{setOverlay(prev =>{return {...prev, isVideo: false}})}} obj={overlay} ></Overlay>
  </div>}
+    </motion.div>
+</AnimatePresence>
        {children}
  
        </ContextMain.Provider>

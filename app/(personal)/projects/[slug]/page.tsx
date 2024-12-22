@@ -60,9 +60,7 @@ export default async function ProjectSlugRoute({ params }: Props) {
     return <ProjectPreview params={params} initial={initial} />
   }
 
-  /* if (!initial.data) {
-    notFound()
-  } */
+
 
 
 
@@ -84,6 +82,9 @@ export default async function ProjectSlugRoute({ params }: Props) {
     <ProjectDisplayVideo videoTitle={initial.data?.mainVideoTitle || ""} url={initial.data?.mainVideo || ""}></ProjectDisplayVideo>
       </div>
   
+
+      <div  className='py-[58px] 3xl:py-[5vw]  w-full flex items-center justify-center'> 
+      <div className='2xl:max-w-[31vw] 3xl:max-w-[28vw] max-w-[450px] mx-auto w-full'><ProjectText title={initial.data?.title || ""} overview body={initial.data?.overview}></ProjectText></div></div>
    
     {initial.data?.content && initial.data?.content?.map((item:any, i)=>{
       const isLastImageType =  ()=>{
@@ -98,7 +99,8 @@ export default async function ProjectSlugRoute({ params }: Props) {
      if(item._type === "textBlock"){
      
       return <div key={i} className='py-[58px] 3xl:py-[5vw]  w-full flex items-center justify-center'> 
-      <div className='2xl:max-w-[31vw] 3xl:max-w-[28vw] max-w-[450px] mx-auto w-full'><ProjectText key={i} body={item.description}></ProjectText></div></div>
+      <div className='2xl:max-w-[31vw] 3xl:max-w-[28vw] max-w-[450px] mx-auto w-full'><ProjectText  title={item.textBlockType
+ || ""}  key={i} body={item.description}></ProjectText></div></div>
      }
      else if(item._type.toLowerCase().includes("image")){
       /* Logic for two images */
@@ -109,16 +111,17 @@ export default async function ProjectSlugRoute({ params }: Props) {
 
 
      /* Logic for single images */
-     const singleImageUrl = urlForImage(item.photo)?.url()
+     const singleImageUrl = urlForImage(item.photo)?.width(800).url()
+     const singleImageUrlHighRes = urlForImage(item.photo)?.url()
      /* End */
 
      if(isSingleImage){
       
-      return <div key={i} className='py-[22px]'><ProjectImage  key={i} img={singleImageUrl || ""}></ProjectImage></div>
+      return <div key={i} className='py-[22px]'><ProjectImage highRes={singleImageUrlHighRes}  key={i} img={singleImageUrl || ""}></ProjectImage></div>
      }
      else{
       return <div  className={`grid grid-cols-1 xl:grid-cols-2 gap-x-[22px] xl:gap-y-0 gap-y-[22px] 3xl:gap-x-[1.7vw] ${isLastImageType() && "pb-[22px] 3xl:pb-[1.7vw]"}`} key={i}>
-      <ProjectImage img={firstImageUrl}></ProjectImage>
+      <ProjectImage  img={firstImageUrl}></ProjectImage>
       <ProjectImage img={secondImageUrl}></ProjectImage>
       </div>
      }
