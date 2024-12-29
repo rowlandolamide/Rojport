@@ -1,5 +1,5 @@
 import type { HomePagePayload, SettingsPayload } from '@/types'
-import Link from 'next/link'
+
 
 interface FooterProps {
   data: SettingsPayload
@@ -18,12 +18,12 @@ export default function Footer(props: FooterProps) {
   
 
   return (
-    <footer className="xl:fixed w-full bottom-0 xl:text-base 3xl:text-[0.65vw] 2xl:text-[0.7vw] text-[12px] grid grid-cols-1 md:grid-cols-3 items-center mt-12 gap-3 md:gap-x-5 px-4 md:px-5 py-2 md:py-5 lg:px-5">
+    <footer className="xl:fixed w-full bottom-0 xl:text-base TN  grid grid-cols-1 md:grid-cols-3 items-center mt-12 gap-3 md:gap-x-5 px-4 md:px-5 py-2 md:py-5 lg:px-5">
   <div className='xl:w-screen w-full flex justify-between   flex-col xl:flex-row'>
-  <div className='border rounded-[0.14vw] border-black xl:px-[0.6vw] py-[0.2vw] 3xl:leading-[0.55vw] xl:left-4 text-center'>
+  <div className='TN border rounded-[0.14vw] border-black xl:px-[0.6vw] py-[0.2vw] 3xl:leading-[0.55vw] xl:left-4 text-center'>
       ROJ THE GOAT © Copyright 2023
       </div>
-      <div className='px-2 py-1  xl:mr-[40px]  text-center '>
+      <div className='px-2 py-1  xl:mr-[40px]  text-center TN'>
    {FooterLinsk.map((ite, i)=>{
   return  ite.name != "Email" ?  <a target='_blank' className='ml-[10px] xl:ml-[0.7vw] 3xl:ml-[0.8vw]' key={i} href={ite.link}>{ite.name}</a> : <a target='_blank'  className='ml-[10px] xl:ml-[0.7vw] 3xl:ml-[0.8vw]' key={i} href={`mailto:${ite.link}`}>{ite.name}</a>
    })}

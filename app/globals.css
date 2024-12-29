@@ -112,3 +112,7 @@ html{
 *:after {
   @apply cursor-default;
 }
+
+.TN{
+  @apply xl:text-[0.7vw] sm:text-[10px] text-[12px];
+}

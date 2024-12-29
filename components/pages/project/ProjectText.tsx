@@ -14,7 +14,7 @@ function ProjectText(props: {body: any, title: string, overview ?: boolean}) {
                 <div className="text-[24px] 2xl:text-[1.6vw] capitalize">{props.title}</div>
                 <div className={`${props.overview ? "": "hidden"}`}><Image className="2xl:w-[1.6vw]" src={RookIcon.src} alt="Kinf"width={30} height={30}></Image></div>
             </div>
-            <PortableText value={props.body}></PortableText>
+           <div className="TN"> <PortableText  value={props.body}></PortableText></div>
         </div>
     );
 }

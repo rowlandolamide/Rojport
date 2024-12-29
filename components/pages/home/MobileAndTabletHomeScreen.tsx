@@ -24,7 +24,7 @@ function MobileAndTabletHomeScreen({data}: {data: HomePagePayload |null}) {
         <div className='w-full'>
               {/* Mobile View */}
     <div className="Js-lenis sm:hidden flex flex-col items-center justify-center w-full tab-display">
-    <div className='text-[10px] w-[90vw] mx-auto   leading-[14px] self-start mb-[20px] flex flex-col text-left'>
+    <div className='TN w-[90vw] mx-auto   leading-[14px] self-start mb-[20px] flex flex-col text-left'>
 
 <div>Motion Designer & Art Director</div> 
 <div>
