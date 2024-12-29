@@ -13,10 +13,7 @@ export interface ProjectPageProps {
   encodeDataAttribute?: EncodeDataAttributeCallback
 }
 
-export function ProjectPage({
-  data,
-  moreProjects,
-}: ProjectPageProps) {
+export function ProjectPage({ data, moreProjects }: ProjectPageProps) {
   // Default to an empty object to allow previews on non-existent documents
   const { year, overview, site, title, content, slug } = data ?? {}
 

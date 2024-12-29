@@ -21,5 +21,11 @@ export default function ProjectPreview(props: Props) {
     { initial },
   )
 
-  return <ProjectPage data={data!} moreProjects={data!} encodeDataAttribute={encodeDataAttribute} />
+  return (
+    <ProjectPage
+      data={data!}
+      moreProjects={data!}
+      encodeDataAttribute={encodeDataAttribute}
+    />
+  )
 }

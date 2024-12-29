@@ -38,7 +38,7 @@ function ReelVideo(props: { url: string }) {
 
   return (
     <div
-      className="overflow-hidden w-full overflow-hidden h-[47vw] sm:h-[20vw] xl:h-full xl:min-h-[198px] bg-[#FDFEC0] 3xl:p-[8px] p-[4px]  border border-black rounded-[5px] border border-black rounded-[4px] flex  relative items-center justify-center"
+      className="overflow-hidden w-full xl:w-full overflow-hidden h-[47vw] sm:w-[40vw] xsm:h-[28vw] lg:h-[26.3vw] xl:h-full xl:min-h-[198px] bg-[#FDFEC0] 3xl:p-[8px] p-[4px]  border border-black rounded-[5px] border border-black rounded-[4px] flex  relative items-center justify-center"
       onClick={() => {
         handleOverlay({
           ...overlay,
