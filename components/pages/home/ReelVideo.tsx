@@ -43,7 +43,7 @@ function ReelVideo(props: {
           }}>
             <button className='TN xl:w-[12.5vw] xl:h-[1.8vw] xl:p-0 px-4 sm:px-8 sm:py-2  flex items-center justify-center bg-bl text-white absolute z-20 rounded-[2px] group' >PLAY REEL {" "} 
                 <span className='group-hover:rotate-[180deg] flex items-center  justify-center ml-2 group-hover:scale-[1.5] duration-300 h-[10px]'>
-                    <Plus className='w-[10px] h-[10px] 2xl:w-[0.7vw] 2xl:h-[0.7vw] cursor-pointer' size={10}></Plus></span></button>
+                    <Plus className='PLUS 2xl:w-[0.7vw] 2xl:h-[0.7vw] cursor-pointer' size={10}></Plus></span></button>
             <ReactPlayer  muted={true} playing={true} height={"100%"} playsinline={true} width={"100%"} loop style={{zIndex: 0, position: "relative", height: "auto !important", aspectRatio: "16/9", borderRadius: 4, border: "1px black solid"}} url={url} onReady={beginningHandler} onStart={beginningHandler}ref={videoRef}></ReactPlayer>
             
         </div>

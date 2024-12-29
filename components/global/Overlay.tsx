@@ -65,7 +65,7 @@ function Overlay(props: {obj:  MainContextWrapperType["overlay"], setIsVideoFals
    {props.obj.isVideo ?         <div className='flex w-full items-center justify-center xl:p-[40px] p-[10px]  2xl:p-[4vw]'>
    <ProjectMainVideo title={props.obj.videoTitle}  url={props.obj.item}></ProjectMainVideo></div>:
 
-<div className='w-full md:p-[20px]'>
+<div className='w-full md:p-[20px] z-40'>
 <Image ref={ref} unoptimized alt='something' width={100} height={100} className='w-full' src={obj.item}></Image> 
 </div>  }         
         </div> 

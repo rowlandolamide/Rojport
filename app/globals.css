@@ -116,3 +116,7 @@ html{
 .TN{
   @apply xl:text-[0.7vw] sm:text-[10px] text-[12px];
 }
+
+.PLUS{
+  @apply w-[14px] h-[14px]
+}
