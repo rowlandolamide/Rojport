@@ -126,10 +126,6 @@ export default function IndexRoute() {
 
   useEffect(() => {
     if (lenisCurrent && containerRef) {
-      if (isLaptop) {
-        lenisCurrent.scrollTo(0)
-      }
-
       lenisCurrent.resize()
     }
   }, [lenisCurrent, containerRef, isLaptop])
