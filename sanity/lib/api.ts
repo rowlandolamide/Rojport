@@ -4,7 +4,7 @@
  */
 
 export const dataset = assertValue(
- process.env.NEXT_PUBLIC_SANITY_DATASET,
+  process.env.NEXT_PUBLIC_SANITY_DATASET,
   'Missing environment variable: NEXT_PUBLIC_SANITY_DATASET',
 )
 
@@ -15,7 +15,7 @@ export const projectId = assertValue(
 
 // see https://www.sanity.io/docs/api-versioning for how versioning works
 export const apiVersion =
-  process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2022-02-03"
+  process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2022-02-03'
 
 // See the app/api/revalidate/route.ts for how this is used
 export const revalidateSecret = process.env.SANITY_REVALIDATE_SECRET

@@ -42,6 +42,7 @@ module.exports = {
     fontFamily: {
       PP: ' PPmondest, sans',
       PPn: ' PPneue, sans',
+      PPnM: 'PPneueM, sans',
       Ingram: 'Ingram, sans',
       sans: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
     },

@@ -1,19 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react'
 
-const useCurrentTime = ()=>{
-    const [value, setValue] = useState(new Date());
+const useCurrentTime = () => {
+  const [value, setValue] = useState(new Date())
 
-useEffect(() => {
-  const interval = setInterval(() => setValue(new Date()), 1000);
+  useEffect(() => {
+    const interval = setInterval(() => setValue(new Date()), 1000)
 
-  return () => {
-    clearInterval(interval);
-  };
-}, []);
+    return () => {
+      clearInterval(interval)
+    }
+  }, [])
 
-return value
-
+  return value
 }
 
+export const Time = () => {
+  const value = useCurrentTime()
+  return (
+    <span>
+      {value.getUTCHours() + 1}:{value.getUTCMinutes()}
+    </span>
+  )
+}
 
 export default useCurrentTime

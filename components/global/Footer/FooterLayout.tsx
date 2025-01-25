@@ -1,4 +1,6 @@
+'use client'
 import type { HomePagePayload, SettingsPayload } from '@/types'
+import { Time } from '@/components/hooks/useCurrentTime'
 
 interface FooterProps {
   data: SettingsPayload
@@ -15,33 +17,46 @@ export const FooterLinsk = [
 
 export default function Footer(props: FooterProps) {
   return (
-    <footer className="xl:fixed w-full bottom-0 xl:text-base TN  grid grid-cols-1 md:grid-cols-3 items-center mt-12 gap-3 md:gap-x-5 px-4 md:px-5 py-2 md:py-5 lg:px-5">
-      <div className="xl:w-screen w-full flex justify-between   flex-col xl:flex-row">
-        <div className="TN border rounded-[0.14vw] border-black xl:px-[0.6vw] py-[0.2vw] 3xl:leading-[0.55vw] xl:left-4 text-center">
-          ROJ THE GOAT © Copyright 2023
-        </div>
-        <div className="px-2 py-1  xl:mr-[40px]  text-center TN">
-          {FooterLinsk.map((ite, i) => {
-            return ite.name != 'Email' ? (
-              <a
-                target="_blank"
-                className="ml-[10px] xl:ml-[0.7vw] 3xl:ml-[0.8vw]"
-                key={i}
-                href={ite.link}
-              >
-                {ite.name}
-              </a>
-            ) : (
-              <a
-                target="_blank"
-                className="ml-[10px] xl:ml-[0.7vw] 3xl:ml-[0.8vw]"
-                key={i}
-                href={`mailto:${ite.link}`}
-              >
-                {ite.name}
-              </a>
-            )
-          })}
+    <footer className="xl:fixed w-full  bottom-0 xl:text-base  items-center mt-12 py-2 md:py-5 ">
+      <div className="w-full relative GEN-PAD">
+        <div className=" w-full flex justify-between   flex-col xl:flex-row">
+          <div className="MONO-LO">2025 © ROJ THE GOAT</div>
+          <div className="MONO-LO">
+            <span>LAGOS, NIGERIA |</span> <Time></Time> WAT
+          </div>
+          <div className="MONO-LO">
+            LET’S MAKE SOMETHING COOL -{' '}
+            <a
+              href={`mailto:${process.env.NEXT_PUBLIC_ROJ_EMAIL || '/'}`}
+              target="_blank"
+            >
+              OLAMIDE@ROJTHEGOAT.COM
+            </a>
+          </div>
+
+          <div className=" space-x-[10px] 2xl:space-x-[0.46vw]">
+            {FooterLinsk.map((ite, i) => {
+              return ite.name != 'Email' ? (
+                <a
+                  href={`mailto:${ite.link}`}
+                  target="_blank"
+                  className="MONO-LO"
+                  key={i}
+                >
+                  {ite.name}
+                </a>
+              ) : (
+                <a
+                  target="_blank"
+                  className="MONO-LO"
+                  key={i}
+                  href={`mailto:${ite.link}`}
+                >
+                  {ite.name}
+                </a>
+              )
+            })}
+          </div>
         </div>
       </div>
     </footer>

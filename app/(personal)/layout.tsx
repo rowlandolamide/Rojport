@@ -6,7 +6,6 @@ import dynamic from 'next/dynamic'
 import { draftMode } from 'next/headers'
 import { toPlainText } from 'next-sanity'
 
-
 import { Footer } from '@/components/global/Footer'
 import { Navbar } from '@/components/global/Navbar'
 import { urlForImage, urlForOpenGraphImage } from '@/sanity/lib/utils'
@@ -67,16 +66,16 @@ export default async function IndexRoute({
 }: {
   children: React.ReactNode
 }) {
-  return (        <>
-    <div className="flex min-h-screen flex-col text-black ">
-    <Navbar />
-      <div className="mt-16 flex-grow  md:px-5 lg:px-5">
-      <PageTransitionEffect>{children}</PageTransitionEffect>
+  return (
+    <>
+      <div className="flex min-h-screen flex-col text-black ">
+        <Navbar />
+        <div className="mt-16 flex-grow GEN-PAD ">
+          <PageTransitionEffect>{children}</PageTransitionEffect>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
-    {draftMode().isEnabled && <LiveVisualEditing />}
-  </>
- 
+      {draftMode().isEnabled && <LiveVisualEditing />}
+    </>
   )
 }

@@ -34,7 +34,7 @@ export interface ShowcaseProject {
   tags?: string[]
   title?: string
   year?: string
-  disci ?: string[]
+  disci?: string[]
   _updatedAt?: string
 }
 
@@ -59,10 +59,11 @@ export interface ProjectPayload {
     url: string
   }
   slug: string
+  disci: string[]
   tags?: string[]
   title?: string
-  mainVideo?:string
-  mainVideoTitle ?: string;
+  mainVideo?: string
+  mainVideoTitle?: string
   content?: Content[]
 }
 
@@ -74,6 +75,7 @@ export interface Content {
   photoTwo: object[]
   textBlock: object[]
   videoLink: object[]
+  process: object
 }
 
 export interface SettingsPayload {

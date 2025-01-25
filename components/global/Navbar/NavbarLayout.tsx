@@ -22,9 +22,9 @@ export default function Navbar(props: NavbarProps) {
 
   return (
     <div
-      className={`${isStudio ? 'hidden' : 'flex '} text-black z-50 fixed w-screen xl:w-full flex-wrap justify-between items-center gap-x-5 px-[5vw]   py-4 md:px-5 md:py-4 lg:px-5`}
+      className={`${isStudio ? 'hidden' : 'flex '} text-black z-50 fixed w-screen xl:w-full flex-wrap justify-between items-center gap-x-5 GEN-PAD    py-4  md:py-4`}
     >
-      <div className="flex justify-between sm:px-2 xl:px-4 w-full items-center">
+      <div className="flex justify-between w-full items-center ">
         <Link
           href={'/'}
           scroll={false}
@@ -32,14 +32,11 @@ export default function Navbar(props: NavbarProps) {
         >
           ROJ THE GOAT
         </Link>
-        <span className=" md:block  hidden TN ">
-          Motion Designer & Art Director
-          <div>
-            Lagos, Nigeria: {value.getUTCHours() + 1}:{value.getUTCMinutes()}{' '}
-            WAT
-          </div>
-        </span>
-        <div className="flex gap-x-4 xl:gap-x-8 items-center  text-[14px] md:text-[1.7vw] 3xl:text-[1.4vw]">
+        <div className="  CENTER-FLX-LO ">
+          <div className="MONO-LO">Motion Designer</div>
+          <div className="MONO-LO">Art Director</div>
+        </div>
+        <div className="CENTER-FLX-LO">
           {[
             { name: 'Work', link: '/' },
             { name: 'Info', link: '/about' },
@@ -47,7 +44,7 @@ export default function Navbar(props: NavbarProps) {
             return (
               <Link
                 className={cn(
-                  'hover:text-bl duration-300',
+                  'MONO-LO hover:text-bl duration-300',
                   pathname === ite.link ? 'text-bl' : '',
                 )}
                 scroll={false}

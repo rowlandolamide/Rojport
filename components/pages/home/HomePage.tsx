@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 
+import RedesignProjectContainer from './RedesignProjectContainer'
 import MobileAndTabletHomeScreen from './MobileAndTabletHomeScreen'
 import HomePageHorizontal from './HomePageHorizontal'
 
@@ -8,10 +9,10 @@ import type { HomePagePayload } from '@/types'
 
 function HomePage(props: { data: HomePagePayload | null }) {
   return (
-    <div>
-      <div className="hidden xl:block w-full">
+    <div className="2xl:pb-[6.6vw] pb-[143px]">
+      <div className="hidden xl:block w-full  ">
         {' '}
-        <HomePageHorizontal data={props.data}></HomePageHorizontal>
+        <RedesignProjectContainer data={props.data}></RedesignProjectContainer>
       </div>
       <MobileAndTabletHomeScreen data={props.data}></MobileAndTabletHomeScreen>
     </div>

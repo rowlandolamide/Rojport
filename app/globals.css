@@ -22,50 +22,55 @@
 
 @font-face {
   font-family: Ingram;
-  src: url("public/Fonts/ingram-mono-regular.ttf");
+  src: url('public/Fonts/ingram-mono-regular.ttf');
 }
 
-.removeHigh{
+@font-face {
+  font-family: PPneueM;
+  src: url('public/Fonts/pp-neue-montreal-cufonfonts-webfont/ppneuemontreal-book.woff');
+}
+
+.removeHigh {
   -webkit-touch-callout: none;
--webkit-user-select: none;
--khtml-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
-user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-body, div
-{
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: -moz-none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
+body,
+div {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
 
-input, textarea, .userselecton
-{
-    -webkit-touch-callout: text;
-    -webkit-user-select: text;
-    -khtml-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
-    -o-user-select: text;
-    user-select: text;
+input,
+textarea,
+.userselecton {
+  -webkit-touch-callout: text;
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  -o-user-select: text;
+  user-select: text;
 }
 
-img, link {
+img,
+link {
   pointer-events: none;
 }
 
-
-html.lenis, html.lenis body {
+html.lenis,
+html.lenis body {
   height: auto;
 }
-
-
 
 /* JS lenis */
 .lenis.lenis-smooth {
@@ -84,39 +89,111 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 
-
-a, button, link, section {
+a,
+button,
+link,
+section {
   @apply cursor-pointer;
 }
 
-.grabb{
-  @apply cursor-grab
-
-  
+.grabb {
+  @apply cursor-grab;
 }
 
-.pointerr{
-  @apply cursor-pointer
+.pointerr {
+  @apply cursor-pointer;
 }
 
-.sb{
-  will-change: transform
+.sb {
+  will-change: transform;
 }
 
-html{
-  cursor: url("/public/Icons/Grab Mouse.svg"), grab;
+html {
+  cursor: url('/public/Icons/Grab Mouse.svg'), grab;
 }
 
- *,
+*,
 *:before,
 *:after {
   @apply cursor-default;
 }
 
-.TN{
-  @apply xl:text-[0.7vw] sm:text-[10px] text-[12px];
+.PLUS {
+  @apply w-[14px] h-[14px];
 }
 
-.PLUS{
-  @apply w-[14px] h-[14px]
+/* Texts Styling */
+.MONO-LO {
+  @apply text-[15px] lg:text-[0.7rem] font-Ingram uppercase text-[1rem] leading-[14px] sm:leading-[16px]  xl:leading-[0.83rem] border border-black rounded-[5px] 3xl:rounded-[0.2rem] 3xl:border-[0.046rem] py-[10px] px-[15px] xl:py-[0.46rem] xl:px-[0.7rem];
 }
+
+.HOME-TXT-TITLE {
+  @apply font-PP text-[36px] 2xl:text-[1.67vw];
+}
+
+.BORDER-LO {
+  @apply border border-black uppercase rounded-[5px] 3xl:rounded-[0.2rem] 3xl:border-[0.046rem] py-[10px] px-[15px] xl:py-[0.46rem] xl:px-[0.7rem];
+}
+
+.MN-TEXT-PRJ {
+  @apply uppercase font-Ingram lg:text-[3rem] lg:leading-[3rem] text-[32px] leading-[32px];
+}
+
+.PASSAGE-TEXT-PRJ {
+  @apply font-light font-PPnM lg:text-[0.93rem] lg:leading-[1.5rem] text-[16px] leading-[25.6px] w-[30.2vw];
+}
+
+.DISCI-TEXT-PRJ {
+  @apply font-light font-PPnM lg:text-[0.93rem] lg:leading-[1.85rem] text-[16px] leading-[40px];
+}
+
+/* End */
+
+/* Images Styling */
+
+.HOME-PRJ-ROUNDED {
+  @apply rounded-[18px] 2xl:rounded-[0.833rem];
+}
+.ROUNDED-PRJ {
+  @apply rounded-[0.501rem] sm:rounded-[1.02rem];
+}
+
+.TWO-IMGS-PRJ {
+  @apply grid grid-cols-1 lg:grid-cols-2 lg:gap-x-[0.46rem] gap-x-0 gap-y-[10px] lg:gap-y-0 lg:pb-[0.46rem] pb-[10px];
+}
+
+.IMG-PRJ {
+  @apply grid grid-cols-1 pb-[10px] gap-y-[10px] lg:pb-[0.46rem] lg:gap-y-0;
+}
+/* End */
+
+/* Container Sytlings */
+
+.HOME-CNT-PRJ {
+  @apply flex flex-col gap-y-[16px] 2xl:gap-y-[0.74rem];
+}
+
+.HOME-CNT-TEXT-PRJ {
+  @apply flex gap-x-[20px] items-center;
+}
+
+.TEXT-CNT-PRJ {
+  @apply flex gap-y-[25px] flex-col lg:flex-row lg:gap-x-[6.9rem];
+}
+
+.CENTER-FLX-LO {
+  @apply md:flex hidden items-center 3xl:gap-x-[0.46rem] gap-x-[10px];
+}
+
+.UPPER-TEXT-CNT-PRJ {
+  @apply lg:px-[13.8vw] lg:py-[10.64vw] w-full flex items-center justify-center;
+}
+
+/* End */
+
+/* Padding */
+.GEN-PAD {
+  @apply px-[25px] 2xl:px-[1.157rem];
+}
+
+/* End */

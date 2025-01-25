@@ -28,7 +28,7 @@ function ProjectImage(props: { img: string; highRes?: string }) {
         src={props.img}
         width={100}
         height={100}
-        className="w-screen h-full  rounded-[4px] border border-black"
+        className="w-screen h-full  ROUNDED-PRJ border "
         alt={'projectImage'}
       ></Image>
     </div>

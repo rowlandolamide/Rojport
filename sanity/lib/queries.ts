@@ -127,6 +127,10 @@ export const projectBySlugQuery = groq`
         videoTwoLink,
         caption,
       },
+      _type == "process" => {
+      _type,
+      ...
+      }
     },
   }
 `

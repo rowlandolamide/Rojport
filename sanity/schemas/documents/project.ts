@@ -19,7 +19,8 @@ export default defineType({
     }),
     defineField({
       name: 'slug',
-      description: 'This field is the project page name at yourwebsite.com/projects/<name>.',
+      description:
+        'This field is the project page name at yourwebsite.com/projects/<name>.',
       title: 'Slug',
       type: 'slug',
       options: {
@@ -41,17 +42,16 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "mainVideoTitle",
-      title: "Main Video Title",
-      description: "This is the title of the main video for the project",
-      type: "string",
-      validation: (rule) => rule.required()
+      name: 'mainVideoTitle',
+      title: 'Main Video Title',
+      description: 'This is the title of the main video for the project',
+      type: 'string',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'mainVideo',
       title: 'Main Video',
-      description:
-        'This image will be used as the main video for the project.',
+      description: 'This image will be used as the main video for the project.',
       type: 'string',
       validation: (rule) => rule.required(),
     }),
@@ -64,25 +64,24 @@ export default defineType({
       type: 'array',
       of: [
         // Paragraphs
-       {type: "block"}
+        { type: 'block' },
       ],
       validation: (rule) => rule.max(155).required(),
     }),
     defineField({
       name: 'disci',
-      description:
-        'Discipline of projects',
+      description: 'Discipline of projects',
       title: 'Discipline',
       type: 'array',
       of: [
         // Paragraphs
-       {type: "string"}
+        { type: 'string' },
       ],
       validation: (rule) => rule.max(155).required(),
     }),
     defineField({
       name: 'year',
-      description: 
+      description:
         '(Optional) This freeform field is for year or type of your project. It will be displayed next to title in the projects list within the homepage and below title at project page.',
       title: 'Year',
       type: 'string',
@@ -90,7 +89,8 @@ export default defineType({
     defineField({
       name: 'live',
       title: 'Website link',
-      description: '(Optional) External link related to your project, it is displayed below your project overview text.',
+      description:
+        '(Optional) External link related to your project, it is displayed below your project overview text.',
       type: 'object',
       options: {
         columns: 2,
@@ -108,11 +108,12 @@ export default defineType({
         },
       ],
     }),
-   
+
     // Content blocks
     defineField({
       title: 'Content builder',
-      description: 'This is a content builder for your project page, choose content type and add your content. You can rearrange your blocks later.',
+      description:
+        'This is a content builder for your project page, choose content type and add your content. You can rearrange your blocks later.',
       name: 'content',
       type: 'array',
       of: [
@@ -128,7 +129,7 @@ export default defineType({
               name: 'photo',
               type: 'image',
               options: {
-                hotspot: true
+                hotspot: true,
               },
             },
             {
@@ -140,12 +141,12 @@ export default defineType({
           ],
           preview: {
             select: {
-              photo: 'photo'
+              photo: 'photo',
             },
             prepare({ photo }) {
               return {
                 title: 'Single image',
-                media: photo
+                media: photo,
               }
             },
           },
@@ -162,7 +163,7 @@ export default defineType({
               name: 'photoOne',
               type: 'image',
               options: {
-                hotspot: true
+                hotspot: true,
               },
             },
             {
@@ -170,7 +171,7 @@ export default defineType({
               name: 'photoTwo',
               type: 'image',
               options: {
-                hotspot: true
+                hotspot: true,
               },
             },
             {
@@ -182,17 +183,17 @@ export default defineType({
           ],
           preview: {
             select: {
-              photo: 'photoOne'
+              photo: 'photoOne',
             },
             prepare({ photo }) {
               return {
                 title: 'Two images',
-                media: photo
+                media: photo,
               }
             },
           },
         }),
-        // Text block 
+        // Text block
         defineArrayMember({
           title: 'Text Block',
           name: 'textBlock',
@@ -204,17 +205,25 @@ export default defineType({
               name: 'description',
               title: 'Text Block',
               type: 'array',
-              of: [
-                { type: "block" }
-              ],
+              of: [{ type: 'block' }],
             },
-            {name: "textBlockType",  validation: rule => rule.required(),  title: "Type of Text Block", type: "string", initialValue: "Process", options: {
-              list: [{title: "Process", value: "process"}, {title: "Credit", value: "credit"}]
-            } }
+            {
+              name: 'textBlockType',
+              validation: (rule) => rule.required(),
+              title: 'Type of Text Block',
+              type: 'string',
+              initialValue: 'Process',
+              options: {
+                list: [
+                  { title: 'Process', value: 'process' },
+                  { title: 'Credit', value: 'credit' },
+                ],
+              },
+            },
           ],
           preview: {
             select: {
-              content: 'description'
+              content: 'description',
             },
             prepare({ content }) {
               return {
@@ -224,6 +233,117 @@ export default defineType({
             },
           },
         }),
+
+        //Process
+        defineArrayMember({
+          title: 'Process',
+          name: 'process',
+          type: 'object',
+          fields: [
+            /* Images */
+            defineField({
+              title: 'Process Single Image',
+              name: 'processSingleImage',
+              type: 'array',
+              icon: ImageIcon,
+              of: [
+                defineArrayMember({
+                  title: 'Photo',
+                  name: 'processPhoto',
+                  type: 'image',
+                  options: {
+                    hotspot: true,
+                  },
+                }),
+              ],
+            }),
+            // Two images block
+            defineField({
+              title: 'Two Images',
+              name: 'twoImages',
+              type: 'array',
+              icon: ImageIcon,
+              of: [
+                defineArrayMember({
+                  title: 'Process Two Image',
+                  name: 'processTwoImage',
+                  type: 'object',
+                  fields: [
+                    {
+                      title: 'Left photo',
+                      name: 'processPhotoOne',
+                      type: 'image',
+                      options: {
+                        hotspot: true,
+                      },
+                    },
+                    {
+                      title: 'Right photo',
+                      name: 'processPhotoTwo',
+                      type: 'image',
+                      options: {
+                        hotspot: true,
+                      },
+                    },
+                  ],
+                  preview: {
+                    select: {
+                      link: 'videoLink',
+                    },
+                    prepare({ link }) {
+                      return {
+                        title: 'Process Two Image',
+                      }
+                    },
+                  },
+                }),
+              ],
+            }),
+            /* End */
+
+            /* Video */
+            defineField({
+              title: 'Single Video (Youtube/Video link)',
+              name: 'singleVideo',
+              type: 'object',
+              icon: PlayIcon,
+              fields: [
+                {
+                  title: 'Youtube or Vimeo link',
+                  name: 'videoLink',
+                  type: 'url',
+                },
+                {
+                  title: 'Caption',
+                  name: 'caption',
+                  type: 'string',
+                  description: '(Optional) Caption below the video',
+                },
+              ],
+              preview: {
+                select: {
+                  link: 'videoLink',
+                },
+                prepare({ link }) {
+                  return {
+                    title: 'Single video',
+                    subtitle: link,
+                  }
+                },
+              },
+            }),
+
+            /* End */
+          ],
+          preview: {
+            prepare() {
+              return {
+                title: 'Process',
+              }
+            },
+          },
+        }),
+
         // Single video
         defineArrayMember({
           title: 'Single Video (Youtube/Video link)',
@@ -245,12 +365,12 @@ export default defineType({
           ],
           preview: {
             select: {
-              link: 'videoLink'
+              link: 'videoLink',
             },
             prepare({ link }) {
               return {
                 title: 'Single video',
-                subtitle: link
+                subtitle: link,
               }
             },
           },
@@ -282,16 +402,16 @@ export default defineType({
           preview: {
             select: {
               linkOne: 'videoOneLink',
-              linkTwo: 'videoTwoLink'
+              linkTwo: 'videoTwoLink',
             },
             prepare({ linkOne, linkTwo }) {
               return {
                 title: 'Two videos',
-                subtitle: linkOne + ` + ` + linkTwo
+                subtitle: linkOne + ` + ` + linkTwo,
               }
             },
           },
-        }), 
+        }),
       ],
     }),
   ],
