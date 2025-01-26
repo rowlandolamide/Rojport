@@ -22,7 +22,7 @@ function RedesignProjectCard(props: {
             alt={title}
           ></Image>
           <div className="HOME-CNT-TEXT-PRJ">
-            <span className="HOME-TXT-TITLE"> {title}</span>{' '}
+            <span className="HOME-TXT-TITLE "> {title}</span>{' '}
             <span className="MONO-LO text-[15px] 2xl:text-[0.7rem]">
               {discipline}
             </span>

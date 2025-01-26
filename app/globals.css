@@ -128,7 +128,7 @@ html {
 }
 
 .HOME-TXT-TITLE {
-  @apply font-PP text-[36px] 2xl:text-[1.67vw];
+  @apply font-PP text-[36px] 2xl:text-[1.67vw] leading-[100%];
 }
 
 .BORDER-LO {
@@ -159,11 +159,11 @@ html {
 }
 
 .TWO-IMGS-PRJ {
-  @apply grid grid-cols-1 lg:grid-cols-2 lg:gap-x-[0.46rem] gap-x-0 gap-y-[10px] lg:gap-y-0 lg:pb-[0.46rem] pb-[10px];
+  @apply grid grid-cols-1 lg:grid-cols-2 lg:gap-x-[0.46rem] gap-x-0 gap-y-[10px] lg:gap-y-0;
 }
 
 .IMG-PRJ {
-  @apply grid grid-cols-1 pb-[10px] gap-y-[10px] lg:pb-[0.46rem] lg:gap-y-0;
+  @apply grid grid-cols-1;
 }
 /* End */
 
@@ -174,7 +174,7 @@ html {
 }
 
 .HOME-CNT-TEXT-PRJ {
-  @apply flex gap-x-[20px] items-center;
+  @apply flex gap-x-[20px] items-center 2xl:gap-x-[0.92rem];
 }
 
 .TEXT-CNT-PRJ {

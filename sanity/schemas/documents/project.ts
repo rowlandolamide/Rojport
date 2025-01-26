@@ -254,6 +254,7 @@ export default defineType({
                   options: {
                     hotspot: true,
                   },
+                  validation: (rule) => rule.required()
                 }),
               ],
             }),
@@ -276,6 +277,7 @@ export default defineType({
                       options: {
                         hotspot: true,
                       },
+                      validation: (rule) => rule.required()
                     },
                     {
                       title: 'Right photo',
@@ -284,6 +286,7 @@ export default defineType({
                       options: {
                         hotspot: true,
                       },
+                      validation: (rule) => rule.required()
                     },
                   ],
                   preview: {
