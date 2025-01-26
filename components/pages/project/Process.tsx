@@ -15,7 +15,7 @@ function Process(props: {
     processVideoSrc,
     projectTitle,
   } = props
-  console.log(processSingleImageSrc)
+
   return (
     <div className="flex flex-col gap-y-[10px] lg:gap-y-[0.46rem]">
       {processVideoSrc && (

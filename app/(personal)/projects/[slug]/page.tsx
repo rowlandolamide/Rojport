@@ -156,7 +156,6 @@ export default async function ProjectSlugRoute({ params }: Props) {
                 const videoUrl = item.singleVideo.videoLink
                 const processSingleImageUrls = item.processSingleImage[0]
                   ? item.processSingleImage.map((img) => {
-                      console.log(img)
                       return urlForImage(img)?.url()
                     })
                   : []
