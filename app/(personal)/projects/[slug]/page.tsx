@@ -154,13 +154,13 @@ export default async function ProjectSlugRoute({ params }: Props) {
                 }
               } else if (item._type === 'process') {
                 const videoUrl = item.singleVideo.videoLink
-                const processSingleImageUrls = item.processSingleImage[0]
+                const processSingleImageUrls = item.processSingleImage
                   ? item.processSingleImage.map((img) => {
                       return urlForImage(img)?.url()
                     })
                   : []
 
-                const processTwoImageUrls = item.twoImages[0]
+                const processTwoImageUrls = item.twoImages
                   ? item.twoImages.map((img) => {
                       const { processPhotoOne, processPhotoTwo } = img
                       return {
