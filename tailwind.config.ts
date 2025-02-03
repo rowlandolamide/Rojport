@@ -22,6 +22,7 @@ module.exports = {
   theme: {
     ...theme,
     screens: {
+      xxsm: '360px',
       xsm: '560px',
       sm: '640px',
       // => @media (min-width: 640px) { ... }

@@ -20,6 +20,7 @@ function Process(props: {
     <div className="flex flex-col gap-y-[10px] lg:gap-y-[0.46rem]">
       {processVideoSrc && (
         <ProjectDisplayVideo
+        
           videoTitle={`process - ${projectTitle}`}
           url={processVideoSrc}
         ></ProjectDisplayVideo>

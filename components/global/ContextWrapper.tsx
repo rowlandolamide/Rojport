@@ -7,6 +7,11 @@ import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Overlay from './Overlay'
 
+const CustomMouse = dynamic(() => import('./CustomMouse'))
+import { useMemo } from 'react'
+import { loadHomePage } from '@/sanity/loader/loadQuery'
+import dynamic from 'next/dynamic'
+
 export interface MainContextWrapperType {
   x: string
   overlay: {
@@ -20,12 +25,17 @@ export interface MainContextWrapperType {
     obj: MainContextWrapperType['overlay'],
     isVideo?: boolean,
   ) => void
+  handleMouseStateChange: (text: string | null, displayState: number) => void
   closeOverlay: () => void
   setVideoTitle: (videoTitle: string) => void
 
   mouseStates: {
     x: number
     y: number
+    displayStatesObj: {
+      text: string | null
+      displayState: number
+    }
   }
 
   lenisCurrent: any
@@ -45,12 +55,23 @@ function ContextWrapper({ children }: { children: React.ReactNode }) {
     item: '',
     videoTitle: '',
   })
+
+  const handleMouseStateChange = (
+    text: string | null,
+    displayState: number,
+  ) => {
+    setDisplayStatesObj({ text, displayState })
+  }
   const handleOverlay = useCallback(
     (obj: MainContextWrapperType['overlay']) => {
       setOverlay(obj)
     },
     [],
   )
+  const [displayStatesObj, setDisplayStatesObj] = useState<{
+    text: string | null
+    displayState: number
+  }>({ text: null, displayState: 0 })
 
   const setVideoTitle = useCallback((videoTitle: string) => {
     setOverlay((prev) => ({ ...prev, videoTitle }))
@@ -70,14 +91,22 @@ function ContextWrapper({ children }: { children: React.ReactNode }) {
         value={{
           x: 'Job',
           setVideoTitle: setVideoTitle,
+          handleMouseStateChange,
           closeOverlay,
           lenisCurrent,
           setLenisCurrent: setLenis,
-          mouseStates: { x: mouse.clientX || 0, y: mouse.clientY || 0 },
+          mouseStates: {
+            x: mouse.clientX || 0,
+            y: mouse.clientY || 0,
+            displayStatesObj,
+          },
           overlay: overlay,
           handleOverlay: handleOverlay,
         }}
       >
+        <div className="relative" style={{ zIndex: 999 }}>
+          <CustomMouse x={mouse.pageX || 0} y={mouse.pageY || 0}></CustomMouse>
+        </div>
         <AnimatePresence>
           <motion.div
             style={{ zIndex: 99 }}

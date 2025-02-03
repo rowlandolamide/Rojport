@@ -60,8 +60,8 @@ export default function LenisHorizontalWrapperAlt(props: {
     } else if (isProjects) {
       return false
     } else if (isAbout) {
-      return isLaptop
-    } else return true
+      return false
+    } else return false
   }
   /* End */
 

@@ -80,7 +80,15 @@ export default defineType({
       validation: (rule) => rule.max(155).required(),
     }),
     defineField({
+      name: 'tag',
+      description: 'Tag of projects',
+      title: 'Tag',
+      type: 'string',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'year',
+      validation: (rule) => rule.required(),
       description:
         '(Optional) This freeform field is for year or type of your project. It will be displayed next to title in the projects list within the homepage and below title at project page.',
       title: 'Year',
@@ -254,7 +262,7 @@ export default defineType({
                   options: {
                     hotspot: true,
                   },
-                  validation: (rule) => rule.required()
+                  validation: (rule) => rule.required(),
                 }),
               ],
             }),
@@ -266,7 +274,7 @@ export default defineType({
               icon: ImageIcon,
               of: [
                 defineArrayMember({
-                  title: 'Process Two Image',
+                  title: 'Process Double Image',
                   name: 'processTwoImage',
                   type: 'object',
                   fields: [
@@ -277,7 +285,7 @@ export default defineType({
                       options: {
                         hotspot: true,
                       },
-                      validation: (rule) => rule.required()
+                      validation: (rule) => rule.required(),
                     },
                     {
                       title: 'Right photo',
@@ -286,7 +294,7 @@ export default defineType({
                       options: {
                         hotspot: true,
                       },
-                      validation: (rule) => rule.required()
+                      validation: (rule) => rule.required(),
                     },
                   ],
                   preview: {

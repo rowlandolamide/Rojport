@@ -32,9 +32,7 @@ export default async function RootLayout({
       className="font-Ingram"
       // Assign custom color css variables for Tailwind to use as Tailwind variables
     >
-      <body className="text-black relative  ">
-        <Navbar></Navbar>
-
+      <body className="text-black relative  bg-white">
         <ContextWrapper>
           {<LenisHorizontalWrapper>{children}</LenisHorizontalWrapper>}
         </ContextWrapper>

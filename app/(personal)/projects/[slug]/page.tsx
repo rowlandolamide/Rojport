@@ -10,14 +10,16 @@ import ProjectImage from '@/components/pages/project/ProjectImage'
 import { urlForOpenGraphImage } from '@/sanity/lib/utils'
 import { generateStaticSlugs } from '@/sanity/loader/generateStaticSlugs'
 import { urlForImage } from '@/sanity/lib/utils'
-import { loadProject } from '@/sanity/loader/loadQuery'
+import { loadProject, loadMoreProjects } from '@/sanity/loader/loadQuery'
 const ProjectPreview = dynamic(
   () => import('@/components/pages/project/ProjectPreview'),
 )
+import NextProject from '@/components/pages/project/NextProject'
 
 import Process from '@/components/pages/project/Process'
 
 import ProjectDisplayVideo from '@/components/pages/project/ProjectDisplayVideo'
+import { cn } from '@/lib/utils'
 
 const ProjectWrapper = dynamic(
   () => import('@/components/pages/project/ProjectWrapper'),
@@ -54,6 +56,9 @@ export function generateStaticParams() {
 
 export default async function ProjectSlugRoute({ params }: Props) {
   const initial = await loadProject(params.slug.trim())
+
+  const drop: any = await loadMoreProjects()
+  console.log('drop', drop.data.showcaseProjects)
 
   if (draftMode().isEnabled) {
     return <ProjectPreview params={params} initial={initial} />
@@ -125,13 +130,19 @@ export default async function ProjectSlugRoute({ params }: Props) {
               } else if (item._type.toLowerCase().includes('image')) {
                 /* Logic for two images */
                 const isSingleImage = !item.photoOne
-                const firstImageUrl: any = urlForImage(item.photoOne)?.url()
-                const secondImageUrl: any = urlForImage(item.photoTwo)?.url()
+                const firstImageUrl: any = urlForImage(item.photoOne)
+                  ?.quality(100)
+                  ?.url()
+                const secondImageUrl: any = urlForImage(item.photoTwo)
+                  ?.quality(100)
+                  ?.url()
                 /* End */
 
                 /* Logic for single images */
                 const singleImageUrl = urlForImage(item.photo)?.width(800).url()
-                const singleImageUrlHighRes = urlForImage(item.photo)?.url()
+                const singleImageUrlHighRes = urlForImage(item.photo)
+                  ?.quality(100)
+                  ?.url()
                 /* End */
 
                 if (isSingleImage) {
@@ -140,7 +151,7 @@ export default async function ProjectSlugRoute({ params }: Props) {
                       <ProjectImage
                         highRes={singleImageUrlHighRes}
                         key={i}
-                        img={singleImageUrl || ''}
+                        img={singleImageUrlHighRes || ''}
                       ></ProjectImage>
                     </div>
                   )
@@ -183,6 +194,64 @@ export default async function ProjectSlugRoute({ params }: Props) {
             })}
         </div>
       </div>
+      {drop.data && (
+        <div>
+          {drop.data.showcaseProjects &&
+            drop.data.showcaseProjects.map((item, index) => {
+              const allShowcasedProjects = drop.data.showcaseProjects
+              let currentPageIndex = 0
+
+              const isMatch = item.slug?.trim() === params.slug.trim()
+              console.log(item.slug?.trim(), params.slug.trim())
+              if (isMatch) {
+                currentPageIndex =
+                  index + 1 === allShowcasedProjects?.length ? 0 : index + 1
+              }
+              console.log(currentPageIndex, allShowcasedProjects?.length)
+              const isAcceptableRange =
+                index >= currentPageIndex && index <= currentPageIndex + 1
+
+              const acceptableRangeArrIndex = [
+                currentPageIndex,
+                currentPageIndex + 1,
+              ]
+
+              const finalArr: any[] = []
+              acceptableRangeArrIndex.forEach((prjNo, idx) => {
+                allShowcasedProjects?.forEach((shwPrjs, idxB) => {
+                  if (prjNo === idxB) {
+                    const img = urlForImage(shwPrjs.coverImage)?.url()
+                    finalArr.push({
+                      img: img || '',
+                      slug: shwPrjs.slug,
+                      title: shwPrjs.title,
+                      tag: shwPrjs.tag,
+                    })
+                  }
+                })
+              })
+
+              console.log(finalArr)
+
+              return (
+                <div key={index}>
+                  {isMatch ? (
+                    <div
+                      className={cn(
+                        'xl:pt-[10.65vw] pt-[230px] pb-[105px] xl:pb-[4.86vw]',
+                      )}
+                      key={index}
+                    >
+                      <NextProject nxtProjectArr={finalArr}></NextProject>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              )
+            })}
+        </div>
+      )}
     </ProjectWrapper>
   )
 }

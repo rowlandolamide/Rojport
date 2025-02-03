@@ -10,11 +10,11 @@ import type { HomePagePayload } from '@/types'
 function HomePage(props: { data: HomePagePayload | null }) {
   return (
     <div className="2xl:pb-[6.6vw] pb-[143px]">
-      <div className="hidden xl:block w-full  ">
+      <div className=" w-full  ">
         {' '}
         <RedesignProjectContainer data={props.data}></RedesignProjectContainer>
       </div>
-      <MobileAndTabletHomeScreen data={props.data}></MobileAndTabletHomeScreen>
+      {/*       <MobileAndTabletHomeScreen data={props.data}></MobileAndTabletHomeScreen> */}
     </div>
   )
 }

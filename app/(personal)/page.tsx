@@ -1,8 +1,10 @@
 import { loadHomePage } from '@/sanity/loader/loadQuery'
 import HomePage from '@/components/pages/home/HomePage'
 
+
 export default async function IndexRoute() {
   const initial = await loadHomePage()
+  
 
   if (initial.data) {
     return (

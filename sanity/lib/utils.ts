@@ -17,8 +17,6 @@ export const urlForImage = (source: Image | undefined) => {
   return imageBuilder?.image(source).auto('format').fit('max')
 }
 
-
-
 export function urlForOpenGraphImage(image: Image | undefined) {
   return urlForImage(image)?.width(1200).height(627).fit('crop').url()
 }
@@ -42,7 +40,6 @@ export function resolveHref(
     case 'project':
       return slug ? `/projects/${slug}` : undefined
     default:
-      
       return undefined
   }
 }

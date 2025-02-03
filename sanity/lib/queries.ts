@@ -13,6 +13,7 @@ export const homePageQuery = groq`
      ...,
       _type,
       disci,
+      tag,
       coverImage{
         _type,
         asset,
@@ -39,6 +40,7 @@ export const moreProjectsQuery = groq`
       overview,
       "slug": slug.current,
       title,
+      tag,
       year,
       _updatedAt,
     },
@@ -61,6 +63,9 @@ export const aboutPageQuery = groq`
       title,
       url,
     },
+    technicalAbilities,
+    services,
+    pressAndAwards
   }
 `
 
@@ -77,6 +82,7 @@ export const projectBySlugQuery = groq`
     mainVideo,
     mainVideoTitle,
     description,
+    tag,
     overview,
     site,
     disci,

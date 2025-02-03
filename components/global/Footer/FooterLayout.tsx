@@ -17,14 +17,20 @@ export const FooterLinsk = [
 
 export default function Footer(props: FooterProps) {
   return (
-    <footer className="xl:fixed w-full  bottom-0 xl:text-base  items-center mt-12 py-2 md:py-5 ">
+    <footer className="xl:fixed w-full mb-[60px] xl:mb-0 xl:bottom-[30px] xl:text-base mix-blend-difference items-center   ">
       <div className="w-full relative GEN-PAD">
-        <div className=" w-full flex justify-between   flex-col xl:flex-row">
-          <div className="MONO-LO">2025 © ROJ THE GOAT</div>
-          <div className="MONO-LO">
+        <div className=" w-full flex justify-between   flex-col xl:flex-row xl:gap-y-0 gap-y-[10px]">
+          <div className="MONO-EX xl:block hidden">2025 © ROJ THE GOAT</div>
+          <div className="MONO-EX xl:block hidden">
             <span>LAGOS, NIGERIA |</span> <Time></Time> WAT
           </div>
-          <div className="MONO-LO">
+          <div className="flex flex-row space-x-[10px] xl:hidden ">
+            <div className="MONO-EX">2025 © ROJ THE GOAT</div>
+            <div className="MONO-EX">
+              <span>LAGOS, NIGERIA |</span> <Time></Time> WAT
+            </div>
+          </div>
+          <div className="MONO-EX w-fit">
             LET’S MAKE SOMETHING COOL -{' '}
             <a
               href={`mailto:${process.env.NEXT_PUBLIC_ROJ_EMAIL || '/'}`}
@@ -40,7 +46,7 @@ export default function Footer(props: FooterProps) {
                 <a
                   href={`mailto:${ite.link}`}
                   target="_blank"
-                  className="MONO-LO"
+                  className="MONO-EX"
                   key={i}
                 >
                   {ite.name}
@@ -48,7 +54,7 @@ export default function Footer(props: FooterProps) {
               ) : (
                 <a
                   target="_blank"
-                  className="MONO-LO"
+                  className="MONO-EX"
                   key={i}
                   href={`mailto:${ite.link}`}
                 >

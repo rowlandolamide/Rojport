@@ -22,19 +22,19 @@ export default function Navbar(props: NavbarProps) {
 
   return (
     <div
-      className={`${isStudio ? 'hidden' : 'flex '} text-black z-50 fixed w-screen xl:w-full flex-wrap justify-between items-center gap-x-5 GEN-PAD    py-4  md:py-4`}
+      className={`${isStudio ? 'hidden' : 'flex '} h-fit mix-blend-difference  text-white z-50 top-[30px] fixed w-screen xl:w-full flex-wrap justify-between items-center gap-x-5 GEN-PAD    `}
     >
       <div className="flex justify-between w-full items-center ">
         <Link
           href={'/'}
           scroll={false}
-          className=" hover:text-bl top-4 right-4 text-[32px] md:text-[40px] font-PPn 3xl:text-[1.8vw]"
+          className=" hover:text-bl right-4 text-[32px] md:text-[40px] leading-[32px] md:leading-[40px] 3xl:leading-[1.8vw] font-PPn 3xl:text-[1.8vw]"
         >
           ROJ THE GOAT
         </Link>
-        <div className="  CENTER-FLX-LO ">
-          <div className="MONO-LO">Motion Designer</div>
-          <div className="MONO-LO">Art Director</div>
+        <div className="  CENTER-FLX-LO TXT-DIFF">
+          <div className="MONO-EX border-white text-white">Motion Designer</div>
+          <div className="MONO-EX border-white text-white">Art Director</div>
         </div>
         <div className="CENTER-FLX-LO">
           {[
@@ -44,7 +44,7 @@ export default function Navbar(props: NavbarProps) {
             return (
               <Link
                 className={cn(
-                  'MONO-LO hover:text-bl duration-300',
+                  'MONO-EX hover:text-bl duration-300 text-white border-white ',
                   pathname === ite.link ? 'text-bl' : '',
                 )}
                 scroll={false}
