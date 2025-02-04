@@ -29,21 +29,30 @@ function RedesignProjectCard(props: {
       onMouseOver={() => {
         handleMouseStateChange(title, 2)
       }}
+      className="group relative overflow-hidden"
       href={nextProjectItem ? slug : `projects/${slug}`}
     >
       <div className="w-full h-full">
         <div className="HOME-CNT-PRJ w-full h-full">
-          <Image
+          <div
             className={cn(
-              'HOME-PRJ-ROUNDED w-full ',
-              nextProjectItem && 'h-full aspect-3/2 object-cover',
+              'w-full  overflow-hidden HOME-PRJ-ROUNDED hover:sm:rounded-[2.7vw] duration-300',
+              nextProjectItem ? 'h-full' : 'h-fit',
             )}
-            src={img}
-            width={600}
-            unoptimized
-            height={500}
-            alt={title}
-          ></Image>
+          >
+            <Image
+              className={cn(
+                ' w-full   h-[60vw] object-cover sm:object-fit sm:h-fit ',
+                nextProjectItem &&
+                  'h-full aspect-3/2 object-cover sm:h-full sm:object-cover',
+              )}
+              src={img}
+              width={600}
+              unoptimized
+              height={500}
+              alt={title}
+            ></Image>
+          </div>
           <div className="HOME-CNT-TEXT-PRJ">
             <span className="HOME-TXT-TITLE "> {title}</span>{' '}
             <span className="MONO-LO text-[15px] 2xl:text-[0.7rem]">{tag}</span>

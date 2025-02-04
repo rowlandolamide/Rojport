@@ -10,7 +10,7 @@ import { ContextMain, MainContextWrapperType } from './ContextWrapper'
 function CustomMouse(props: { x: number; y: number }) {
   const { mouseStates } = useContext(ContextMain) as MainContextWrapperType
   const textLetter = mouseStates.displayStatesObj.text?.length || 0
-  const textWidth = textLetter * 8.5
+  const textWidth = textLetter * 8.7
   return (
     <motion.div
       style={{ zIndex: 999 }}
@@ -22,7 +22,7 @@ function CustomMouse(props: { x: number; y: number }) {
         style={{ originX: 0.5 }}
         animate={{ width: textWidth }}
         className={cn(
-          ' overflow-hidden flex items-center justify-center  bg-bl text-white rounded-full px-2 px-1 duration-300   min-w-4 min-h-4 max-h-6',
+          ' overflow-hidden flex items-center justify-center  mix-blend-difference bg-bl text-white rounded-full px-2 px-1 duration-300   min-w-6 min-h-6 max-h-6',
         )}
       >
         <AnimatePresence key={mouseStates.displayStatesObj.text}>

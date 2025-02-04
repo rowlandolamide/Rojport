@@ -19,10 +19,23 @@ function ProjectText(props: {
         <div
           className={`${props.isProjectSummary ? 'flex gap-y-[20px]' : 'hidden'} flex-col`}
         >
-          <div className="MONO-LO">Exploration</div>
+          <div className="MONO-LO w-fit">Exploration</div>
           <div className="MONO-LO w-fit">{props.year}</div>
         </div>
         <div className="MN-TEXT-PRJ">{props.title}</div>
+        <div>
+          {props.disciplines &&
+            props.disciplines.map((item, index) => {
+              return (
+                <div
+                  className="leading-[40px] DISCI-TEXT-PRJ sm:hidden"
+                  key={index}
+                >
+                  {item}
+                </div>
+              )
+            })}
+        </div>
         <div className="TN PASSAGE-TEXT-PRJ">
           {' '}
           <PortableText value={props.body}></PortableText>
@@ -31,7 +44,10 @@ function ProjectText(props: {
           {props.disciplines &&
             props.disciplines.map((item, index) => {
               return (
-                <div className="leading-[40px] DISCI-TEXT-PRJ" key={index}>
+                <div
+                  className="leading-[40px] DISCI-TEXT-PRJ hidden sm:block"
+                  key={index}
+                >
                   {item}
                 </div>
               )

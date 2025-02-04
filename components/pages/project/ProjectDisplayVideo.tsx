@@ -31,7 +31,7 @@ function ProjectDisplayVideo(props: { url: string; videoTitle: string }) {
 
   return (
     <div
-      className="overflow-hidden w-full  HOME-PRJ-ROUNDED flex  relative items-center justify-center"
+      className="overflow-hidden w-full  ROUNDED-PRJ sm:HOME-PRJ-ROUNDED flex  relative items-center justify-center"
       onClick={() => {
         handleOverlay({
           ...overlay,
