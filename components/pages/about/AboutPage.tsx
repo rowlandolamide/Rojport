@@ -18,7 +18,7 @@ export interface AboutPageProps {
 
 const ListContainer = ({ data, name }: { data: any; name: string }) => {
   return (
-    <div>
+    <div className="">
       <div className="MONO-LO mb-[23px]">{name}</div>
       {data && (
         <div>
@@ -53,10 +53,8 @@ export function AboutPage({ data }: AboutPageProps) {
   const PressAndAwards = { name: 'Press and Awards', data: pressAndAwards }
   const Services = { name: 'Services', data: services }
 
-  console.log('data', PressAndAwards, data)
-
   return (
-    <div className=" xl:pb-[10.65vw] pb-[230px] xl:pt-[11.4vw] pt-[246px] flex flex-col items-center">
+    <div className=" xl:pb-[10.65vw] md:pb-[230px] xl:pt-[11.4vw] md:pt-[246px] pt-[120px] pb-[120px] flex flex-col items-center">
       <div className="w-full flex flex-col items-center">
         <Image
           src={AboutUsTitle.src}
@@ -66,7 +64,7 @@ export function AboutPage({ data }: AboutPageProps) {
           className={cn('w-[65vw] ')}
         ></Image>
         <div className="w-full flex flex-col items-center">
-          <div className=" py-[180px] xl:py-[8.3vw] flex flex-col items-center gap-y-[39px] xl:gap-y-[1.8vw]">
+          <div className=" md:py-[180px] py-[60px] xl:py-[8.3vw] flex flex-col items-center gap-y-[20px] md:gap-y-[39px] xl:gap-y-[1.8vw]">
             {/* About image */}
             {aboutImage && (
               <AboutImageBox
@@ -75,18 +73,18 @@ export function AboutPage({ data }: AboutPageProps) {
                 classesWrapper="relative"
               />
             )}{' '}
-            <div>Photo Credit by Felix Ezema </div>
+            <div className="DISCI-TEXT-PRJ">Photo Credit by Felix Ezema </div>
           </div>
-          <div className="flex gap-x-[100px] xl:gap-x-[4.63vw] items-start ">
+          <div className="items-center flex md:gap-x-[100px] flex-col md:flex-row xl:gap-x-[4.63vw] md:items-start  ">
             <Image
               src={RojIconSvg.src}
               width={100}
               height={100}
               alt="Roj the goat Icon"
-              className={cn('w-[94px] xl:w-[4.35vw]')}
+              className={cn('w-[94px] xl:w-[4.35vw] mb-[40px]')}
             ></Image>
             {overview && (
-              <div className=" w-[42vw] TEXT-CNT-ABT leading-[32px]  ">
+              <div className=" md:w-[42vw]  TEXT-CNT-ABT leading-[32px]  ">
                 <CustomPortableText value={overview}></CustomPortableText>
               </div>
             )}
@@ -94,8 +92,11 @@ export function AboutPage({ data }: AboutPageProps) {
               <ListContainer {...TechnicalAbilities}></ListContainer>
 
               <ListContainer {...Services}></ListContainer>
+              <div className="md:hidden ">
+                <ListContainer {...PressAndAwards}></ListContainer>
+              </div>
             </div>
-            <div>
+            <div className="md:block hidden">
               <ListContainer {...PressAndAwards}></ListContainer>
             </div>
           </div>

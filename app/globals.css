@@ -185,7 +185,7 @@ html {
 }
 
 .TEXT-CNT-ABT {
-  @apply xl:w-[32.5vw] w-[702px] font-PPnM text-[20px] xl:text-[0.92rem];
+  @apply xl:w-[32.5vw] md:w-[702px] w-full font-PPnM lg:text-[0.93rem] lg:leading-[1.85rem] text-[16px];
 }
 
 .CENTER-FLX-LO {

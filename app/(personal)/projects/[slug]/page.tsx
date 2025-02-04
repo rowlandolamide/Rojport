@@ -58,7 +58,6 @@ export default async function ProjectSlugRoute({ params }: Props) {
   const initial = await loadProject(params.slug.trim())
 
   const drop: any = await loadMoreProjects()
-  console.log('drop', drop.data.showcaseProjects)
 
   if (draftMode().isEnabled) {
     return <ProjectPreview params={params} initial={initial} />
@@ -202,12 +201,12 @@ export default async function ProjectSlugRoute({ params }: Props) {
               let currentPageIndex = 0
 
               const isMatch = item.slug?.trim() === params.slug.trim()
-              console.log(item.slug?.trim(), params.slug.trim())
+
               if (isMatch) {
                 currentPageIndex =
                   index + 1 === allShowcasedProjects?.length ? 0 : index + 1
               }
-              console.log(currentPageIndex, allShowcasedProjects?.length)
+
               const isAcceptableRange =
                 index >= currentPageIndex && index <= currentPageIndex + 1
 
@@ -230,8 +229,6 @@ export default async function ProjectSlugRoute({ params }: Props) {
                   }
                 })
               })
-
-              console.log(finalArr)
 
               return (
                 <div key={index}>
