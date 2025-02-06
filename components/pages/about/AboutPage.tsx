@@ -95,7 +95,7 @@ export function AboutPage({ data }: AboutPageProps) {
                 classesWrapper="relative"
               />
             )}{' '}
-            <div className="DISCI-TEXT-PRJ">Photo Credit by Felix Ezema </div>
+            <div className=" MONO-LO">Portrait by DANIELLA ALMONA </div>
           </div>
           <div className="items-center flex md:gap-x-[100px] flex-col md:flex-row xl:gap-x-[4.63vw] md:items-start  ">
             <Image
