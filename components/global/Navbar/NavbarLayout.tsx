@@ -47,10 +47,10 @@ export default function Navbar(props: NavbarProps) {
         >
           ROJ THE GOAT
         </Link>
-        <div className="flex justify-between md:hidden mt-[10px]">
+        <div className="flex justify-between gap-x-[10px] md:hidden mt-[10px]">
           {' '}
-          <div className="space-x-[10px] flex">
-            <div className="MONO-EX border-white text-white">
+          <div className="space-x-[10px] flex w-fit">
+            <div className="MONO-EX border-white text-white w-fit">
               Motion Designer
             </div>
             <div className="MONO-EX border-white text-white">Art Director</div>
@@ -64,7 +64,7 @@ export default function Navbar(props: NavbarProps) {
               return (
                 <Link
                   className={cn(
-                    'MONO-EX hover:sm:text-bl duration-300 text-white border-white ',
+                    'MONO-EX hover:sm:text-bl duration-300 flex items-center justify-center text-white border-white ',
                     pathname === ite.link ? 'text-bl' : '',
                   )}
                   scroll={false}

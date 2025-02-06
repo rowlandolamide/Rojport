@@ -27,7 +27,7 @@ function CustomMouse(props: { x: number; y: number }) {
           mouseStates.displayStatesObj.text
             ? ' rounded-[5px] xl:rounded-[0.23vw]'
             : 'rounded-full',
-          displayStatesObj.displayState === 3 ? 'scale-[1.3]' : '',
+          displayStatesObj.displayState === 3 ? 'scale-[1.4]' : '',
         )}
       >
         <AnimatePresence key={mouseStates.displayStatesObj.text}>
