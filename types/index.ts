@@ -109,5 +109,5 @@ export interface AboutPayload {
   }
   services?: string[]
   technicalAbilities?: string[]
-  pressAndAwards?: string[]
+  pressAndAwards?: { title: string; link: string }[]
 }

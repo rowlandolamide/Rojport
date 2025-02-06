@@ -36,13 +36,13 @@ function RedesignProjectCard(props: {
         <div className="HOME-CNT-PRJ w-full h-full">
           <div
             className={cn(
-              'w-full  overflow-hidden HOME-PRJ-ROUNDED hover:sm:rounded-[2.7vw] duration-300',
+              'w-full  overflow-hidden HOME-PRJ-ROUNDED group',
               nextProjectItem ? 'h-full' : 'h-fit',
             )}
           >
             <Image
               className={cn(
-                ' w-full   h-[60vw] object-cover sm:object-fit sm:h-fit ',
+                ' w-full   h-[60vw] object-cover sm:object-fit sm:h-fit group-hover:scale-[1.02] duration-500 ease',
                 nextProjectItem &&
                   'h-full aspect-3/2 object-cover sm:h-full sm:object-cover',
               )}

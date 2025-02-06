@@ -89,29 +89,6 @@ html.lenis body {
   pointer-events: none;
 }
 
-a,
-button,
-link,
-section {
-  @apply cursor-pointer;
-}
-
-.grabb {
-  @apply cursor-grab;
-}
-
-.pointerr {
-  @apply cursor-pointer;
-}
-
-.sb {
-  will-change: transform;
-}
-
-html {
-  cursor: url('/public/Icons/Grab Mouse.svg'), grab;
-}
-
 *,
 *:before,
 *:after {
@@ -205,6 +182,12 @@ html {
 
 /* End */
 
+/* Links */
+.HOVER-LINK {
+  @apply hover:underline duration-300;
+}
+/* End */
+
 /* General Effects */
 .TXT-DIFF {
   @apply mix-blend-difference;
@@ -213,6 +196,6 @@ html {
 
 /* MouseStates */
 .MOUSE-TEXT {
-  @apply font-PPnM text-[20px] xl:text-[0.92rem];
+  @apply font-PPnM text-[15px] xl:text-[0.7rem] uppercase;
 }
 /* End */

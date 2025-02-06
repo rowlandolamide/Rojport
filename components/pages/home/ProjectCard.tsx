@@ -10,6 +10,7 @@ interface ProjectCardProps {
   isProject: boolean
   animate?: boolean
   slug: string
+ 
 }
 
 export default function ProjectCard(props: ProjectCardProps) {

@@ -16,7 +16,15 @@ export interface AboutPageProps {
   encodeDataAttribute?: EncodeDataAttributeCallback
 }
 
-const ListContainer = ({ data, name }: { data: any; name: string }) => {
+const ListContainer = ({
+  data,
+  name,
+  links,
+}: {
+  data: any
+  name: string
+  links?: string[]
+}) => {
   return (
     <div className="">
       <div className="MONO-LO mb-[23px]">{name}</div>
@@ -25,7 +33,17 @@ const ListContainer = ({ data, name }: { data: any; name: string }) => {
           {data.map((item: any, index: number) => {
             return (
               <div className="DISCI-TEXT-PRJ leading-[40px]" key={index}>
-                {item}
+                {links ? (
+                  <a
+                    target="_blank"
+                    className="hover:underline duration-300"
+                    href={links[index]}
+                  >
+                    {item}
+                  </a>
+                ) : (
+                  item
+                )}
               </div>
             )
           })}
@@ -50,7 +68,11 @@ export function AboutPage({ data }: AboutPageProps) {
     name: 'Technical Abilities',
     data: technicalAbilities,
   }
-  const PressAndAwards = { name: 'Press and Awards', data: pressAndAwards }
+  const PressAndAwards = {
+    name: 'Press and Awards',
+    data: pressAndAwards?.map((item: any) => item.title),
+    links: pressAndAwards?.map((item) => item.link),
+  }
   const Services = { name: 'Services', data: services }
 
   return (

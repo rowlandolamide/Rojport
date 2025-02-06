@@ -2,6 +2,12 @@
 import type { HomePagePayload, SettingsPayload } from '@/types'
 import { Time } from '@/components/hooks/useCurrentTime'
 
+import { useContext } from 'react'
+import {
+  ContextMain,
+  MainContextWrapperType,
+} from '@/components/global/ContextWrapper'
+
 interface FooterProps {
   data: SettingsPayload
   title: string | null
@@ -16,6 +22,16 @@ export const FooterLinsk = [
 ]
 
 export default function Footer(props: FooterProps) {
+  const { handleMouseStateChange } = useContext(
+    ContextMain,
+  ) as MainContextWrapperType
+
+  const handleHoverLink = () => {
+    handleMouseStateChange(null, 3)
+  }
+  const handleLeaveLink = () => {
+    handleMouseStateChange(null, 0)
+  }
   return (
     <footer className="xl:fixed w-full mb-[60px] xl:mb-0 xl:bottom-[30px] xl:text-base mix-blend-difference items-center   ">
       <div className="w-full relative GEN-PAD">
@@ -44,7 +60,9 @@ export default function Footer(props: FooterProps) {
             {FooterLinsk.map((ite, i) => {
               return ite.name != 'Email' ? (
                 <a
-                  href={`mailto:${ite.link}`}
+                  onMouseLeave={handleLeaveLink}
+                  onMouseOver={handleHoverLink}
+                  href={`${ite.link}`}
                   target="_blank"
                   className="MONO-EX"
                   key={i}
@@ -53,6 +71,8 @@ export default function Footer(props: FooterProps) {
                 </a>
               ) : (
                 <a
+                  onMouseLeave={handleLeaveLink}
+                  onMouseOver={handleHoverLink}
                   target="_blank"
                   className="MONO-EX"
                   key={i}

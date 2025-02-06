@@ -11,18 +11,23 @@ function CustomMouse(props: { x: number; y: number }) {
   const { mouseStates } = useContext(ContextMain) as MainContextWrapperType
   const textLetter = mouseStates.displayStatesObj.text?.length || 0
   const textWidth = textLetter * 8.7
+  const { displayStatesObj } = mouseStates
   return (
     <motion.div
       style={{ zIndex: 999 }}
       className=" pointer-events-none absolute hidden sm:block"
-      animate={{ x: props.x, y: props.y }}
+      animate={{ x: props.x + 8, y: props.y - 28 }}
     >
       <motion.div
         transition={{ duration: 0.05 }}
         style={{ originX: 0.5 }}
         animate={{ width: textWidth }}
         className={cn(
-          ' overflow-hidden flex items-center justify-center  mix-blend-difference bg-bl text-white rounded-full px-2 px-1 duration-300   min-w-6 min-h-6 max-h-6',
+          ' overflow-hidden flex items-center justify-center  mix-blend-difference bg-bl text-white  px-2 px-1 duration-300   min-w-6 min-h-6 max-h-6',
+          mouseStates.displayStatesObj.text
+            ? ' rounded-[5px] xl:rounded-[0.23vw]'
+            : 'rounded-full',
+          displayStatesObj.displayState === 3 ? 'scale-[1.3]' : '',
         )}
       >
         <AnimatePresence key={mouseStates.displayStatesObj.text}>

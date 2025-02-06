@@ -100,7 +100,7 @@ module.exports = {
         sm: 'calc(var(--radius) - 4px)',
       },
       cursor: {
-        default: `url(public/Icons/Mouse-New.svg), default`,
+        default: `url(public/Icons/New_Mouse.svg), default`,
         pointer: `url(public/Icons/Pointer Mouse.svg), pointer`,
         grab: `url(public/Icons/Grab Mouse.svg), grab`,
         grabbing: `url(public/Icons/Grab Mouse.svg), grabbing`,

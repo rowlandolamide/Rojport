@@ -93,9 +93,23 @@ export default defineType({
       title: 'Press and Awards',
       type: 'array',
       of: [
-        {
-          type: 'string',
-        },
+        defineArrayMember({
+          type: 'object',
+          name: 'pressAndAwards',
+          title: 'Press and Awards',
+          fields: [
+            {
+              name: 'title',
+              title: 'Title',
+              type: 'string',
+            },
+            {
+              name: 'link',
+              title: 'Link',
+              type: 'url',
+            },
+          ],
+        }),
       ],
     }),
   ],

@@ -2,7 +2,11 @@
 import Link from 'next/link'
 import useCurrentTime from '@/components/hooks/useCurrentTime'
 import { usePathname } from 'next/navigation'
-
+import { useContext } from 'react'
+import {
+  ContextMain,
+  MainContextWrapperType,
+} from '@/components/global/ContextWrapper'
 import type { SettingsPayload } from '@/types'
 import { cn } from '@/lib/utils'
 
@@ -19,6 +23,17 @@ export default function Navbar(props: NavbarProps) {
   const pathname = usePathname()
 
   const isStudio = pathname.includes('studio')
+
+  const { handleMouseStateChange } = useContext(
+    ContextMain,
+  ) as MainContextWrapperType
+
+  const handleHoverLink = () => {
+    handleMouseStateChange(null, 3)
+  }
+  const handleLeaveLink = () => {
+    handleMouseStateChange(null, 0)
+  }
 
   return (
     <div
@@ -73,6 +88,8 @@ export default function Navbar(props: NavbarProps) {
           ].map((ite, i) => {
             return (
               <Link
+                onMouseLeave={handleLeaveLink}
+                onMouseOver={handleHoverLink}
                 className={cn(
                   'MONO-EX hover:bg-gray-100/[0.2] duration-300 text-white border-white ',
                   pathname === ite.link ? 'text-bl' : '',
