@@ -63,11 +63,19 @@ export default defineType({
       title: 'About Image',
       description:
         '(Optional) This image will be displayed next to your About description.',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          name: 'aboutImageImage',
+          title: 'About Image Item',
+          options: {
+            hotspot: true,
+          },
+        },
+      ],
     }),
+
     defineField({
       name: 'services',
       title: 'Services',

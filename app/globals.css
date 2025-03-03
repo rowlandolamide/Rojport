@@ -99,6 +99,12 @@ html.lenis body {
   @apply w-[14px] h-[14px];
 }
 
+/* Play Button */
+.PLAY-BTN {
+  @apply xl:text-[0.7vw] 2xl:text-[20px] uppercase py-[15px] px-[20px] rounded-[12px] text-[12px] flex items-center justify-center bg-bl text-white absolute z-20 rounded-[12px];
+}
+/* End */
+
 /* Texts Styling */
 .MONO-LO {
   @apply text-[10px] sm:text-[12px] md:text-[0.7rem]  font-Ingram uppercase  leading-[14px] sm:leading-[16px]  xl:leading-[0.83rem] border border-black rounded-[5px] 3xl:rounded-[0.2rem] 3xl:border-[0.046rem] px-[12.5px] py-[8.3px] sm:py-[0.46rem] sm:px-[15px] xl:py-[0.46rem] xl:px-[0.7rem];
@@ -116,15 +122,20 @@ html.lenis body {
 }
 
 .MN-TEXT-PRJ {
-  @apply uppercase font-Ingram lg:text-[3rem] lg:leading-[3rem] text-[32px] leading-[32px];
+  @apply capitalize font-PPnM  lg:text-[3rem] lg:leading-[3rem] text-[32px] leading-[32px];
 }
 
 .PASSAGE-TEXT-PRJ {
   @apply font-light font-PPnM lg:text-[0.93rem] lg:leading-[1.5rem] text-[16px] leading-[25.6px] md:w-[30.2vw];
 }
-
+.CREDIT-DISCI-TITLE {
+  @apply MONO-LO w-fit uppercase mb-[13px];
+}
+.CREDIT-DISCI-ITEM-CONT {
+  @apply space-y-[2px];
+}
 .DISCI-TEXT-PRJ {
-  @apply font-light font-PPnM lg:text-[0.93rem] lg:leading-[1.85rem] text-[16px] leading-[40px];
+  @apply whitespace-nowrap font-light font-PPnM lg:text-[0.93rem] lg:leading-[1.85rem] text-[16px] leading-[40px];
 }
 
 /* End */
@@ -177,7 +188,7 @@ html.lenis body {
 
 /* Padding */
 .GEN-PAD {
-  @apply px-[12px] sm:px-[25px] 2xl:px-[1.157rem];
+  @apply px-[12px] sm:px-[20px];
 }
 
 /* End */

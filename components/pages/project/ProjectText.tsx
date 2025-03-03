@@ -16,13 +16,14 @@ function ProjectText(props: {
   return (
     <div className=" UPPER-TEXT-CNT-PRJ">
       <div className="TEXT-CNT-PRJ">
+        <div className="MN-TEXT-PRJ">{props.title}</div>
         <div
           className={`${props.isProjectSummary ? 'flex gap-y-[20px]' : 'hidden'} flex-col`}
         >
           <div className="MONO-LO w-fit">Exploration</div>
           <div className="MONO-LO w-fit">{props.year}</div>
         </div>
-        <div className="MN-TEXT-PRJ">{props.title}</div>
+
         <div>
           {props.disciplines &&
             props.disciplines.map((item, index) => {
@@ -40,18 +41,19 @@ function ProjectText(props: {
           {' '}
           <PortableText value={props.body}></PortableText>
         </div>
-        <div>
-          {props.disciplines &&
-            props.disciplines.map((item, index) => {
-              return (
-                <div
-                  className="leading-[40px] DISCI-TEXT-PRJ hidden sm:block"
-                  key={index}
-                >
-                  {item}
-                </div>
-              )
-            })}
+        <div className="">
+          <div className="CREDIT-DISCI-TITLE ">CREDITS</div>
+          <div className="CREDIT-DISCI-ITEM-CONT">
+            {' '}
+            {props.disciplines &&
+              props.disciplines.map((item, index) => {
+                return (
+                  <div className=" DISCI-TEXT-PRJ hidden sm:block" key={index}>
+                    {item}
+                  </div>
+                )
+              })}
+          </div>
         </div>
       </div>
     </div>

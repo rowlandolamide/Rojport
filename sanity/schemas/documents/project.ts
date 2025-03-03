@@ -55,7 +55,11 @@ export default defineType({
       type: 'string',
       validation: (rule) => rule.required(),
     }),
-
+    defineField({
+      name: 'caseStudyLink',
+      type: 'slug',
+      description: 'Behance link for project',
+    }),
     defineField({
       name: 'overview',
       description:
@@ -70,20 +74,17 @@ export default defineType({
     }),
     defineField({
       name: 'disci',
-      description: 'Discipline of projects',
-      title: 'Discipline',
+      description: 'Credits of projects',
+      title: 'Credits',
       type: 'array',
-      of: [
-        // Paragraphs
-        { type: 'string' },
-      ],
-      validation: (rule) => rule.max(155).required(),
+      of: [{ type: 'blockObject' }],
     }),
     defineField({
       name: 'tag',
       description: 'Tag of projects',
       title: 'Tag',
-      type: 'string',
+      type: 'array',
+      of: [{ type: 'string' }],
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -220,11 +221,11 @@ export default defineType({
               validation: (rule) => rule.required(),
               title: 'Type of Text Block',
               type: 'string',
-              initialValue: 'Process',
+              initialValue: 'Direction',
               options: {
                 list: [
                   { title: 'Process', value: 'process' },
-                  { title: 'Credit', value: 'credit' },
+                  { title: 'Direction', value: 'direction' },
                 ],
               },
             },

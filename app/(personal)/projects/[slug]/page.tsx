@@ -119,7 +119,9 @@ export default async function ProjectSlugRoute({ params }: Props) {
                   >
                     <div className="2xl:max-w-[31vw] 3xl:max-w-[28vw] max-w-[450px] mx-auto w-full">
                       <ProjectText
-                        title={item.textBlockType || ''}
+                        title={
+                          item.textBlockType === 'process' ? 'Direction' : ''
+                        }
                         key={i}
                         isProjectSummary={false}
                         body={item.description}

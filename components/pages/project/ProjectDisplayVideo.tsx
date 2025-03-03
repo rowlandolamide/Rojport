@@ -46,7 +46,7 @@ function ProjectDisplayVideo(props: {
         })
       }}
     >
-      <button className="xl:text-[0.7vw] xl:w-[12.5vw] xl:h-[1.8vw] uppercase xl:p-0 px-8 py-2 text-[12px] flex items-center justify-center bg-bl text-white absolute z-20 rounded-[2px] group">
+      <button className="PLAY-BTN group">
         PLAY {projectName}{' '}
         <span className="group-hover:rotate-[180deg] flex items-center  justify-center ml-2 group-hover:scale-[1.5] duration-300 h-[10px]">
           <Plus className="PLUS 2xl:w-[0.7vw] 2xl:h-[0.7vw] " size={10}></Plus>
