@@ -1,6 +1,6 @@
 import type { PortableTextBlock } from '@portabletext/types'
 import type { Image } from 'sanity'
-
+import type { BlockObject } from '@/sanity.types'
 export interface MenuItem {
   page?: {
     _type: string
@@ -54,12 +54,17 @@ export interface ProjectPayload {
   coverImage?: Image
   description?: PortableTextBlock[]
   overview?: PortableTextBlock[]
+  caseStudyLink?: string
   site?: {
     urltitle?: string
     url: string
   }
   slug: string
-  disci: string[]
+  disci: Array<
+    {
+      _key: string
+    } & BlockObject
+  > | null
   tag?: string[]
   title?: string
   mainVideo?: string
@@ -106,7 +111,7 @@ export interface AboutPayload {
     asset: Image
     width: number
     height: number
-  }
+  }[]
   services?: string[]
   technicalAbilities?: string[]
   pressAndAwards?: { title: string; link: string }[]

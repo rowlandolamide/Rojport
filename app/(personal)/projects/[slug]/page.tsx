@@ -63,6 +63,8 @@ export default async function ProjectSlugRoute({ params }: Props) {
     return <ProjectPreview params={params} initial={initial} />
   }
 
+  console.log('wonder', initial.data?.disci)
+
   return (
     <ProjectWrapper>
       <Head>
@@ -112,6 +114,7 @@ export default async function ProjectSlugRoute({ params }: Props) {
                   : true
               }
               if (item._type === 'textBlock') {
+                console.log('2pac', item)
                 return (
                   <div
                     key={i}
@@ -119,9 +122,7 @@ export default async function ProjectSlugRoute({ params }: Props) {
                   >
                     <div className="2xl:max-w-[31vw] 3xl:max-w-[28vw] max-w-[450px] mx-auto w-full">
                       <ProjectText
-                        title={
-                          item.textBlockType === 'process' ? 'Direction' : ''
-                        }
+                        title={item.textBlockType}
                         key={i}
                         isProjectSummary={false}
                         body={item.description}

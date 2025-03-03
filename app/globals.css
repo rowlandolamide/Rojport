@@ -135,7 +135,7 @@ html.lenis body {
   @apply space-y-[2px];
 }
 .DISCI-TEXT-PRJ {
-  @apply whitespace-nowrap font-light font-PPnM lg:text-[0.93rem] lg:leading-[1.85rem] text-[16px] leading-[40px];
+  @apply 2xl:whitespace-nowrap font-light font-PPnM lg:text-[0.93rem] lg:leading-[1.85rem] text-[16px] leading-[40px];
 }
 
 /* End */
@@ -188,7 +188,7 @@ html.lenis body {
 
 /* Padding */
 .GEN-PAD {
-  @apply px-[12px] sm:px-[20px];
+  @apply px-[25px] sm:px-[20px];
 }
 
 /* End */

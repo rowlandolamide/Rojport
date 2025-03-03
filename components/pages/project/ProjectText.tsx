@@ -2,17 +2,25 @@
 import { PortableText } from '@portabletext/react'
 import RookIcon from '../../../app/public/Icons/Rook.svg'
 import Image from 'next/image'
+import type { BlockObject } from '@/sanity.types'
 
 import React from 'react'
+import { cn } from '@/lib/utils'
 
 function ProjectText(props: {
   body: any
   title: string
   overview?: boolean
-  disciplines?: string[]
+  disciplines?: Array<
+    {
+      _key: string
+    } & BlockObject
+  > | null
   year?: string
   isProjectSummary: boolean
 }) {
+  console.log('two', props.disciplines)
+
   return (
     <div className=" UPPER-TEXT-CNT-PRJ">
       <div className="TEXT-CNT-PRJ">
@@ -32,7 +40,9 @@ function ProjectText(props: {
                   className="leading-[40px] DISCI-TEXT-PRJ sm:hidden"
                   key={index}
                 >
-                  {item}
+                  <PortableText
+                    value={item.blockText ? item.blockText : []}
+                  ></PortableText>
                 </div>
               )
             })}
@@ -41,7 +51,7 @@ function ProjectText(props: {
           {' '}
           <PortableText value={props.body}></PortableText>
         </div>
-        <div className="">
+        <div className={cn(props.isProjectSummary ? '' : 'hidden')}>
           <div className="CREDIT-DISCI-TITLE ">CREDITS</div>
           <div className="CREDIT-DISCI-ITEM-CONT">
             {' '}
@@ -49,7 +59,9 @@ function ProjectText(props: {
               props.disciplines.map((item, index) => {
                 return (
                   <div className=" DISCI-TEXT-PRJ hidden sm:block" key={index}>
-                    {item}
+                    <PortableText
+                      value={item.blockText ? item.blockText : []}
+                    ></PortableText>
                   </div>
                 )
               })}
