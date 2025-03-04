@@ -132,9 +132,6 @@ html.lenis body {
   @apply capitalize font-PPnM  lg:text-[3rem] lg:leading-[3rem] text-[32px] leading-[32px];
 }
 
-.PASSAGE-TEXT-PRJ {
-  @apply font-light font-PPnM lg:text-[0.93rem] lg:leading-[1.5rem] text-[16px] leading-[25.6px] md:w-[30.2vw];
-}
 .CREDIT-DISCI-TITLE {
   @apply MONO-LO w-fit uppercase mb-[13px];
 }
@@ -143,6 +140,9 @@ html.lenis body {
 }
 .DISCI-TEXT-PRJ {
   @apply 2xl:whitespace-nowrap font-light font-PPnM lg:text-[0.93rem] lg:leading-[1.85rem] text-[12px] sm:text-[16px]  leading-[24px] sm:leading-[40px];
+}
+.PASSAGE-PRJ-TEXT {
+  @apply font-light font-PPnM lg:text-[0.93rem] md:w-[30.2vw] lg:leading-[1.85rem] text-[12px] sm:text-[16px]  leading-[24px] sm:leading-[40px];
 }
 
 /* End */
@@ -176,7 +176,7 @@ html.lenis body {
 }
 
 .TEXT-CNT-PRJ {
-  @apply flex gap-y-[25px] flex-col lg:flex-row lg:gap-x-[6.9rem];
+  @apply flex gap-y-[50px] sm:gap-y-[25px] flex-col lg:flex-row lg:gap-x-[6.9rem];
 }
 
 .TEXT-CNT-ABT {

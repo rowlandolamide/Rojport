@@ -32,22 +32,7 @@ function ProjectText(props: {
           <div className="MONO-LO w-fit">{props.year}</div>
         </div>
 
-        <div>
-          {props.disciplines &&
-            props.disciplines.map((item, index) => {
-              return (
-                <div
-                  className="leading-[40px] DISCI-TEXT-PRJ sm:hidden"
-                  key={index}
-                >
-                  <PortableText
-                    value={item.blockText ? item.blockText : []}
-                  ></PortableText>
-                </div>
-              )
-            })}
-        </div>
-        <div className="TN PASSAGE-TEXT-PRJ">
+        <div className="TN  PASSAGE-PRJ-TEXT ">
           {' '}
           <PortableText value={props.body}></PortableText>
         </div>
@@ -58,7 +43,10 @@ function ProjectText(props: {
             {props.disciplines &&
               props.disciplines.map((item, index) => {
                 return (
-                  <div className=" DISCI-TEXT-PRJ hidden sm:block" key={index}>
+                  <div
+                    className=" DISCI-TEXT-PRJ sm:PASSAGE-TEXT-PRJ"
+                    key={index}
+                  >
                     <PortableText
                       value={item.blockText ? item.blockText : []}
                     ></PortableText>

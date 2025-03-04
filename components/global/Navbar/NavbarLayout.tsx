@@ -63,7 +63,7 @@ export const SideMenu = ({
           <div>LAGOS, NIGERIA</div>
           <div>|</div>
           <div>
-            <Time></Time>
+            <Time></Time> WAT
           </div>
         </div>
       </div>

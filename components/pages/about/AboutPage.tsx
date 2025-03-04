@@ -105,7 +105,10 @@ export function AboutPage({ data }: AboutPageProps) {
               })}
             ></InfiniteCarousel>
 
-            <div className=" MONO-LO">Portrait by DANIELLA ALMONA </div>
+            <div className="flex justify-center ">
+              {' '}
+              <div className=" MONO-LO w-fit">Portrait by DANIELLA ALMONA </div>
+            </div>
           </div>
           <div className=" w-full sm:items-start sm:justify-center flex md:gap-x-[100px] flex-col md:flex-row xl:gap-x-[4.63vw]  ">
             <Image

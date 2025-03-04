@@ -18,7 +18,9 @@ export const Time = () => {
   const value = useCurrentTime()
   return (
     <span>
-      {value.getUTCHours() + 1}:{value.getUTCMinutes()}
+      {value.getUTCHours() + 1 === 24 ? '00' : value.getUTCHours() + 1}:
+      {value.getUTCMinutes() > 9 ? '' : '0'}
+      {value.getUTCMinutes()}
     </span>
   )
 }

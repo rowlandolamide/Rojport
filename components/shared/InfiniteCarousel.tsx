@@ -12,13 +12,14 @@ export default function InfiniteCarousel({
   const [itemWidth, setItemWidth] = useState(0)
   const items = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5']
   const { x } = useMediaQuery()
-  useEffect(() => {
-    const updateWidth = () => {
-      if (carouselRef.current) {
-        setItemWidth(carouselRef.current.offsetWidth)
-      }
+  const updateWidth = () => {
+    if (carouselRef.current) {
+      setItemWidth(carouselRef.current.offsetWidth)
+      gsap.set(carouselRef.current, { x: 0 }) // Reset position
     }
+  }
 
+  useLayoutEffect(() => {
     updateWidth()
     window.addEventListener('resize', updateWidth)
 
@@ -35,6 +36,7 @@ export default function InfiniteCarousel({
       x: `-${itemWidth}px`, // Shift by one full width
       duration: 1, // Time for each transition
       ease: 'power2.inOut',
+
       onComplete: () => {
         // Move first item to the end for seamless looping
 
