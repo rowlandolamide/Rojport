@@ -8,7 +8,8 @@ import AboutImageBox from '@/components/shared/AboutImageBox'
 import { CustomPortableText } from '@/components/shared/CustomPortableText'
 import type { AboutPayload } from '@/types'
 import RojIconSvg from '../../../app/public/Icons/Roj Icon Svg.svg'
-
+import InfiniteCarousel from '@/components/shared/InfiniteCarousel'
+import { urlForImage } from '@/sanity/lib/utils'
 import ProfilePicture from '../../../app/public/Images/Profile Image.png'
 
 export interface AboutPageProps {
@@ -74,7 +75,7 @@ export function AboutPage({ data }: AboutPageProps) {
     links: pressAndAwards?.map((item) => item.link),
   }
   const Services = { name: 'Services', data: services }
-
+  console.log(data)
   return (
     <div className=" xl:pb-[10.65vw] md:pb-[230px] xl:pt-[11.4vw] md:pt-[246px] pt-[120px] pb-[120px] flex flex-col items-center">
       <div className="w-full flex flex-col items-center">
@@ -88,13 +89,22 @@ export function AboutPage({ data }: AboutPageProps) {
         <div className="w-full flex flex-col items-center">
           <div className=" md:py-[180px] py-[60px] xl:py-[8.3vw] flex flex-col items-center gap-y-[20px] md:gap-y-[39px] xl:gap-y-[1.8vw]">
             {/* About image */}
-            {aboutImage && (
-              <AboutImageBox
-                image={aboutImage}
-                alt={`About image`}
-                classesWrapper="relative"
-              />
-            )}{' '}
+            <InfiniteCarousel
+              imageNodes={aboutImage?.map((item: any) => {
+                console.log('dd', item)
+                const imageUrl = item && urlForImage(item)?.url()
+                return (
+                  <Image
+                    width={500}
+                    height={300}
+                    className="w-full border border-red-500"
+                    alt="about page"
+                    src={imageUrl}
+                  ></Image>
+                )
+              })}
+            ></InfiniteCarousel>
+
             <div className=" MONO-LO">Portrait by DANIELLA ALMONA </div>
           </div>
           <div className="items-center flex md:gap-x-[100px] flex-col md:flex-row xl:gap-x-[4.63vw] md:items-start  ">

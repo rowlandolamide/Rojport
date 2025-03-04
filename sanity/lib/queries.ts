@@ -49,11 +49,12 @@ export const moreProjectsQuery = groq`
 
 export const aboutPageQuery = groq`
   *[_type == "about"][0]{
+  ...,
     _id,
     title,
     customLogo,
     overview,
-    aboutImage{
+    aboutImage[]{
       _type,
       asset,
       "lqip": asset->metadata.lqip,
