@@ -90,10 +90,11 @@ export function AboutPage({ data }: AboutPageProps) {
           <div className=" md:py-[180px] py-[60px] xl:py-[8.3vw] flex flex-col md:items-center gap-y-[20px] md:gap-y-[39px] xl:gap-y-[1.8vw]">
             {/* About image */}
             <InfiniteCarousel
-              imageNodes={aboutImage?.map((item: any) => {
+              imageNodes={aboutImage?.map((item: any, i) => {
                 const imageUrl = item && urlForImage(item)?.url()
                 return (
                   <Image
+                    key={i}
                     width={500}
                     height={300}
                     className="w-full "
