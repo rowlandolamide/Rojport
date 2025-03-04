@@ -96,12 +96,12 @@ html.lenis body {
 }
 
 .PLUS {
-  @apply w-[14px] h-[14px];
+  @apply w-[14px] h-[14px] 2xl:w-[0.74vw] 2xl:h-[0.74vw];
 }
 
 /* Play Button */
 .PLAY-BTN {
-  @apply xl:text-[0.7vw] 2xl:text-[20px] uppercase py-[15px] px-[20px] rounded-[12px] text-[12px] flex items-center justify-center bg-bl text-white absolute z-20 rounded-[12px];
+  @apply xl:text-[0.7vw] 2xl:text-[0.93vw] uppercase xl:py-[0.46rem] xl:px-[0.7rem] px-[15px] py-[10px] rounded-[10px] 2xl:rounded-[0.46vw] text-[12px] flex items-center justify-center bg-bl text-white absolute z-20;
 }
 /* End */
 
@@ -110,8 +110,15 @@ html.lenis body {
   @apply text-[10px] sm:text-[12px] md:text-[0.7rem]  font-Ingram uppercase  leading-[14px] sm:leading-[16px]  xl:leading-[0.83rem] border border-black rounded-[5px] 3xl:rounded-[0.2rem] 3xl:border-[0.046rem] px-[12.5px] py-[8.3px] sm:py-[0.46rem] sm:px-[15px] xl:py-[0.46rem] xl:px-[0.7rem];
 }
 
+.MONO-NAV-PASSAGE {
+  @apply text-[10px] sm:text-[12px] md:text-[0.7rem]  font-Ingram uppercase;
+}
+
 .MONO-EX {
   @apply text-[10px] sm:text-[12px] md:text-[0.7rem]  font-Ingram uppercase  leading-[14px] sm:leading-[16px]  xl:leading-[0.83rem] border  rounded-[5px] 3xl:rounded-[0.2rem] 3xl:border-[0.046rem] px-[12.5px] py-[8.3px]  sm:py-[0.46rem] xl:px-[0.7rem] border-white text-white;
+}
+.MONO-NAV-EX {
+  @apply text-[12px] md:text-[0.7rem]  font-Ingram uppercase  leading-[14px] sm:leading-[16px]  xl:leading-[0.83rem] border  rounded-[5px] 3xl:rounded-[0.2rem] 3xl:border-[0.046rem] px-[12.5px] py-[8.3px]  sm:py-[0.46rem] xl:px-[0.7rem] border-white text-white;
 }
 .HOME-TXT-TITLE {
   @apply font-PP text-[8.4vw] sm:text-[36px] 2xl:text-[1.67vw] leading-[100%];
@@ -135,7 +142,7 @@ html.lenis body {
   @apply space-y-[2px];
 }
 .DISCI-TEXT-PRJ {
-  @apply 2xl:whitespace-nowrap font-light font-PPnM lg:text-[0.93rem] lg:leading-[1.85rem] text-[16px] leading-[40px];
+  @apply 2xl:whitespace-nowrap font-light font-PPnM lg:text-[0.93rem] lg:leading-[1.85rem] text-[12px] sm:text-[16px]  leading-[24px] sm:leading-[40px];
 }
 
 /* End */
@@ -173,7 +180,7 @@ html.lenis body {
 }
 
 .TEXT-CNT-ABT {
-  @apply xl:w-[32.5vw] md:w-[702px] w-full font-PPnM lg:text-[0.93rem] lg:leading-[1.85rem] text-[16px];
+  @apply xl:w-[32.5vw] md:w-[702px] w-full font-PPnM lg:text-[0.93rem] lg:leading-[1.85rem] text-[13px] sm:text-[16px];
 }
 
 .CENTER-FLX-LO {
@@ -207,6 +214,6 @@ html.lenis body {
 
 /* MouseStates */
 .MOUSE-TEXT {
-  @apply font-PPnM text-[15px] xl:text-[0.7rem] uppercase;
+  @apply font-PPnM text-[15px] xl:text-[0.7rem] uppercase whitespace-nowrap;
 }
 /* End */

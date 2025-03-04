@@ -18,8 +18,32 @@ export const FooterLinsk = [
   { name: 'Instagram', link: process.env.NEXT_PUBLIC_INSTA_LINK || '/' },
   { name: 'Twitter', link: process.env.NEXT_PUBLIC_TWITTER_LINK || '/' },
   { name: 'Behance', link: process.env.NEXT_PUBLIC_BEHANCE_LINK || '/' },
+  { name: 'Linkedin', link: process.env.NEXT_PUBLIC_ROJ_LINKEDIN || '/' },
   { name: 'Email', link: process.env.NEXT_PUBLIC_ROJ_EMAIL || '/' },
 ]
+
+export const MobileFooter = ({ isMenuLinks }: { isMenuLinks?: boolean }) => {
+  return (
+    <div className="MONO-NAV-PASSAGE text-white flex flex-col items-center gap-y-[25px]">
+      <a
+        href={`mailto:${process.env.NEXT_PUBLIC_ROJ_EMAIL || '/'}`}
+        target="_blank"
+      >
+        OLAMIDE@ROJTHEGOAT.COM
+      </a>
+      <div className="flex items-center gap-x-[35px]">
+        {FooterLinsk.slice(0, 4).map((item, i) => {
+          return (
+            <a target="_blank" key={i} href={item.link}>
+              {item.name}
+            </a>
+          )
+        })}
+      </div>
+      <div>© 2025 ROJ THE GOAT</div>
+    </div>
+  )
+}
 
 export default function Footer(props: FooterProps) {
   const { handleMouseStateChange } = useContext(
@@ -34,8 +58,8 @@ export default function Footer(props: FooterProps) {
   }
   return (
     <footer className="xl:fixed w-full mb-[60px] xl:mb-0 xl:bottom-[30px] xl:text-base mix-blend-difference items-center   ">
-      <div className="w-full relative GEN-PAD">
-        <div className=" w-full flex justify-between   flex-col xl:flex-row xl:gap-y-0 gap-y-[10px]">
+      <div className="w-full relative GEN-PAD ">
+        <div className=" w-full sm:flex justify-between hidden  flex-col xl:flex-row xl:gap-y-0 gap-y-[10px]">
           <div className="MONO-EX xl:block hidden">2025 © ROJ THE GOAT</div>
           <div className="MONO-EX xl:block hidden">
             <span>LAGOS, NIGERIA |</span> <Time></Time> WAT
@@ -83,6 +107,9 @@ export default function Footer(props: FooterProps) {
               )
             })}
           </div>
+        </div>
+        <div className="sm:hidden">
+          <MobileFooter></MobileFooter>
         </div>
       </div>
     </footer>

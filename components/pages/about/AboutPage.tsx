@@ -66,28 +66,28 @@ export function AboutPage({ data }: AboutPageProps) {
   } = data ?? {}
 
   const TechnicalAbilities = {
-    name: 'Technical Abilities',
+    name: 'Awards',
     data: technicalAbilities,
   }
   const PressAndAwards = {
-    name: 'Press and Awards',
+    name: 'Press and Speaking',
     data: pressAndAwards?.map((item: any) => item.title),
     links: pressAndAwards?.map((item) => item.link),
   }
   const Services = { name: 'Services', data: services }
   console.log(data)
   return (
-    <div className=" xl:pb-[10.65vw] md:pb-[230px] xl:pt-[11.4vw] md:pt-[246px] pt-[120px] pb-[120px] flex flex-col items-center">
+    <div className="w-full xl:pb-[10.65vw] md:pb-[230px] xl:pt-[11.4vw] md:pt-[246px] pt-[90px] pb-[120px] flex flex-col items-center">
       <div className="w-full flex flex-col items-center">
         <Image
           src={AboutUsTitle.src}
           width={100}
           height={100}
           alt="Roj the goat"
-          className={cn('w-[65vw] ')}
+          className={cn('sm:w-[65vw] w-full')}
         ></Image>
         <div className="w-full flex flex-col items-center">
-          <div className=" md:py-[180px] py-[60px] xl:py-[8.3vw] flex flex-col items-center gap-y-[20px] md:gap-y-[39px] xl:gap-y-[1.8vw]">
+          <div className=" md:py-[180px] py-[60px] xl:py-[8.3vw] flex flex-col md:items-center gap-y-[20px] md:gap-y-[39px] xl:gap-y-[1.8vw]">
             {/* About image */}
             <InfiniteCarousel
               imageNodes={aboutImage?.map((item: any) => {
@@ -97,7 +97,7 @@ export function AboutPage({ data }: AboutPageProps) {
                   <Image
                     width={500}
                     height={300}
-                    className="w-full border border-red-500"
+                    className="w-full "
                     alt="about page"
                     src={imageUrl}
                   ></Image>
@@ -107,29 +107,35 @@ export function AboutPage({ data }: AboutPageProps) {
 
             <div className=" MONO-LO">Portrait by DANIELLA ALMONA </div>
           </div>
-          <div className="items-center flex md:gap-x-[100px] flex-col md:flex-row xl:gap-x-[4.63vw] md:items-start  ">
+          <div className=" w-full sm:items-start sm:justify-center flex md:gap-x-[100px] flex-col md:flex-row xl:gap-x-[4.63vw]  ">
             <Image
               src={RojIconSvg.src}
               width={100}
               height={100}
               alt="Roj the goat Icon"
-              className={cn('w-[94px] xl:w-[4.35vw] mb-[40px]')}
+              className={cn('w-[56px] sm:w-[94px] xl:w-[4.35vw] mb-[40px]')}
             ></Image>
             {overview && (
               <div className=" md:w-[42vw]  TEXT-CNT-ABT leading-[32px]  ">
                 <CustomPortableText value={overview}></CustomPortableText>
               </div>
             )}
-            <div className="space-y-[2.78vw]">
+            <div className="space-y-[2.78vw] md:block hidden">
               <ListContainer {...TechnicalAbilities}></ListContainer>
 
               <ListContainer {...Services}></ListContainer>
-              <div className="md:hidden ">
-                <ListContainer {...PressAndAwards}></ListContainer>
-              </div>
             </div>
             <div className="md:block hidden">
               <ListContainer {...PressAndAwards}></ListContainer>
+            </div>
+            <div>
+              <div className="flex md:hidden justify-between w-full  mt-[80px]">
+                <ListContainer {...Services}></ListContainer>
+                <div className="space-y-[53px]">
+                  <ListContainer {...PressAndAwards}></ListContainer>
+                  <ListContainer {...TechnicalAbilities}></ListContainer>
+                </div>
+              </div>
             </div>
           </div>
         </div>
