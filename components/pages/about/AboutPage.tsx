@@ -75,7 +75,7 @@ export function AboutPage({ data }: AboutPageProps) {
     links: pressAndAwards?.map((item) => item.link),
   }
   const Services = { name: 'Services', data: services }
-  console.log(data)
+
   return (
     <div className="w-full xl:pb-[10.65vw] md:pb-[230px] xl:pt-[11.4vw] md:pt-[246px] pt-[90px] pb-[120px] flex flex-col items-center">
       <div className="w-full flex flex-col items-center">
@@ -91,7 +91,6 @@ export function AboutPage({ data }: AboutPageProps) {
             {/* About image */}
             <InfiniteCarousel
               imageNodes={aboutImage?.map((item: any) => {
-                console.log('dd', item)
                 const imageUrl = item && urlForImage(item)?.url()
                 return (
                   <Image

@@ -63,8 +63,6 @@ export default async function ProjectSlugRoute({ params }: Props) {
     return <ProjectPreview params={params} initial={initial} />
   }
 
-  console.log('wonder', initial.data?.disci)
-
   return (
     <ProjectWrapper>
       <Head>
@@ -114,7 +112,6 @@ export default async function ProjectSlugRoute({ params }: Props) {
                   : true
               }
               if (item._type === 'textBlock') {
-                console.log('2pac', item)
                 return (
                   <div
                     key={i}

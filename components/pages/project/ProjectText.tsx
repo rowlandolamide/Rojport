@@ -19,8 +19,6 @@ function ProjectText(props: {
   year?: string
   isProjectSummary: boolean
 }) {
-  console.log('two', props.disciplines)
-
   return (
     <div className=" UPPER-TEXT-CNT-PRJ">
       <div className="TEXT-CNT-PRJ">
