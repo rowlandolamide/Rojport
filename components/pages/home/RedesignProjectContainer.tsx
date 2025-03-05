@@ -10,6 +10,7 @@ const RedesignProjectContainer = (props: { data: HomePagePayload | null }) => {
         {props.data &&
           props.data.showcaseProjects?.map((item, idx) => {
             const { disci, coverImage, overview, slug, title, tag } = item
+
             const imageUrl = coverImage
               ? urlForImage(coverImage)
                   ?.quality(100)

@@ -15,7 +15,7 @@ function RedesignProjectCard(props: {
   title: string
   nextProjectItem?: boolean
   slug: string
-  tag: string
+  tag: any
 }) {
   const { img, title, tag, slug, nextProjectItem } = props
   const { handleMouseStateChange } = useContext(
@@ -55,7 +55,16 @@ function RedesignProjectCard(props: {
           </div>
           <div className="HOME-CNT-TEXT-PRJ">
             <span className="HOME-TXT-TITLE "> {title}</span>{' '}
-            <span className="MONO-LO text-[15px] 2xl:text-[0.7rem]">{tag}</span>
+            {tag.map((item: any, index: number) => {
+              return (
+                <span
+                  key={index}
+                  className="MONO-LO text-[15px] 2xl:text-[0.7rem]"
+                >
+                  {item}
+                </span>
+              )
+            })}
           </div>
         </div>
       </div>

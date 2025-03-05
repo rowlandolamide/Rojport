@@ -28,7 +28,7 @@ const ListContainer = ({
 }) => {
   return (
     <div className="">
-      <div className="MONO-LO mb-[23px]">{name}</div>
+      <div className="MONO-LO mb-[23px] w-fit">{name}</div>
       {data && (
         <div>
           {data.map((item: any, index: number) => {

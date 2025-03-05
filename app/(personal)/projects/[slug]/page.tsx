@@ -73,6 +73,7 @@ export default async function ProjectSlugRoute({ params }: Props) {
       <div className="">
         <div className="w-full pb-[58px] ">
           <ProjectDisplayVideo
+            placeHolderImage={initial.data?.coverImage}
             projectName={initial.data?.title || ''}
             videoTitle={initial.data?.mainVideoTitle || ''}
             url={initial.data?.mainVideo || ''}

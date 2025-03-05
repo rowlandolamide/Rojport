@@ -6,11 +6,13 @@ import {
   ContextMain,
 } from '@/components/global/ContextWrapper'
 import { Plus } from 'lucide-react'
+import { urlForImage } from '@/sanity/lib/utils'
 
 function ProjectDisplayVideo(props: {
   url: string
   videoTitle: string
   projectName: string
+  placeHolderImage: any
 }) {
   /* Props */
   const { url, videoTitle, projectName } = props
@@ -32,6 +34,10 @@ function ProjectDisplayVideo(props: {
     videoTag.style.objectFit = 'cover'
   }
   /* End */
+
+  const placeHolderUrl = props.placeHolderImage
+    ? urlForImage(props.placeHolderImage)?.quality(100)?.url()
+    : ''
 
   return (
     <div
@@ -55,6 +61,7 @@ function ProjectDisplayVideo(props: {
       <ReactPlayer
         height={'100%'}
         width={'100%'}
+        light={placeHolderUrl}
         style={{
           zIndex: 0,
           position: 'relative',

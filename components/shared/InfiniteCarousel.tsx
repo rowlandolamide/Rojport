@@ -20,7 +20,9 @@ export default function InfiniteCarousel({
   }
 
   useLayoutEffect(() => {
-    updateWidth()
+    setTimeout(() => {
+      updateWidth()
+    }, 2000)
   }, [])
 
   useLayoutEffect(() => {
@@ -47,7 +49,7 @@ export default function InfiniteCarousel({
         carouselRef.current.appendChild(carouselRef.current.children[0])
         gsap.set(carouselRef.current, { x: 0 }).duration(1) // Reset position instantly
       },
-    }).repeatDelay(1) // Pause before the next move
+    }).repeatDelay(4) // Pause before the next move
 
     return () => {
       tl.kill()
