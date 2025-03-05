@@ -10,7 +10,7 @@ export default function InfiniteCarousel({
 }) {
   const carouselRef: any = useRef(null)
   const [itemWidth, setItemWidth] = useState(0)
-  const items = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5']
+
   const { x } = useMediaQuery()
   const updateWidth = () => {
     if (carouselRef.current) {
@@ -18,6 +18,10 @@ export default function InfiniteCarousel({
       gsap.set(carouselRef.current, { x: 0 }) // Reset position
     }
   }
+
+  useLayoutEffect(() => {
+    updateWidth()
+  }, [])
 
   useLayoutEffect(() => {
     updateWidth()
