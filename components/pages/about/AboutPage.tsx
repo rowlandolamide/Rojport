@@ -1,6 +1,7 @@
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
 import Link from 'next/link'
 
+import AboutPageFaceGen from './AboutPageFaceGen'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import AboutUsTitle from '../../../app/public/Images/AboutUsTitle.svg'
@@ -29,7 +30,7 @@ const ListContainer = ({
   isMoreDetailSection?: boolean
 }) => {
   return (
-    <div className="">
+    <div className="relative">
       <div className="MONO-LO mb-[23px] w-fit">{name}</div>
       {data && (
         <div>
@@ -97,6 +98,7 @@ export function AboutPage({ data }: AboutPageProps) {
 
   return (
     <div className="w-full xl:pb-[10.65vw] md:pb-[230px] xl:pt-[11.4vw] md:pt-[246px] pt-[90px] pb-[120px] flex flex-col items-center">
+      <AboutPageFaceGen></AboutPageFaceGen>
       <div className="w-full flex flex-col items-center">
         <Image
           src={AboutUsTitle.src}
