@@ -52,7 +52,7 @@ const ListContainer = ({
           })}
           <div
             className={cn(
-              'TEXT-MORE-DETAILS  w-full md:w-[19.58vw] mt-[80vw]',
+              'TEXT-MORE-DETAILS  w-full md:w-[19.58vw] mt-[80px]',
               isMoreDetailSection ? '' : 'hidden',
             )}
           >
@@ -60,7 +60,7 @@ const ListContainer = ({
             <a
               target="_blank"
               className="underline"
-              href="mail-to:olamide@rojthegoat.com"
+              href="mailto:olamide@rojthegoat.com"
             >
               olamide@rojthegoat.com
             </a>{' '}
@@ -110,12 +110,13 @@ export function AboutPage({ data }: AboutPageProps) {
             {/* About image */}
             <InfiniteCarousel
               imageNodes={aboutImage?.map((item: any, i) => {
-                const imageUrl = item && urlForImage(item)?.url()
+                const imageUrl = item && urlForImage(item)?.quality(100)?.url()
                 return (
                   <Image
                     key={i}
                     width={500}
                     height={300}
+                    unoptimized
                     className="w-full "
                     alt="about page"
                     src={imageUrl}
@@ -142,14 +143,17 @@ export function AboutPage({ data }: AboutPageProps) {
                 <CustomPortableText value={overview}></CustomPortableText>
               </div>
             )}
-            <div className="space-y-[2.78vw] md:block hidden">
-              <ListContainer {...TechnicalAbilities}></ListContainer>
-
-              <ListContainer isMoreDetailSection {...Services}></ListContainer>
-            </div>
             <div className="md:block hidden">
-              <ListContainer {...PressAndAwards}></ListContainer>
+              <ListContainer
+                isMoreDetailSection={true}
+                {...Services}
+              ></ListContainer>
             </div>
+            <div className="space-y-[2.78vw] md:block hidden">
+              <ListContainer {...PressAndAwards}></ListContainer>
+              <ListContainer {...TechnicalAbilities}></ListContainer>
+            </div>
+
             <div>
               <div className="flex md:hidden justify-between w-full  mt-[80px]">
                 <ListContainer {...Services}></ListContainer>
