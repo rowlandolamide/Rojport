@@ -183,6 +183,10 @@ html.lenis body {
   @apply xl:w-[32.5vw] md:w-[702px] w-full font-PPnM lg:text-[0.93rem] lg:leading-[1.85rem] text-[13px] sm:text-[16px];
 }
 
+.TEXT-MORE-DETAILS {
+  @apply w-full font-PPnM lg:text-[0.93rem] lg:leading-[1.85rem] text-[13px] sm:text-[16px];
+}
+
 .CENTER-FLX-LO {
   @apply md:flex hidden items-center 3xl:gap-x-[0.46rem] gap-x-[10px];
 }

@@ -21,10 +21,12 @@ const ListContainer = ({
   data,
   name,
   links,
+  isMoreDetailSection,
 }: {
   data: any
   name: string
   links?: string[]
+  isMoreDetailSection?: boolean
 }) => {
   return (
     <div className="">
@@ -48,6 +50,23 @@ const ListContainer = ({
               </div>
             )
           })}
+          <div
+            className={cn(
+              'TEXT-MORE-DETAILS  w-full md:w-[19.58vw] mt-[80vw]',
+              isMoreDetailSection ? '' : 'hidden',
+            )}
+          >
+            Reach out to{' '}
+            <a
+              target="_blank"
+              className="underline"
+              href="mail-to:olamide@rojthegoat.com"
+            >
+              olamide@rojthegoat.com
+            </a>{' '}
+            for licensing. Imagery on this website may be available for
+            exclusive or non exclusive licensing.
+          </div>
         </div>
       )}
     </div>
@@ -126,7 +145,7 @@ export function AboutPage({ data }: AboutPageProps) {
             <div className="space-y-[2.78vw] md:block hidden">
               <ListContainer {...TechnicalAbilities}></ListContainer>
 
-              <ListContainer {...Services}></ListContainer>
+              <ListContainer isMoreDetailSection {...Services}></ListContainer>
             </div>
             <div className="md:block hidden">
               <ListContainer {...PressAndAwards}></ListContainer>
