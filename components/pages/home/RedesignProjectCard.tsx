@@ -55,7 +55,7 @@ function RedesignProjectCard(props: {
           </div>
           <div className="HOME-CNT-TEXT-PRJ">
             <span className="HOME-TXT-TITLE "> {title}</span>{' '}
-            {tag.map((item: any, index: number) => {
+            {tag.slice(0, 1).map((item: any, index: number) => {
               return (
                 <span
                   key={index}
