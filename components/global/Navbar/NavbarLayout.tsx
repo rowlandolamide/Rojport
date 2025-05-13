@@ -29,7 +29,7 @@ export const SideMenu = ({
   return (
     <div
       className={cn(
-        'w-full duration-300  gap-y-[19vh] bg-bl h-[100vh] top-0 fixed z-40 flex flex-col items-center',
+        'w-full duration-300 md:hidden  gap-y-[19vh] bg-bl h-[100vh] top-0 fixed z-40 flex flex-col items-center',
         isSideOpen ? 'left-0 ' : 'ml-[100vw]',
       )}
     >
@@ -109,7 +109,7 @@ export default function Navbar(props: NavbarProps) {
           >
             ROJ THE GOAT
           </Link>
-          <div className="sm:hidden">
+          <div className="md:hidden">
             <button
               onClick={() => {
                 setIsSideOpen((prev) => !prev)
