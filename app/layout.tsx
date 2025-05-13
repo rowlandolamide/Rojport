@@ -1,6 +1,7 @@
-import Navbar from '@/components/global/Navbar/NavbarLayout'
+import ScrollToTop from '@/lib/ScrollToTheTop'
 import ContextWrapper from '@/components/global/ContextWrapper'
 import './globals.css'
+import { Suspense } from 'react'
 const LenisHorizontalWrapper = dynamic(
   () => import('@/components/pages/home/LenisHorizontalWrapper'),
 )
@@ -33,9 +34,25 @@ export default async function RootLayout({
       // Assign custom color css variables for Tailwind to use as Tailwind variables
     >
       <body className="text-black relative  bg-white">
-        <ContextWrapper>
-          {<LenisHorizontalWrapper>{children}</LenisHorizontalWrapper>}
-        </ContextWrapper>
+        <Suspense
+          fallback={
+            <div
+              aria-busy="true"
+              aria-live="polite"
+              style={{
+                minHeight: '1rem',
+                backgroundColor: '#f0f0f0',
+                borderRadius: '4px',
+              }}
+            />
+          }
+        >
+          {' '}
+          <ScrollToTop></ScrollToTop>
+          <ContextWrapper>
+            {<LenisHorizontalWrapper>{children}</LenisHorizontalWrapper>}
+          </ContextWrapper>
+        </Suspense>
       </body>
     </html>
   )

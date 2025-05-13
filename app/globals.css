@@ -133,7 +133,7 @@ html.lenis body {
 }
 
 .CREDIT-DISCI-TITLE {
-  @apply MONO-LO w-fit uppercase mb-[13px];
+  @apply MONO-NAV-PASSAGE text-bl w-fit uppercase mb-[13px];
 }
 .CREDIT-DISCI-ITEM-CONT {
   @apply space-y-[2px];

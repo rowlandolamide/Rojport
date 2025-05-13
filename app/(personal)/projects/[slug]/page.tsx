@@ -150,6 +150,7 @@ export default async function ProjectSlugRoute({ params }: Props) {
                   return (
                     <div key={i} className="IMG-PRJ">
                       <ProjectImage
+                        projectTitle={initial.data?.title || ''}
                         highRes={singleImageUrlHighRes}
                         key={i}
                         img={singleImageUrlHighRes || ''}
@@ -159,8 +160,14 @@ export default async function ProjectSlugRoute({ params }: Props) {
                 } else {
                   return (
                     <div className={`TWO-IMGS-PRJ  `} key={i}>
-                      <ProjectImage img={firstImageUrl}></ProjectImage>
-                      <ProjectImage img={secondImageUrl}></ProjectImage>
+                      <ProjectImage
+                        projectTitle={initial.data?.title || ''}
+                        img={firstImageUrl}
+                      ></ProjectImage>
+                      <ProjectImage
+                        projectTitle={initial.data?.title || ''}
+                        img={secondImageUrl}
+                      ></ProjectImage>
                     </div>
                   )
                 }

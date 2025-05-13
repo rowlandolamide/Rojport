@@ -8,7 +8,12 @@ import {
   ContextMain,
 } from '@/components/global/ContextWrapper'
 
-function ProjectImage(props: { img: string; highRes?: string }) {
+function ProjectImage(props: {
+  img: string
+  highRes?: string
+  projectTitle: string
+  projectAbout?: string
+}) {
   const { overlay, handleOverlay } = useContext(
     ContextMain,
   ) as MainContextWrapperType
@@ -29,7 +34,7 @@ function ProjectImage(props: { img: string; highRes?: string }) {
         width={100}
         height={100}
         className="w-screen  ROUNDED-PRJ border "
-        alt={'projectImage'}
+        alt={props.projectTitle + 'projectImage'}
       ></Image>
     </div>
   )

@@ -22,13 +22,13 @@ function ProjectText(props: {
   return (
     <div className=" UPPER-TEXT-CNT-PRJ">
       <div className="TEXT-CNT-PRJ">
-        <div className="MN-TEXT-PRJ">{props.title}</div>
-        <div
+        <h1 className="MN-TEXT-PRJ">{props.title}</h1>
+        <h2
           className={`${props.isProjectSummary ? 'flex gap-y-[20px]' : 'hidden'} flex-col`}
         >
           <div className="MONO-LO w-fit">Exploration</div>
           <div className="MONO-LO w-fit">{props.year}</div>
-        </div>
+        </h2>
 
         <div className="TN  PASSAGE-PRJ-TEXT ">
           {' '}

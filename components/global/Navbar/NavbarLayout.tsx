@@ -47,7 +47,7 @@ export const SideMenu = ({
               href={item.route}
               key={i}
             >
-              {item.title}
+              <h1>{item.title}</h1>
             </Link>
           )
         })}
@@ -74,8 +74,6 @@ export const SideMenu = ({
 
 export default function Navbar(props: NavbarProps) {
   /* Current Time */
-  const value = useCurrentTime()
-  /* End */
 
   const [isSideOpen, setIsSideOpen] = useState(false)
 
@@ -120,42 +118,14 @@ export default function Navbar(props: NavbarProps) {
             >
               <img
                 height={12}
+                alt="Hamburger Menu Open and Close Icon"
                 className="text-white"
                 width={12}
                 src={!isSideOpen ? hamburgerMenuIcon.src : closeXIcon.src}
               ></img>
             </button>
           </div>
-          {/*   <div className="flex justify-between gap-x-[10px] md:hidden mt-[10px]">
-          {' '}
-          <div className="space-x-[10px] flex w-fit">
-            <div className="MONO-EX border-white text-white w-fit">
-              Motion Designer
-            </div>
-            <div className="MONO-EX border-white text-white">Art Director</div>
-          </div>
-          <div className="space-x-[10px] flex">
-            {' '}
-            {[
-              { name: 'Work', link: '/' },
-              { name: 'Info', link: '/about' },
-            ].map((ite, i) => {
-              return (
-                <Link
-                  className={cn(
-                    'MONO-EX hover:sm:text-bl duration-300 flex items-center justify-center text-white border-white ',
-                    pathname === ite.link ? 'text-bl' : '',
-                  )}
-                  scroll={false}
-                  key={i}
-                  href={ite.link}
-                >
-                  {ite.name}
-                </Link>
-              )
-            })}
-          </div>
-        </div> */}
+
           <div className="  CENTER-FLX-LO TXT-DIFF">
             <div className="MONO-EX border-white text-white">
               Motion Designer

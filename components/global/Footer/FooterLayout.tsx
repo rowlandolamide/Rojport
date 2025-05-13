@@ -31,7 +31,7 @@ export const MobileFooter = ({ isMenuLinks }: { isMenuLinks?: boolean }) => {
       >
         OLAMIDE@ROJTHEGOAT.COM
       </a>
-      <div className="flex items-center gap-x-[35px]">
+      <div className="flex items-center gap-x-[1vw]">
         {FooterLinsk.slice(0, 4).map((item, i) => {
           return (
             <a target="_blank" key={i} href={item.link}>

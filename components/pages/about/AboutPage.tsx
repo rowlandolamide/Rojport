@@ -1,17 +1,15 @@
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
-import Link from 'next/link'
 
 import AboutPageFaceGen from './AboutPageFaceGen'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import AboutUsTitle from '../../../app/public/Images/AboutUsTitle.svg'
-import AboutImageBox from '@/components/shared/AboutImageBox'
+
 import { CustomPortableText } from '@/components/shared/CustomPortableText'
 import type { AboutPayload } from '@/types'
 import RojIconSvg from '../../../app/public/Icons/Roj Icon Svg.svg'
 import InfiniteCarousel from '@/components/shared/InfiniteCarousel'
 import { urlForImage } from '@/sanity/lib/utils'
-import ProfilePicture from '../../../app/public/Images/Profile Image.png'
 
 export interface AboutPageProps {
   data: AboutPayload | null
@@ -31,12 +29,12 @@ const ListContainer = ({
 }) => {
   return (
     <div className="relative">
-      <div className="MONO-LO mb-[23px] w-fit">{name}</div>
+      <h1 className="MONO-NAV-PASSAGE mb-[23px] w-fit text-bl">{name}</h1>
       {data && (
         <div>
           {data.map((item: any, index: number) => {
             return (
-              <div className="DISCI-TEXT-PRJ leading-[40px]" key={index}>
+              <h2 className="DISCI-TEXT-PRJ leading-[40px]" key={index}>
                 {links ? (
                   <a
                     target="_blank"
@@ -48,7 +46,7 @@ const ListContainer = ({
                 ) : (
                   item
                 )}
-              </div>
+              </h2>
             )
           })}
           <div
@@ -60,7 +58,7 @@ const ListContainer = ({
             Reach out to{' '}
             <a
               target="_blank"
-              className="underline"
+              className="underline hover:text-bl"
               href="mailto:olamide@rojthegoat.com"
             >
               olamide@rojthegoat.com
@@ -141,9 +139,9 @@ export function AboutPage({ data }: AboutPageProps) {
               className={cn('w-[56px] sm:w-[94px] xl:w-[4.35vw] mb-[40px]')}
             ></Image>
             {overview && (
-              <div className=" md:w-[42vw]  TEXT-CNT-ABT leading-[32px]  ">
+              <h2 className=" md:w-[42vw]  TEXT-CNT-ABT leading-[32px]  ">
                 <CustomPortableText value={overview}></CustomPortableText>
-              </div>
+              </h2>
             )}
             <div className="md:block hidden">
               <ListContainer
