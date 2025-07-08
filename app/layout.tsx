@@ -5,7 +5,7 @@ import { Suspense } from 'react'
 const LenisHorizontalWrapper = dynamic(
   () => import('@/components/pages/home/LenisHorizontalWrapper'),
 )
-
+import { GoogleAnalytics } from '@next/third-parties/google'
 import dynamic from 'next/dynamic'
 // import { Inter } from 'next/font/google'
 
@@ -51,6 +51,7 @@ export default async function RootLayout({
             {<LenisHorizontalWrapper>{children}</LenisHorizontalWrapper>}
           </ContextWrapper>
         </Suspense>
+        <GoogleAnalytics gaId="G-LKQSJP3D7G"></GoogleAnalytics>
       </body>
     </html>
   )
