@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import hamburgerMenuIcon from '../../../app/public/Icons/Hamburger-Menu.svg'
 import closeXIcon from '../../../app/public/Icons/Close-X.svg'
-import useCurrentTime, { Time } from '@/components/hooks/useCurrentTime'
+import { Time } from '@/components/hooks/useCurrentTime'
 import { usePathname } from 'next/navigation'
 import { SetStateAction, useContext, useState } from 'react'
 import { MobileFooter } from '../Footer/FooterLayout'

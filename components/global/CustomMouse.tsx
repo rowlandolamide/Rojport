@@ -2,15 +2,12 @@
 import { cn } from '@/lib/utils'
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import Image from 'next/image'
-import Mouse from '../../app/public/Icons/Mouse-New.svg'
 
 import { ContextMain, MainContextWrapperType } from './ContextWrapper'
 
 function CustomMouse(props: { x: number; y: number }) {
   const { mouseStates } = useContext(ContextMain) as MainContextWrapperType
-  const textLetter = mouseStates.displayStatesObj.text?.length || 0
-  const textWidth = textLetter * 8.7
+
   const { displayStatesObj } = mouseStates
   const [width, setWidth] = useState(0)
   const textRef: any = useRef(null)

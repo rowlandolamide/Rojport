@@ -8,8 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Overlay from './Overlay'
 
 const CustomMouse = dynamic(() => import('./CustomMouse'))
-import { useMemo } from 'react'
-import { loadHomePage } from '@/sanity/loader/loadQuery'
+
 import dynamic from 'next/dynamic'
 
 export interface MainContextWrapperType {
