@@ -101,6 +101,9 @@ html.lenis body {
 
 /* Play Button */
 .PLAY-BTN {
+  @apply xl:text-[0.7vw] 2xl:text-[0.93vw] uppercase xl:py-[0.46rem] xl:px-[0.7rem] px-[15px] py-[10px] rounded-[10px] 2xl:rounded-[0.46vw] text-[12px]  items-center justify-center bg-bl text-white absolute z-20;
+}
+.PLAY-BTN-MAIN {
   @apply xl:text-[0.7vw] 2xl:text-[0.93vw] uppercase xl:py-[0.46rem] xl:px-[0.7rem] px-[15px] py-[10px] rounded-[10px] 2xl:rounded-[0.46vw] text-[12px] flex items-center justify-center bg-bl text-white absolute z-20;
 }
 /* End */
@@ -113,7 +116,9 @@ html.lenis body {
 .MONO-NAV-PASSAGE {
   @apply text-[10px] sm:text-[12px] md:text-[0.7rem]  font-Ingram uppercase;
 }
-
+.MONO-NAV-PASSAGE-SM {
+  @apply text-[10px] sm:text-[12px] md:text-[0.5rem]  font-Ingram uppercase;
+}
 .MONO-EX {
   @apply text-[10px] sm:text-[12px] md:text-[0.7rem]  font-Ingram uppercase  leading-[14px] sm:leading-[16px]  xl:leading-[0.83rem] border  rounded-[5px] 3xl:rounded-[0.2rem] 3xl:border-[0.046rem] px-[12.5px] py-[8.3px]  sm:py-[0.46rem] xl:px-[0.7rem] border-white text-white;
 }
@@ -134,6 +139,9 @@ html.lenis body {
 
 .CREDIT-DISCI-TITLE {
   @apply MONO-NAV-PASSAGE text-bl w-fit uppercase mb-[13px];
+}
+.NEW-TITLES {
+  @apply MONO-NAV-PASSAGE text-bl;
 }
 .CREDIT-DISCI-ITEM-CONT {
   @apply space-y-[2px];

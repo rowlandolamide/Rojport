@@ -1,6 +1,8 @@
 'use client'
 import React, { useContext, useRef } from 'react'
 import ReactPlayer from 'react-player'
+import playIcon from '../../../public/play-icon.svg'
+import Image from 'next/image'
 import {
   MainContextWrapperType,
   ContextMain,
@@ -52,11 +54,25 @@ function ProjectDisplayVideo(props: {
         })
       }}
     >
-      <button className="PLAY-BTN group">
-        PLAY {projectName}{' '}
-        <span className="group-hover:rotate-[180deg] flex items-center  justify-center ml-2 group-hover:scale-[1.5] duration-300 h-[10px]">
-          <Plus className="PLUS 2xl:w-[0.7vw] 2xl:h-[0.7vw] " size={10}></Plus>
-        </span>
+      <button className="PLAY-BTN group sm:flex hidden gap-x-[10px]  ">
+        <Image
+          className="2xl:w-[0.75vw] duration-300 group-hover:sm:scale-[1.05]"
+          src={playIcon.src}
+          alt={'play button'}
+          width={14}
+          height={14}
+        ></Image>{' '}
+        {projectName}{' '}
+      </button>
+      <button className="PLAY-BTN flex group bottom-[14px] left-[16px] gap-x-[10px] sm:hidden ">
+        <Image
+          className="2xl:w-[0.75vw] duration-300 group-hover:sm:scale-[1.05]"
+          src={playIcon.src}
+          alt={'play button'}
+          width={14}
+          height={14}
+        ></Image>{' '}
+        {projectName}{' '}
       </button>
       <ReactPlayer
         height={'100%'}
@@ -69,6 +85,7 @@ function ProjectDisplayVideo(props: {
           aspectRatio: '16/9',
           borderRadius: 3,
         }}
+        playIcon={<></>}
         url={url}
         onStart={beginningHandler}
         ref={videoRef}

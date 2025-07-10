@@ -6,7 +6,7 @@ import { urlForImage } from '@/sanity/lib/utils'
 const RedesignProjectContainer = (props: { data: HomePagePayload | null }) => {
   return (
     <div className="w-full flex items-center justify-center">
-      <div className="w-full grid md:grid-cols-2 grid-cols-1  md:gap-x-[20px] 2xl:gap-x-[0.93rem] gap-y-[3.47rem] ">
+      <div className="w-full grid md:grid-cols-2 grid-cols-1  md:gap-x-[20px] 2xl:gap-x-[0.93rem] gap-y-[24px] sm:gap-y-[3.47rem] ">
         {props.data &&
           props.data.showcaseProjects?.map((item, idx) => {
             const { disci, coverImage, overview, slug, title, tag } = item

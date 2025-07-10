@@ -1,7 +1,6 @@
 'use client'
 import { PortableText } from '@portabletext/react'
-import RookIcon from '../../../app/public/Icons/Rook.svg'
-import Image from 'next/image'
+
 import type { BlockObject } from '@/sanity.types'
 
 import React from 'react'
@@ -26,8 +25,8 @@ function ProjectText(props: {
         <h2
           className={`${props.isProjectSummary ? 'flex gap-y-[20px]' : 'hidden'} flex-col`}
         >
-          <div className="MONO-LO w-fit">Exploration</div>
-          <div className="MONO-LO w-fit">{props.year}</div>
+          <div className="NEW-TITLES w-fit">Exploration</div>
+          <div className="NEW-TITLES w-fit">{props.year}</div>
         </h2>
 
         <div className="TN  PASSAGE-PRJ-TEXT ">

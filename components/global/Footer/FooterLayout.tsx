@@ -2,6 +2,8 @@
 import type { HomePagePayload, SettingsPayload } from '@/types'
 import { Time } from '@/components/hooks/useCurrentTime'
 
+import { ArrowUpRight } from 'lucide-react'
+
 import { useContext } from 'react'
 import {
   ContextMain,
@@ -31,10 +33,15 @@ export const MobileFooter = ({ isMenuLinks }: { isMenuLinks?: boolean }) => {
       >
         OLAMIDE@ROJTHEGOAT.COM
       </a>
-      <div className="flex items-center gap-x-[1vw]">
+      <div className="flex items-center gap-x-[4vw]">
         {FooterLinsk.slice(0, 4).map((item, i) => {
           return (
-            <a target="_blank" key={i} href={item.link}>
+            <a target="_blank" className="flex" key={i} href={item.link}>
+              <ArrowUpRight
+                className="text-white"
+                width={13}
+                height={13}
+              ></ArrowUpRight>
               {item.name}
             </a>
           )
@@ -65,12 +72,9 @@ export default function Footer(props: FooterProps) {
             <span>LAGOS, NIGERIA |</span> <Time></Time> WAT
           </div>
           <div className="flex flex-row space-x-[10px] xl:hidden ">
-            <div className="MONO-EX">2025 © ROJ THE GOAT</div>
-            <div className="MONO-EX">
-              <span>LAGOS, NIGERIA |</span> <Time></Time> WAT
-            </div>
+            <div className="MONO-NAV-PASSAGE ">2025 © ROJ THE GOAT</div>
           </div>
-          <div className="MONO-EX w-fit">
+          <div className="MONO-NAV-PASSAGE  w-fit">
             LET’S MAKE SOMETHING COOL -{' '}
             <a
               href={`mailto:${process.env.NEXT_PUBLIC_ROJ_EMAIL || '/'}`}
