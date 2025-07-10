@@ -62,7 +62,7 @@ export default function InfiniteCarousel({
         {imageNodes?.map((item, index) => (
           <div
             key={index}
-            className="flex-shrink-0 flex items-center justify-center sm:w-[38vw]  text-white"
+            className="flex-shrink-0  flex items-center justify-center sm:w-[38vw]  text-white"
             style={{ width: '100%' }} // Full width item
           >
             {item}

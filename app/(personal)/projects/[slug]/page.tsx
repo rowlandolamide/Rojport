@@ -140,7 +140,7 @@ export default async function ProjectSlugRoute({ params }: Props) {
                 /* End */
 
                 /* Logic for single images */
-                const singleImageUrl = urlForImage(item.photo)?.width(800).url()
+
                 const singleImageUrlHighRes = urlForImage(item.photo)
                   ?.quality(100)
                   ?.url()
@@ -215,9 +215,6 @@ export default async function ProjectSlugRoute({ params }: Props) {
                 currentPageIndex =
                   index + 1 === allShowcasedProjects?.length ? 0 : index + 1
               }
-
-              const isAcceptableRange =
-                index >= currentPageIndex && index <= currentPageIndex + 1
 
               const acceptableRangeArrIndex = [
                 currentPageIndex,

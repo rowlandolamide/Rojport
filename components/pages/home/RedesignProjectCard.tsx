@@ -42,7 +42,7 @@ function RedesignProjectCard(props: {
           >
             <Image
               className={cn(
-                ' w-full   h-[60vw] object-cover sm:object-fit sm:h-fit group-hover:scale-[1.02] duration-500 ease',
+                ' w-full   h-[60vw] object-cover sm:object-fit sm:h-[34vw] group-hover:scale-[1.02] duration-500 ease',
                 nextProjectItem &&
                   'h-full aspect-3/2 object-cover sm:h-full sm:object-cover',
               )}
@@ -53,13 +53,13 @@ function RedesignProjectCard(props: {
               alt={title}
             ></Image>
           </div>
-          <div className="HOME-CNT-TEXT-PRJ">
+          <div className="HOME-CNT-TEXT-PRJ justify-between">
             <span className="HOME-TXT-TITLE "> {title}</span>{' '}
             {tag.slice(0, 1).map((item: any, index: number) => {
               return (
                 <span
                   key={index}
-                  className="MONO-LO text-[15px] 2xl:text-[0.7rem]"
+                  className="MONO-NAV-PASSAGE text-[15px] 2xl:text-[0.7rem]"
                 >
                   {item}
                 </span>

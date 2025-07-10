@@ -68,7 +68,7 @@ const AboutPageFaceGen = () => {
   return (
     <div
       ref={floatRef}
-      className=" fixed z-30  w-[25vw] rounded-full top-0 left-0 lg:block hidden"
+      className=" fixed z-30  w-[12.5vw] rounded-full top-0 left-0 lg:block hidden"
     >
       <Image
         width={300}

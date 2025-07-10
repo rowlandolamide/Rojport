@@ -1,3 +1,4 @@
+'use client'
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
 
 import AboutPageFaceGen from './AboutPageFaceGen'
@@ -10,6 +11,7 @@ import type { AboutPayload } from '@/types'
 import RojIconSvg from '../../../app/public/Icons/Roj Icon Svg.svg'
 import InfiniteCarousel from '@/components/shared/InfiniteCarousel'
 import { urlForImage } from '@/sanity/lib/utils'
+import { useState } from 'react'
 
 export interface AboutPageProps {
   data: AboutPayload | null
@@ -87,6 +89,7 @@ export function AboutPage({ data }: AboutPageProps) {
     name: 'Awards',
     data: technicalAbilities,
   }
+  const [genFace, setGenFace] = useState(false)
   const PressAndAwards = {
     name: 'Press and Speaking',
     data: pressAndAwards?.map((item: any) => item.title),
@@ -96,7 +99,7 @@ export function AboutPage({ data }: AboutPageProps) {
 
   return (
     <div className="w-full xl:pb-[10.65vw] md:pb-[230px] xl:pt-[11.4vw] md:pt-[246px] pt-[90px] pb-[120px] flex flex-col items-center">
-      <AboutPageFaceGen></AboutPageFaceGen>
+      {genFace && <AboutPageFaceGen></AboutPageFaceGen>}
       <div className="w-full flex flex-col items-center">
         <Image
           src={AboutUsTitle.src}
@@ -113,11 +116,14 @@ export function AboutPage({ data }: AboutPageProps) {
                 const imageUrl = item && urlForImage(item)?.quality(100)?.url()
                 return (
                   <Image
+                    onClick={() => {
+                      setGenFace(true)
+                    }}
                     key={i}
                     width={500}
                     height={300}
                     unoptimized
-                    className="w-full "
+                    className="w-full"
                     alt="about page"
                     src={imageUrl}
                   ></Image>
@@ -139,7 +145,7 @@ export function AboutPage({ data }: AboutPageProps) {
               className={cn('w-[56px] sm:w-[94px] xl:w-[4.35vw] mb-[40px]')}
             ></Image>
             {overview && (
-              <h2 className=" md:w-[42vw]  TEXT-CNT-ABT leading-[32px]  ">
+              <h2 className=" md:w-[42vw] 2xl:w-[32.7vw]  TEXT-CNT-ABT leading-[32px]  ">
                 <CustomPortableText value={overview}></CustomPortableText>
               </h2>
             )}

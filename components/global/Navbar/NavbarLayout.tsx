@@ -127,10 +127,15 @@ export default function Navbar(props: NavbarProps) {
           </div>
 
           <div className="  CENTER-FLX-LO TXT-DIFF">
-            <div className="MONO-EX border-white text-white">
+            <div className="MONO-NAV-PASSAGE border-white text-white">
               Motion Designer
             </div>
-            <div className="MONO-EX border-white text-white">Art Director</div>
+            <div className="MONO-NAV-PASSAGE border-white text-white">
+              Art Director
+            </div>
+          </div>
+          <div className="MONO-NAV-PASSAGE-SM hidden sm:block">
+            <span>LAGOS, NIGERIA |</span> <Time></Time> WAT
           </div>
           <div className="CENTER-FLX-LO">
             {[
