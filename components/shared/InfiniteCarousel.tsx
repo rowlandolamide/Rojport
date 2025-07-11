@@ -57,7 +57,7 @@ export default function InfiniteCarousel({
   }, [itemWidth, x])
 
   return (
-    <div className="relative sm:w-[38vw] w-full aspect-[1/1.1] sm:aspect-[1.1/1] overflow-hidden rounded-[13px]">
+    <div className="relative sm:w-[38vw] w-full aspect-[1/1.1] sm:aspect-[1.05/1] overflow-hidden rounded-[13px]">
       <div ref={carouselRef} className="flex ">
         {imageNodes?.map((item, index) => (
           <div

@@ -88,11 +88,25 @@ export default defineType({
     }),
     defineField({
       name: 'technicalAbilities',
-      title: 'Technical Abilities',
+      title: 'Awards',
       type: 'array',
       of: [
         {
-          type: 'string',
+          type: 'object',
+          name: 'technicalAbilitiesObject',
+          title: 'Technical Abilities Object',
+          fields: [
+            {
+              name: 'name',
+              title: 'Name',
+              type: 'string',
+            },
+            {
+              name: 'link',
+              title: 'Link',
+              type: 'slug',
+            },
+          ],
         },
       ],
     }),

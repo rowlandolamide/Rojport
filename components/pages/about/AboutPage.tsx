@@ -109,21 +109,23 @@ export function AboutPage({ data }: AboutPageProps) {
           className={cn('sm:w-[65vw] w-full')}
         ></Image>
         <div className="w-full flex flex-col items-center">
-          <div className=" md:py-[180px] py-[60px] xl:py-[8.3vw] flex flex-col md:items-center gap-y-[20px] md:gap-y-[39px] xl:gap-y-[1.8vw]">
+          <div
+            onClick={() => {
+              setGenFace(true)
+            }}
+            className=" md:py-[180px] py-[60px] xl:py-[8.3vw] flex flex-col md:items-center gap-y-[20px] md:gap-y-[39px] xl:gap-y-[1.8vw]"
+          >
             {/* About image */}
             <InfiniteCarousel
               imageNodes={aboutImage?.map((item: any, i) => {
                 const imageUrl = item && urlForImage(item)?.quality(100)?.url()
                 return (
                   <Image
-                    onClick={() => {
-                      setGenFace(true)
-                    }}
                     key={i}
                     width={500}
                     height={300}
                     unoptimized
-                    className="w-full"
+                    className="w-full object-top h-full object-cover "
                     alt="about page"
                     src={imageUrl}
                   ></Image>

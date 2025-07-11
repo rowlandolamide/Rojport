@@ -35,6 +35,7 @@ export interface ShowcaseProject {
   title?: string
   year?: string
   disci?: string[]
+  coverVideo?: string
   _updatedAt?: string
 }
 
