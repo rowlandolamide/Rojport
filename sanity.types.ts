@@ -109,6 +109,7 @@ export type Project = {
     crop?: SanityImageCrop
     _type: 'image'
   }
+  coverVideo?: string
   mainVideoTitle?: string
   mainVideo?: string
   caseStudyLink?: Slug
@@ -605,6 +606,7 @@ export type HomePageQueryResult = {
       } | null
       lqip: string | null
     } | null
+    coverVideo?: string
     mainVideoTitle?: string
     mainVideo?: string
     caseStudyLink?: Slug
@@ -816,11 +818,14 @@ export type MoreProjectsQueryResult = {
   }> | null
 } | null
 // Variable: aboutPageQuery
-// Query:   *[_type == "about"][0]{    _id,    title,    customLogo,    overview,    aboutImage{      _type,      asset,      "lqip": asset->metadata.lqip,    },    aboutLinks[]{      _type,      title,      url,    },    technicalAbilities,    services,    pressAndAwards  }
+// Query:   *[_type == "about"][0]{  ...,    _id,    title,    customLogo,    overview,    aboutImage[]{      _type,      asset,      "lqip": asset->metadata.lqip,    },    aboutLinks[]{      _type,      title,      url,    },    technicalAbilities,    services,    pressAndAwards  }
 export type AboutPageQueryResult = {
   _id: string
+  _type: 'about'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
   title: string | null
-  customLogo: null
   overview: Array<{
     children?: Array<{
       marks?: Array<string>
@@ -839,16 +844,26 @@ export type AboutPageQueryResult = {
     _type: 'block'
     _key: string
   }> | null
-  aboutImage: null
-  aboutLinks: null
-  technicalAbilities: Array<string> | null
+  aboutImage: Array<{
+    _type: 'aboutImageImage'
+    asset: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    } | null
+    lqip: string | null
+  }> | null
   services: Array<string> | null
+  technicalAbilities: Array<string> | null
   pressAndAwards: Array<{
     title?: string
     link?: string
     _type: 'pressAndAwards'
     _key: string
   }> | null
+  customLogo: null
+  aboutLinks: null
 } | null
 // Variable: homePageTitleQuery
 // Query:   *[_type == "home"][0].title

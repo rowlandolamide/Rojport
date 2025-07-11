@@ -9,8 +9,16 @@ const RedesignProjectContainer = (props: { data: HomePagePayload | null }) => {
       <div className="w-full grid md:grid-cols-2 grid-cols-1  md:gap-x-[20px] 2xl:gap-x-[0.93rem] gap-y-[24px] sm:gap-y-[3.47rem] ">
         {props.data &&
           props.data.showcaseProjects?.map((item, idx) => {
-            const { disci, coverImage, overview, slug, title, tag } = item
-
+            const {
+              disci,
+              coverImage,
+              overview,
+              slug,
+              title,
+              tag,
+              coverVideo,
+            } = item
+            console.log('s', item)
             const imageUrl = coverImage
               ? urlForImage(coverImage)
                   ?.quality(100)
@@ -25,6 +33,7 @@ const RedesignProjectContainer = (props: { data: HomePagePayload | null }) => {
                 slug={slug || ''}
                 img={imageUrl || ''}
                 tag={tag || ''}
+                video={coverVideo}
               ></RedesignProjectCard>
             )
           })}

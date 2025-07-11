@@ -1,5 +1,5 @@
 import { ImageIcon, PlayIcon, StarIcon, TextIcon } from '@sanity/icons'
-import { list, rule } from 'postcss'
+
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
 export default defineType({
@@ -39,6 +39,14 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'coverVideo',
+      title: 'Project Homepage Video',
+      description:
+        'This video should be ideally < 500kb and will be used in the home page.',
+      type: 'string',
       validation: (rule) => rule.required(),
     }),
     defineField({

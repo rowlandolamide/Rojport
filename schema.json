@@ -632,6 +632,13 @@
         },
         "optional": true
       },
+      "coverVideo": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "mainVideoTitle": {
         "type": "objectAttribute",
         "value": {
