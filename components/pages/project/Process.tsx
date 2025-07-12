@@ -29,8 +29,14 @@ function Process(props: {
         processTwoImageSrcs?.map((item, i) => {
           return (
             <div className={`TWO-IMGS-PRJ  `} key={i}>
-              <ProjectImage img={item.left}></ProjectImage>
-              <ProjectImage img={item.right}></ProjectImage>
+              <ProjectImage
+                projectTitle={projectTitle}
+                img={item.left}
+              ></ProjectImage>
+              <ProjectImage
+                projectTitle={projectTitle}
+                img={item.right}
+              ></ProjectImage>
             </div>
           )
         })}
@@ -39,6 +45,7 @@ function Process(props: {
           return (
             <div key={i} className="IMG-PRJ">
               <ProjectImage
+                projectTitle={projectTitle}
                 highRes={item}
                 key={i}
                 img={item || ''}
