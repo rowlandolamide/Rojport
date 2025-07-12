@@ -18,7 +18,7 @@ const RedesignProjectContainer = (props: { data: HomePagePayload | null }) => {
               tag,
               coverVideo,
             } = item
-            console.log('s', item)
+
             const imageUrl = coverImage
               ? urlForImage(coverImage)
                   ?.quality(100)
