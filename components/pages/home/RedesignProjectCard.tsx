@@ -33,7 +33,7 @@ function RedesignProjectCard(props: {
       }, 1000)
     }
     console.log(isVideoPlaying)
-  }, [])
+  }, [isVideoPlaying, videoRef])
   return (
     <Link
       onMouseLeave={() => {
