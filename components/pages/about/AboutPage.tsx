@@ -84,10 +84,10 @@ export function AboutPage({ data }: AboutPageProps) {
     services,
     technicalAbilities,
   } = data ?? {}
-
+  console.log('sdsd', technicalAbilities)
   const TechnicalAbilities = {
     name: 'Awards',
-    data: technicalAbilities,
+    data: technicalAbilities?.map((item: any) => item.name),
   }
   const [genFace, setGenFace] = useState(false)
   const PressAndAwards = {

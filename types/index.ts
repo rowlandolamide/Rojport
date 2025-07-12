@@ -114,6 +114,6 @@ export interface AboutPayload {
     height: number
   }[]
   services?: string[]
-  technicalAbilities?: string[]
+  technicalAbilities?: { name: string }[]
   pressAndAwards?: { title: string; link: string }[]
 }
