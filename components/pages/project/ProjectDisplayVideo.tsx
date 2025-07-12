@@ -14,7 +14,7 @@ function ProjectDisplayVideo(props: {
   url: string
   videoTitle: string
   projectName: string
-  placeHolderImage: any
+  placeHolderImage?: any
 }) {
   /* Props */
   const { url, videoTitle, projectName } = props

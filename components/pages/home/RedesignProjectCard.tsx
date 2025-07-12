@@ -27,13 +27,11 @@ function RedesignProjectCard(props: {
   ) as MainContextWrapperType
   useEffect(() => {
     if (videoRef.current) {
-      console.log('videoRef.current', videoRef.current.getInternalPlayer())
       setTimeout(() => {
         setIsVideoPlaying(true)
       }, 1000)
     }
-    console.log(isVideoPlaying)
-  }, [])
+  }, [isVideoPlaying, videoRef])
   return (
     <Link
       onMouseLeave={() => {

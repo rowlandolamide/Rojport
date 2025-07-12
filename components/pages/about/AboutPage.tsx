@@ -87,7 +87,7 @@ export function AboutPage({ data }: AboutPageProps) {
 
   const TechnicalAbilities = {
     name: 'Awards',
-    data: technicalAbilities,
+    data: technicalAbilities?.map((item: any) => item.name),
   }
   const [genFace, setGenFace] = useState(false)
   const PressAndAwards = {
