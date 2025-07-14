@@ -23,7 +23,7 @@ const NextProject = ({
           NEXT PROJECT
         </Link>
       </div>
-      <div className={cn('TWO-IMGS-PRJ ')}>
+      <div className={cn(' THREE-IMGS-PRJ')}>
         {nxtProjectArr.map((item, idx) => {
           const { tag, img, slug, title } = item
           return (

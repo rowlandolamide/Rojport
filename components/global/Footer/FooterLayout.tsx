@@ -67,14 +67,16 @@ export default function Footer(props: FooterProps) {
     <footer className="xl:fixed w-full mb-[60px] xl:mb-0 xl:bottom-[30px] xl:text-base mix-blend-difference items-center   ">
       <div className="w-full relative GEN-PAD ">
         <div className=" w-full sm:flex justify-between hidden  flex-col xl:flex-row xl:gap-y-0 gap-y-[10px]">
-          <div className="MONO-EX xl:block hidden">2025 © ROJ THE GOAT</div>
-          <div className="MONO-EX xl:block hidden">
+          <div className="MONO-NAV-PASSAGE xl:block hidden text-white">
+            © 2025 ROJ THE GOAT
+          </div>
+          <div className="MONO-EX hidden">
             <span>LAGOS, NIGERIA |</span> <Time></Time> WAT
           </div>
-          <div className="flex flex-row space-x-[10px] xl:hidden ">
+          <div className="flex flex-row space-x-[10px]  ">
             <div className="MONO-NAV-PASSAGE ">2025 © ROJ THE GOAT</div>
           </div>
-          <div className="MONO-NAV-PASSAGE  w-fit">
+          <div className="text-white MONO-NAV-PASSAGE  w-fit">
             LET’S MAKE SOMETHING COOL -{' '}
             <a
               href={`mailto:${process.env.NEXT_PUBLIC_ROJ_EMAIL || '/'}`}

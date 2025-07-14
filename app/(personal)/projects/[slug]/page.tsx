@@ -212,13 +212,14 @@ export default async function ProjectSlugRoute({ params }: Props) {
               const isMatch = item.slug?.trim() === params.slug.trim()
 
               if (isMatch) {
-                currentPageIndex =
-                  index + 1 === allShowcasedProjects?.length ? 0 : index + 1
+                currentPageIndex = index + 1
               }
 
+              const arrLen = allShowcasedProjects.length
               const acceptableRangeArrIndex = [
-                currentPageIndex,
-                currentPageIndex + 1,
+                currentPageIndex % arrLen,
+                (currentPageIndex + 1) % arrLen,
+                (currentPageIndex + 2) % arrLen,
               ]
 
               const finalArr: any[] = []

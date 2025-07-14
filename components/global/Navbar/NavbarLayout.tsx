@@ -134,7 +134,7 @@ export default function Navbar(props: NavbarProps) {
               Art Director
             </div>
           </div>
-          <div className="MONO-NAV-PASSAGE-SM hidden sm:block">
+          <div className="MONO-NAV-PASSAGE-SM hidden md:block">
             <span>LAGOS, NIGERIA |</span> <Time></Time> WAT
           </div>
           <div className="CENTER-FLX-LO">
