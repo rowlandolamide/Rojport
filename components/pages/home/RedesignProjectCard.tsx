@@ -95,7 +95,7 @@ function RedesignProjectCard(props: {
               alt={title}
             ></Image>
           </div>
-          <div className="HOME-CNT-TEXT-PRJ justify-between xl:hidden">
+          {/*  <div className="HOME-CNT-TEXT-PRJ justify-between hidden">
             <span className="HOME-TXT-TITLE "> {title}</span>{' '}
             {tag.slice(0, 1).map((item: any, index: number) => {
               return (
@@ -107,7 +107,7 @@ function RedesignProjectCard(props: {
                 </span>
               )
             })}
-          </div>
+          </div> */}
         </div>
       </div>
     </Link>
