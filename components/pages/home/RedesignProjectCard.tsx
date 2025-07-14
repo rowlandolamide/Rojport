@@ -71,8 +71,8 @@ function RedesignProjectCard(props: {
                   objectFit: 'cover',
                   objectPosition: 'center',
                   height: 'auto !important',
-                  scale: '1.3',
-                  aspectRatio: '16/9',
+                  scale: '1.4',
+                  aspectRatio: '4.3/3',
                 }}
                 playing={isVideoPlaying}
                 url={props.video}
