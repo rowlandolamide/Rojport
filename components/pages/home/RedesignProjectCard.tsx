@@ -5,6 +5,7 @@ import Link from 'next/link'
 import ReactPlayer from 'react-player'
 import { useRef, useState } from 'react'
 import { useContext } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import {
   ContextMain,
   MainContextWrapperType,
@@ -21,6 +22,7 @@ function RedesignProjectCard(props: {
 }) {
   const videoRef = useRef<ReactPlayer>(null)
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
+  const [isVideoReady, setIsVideoReady] = useState(false)
   const { img, title, tag, slug, nextProjectItem } = props
   const { handleMouseStateChange } = useContext(
     ContextMain,
@@ -59,6 +61,33 @@ function RedesignProjectCard(props: {
                 props.video ? 'block' : 'hidden',
               )}
             >
+              {/* This element should be ontop before Video renders */}
+              <AnimatePresence>
+                {!isVideoReady && (
+                  <motion.div
+                    key="video-placeholder"
+                    initial={{ opacity: 1 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.6, ease: 'easeInOut' }}
+                    className="absolute top-0 left-0 w-full h-full z-30"
+                  >
+                    <Image
+                      className={cn(
+                        'w-full h-[60vw] object-cover sm:h-[34vw] group-hover:scale-[1.02] duration-500 ease rounded-[30px]',
+                        nextProjectItem &&
+                          'h-full aspect-3/2 object-cover sm:h-full sm:object-cover',
+                      )}
+                      src={img}
+                      width={600}
+                      height={500}
+                      alt={title}
+                      priority
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               <ReactPlayer
                 height={'100%'}
                 ref={videoRef}
@@ -76,6 +105,8 @@ function RedesignProjectCard(props: {
                 }}
                 playing={isVideoPlaying}
                 url={props.video}
+                playIcon={<></>}
+                onReady={() => setIsVideoReady(true)}
                 loop={true}
                 muted={true}
                 playsinline={true}
