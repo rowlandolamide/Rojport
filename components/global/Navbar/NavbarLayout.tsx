@@ -99,13 +99,13 @@ export default function Navbar(props: NavbarProps) {
         isSideOpen={isSideOpen}
       ></SideMenu>
       <div
-        className={`${isStudio ? 'hidden' : 'flex '} h-fit mix-blend-difference  text-white z-50 top-[30px] fixed w-full xl:w-full flex-wrap justify-between items-center gap-x-5 GEN-PAD    `}
+        className={`${isStudio ? 'hidden' : 'flex '} h-fit mix-blend-difference  text-[#a1a1aa]    z-50 top-[30px] fixed w-full xl:w-full flex-wrap justify-between items-center gap-x-5 GEN-PAD   ISOLATE `}
       >
         <div className="flex flex-row justify-between w-full md:items-center  ">
           <Link
             href={'/'}
             scroll={false}
-            className=" hover:sm:text-gray-700 right-4 text-[9vw] md:text-[40px] leading-[8.6vw] md:leading-[40px] 3xl:leading-[1.8vw] font-PPn 3xl:text-[1.8vw]"
+            className=" hover:sm:text-gray-700 right-4   MONO-NAV-PASSAGE-NEW "
           >
             ROJ THE GOAT
           </Link>
@@ -127,15 +127,16 @@ export default function Navbar(props: NavbarProps) {
           </div>
 
           <div className="  CENTER-FLX-LO TXT-DIFF">
-            <div className="MONO-NAV-PASSAGE border-white text-white">
-              Motion Designer
+            <div className="MONO-NAV-PASSAGE-NEW border-white text-[#a1a1aa]">
+              Motion Designer,
             </div>
-            <div className="MONO-NAV-PASSAGE border-white text-white">
+            <div className="MONO-NAV-PASSAGE-NEW border-white text-[#a1a1aa]">
               Art Director
             </div>
           </div>
-          <div className="MONO-NAV-PASSAGE-SM hidden md:block">
-            <span>LAGOS, NIGERIA |</span> <Time></Time> WAT
+          <div className="MONO-NAV-PASSAGE-NEW  hidden md:block">
+            <span>LAGOS,NIGERIA </span>
+            {/*  <Time></Time> WAT MONO-NAV-PASSAGE-SM  */}
           </div>
           <div className="CENTER-FLX-LO">
             {[
@@ -147,8 +148,10 @@ export default function Navbar(props: NavbarProps) {
                   onMouseLeave={handleLeaveLink}
                   onMouseOver={handleHoverLink}
                   className={cn(
-                    'MONO-EX hover:bg-gray-100/[0.2] duration-300 text-white border-white ',
-                    pathname === ite.link ? 'text-bl' : '',
+                    'MONO-NAV-PASSAGE-NEW hover:bg-gray-100/[0.2] duration-300  border-white ',
+                    pathname === ite.link
+                      ? 'text-yellow-400'
+                      : 'text-[#a1a1aa]',
                   )}
                   scroll={false}
                   key={i}

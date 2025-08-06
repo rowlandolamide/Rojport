@@ -95,6 +95,11 @@ html.lenis body {
   @apply cursor-default;
 }
 
+.ISOLATE {
+  isolation: isolate;
+  text-shadow: 0 0 0.3px rgba(0, 0, 0, 0.3);
+}
+
 .PLUS {
   @apply w-[14px] h-[14px] 2xl:w-[0.74vw] 2xl:h-[0.74vw];
 }
@@ -116,11 +121,17 @@ html.lenis body {
 .MONO-NAV-PASSAGE {
   @apply text-[10px] sm:text-[12px] md:text-[0.7rem]  font-Ingram uppercase;
 }
+.MONO-NAV-PASSAGE-NEW {
+  @apply text-[14px] sm:text-[16px] md:text-[1.1rem]  font-Ingram uppercase;
+}
 .MONO-NAV-PASSAGE-SM {
   @apply text-[10px] sm:text-[12px] md:text-[0.6rem]  font-Ingram uppercase;
 }
 .MONO-EX {
   @apply text-[10px] sm:text-[12px] md:text-[0.7rem]  font-Ingram uppercase  leading-[14px] sm:leading-[16px]  xl:leading-[0.83rem] border  rounded-[5px] 3xl:rounded-[0.2rem] 3xl:border-[0.046rem] px-[12.5px] py-[8.3px]  sm:py-[0.46rem] xl:px-[0.7rem] border-white text-white;
+}
+.MONO-EX-NEW {
+  @apply text-[10px] sm:text-[12px] md:text-[0.7rem]  font-Ingram uppercase  leading-[14px] sm:leading-[16px]  xl:leading-[0.83rem] border  rounded-[5px] 3xl:rounded-[0.2rem] 3xl:border-[0.046rem] px-[12.5px] py-[8.3px]  sm:py-[0.46rem] xl:px-[0.7rem] border-[#a1a1aa] text-[#a1a1aa];
 }
 .MONO-NAV-EX {
   @apply text-[12px] md:text-[0.7rem]  font-Ingram uppercase  leading-[14px] sm:leading-[16px]  xl:leading-[0.83rem] border  rounded-[5px] 3xl:rounded-[0.2rem] 3xl:border-[0.046rem] px-[12.5px] py-[8.3px]  sm:py-[0.46rem] xl:px-[0.7rem] border-white text-white;
