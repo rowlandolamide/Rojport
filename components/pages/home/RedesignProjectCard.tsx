@@ -106,7 +106,13 @@ function RedesignProjectCard(props: {
                   aspectRatio: '4.3/3',
                 }}
                 playing={isVideoPlaying}
-                url={isMobile ? props.mobileVideo : props.video}
+                url={
+                  isMobile
+                    ? props.mobileVideo
+                      ? props.mobileVideo
+                      : props.video
+                    : props.video
+                }
                 playIcon={<></>}
                 onReady={() => setIsVideoReady(true)}
                 loop={true}
@@ -128,19 +134,6 @@ function RedesignProjectCard(props: {
               alt={title}
             ></Image>
           </div>
-          {/*  <div className="HOME-CNT-TEXT-PRJ justify-between hidden">
-            <span className="HOME-TXT-TITLE "> {title}</span>{' '}
-            {tag.slice(0, 1).map((item: any, index: number) => {
-              return (
-                <span
-                  key={index}
-                  className="MONO-NAV-PASSAGE text-[15px] 2xl:text-[0.7rem]"
-                >
-                  {item}
-                </span>
-              )
-            })}
-          </div> */}
         </div>
       </div>
     </Link>
