@@ -1,9 +1,10 @@
 'use client'
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
-
+import starIcon from '../../../app/public/Icons/Star Icon.svg'
 import AboutPageFaceGen from './AboutPageFaceGen'
 import Marquee from 'react-fast-marquee'
 import FloatingHead from '../../../app/public/Roj About Floating Head.svg'
+import FloatingHeadMobile from '../../../app/public/head-mobile.png'
 import AboutMarquee from '../../../app/public/About Marquee.svg'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
@@ -65,7 +66,7 @@ const ListContainer = ({
           <div
             className={cn(
               'TEXT-MORE-DETAILS  w-full md:w-[19.58vw] mt-[80px]',
-              isMoreDetailSection ? '' : 'hidden',
+              isMoreDetailSection ? 'hidden' : 'hidden',
             )}
           >
             Reach out to{' '}
@@ -128,7 +129,8 @@ export function AboutPage({ data }: AboutPageProps) {
       rotation: 20,
       alt: 'vl',
       imgStyles: 'w-[11.57vw]',
-      style: 'left-[12.45vw] top-[-9.26vw] w-[11.57vw] absolute',
+      style:
+        ' left-[-20px] sm:left-[12.45vw] top-[-9.26vw] w-[11.57vw] absolute',
     },
 
     {
@@ -140,7 +142,7 @@ export function AboutPage({ data }: AboutPageProps) {
       rotation: -15,
       alt: 'vl',
       imgStyles: 'w-[11.57vw]',
-      style: ' top-[1.25vw] absolute left-[31.48vw] w-[11.57vw]',
+      style: 'top-[70px] sm:top-[1.25vw] absolute left-[31.48vw] w-[11.57vw]',
     },
     {
       /* Purple BG "R" */
@@ -196,7 +198,7 @@ export function AboutPage({ data }: AboutPageProps) {
   const { x } = useMediaQuery()
 
   return (
-    <div className="w-full  xl:pt-[11.4vw] lg:pt-[246px] md:pt-[150px] pt-[20px] pb-[120px] flex flex-col items-center">
+    <div className="w-full overflow-hidden  xl:pt-[11.4vw] lg:pt-[246px] md:pt-[150px] pt-[20px] pb-[120px] flex flex-col items-center">
       {genFace && <AboutPageFaceGen></AboutPageFaceGen>}
 
       <div className="w-full flex flex-col items-center">
@@ -207,7 +209,7 @@ export function AboutPage({ data }: AboutPageProps) {
           alt="Roj the goat"
           className={cn('sm:w-[65vw] w-full hidden')}
         ></Image>
-        <Marquee speed={x > 1460 ? 200 : 100} className="absolute z-40 ">
+        <Marquee speed={x > 1460 ? 200 : 100} className="absolute z-20 ">
           {Array.from({ length: 3 }).map((i, index) => (
             <Image
               src={AboutMarquee.src}
@@ -234,9 +236,17 @@ export function AboutPage({ data }: AboutPageProps) {
               width={500}
               height={300}
               unoptimized
-              className="w-full object-top h-full object-cover "
+              className="sm:w-full w-[55vw] hidden sm:block object-top h-full object-cover "
               alt="about page"
               src={FloatingHead.src}
+            ></Image>
+            <Image
+              width={500}
+              height={300}
+              unoptimized
+              className="sm:w-full w-[55vw] sm:hidden object-top h-full object-cover "
+              alt="about page"
+              src={FloatingHeadMobile.src}
             ></Image>
             {/*       <InfiniteCarousel
               imageNodes={aboutImage?.map((item: any, i) => {
@@ -255,32 +265,29 @@ export function AboutPage({ data }: AboutPageProps) {
               })}
             ></InfiniteCarousel> */}
           </div>
-          <div className=" w-full sm:items-start sm:justify-center flex md:gap-x-[100px] flex-col md:flex-row xl:gap-x-[4.63vw]  ">
-            <Image
-              src={RojIconSvg.src}
-              width={100}
-              height={100}
-              alt="Roj the goat Icon"
-              className={cn('w-[56px] sm:w-[94px] xl:w-[4.35vw] mb-[40px]')}
-            ></Image>
+          <div className="flex w-full justify-center  2xl:gap-x-[4.63vw]  md:gap-x-[100px]  ">
             {overview && (
-              <h2 className=" md:w-[42vw] 2xl:w-[32.7vw]  TEXT-CNT-ABT leading-[32px]   ">
+              <h2 className=" md:w-[42vw] 2xl:w-[32.7vw] w-full  max-w-[555px]  TEXT-CNT-ABT leading-[24px] sm:leading-[32px]   ">
+                <h1 className="MONO-NAV-PASSAGE mb-[23px] w-fit text-bl">
+                  ABOUT ME
+                </h1>
                 <CustomPortableText value={overview}></CustomPortableText>
               </h2>
             )}
-            <div className="md:block hidden">
+            <div className="lg:block hidden">
               <ListContainer
                 isMoreDetailSection={true}
                 {...Services}
               ></ListContainer>
             </div>
-            <div className="space-y-[2.78vw] md:block hidden">
+            <div className="space-y-[2.78vw] lg:block hidden">
               <ListContainer {...PressAndAwards}></ListContainer>
               <ListContainer {...TechnicalAbilities}></ListContainer>
             </div>
-
-            <div>
-              <div className="flex md:hidden justify-between w-full  mt-[80px]">
+          </div>
+          <div className=" w-full sm:items-start sm:justify-center flex md:gap-x-[100px] flex-col md:flex-row xl:gap-x-[4.63vw]  ">
+            <div className="w-full ">
+              <div className="flex lg:hidden justify-between w-full sm:px-[10vw]  mt-[80px]">
                 <ListContainer {...Services}></ListContainer>
                 <div className="space-y-[53px]">
                   <ListContainer {...PressAndAwards}></ListContainer>
@@ -290,12 +297,28 @@ export function AboutPage({ data }: AboutPageProps) {
             </div>
           </div>
         </div>
-        <div className="xl:text-[2.96vw] sm:text-[32px] md:text-[48px] text-[5.88vw] flex flex-col md:pt-[180px] pt-[60px] xl:pt-[8.3vw] justify-center items-center font-Ingram leading-[1]">
-          <div> CRAFT THE UNEXPECTED</div>
-          <div>✨OLAMIDE@ROJTHEGOAT.COM</div>
+        <div className="xl:text-[2.96vw] sm:text-[32px] md:text-[48px] text-[5.88vw] flex flex-col md:pt-[180px] pt-[60px] xl:pt-[8.3vw] sm:pb-0 pb-[30px] justify-center items-center font-Ingram leading-[1]">
+          <div>
+            {' '}
+            <img
+              src={starIcon.src}
+              className="font-Ingram w-full px-[20px] sm:w-[44vw] text-bl"
+            ></img>
+          </div>
         </div>
-        <div className="">
+        <div className="mt-[40px]">
           <AboutDraggables dragArr={draggables}></AboutDraggables>
+        </div>
+        <div className="w-full flex justify-center items-center absolute bottom-[250px] md:bottom-[11vw]">
+          <Image
+            src={RojIconSvg.src}
+            width={100}
+            height={100}
+            alt="Roj the goat Icon"
+            className={cn(
+              'min-w-[45px] w-[14vw] sm:w-[94px] xl:w-[4.35vw] mb-[40px] ',
+            )}
+          ></Image>
         </div>
       </div>
     </div>
