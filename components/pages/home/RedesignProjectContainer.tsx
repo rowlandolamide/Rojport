@@ -13,10 +13,12 @@ const RedesignProjectContainer = (props: { data: HomePagePayload | null }) => {
               disci,
               coverImage,
               overview,
+
               slug,
               title,
               tag,
               coverVideo,
+              coverVideoMobile,
             } = item
 
             const imageUrl = coverImage
@@ -34,6 +36,7 @@ const RedesignProjectContainer = (props: { data: HomePagePayload | null }) => {
                 img={imageUrl || ''}
                 tag={tag || ''}
                 video={coverVideo}
+                mobileVideo={coverVideoMobile}
               ></RedesignProjectCard>
             )
           })}

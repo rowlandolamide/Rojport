@@ -26,6 +26,11 @@
 }
 
 @font-face {
+  font-family: Geist;
+  src: url('public/Fonts/Geist-VariableFont_wght.ttf');
+}
+
+@font-face {
   font-family: PPneueM;
   src: url('public/Fonts/pp-neue-montreal-cufonfonts-webfont/ppneuemontreal-book.woff');
 }
@@ -160,6 +165,9 @@ html.lenis body {
 .DISCI-TEXT-PRJ {
   @apply 2xl:whitespace-nowrap font-light font-PPnM lg:text-[0.93rem] lg:leading-[1.85rem] text-[12px] sm:text-[16px]  leading-[24px] sm:leading-[40px];
 }
+.DISCI-TEXT-PRJ-ABOUT {
+  @apply 2xl:whitespace-nowrap  font-Geist lg:text-[0.93rem] lg:leading-[1.85rem] text-[12px] sm:text-[16px]  leading-[24px] sm:leading-[40px];
+}
 .PASSAGE-PRJ-TEXT {
   @apply font-light font-PPnM lg:text-[0.93rem] md:w-[30.2vw] lg:leading-[1.85rem] text-[12px] sm:text-[16px]  leading-[24px] sm:leading-[40px];
 }
@@ -202,11 +210,11 @@ html.lenis body {
 }
 
 .TEXT-CNT-ABT {
-  @apply xl:w-[32.5vw] md:w-[702px] w-full font-PPnM lg:text-[0.93rem] lg:leading-[1.85rem] text-[13px] sm:text-[16px];
+  @apply xl:w-[32.5vw] md:w-[702px] w-full font-Geist lg:text-[0.93rem] lg:leading-[1.85rem] text-[13px] sm:text-[16px];
 }
 
 .TEXT-MORE-DETAILS {
-  @apply w-full font-PPnM lg:text-[0.93rem] lg:leading-[1.85rem] text-[13px] sm:text-[16px];
+  @apply w-full font-Geist lg:text-[0.93rem] lg:leading-[1.85rem] text-[13px] sm:text-[16px];
 }
 
 .CENTER-FLX-LO {

@@ -105,9 +105,9 @@ export default function Navbar(props: NavbarProps) {
           <Link
             href={'/'}
             scroll={false}
-            className=" hover:sm:text-gray-700 right-4   MONO-NAV-PASSAGE-NEW "
+            className=" hover:sm:text-gray-700 right-4    "
           >
-            ROJ THE GOAT
+            <div className="MONO-NAV-PASSAGE-NEW">Roj the goat</div>
           </Link>
           <div className="md:hidden">
             <button

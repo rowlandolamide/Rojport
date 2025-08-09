@@ -110,6 +110,7 @@ export type Project = {
     _type: 'image'
   }
   coverVideo?: string
+  coverVideoMobile?: string
   mainVideoTitle?: string
   mainVideo?: string
   caseStudyLink?: Slug
