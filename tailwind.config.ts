@@ -45,6 +45,7 @@ module.exports = {
       PPn: ' PPneue, sans',
       PPnM: 'PPneueM, sans',
       Ingram: 'Ingram, sans',
+      Geist: 'Geist, sans',
       sans: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
     },
     extend: {

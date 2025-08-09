@@ -6,7 +6,7 @@ export default async function IndexRoute() {
 
   if (initial.data) {
     return (
-      <div className="text-center text-2xl w-full ">
+      <div className="text-center text-2xl w-full  ">
         <div className="pt-4 w-full ">
           <HomePage data={initial.data}></HomePage>
         </div>

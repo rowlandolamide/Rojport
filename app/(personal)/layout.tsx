@@ -70,7 +70,7 @@ export default async function IndexRoute({
     <>
       <div className="flex min-h-screen flex-col text-black ">
         <Navbar />
-        <div className="md:mt-16 sm:mt-[191px] mt-[113px] flex-grow GEN-PAD ">
+        <div className="md:mt-16 sm:mt-[191px] mt-[113px] flex-grow ">
           <PageTransitionEffect>{children}</PageTransitionEffect>
         </div>
         <Footer />

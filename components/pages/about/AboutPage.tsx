@@ -2,15 +2,26 @@
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
 
 import AboutPageFaceGen from './AboutPageFaceGen'
+import Marquee from 'react-fast-marquee'
+import FloatingHead from '../../../app/public/Roj About Floating Head.svg'
+import AboutMarquee from '../../../app/public/About Marquee.svg'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import AboutUsTitle from '../../../app/public/Images/AboutUsTitle.svg'
-
+import useMediaQuery from '@/components/hooks/useMediaQuery'
 import { CustomPortableText } from '@/components/shared/CustomPortableText'
 import type { AboutPayload } from '@/types'
 import RojIconSvg from '../../../app/public/Icons/Roj Icon Svg.svg'
-import InfiniteCarousel from '@/components/shared/InfiniteCarousel'
-import { urlForImage } from '@/sanity/lib/utils'
+import { DraggableImageProps } from './AboutDraggables'
+
+import AboutDraggables from './AboutDraggables'
+import dragOne from '../../../app/public/Images/About Draggables/drag-ab-1.png'
+import dragTwo from '../../../app/public/Images/About Draggables/drag-ab-2.png'
+import dragThree from '../../../app/public/Images/About Draggables/drag-ab-3.png'
+import dragFour from '../../../app/public/Images/About Draggables/drag-ab-4.png'
+import dragFive from '../../../app/public/Images/About Draggables/drag-ab-5.svg'
+import dragSix from '../../../app/public/Images/About Draggables/drag-ab-6.png'
+import dragSeven from '../../../app/public/Images/About Draggables/drag-ab-7.png'
 import { useState } from 'react'
 
 export interface AboutPageProps {
@@ -36,11 +47,11 @@ const ListContainer = ({
         <div>
           {data.map((item: any, index: number) => {
             return (
-              <h2 className="DISCI-TEXT-PRJ leading-[40px]" key={index}>
+              <h2 className="DISCI-TEXT-PRJ-ABOUT leading-[40px]" key={index}>
                 {links ? (
                   <a
                     target="_blank"
-                    className="hover:underline duration-300"
+                    className="underline hover:text-bl duration-300"
                     href={links[index]}
                   >
                     {item}
@@ -85,9 +96,91 @@ export function AboutPage({ data }: AboutPageProps) {
     technicalAbilities,
   } = data ?? {}
 
+  const draggables: DraggableImageProps[] = [
+    {
+      /* Silverball  */
+      src: dragOne.src,
+      width: 300,
+      x: 30,
+      y: 30,
+      rotation: 0,
+      imgStyles: 'w-[11.57vw]',
+      alt: 'vl',
+      style: 'right-[27vw]  top-[6.43vw] absolute',
+    },
+    {
+      /* Silver Car */
+      src: dragTwo.src,
+      width: 300,
+      x: 30,
+      y: 30,
+      rotation: 0,
+      imgStyles: 'w-[16.2vw]',
+      alt: 'vl',
+      style: 'left-[18.43vw] z-20 top-[1.25vw] w-[16.2vw] absolute',
+    },
+    {
+      /* Made With Love Light */
+      src: dragThree.src,
+      width: 300,
+      x: 30,
+      y: 30,
+      rotation: 20,
+      alt: 'vl',
+      imgStyles: 'w-[11.57vw]',
+      style: 'left-[12.45vw] top-[-9.26vw] w-[11.57vw] absolute',
+    },
+
+    {
+      /* Red BG "R" */
+      src: dragFour.src,
+      width: 300,
+      x: 30,
+      y: 30,
+      rotation: -15,
+      alt: 'vl',
+      imgStyles: 'w-[11.57vw]',
+      style: ' top-[1.25vw] absolute left-[31.48vw] w-[11.57vw]',
+    },
+    {
+      /* Purple BG "R" */
+      src: dragFive.src,
+      width: 300,
+      x: 30,
+      y: 30,
+      rotation: 0,
+      imgStyles: 'w-[11.57vw]',
+      alt: 'vl',
+      style: ' top-[-7.87vw]  absolute right-[4.26vw] w-[11.57vw]',
+    },
+    {
+      /* Made with Coffee and Love Dark*/
+      src: dragSix.src,
+      width: 300,
+      x: 30,
+      y: 30,
+      rotation: 0,
+      imgStyles: 'w-[11.57vw]',
+      alt: 'vl',
+      style: ' top-[0.65vw]  absolute right-[15.14vw] w-[11.57vw]',
+    },
+    {
+      /* Be Kind Sticker*/
+      src: dragSeven.src,
+      width: 300,
+      x: 30,
+      y: 30,
+      rotation: 0,
+      imgStyles: 'w-[11.57vw]',
+      alt: 'vl',
+      style: ' top-[1.67vw]  absolute right-[30.51vw] w-[11.57vw]',
+    },
+  ]
+
   const TechnicalAbilities = {
     name: 'Awards',
     data: technicalAbilities?.map((item: any) => item.name),
+    links: technicalAbilities?.map((item: any) => item.link.current),
   }
   const [genFace, setGenFace] = useState(false)
   const PressAndAwards = {
@@ -95,20 +188,41 @@ export function AboutPage({ data }: AboutPageProps) {
     data: pressAndAwards?.map((item: any) => item.title),
     links: pressAndAwards?.map((item) => item.link),
   }
-  const Services = { name: 'Services', data: services }
+  const Services = {
+    name: 'Services',
+    data: services,
+  }
+
+  const { x } = useMediaQuery()
 
   return (
-    <div className="w-full xl:pb-[10.65vw] md:pb-[230px] xl:pt-[11.4vw] md:pt-[246px] pt-[90px] pb-[120px] flex flex-col items-center">
+    <div className="w-full  xl:pt-[11.4vw] lg:pt-[246px] md:pt-[150px] pt-[20px] pb-[120px] flex flex-col items-center">
       {genFace && <AboutPageFaceGen></AboutPageFaceGen>}
+
       <div className="w-full flex flex-col items-center">
         <Image
           src={AboutUsTitle.src}
           width={100}
           height={100}
           alt="Roj the goat"
-          className={cn('sm:w-[65vw] w-full')}
+          className={cn('sm:w-[65vw] w-full hidden')}
         ></Image>
-        <div className="w-full flex flex-col items-center">
+        <Marquee speed={x > 1460 ? 200 : 100} className="absolute z-40 ">
+          {Array.from({ length: 3 }).map((i, index) => (
+            <Image
+              src={AboutMarquee.src}
+              width={100}
+              height={100}
+              key={index}
+              alt="Roj the goat"
+              className={cn(
+                'sm:w-[145vw] w-[259vw] mx-[14px] sm:mx-[20px] xl:mx-[1.5vw]',
+              )}
+            ></Image>
+          ))}
+        </Marquee>
+
+        <div className="w-full flex flex-col items-center GEN-PAD">
           <div
             onClick={() => {
               setGenFace(true)
@@ -116,7 +230,15 @@ export function AboutPage({ data }: AboutPageProps) {
             className=" md:py-[180px] py-[60px] xl:py-[8.3vw] flex flex-col md:items-center gap-y-[20px] md:gap-y-[39px] xl:gap-y-[1.8vw]"
           >
             {/* About image */}
-            <InfiniteCarousel
+            <Image
+              width={500}
+              height={300}
+              unoptimized
+              className="w-full object-top h-full object-cover "
+              alt="about page"
+              src={FloatingHead.src}
+            ></Image>
+            {/*       <InfiniteCarousel
               imageNodes={aboutImage?.map((item: any, i) => {
                 const imageUrl = item && urlForImage(item)?.quality(100)?.url()
                 return (
@@ -131,12 +253,7 @@ export function AboutPage({ data }: AboutPageProps) {
                   ></Image>
                 )
               })}
-            ></InfiniteCarousel>
-
-            <div className="flex justify-center ">
-              {' '}
-              <div className=" MONO-LO w-fit">Portrait by DANIELLA ALMONA </div>
-            </div>
+            ></InfiniteCarousel> */}
           </div>
           <div className=" w-full sm:items-start sm:justify-center flex md:gap-x-[100px] flex-col md:flex-row xl:gap-x-[4.63vw]  ">
             <Image
@@ -147,7 +264,7 @@ export function AboutPage({ data }: AboutPageProps) {
               className={cn('w-[56px] sm:w-[94px] xl:w-[4.35vw] mb-[40px]')}
             ></Image>
             {overview && (
-              <h2 className=" md:w-[42vw] 2xl:w-[32.7vw]  TEXT-CNT-ABT leading-[32px]  ">
+              <h2 className=" md:w-[42vw] 2xl:w-[32.7vw]  TEXT-CNT-ABT leading-[32px]   ">
                 <CustomPortableText value={overview}></CustomPortableText>
               </h2>
             )}
@@ -172,6 +289,13 @@ export function AboutPage({ data }: AboutPageProps) {
               </div>
             </div>
           </div>
+        </div>
+        <div className="xl:text-[2.96vw] sm:text-[32px] md:text-[48px] text-[5.88vw] flex flex-col md:pt-[180px] pt-[60px] xl:pt-[8.3vw] justify-center items-center font-Ingram leading-[1]">
+          <div> CRAFT THE UNEXPECTED</div>
+          <div>✨OLAMIDE@ROJTHEGOAT.COM</div>
+        </div>
+        <div className="">
+          <AboutDraggables dragArr={draggables}></AboutDraggables>
         </div>
       </div>
     </div>

@@ -45,9 +45,16 @@ export default defineType({
       name: 'coverVideo',
       title: 'Project Homepage Video',
       description:
-        'This video should be ideally < 500kb and will be used in the home page.',
+        'This video should be ideally < 1000kb and will be used in the home page.',
       type: 'string',
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'coverVideoMobile',
+      title: 'Project Homepage Video for Mobile',
+      description:
+        'This video should be ideally < 700kb and will be used in the home page. It is not required however.If not filled, the Project Homepage Video will be used',
+      type: 'string',
     }),
     defineField({
       name: 'mainVideoTitle',

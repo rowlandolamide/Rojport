@@ -30,7 +30,7 @@ export const SideMenu = ({
     <div
       className={cn(
         'w-full duration-300 md:hidden  gap-y-[19vh] bg-bl h-[100vh] top-0 fixed z-40 flex flex-col items-center',
-        isSideOpen ? 'left-0 ' : 'ml-[100vw]',
+        isSideOpen ? 'left-0 ' : 'ml-[130vw]',
       )}
     >
       <div className="gap-y-[10px] mt-[19vh] items-center flex flex-col ">
@@ -105,9 +105,9 @@ export default function Navbar(props: NavbarProps) {
           <Link
             href={'/'}
             scroll={false}
-            className=" hover:sm:text-gray-700 right-4   MONO-NAV-PASSAGE-NEW "
+            className=" hover:sm:text-gray-700 right-4    "
           >
-            ROJ THE GOAT
+            <div className="MONO-NAV-PASSAGE-NEW">Roj the goat</div>
           </Link>
           <div className="md:hidden">
             <button

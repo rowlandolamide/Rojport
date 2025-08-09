@@ -32,7 +32,7 @@ function CustomMouse(props: { x: number; y: number }) {
           width: mouseStates.displayStatesObj.text ? width + 30 : width,
         }}
         className={cn(
-          ' overflow-hidden flex items-center justify-center  mix-blend-difference bg-bl text-white  px-2 px-1 duration-300   min-w-6 min-h-6 max-h-6',
+          ' overflow-hidden flex items-center justify-center  mix-blend-difference bg-bl text-white  px-1 duration-300   min-w-6 min-h-6 max-h-6',
           mouseStates.displayStatesObj.text
             ? ' rounded-[5px] xl:rounded-[0.23vw]'
             : 'rounded-full',

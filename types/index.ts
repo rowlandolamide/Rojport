@@ -34,6 +34,8 @@ export interface ShowcaseProject {
   tag: string
   title?: string
   year?: string
+  coverVideoMobile?: string
+
   disci?: string[]
   coverVideo?: string
   _updatedAt?: string

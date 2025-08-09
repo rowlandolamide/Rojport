@@ -10,6 +10,7 @@ import {
   ContextMain,
   MainContextWrapperType,
 } from '@/components/global/ContextWrapper'
+import useMediaQuery from '@/components/hooks/useMediaQuery'
 import { cn } from '@/lib/utils'
 
 function RedesignProjectCard(props: {
@@ -19,7 +20,10 @@ function RedesignProjectCard(props: {
   slug: string
   tag: any
   video?: string
+  mobileVideo?: string
 }) {
+  const { x } = useMediaQuery()
+  const isMobile = 460 > x
   const videoRef = useRef<ReactPlayer>(null)
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
   const [isVideoReady, setIsVideoReady] = useState(false)
@@ -70,13 +74,11 @@ function RedesignProjectCard(props: {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.6, ease: 'easeInOut' }}
-                    className="absolute top-0 left-0 w-full h-full z-30"
+                    className="absolute top-0 left-0 w-full h-fit z-30 overflow-hidden rounded-[15px]"
                   >
                     <Image
                       className={cn(
-                        'w-full h-[60vw] object-cover sm:h-[34vw] group-hover:scale-[1.02] duration-500 ease rounded-[30px]',
-                        nextProjectItem &&
-                          'h-full aspect-3/2 object-cover sm:h-full sm:object-cover',
+                        'w-full h-[60vw] object-cover md:h-[34vw] group-hover:scale-[1.02] duration-500 ease ',
                       )}
                       src={img}
                       width={600}
@@ -104,7 +106,13 @@ function RedesignProjectCard(props: {
                   aspectRatio: '4.3/3',
                 }}
                 playing={isVideoPlaying}
-                url={props.video}
+                url={
+                  isMobile
+                    ? props.mobileVideo
+                      ? props.mobileVideo
+                      : props.video
+                    : props.video
+                }
                 playIcon={<></>}
                 onReady={() => setIsVideoReady(true)}
                 loop={true}
@@ -126,19 +134,6 @@ function RedesignProjectCard(props: {
               alt={title}
             ></Image>
           </div>
-          {/*  <div className="HOME-CNT-TEXT-PRJ justify-between hidden">
-            <span className="HOME-TXT-TITLE "> {title}</span>{' '}
-            {tag.slice(0, 1).map((item: any, index: number) => {
-              return (
-                <span
-                  key={index}
-                  className="MONO-NAV-PASSAGE text-[15px] 2xl:text-[0.7rem]"
-                >
-                  {item}
-                </span>
-              )
-            })}
-          </div> */}
         </div>
       </div>
     </Link>
