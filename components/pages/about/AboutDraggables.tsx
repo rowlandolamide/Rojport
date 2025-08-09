@@ -55,9 +55,10 @@ const DraggableImage = ({
 function AboutDraggables(props: { dragArr: DraggableImageProps[] }) {
   return (
     <div className="h-[22vw] w-[100vw] relative ">
-      {props.dragArr.map((i) => (
+      {props.dragArr.map((i, index) => (
         <DraggableImage
           src={i.src}
+          key={index}
           style={i.style}
           imgStyles={i.imgStyles}
           width={i.width}

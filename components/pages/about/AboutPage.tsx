@@ -208,11 +208,12 @@ export function AboutPage({ data }: AboutPageProps) {
           className={cn('sm:w-[65vw] w-full hidden')}
         ></Image>
         <Marquee speed={x > 1460 ? 200 : 100} className="absolute z-40 ">
-          {Array.from({ length: 3 }).map((i) => (
+          {Array.from({ length: 3 }).map((i, index) => (
             <Image
               src={AboutMarquee.src}
               width={100}
               height={100}
+              key={index}
               alt="Roj the goat"
               className={cn(
                 'sm:w-[145vw] w-[259vw] mx-[14px] sm:mx-[20px] xl:mx-[1.5vw]',
