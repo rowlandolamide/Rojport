@@ -29,7 +29,7 @@ const DraggableImage = ({
 
   return (
     <motion.div
-      drag
+      drag={bigX > 760}
       dragMomentum={false}
       whileTap={{ cursor: 'grabbing' }}
       style={{
@@ -38,7 +38,7 @@ const DraggableImage = ({
         width: 'fit',
         rotate: rotation,
       }}
-      className={cn(style, '')}
+      className={cn(style, 'z-10')}
     >
       <Image
         src={src}
@@ -46,7 +46,7 @@ const DraggableImage = ({
         width={width}
         height={0}
         unoptimized
-        className={cn('max-w-[108px] sm:max-w-[250px]')}
+        className={cn('max-w-[27vw] sm:max-w-[250px]')}
       />
     </motion.div>
   )
@@ -54,7 +54,7 @@ const DraggableImage = ({
 
 function AboutDraggables(props: { dragArr: DraggableImageProps[] }) {
   return (
-    <div className="h-[22vw] w-[100vw] relative ">
+    <div className="h-[22vw] w-[100vw] relative   ">
       {props.dragArr.map((i, index) => (
         <DraggableImage
           src={i.src}

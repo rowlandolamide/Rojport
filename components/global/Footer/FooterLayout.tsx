@@ -26,7 +26,7 @@ export const FooterLinsk = [
 
 export const MobileFooter = ({ isMenuLinks }: { isMenuLinks?: boolean }) => {
   return (
-    <div className="MONO-NAV-PASSAGE text-[#a1a1aa] flex flex-col items-center gap-y-[25px]">
+    <div className="MONO-NAV-PASSAGE text-[#a1a1aa] flex flex-col items-center gap-y-[25px] z-0">
       <a
         href={`mailto:${process.env.NEXT_PUBLIC_ROJ_EMAIL || '/'}`}
         target="_blank"
@@ -77,7 +77,7 @@ export default function Footer(props: FooterProps) {
             <div className="MONO-NAV-PASSAGE ">2025 © ROJ THE GOAT</div>
           </div> */}
           <div className="text-[#a1a1aa]  MONO-NAV-PASSAGE-NEW  w-fit">
-            CRAFT THE UNEXPECTED +
+            CRAFT THE UNEXPECTED+
             <a
               href={`mailto:${process.env.NEXT_PUBLIC_ROJ_EMAIL || '/'}`}
               target="_blank"
