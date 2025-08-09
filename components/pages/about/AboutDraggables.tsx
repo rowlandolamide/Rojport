@@ -2,6 +2,7 @@
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import useMediaQuery from '@/components/hooks/useMediaQuery'
 
 export interface DraggableImageProps {
   src: string
@@ -24,6 +25,8 @@ const DraggableImage = ({
   rotation = 0,
   alt = 'draggable image',
 }: DraggableImageProps) => {
+  const { x: bigX } = useMediaQuery()
+
   return (
     <motion.div
       drag
@@ -32,10 +35,10 @@ const DraggableImage = ({
       style={{
         position: 'absolute',
         cursor: 'grab',
-        width: 250,
+        width: 'fit',
         rotate: rotation,
       }}
-      className={style}
+      className={cn(style, '')}
     >
       <Image
         src={src}
@@ -43,7 +46,7 @@ const DraggableImage = ({
         width={width}
         height={0}
         unoptimized
-        className={cn('max-w-[250px] ')}
+        className={cn('max-w-[108px] sm:max-w-[250px]')}
       />
     </motion.div>
   )

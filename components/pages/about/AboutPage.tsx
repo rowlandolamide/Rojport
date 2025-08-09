@@ -289,7 +289,7 @@ export function AboutPage({ data }: AboutPageProps) {
             </div>
           </div>
         </div>
-        <div className="xl:text-[2.96vw] sm:text-[32px] md:text-[48px] text-[24px] flex flex-col md:pt-[180px] pt-[60px] xl:pt-[8.3vw] justify-center items-center font-Ingram leading-[1]">
+        <div className="xl:text-[2.96vw] sm:text-[32px] md:text-[48px] text-[5.88vw] flex flex-col md:pt-[180px] pt-[60px] xl:pt-[8.3vw] justify-center items-center font-Ingram leading-[1]">
           <div> CRAFT THE UNEXPECTED</div>
           <div>✨OLAMIDE@ROJTHEGOAT.COM</div>
         </div>
