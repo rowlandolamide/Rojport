@@ -52,7 +52,7 @@ const ListContainer = ({
                 {links ? (
                   <a
                     target="_blank"
-                    className="underline hover:text-bl duration-300"
+                    className="hover:underline hover:text-bl duration-300"
                     href={links[index]}
                   >
                     {item}
@@ -72,7 +72,7 @@ const ListContainer = ({
             Reach out to{' '}
             <a
               target="_blank"
-              className="underline hover:text-bl"
+              className="hover:underline hover:text-bl"
               href="mailto:olamide@rojthegoat.com"
             >
               olamide@rojthegoat.com
@@ -209,7 +209,11 @@ export function AboutPage({ data }: AboutPageProps) {
           alt="Roj the goat"
           className={cn('sm:w-[65vw] w-full hidden')}
         ></Image>
-        <Marquee speed={x > 1460 ? 200 : 100} className="absolute z-20 ">
+        <Marquee
+          direction="right"
+          speed={x > 1460 ? 200 : 100}
+          className="absolute z-20 "
+        >
           {Array.from({ length: 3 }).map((i, index) => (
             <Image
               src={AboutMarquee.src}
@@ -298,13 +302,16 @@ export function AboutPage({ data }: AboutPageProps) {
           </div>
         </div>
         <div className="xl:text-[2.96vw] sm:text-[32px] md:text-[48px] text-[5.88vw] flex flex-col md:pt-[180px] pt-[60px] xl:pt-[8.3vw] sm:pb-0 pb-[30px] justify-center items-center font-Ingram leading-[1]">
-          <div>
+          <a
+            href={`mailto:${process.env.NEXT_PUBLIC_ROJ_EMAIL || '/'}`}
+            target="_blank"
+          >
             {' '}
             <img
               src={starIcon.src}
               className="font-Ingram w-full px-[20px] sm:w-[44vw] text-bl"
             ></img>
-          </div>
+          </a>
         </div>
         <div className="mt-[40px]">
           <AboutDraggables dragArr={draggables}></AboutDraggables>

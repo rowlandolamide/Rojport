@@ -38,7 +38,7 @@ const DraggableImage = ({
         width: 'fit',
         rotate: rotation,
       }}
-      className={cn(style, 'z-10')}
+      className={cn(style, 'z-0')}
     >
       <Image
         src={src}

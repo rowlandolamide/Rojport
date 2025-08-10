@@ -12,6 +12,7 @@ import {
 } from '@/components/global/ContextWrapper'
 import type { SettingsPayload } from '@/types'
 import { cn } from '@/lib/utils'
+import { ArrowUpRight } from 'lucide-react'
 
 interface NavbarProps {
   data?: SettingsPayload
@@ -148,7 +149,7 @@ export default function Navbar(props: NavbarProps) {
                   onMouseLeave={handleLeaveLink}
                   onMouseOver={handleHoverLink}
                   className={cn(
-                    'MONO-NAV-PASSAGE-NEW hover:bg-gray-100/[0.2] duration-300  border-white ',
+                    'MONO-NAV-PASSAGE-NEW flex items-center hover:bg-gray-100/[0.2] duration-300  border-white ',
                     pathname === ite.link
                       ? 'text-yellow-400'
                       : 'text-[#a1a1aa]',
@@ -157,6 +158,17 @@ export default function Navbar(props: NavbarProps) {
                   key={i}
                   href={ite.link}
                 >
+                  <ArrowUpRight
+                    className={cn(
+                      'w-[1.1vw]',
+                      pathname === ite.link
+                        ? 'text-yellow-400'
+                        : 'text-[#a1a1aa]',
+                    )}
+                    strokeWidth={2}
+                    width={24}
+                    height={24}
+                  ></ArrowUpRight>{' '}
                   {ite.name}
                 </Link>
               )
