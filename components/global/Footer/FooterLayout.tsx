@@ -76,13 +76,14 @@ export default function Footer(props: FooterProps) {
           {/*  <div className="flex flex-row space-x-[10px]  ">
             <div className="MONO-NAV-PASSAGE ">2025 © ROJ THE GOAT</div>
           </div> */}
-          <div className="text-[#a1a1aa]  MONO-NAV-PASSAGE-NEW  w-fit">
-            CRAFT THE UNEXPECTED+
+          <div className="text-[#a1a1aa] hover:bg-gray-100/[0.2] MONO-NAV-PASSAGE-NEW  w-fit">
             <a
+              onMouseLeave={handleLeaveLink}
+              onMouseOver={handleHoverLink}
               href={`mailto:${process.env.NEXT_PUBLIC_ROJ_EMAIL || '/'}`}
               target="_blank"
             >
-              OLAMIDE@ROJTHEGOAT.COM
+              CRAFT THE UNEXPECTED + OLAMIDE@ROJTHEGOAT.COM
             </a>
           </div>
 
