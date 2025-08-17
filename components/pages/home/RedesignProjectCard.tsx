@@ -74,11 +74,11 @@ function RedesignProjectCard(props: {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.6, ease: 'easeInOut' }}
-                    className="absolute top-0 left-0 w-full h-fit z-30 overflow-hidden rounded-[15px]"
+                    className=" top-0 left-0 absolute w-full h-full z-0 overflow-hidden rounded-[15px] "
                   >
                     <Image
                       className={cn(
-                        'w-full h-[60vw] object-cover md:h-[34vw] group-hover:scale-[1.02] duration-500 ease ',
+                        'w-full h-[60vw]  object-cover md:h-[34vw] group-hover:scale-[1.02] duration-500 ease ',
                       )}
                       src={img}
                       width={600}
@@ -90,35 +90,37 @@ function RedesignProjectCard(props: {
                 )}
               </AnimatePresence>
 
-              <ReactPlayer
-                height={'100%'}
-                ref={videoRef}
-                width={'100%'}
-                style={{
-                  zIndex: 0,
-                  position: 'relative',
+              <div className="">
+                <ReactPlayer
+                  height={'100%'}
+                  ref={videoRef}
+                  width={'100%'}
+                  style={{
+                    zIndex: 0,
+                    position: 'relative',
 
-                  borderRadius: 3,
-                  objectFit: 'cover',
-                  objectPosition: 'center',
-                  height: 'auto !important',
-                  scale: '1.4',
-                  aspectRatio: '4.3/3',
-                }}
-                playing={isVideoPlaying}
-                url={
-                  isMobile
-                    ? props.mobileVideo
+                    borderRadius: 3,
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                    height: 'auto !important',
+                    scale: '1.4',
+                    aspectRatio: '4.3/3',
+                  }}
+                  playing={isVideoPlaying}
+                  url={
+                    isMobile
                       ? props.mobileVideo
+                        ? props.mobileVideo
+                        : props.video
                       : props.video
-                    : props.video
-                }
-                playIcon={<></>}
-                onReady={() => setIsVideoReady(true)}
-                loop={true}
-                muted={true}
-                playsinline={true}
-              ></ReactPlayer>
+                  }
+                  playIcon={<></>}
+                  onReady={() => setIsVideoReady(true)}
+                  loop={true}
+                  muted={true}
+                  playsinline={true}
+                ></ReactPlayer>
+              </div>
             </div>
             <Image
               className={cn(

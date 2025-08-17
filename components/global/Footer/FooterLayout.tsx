@@ -1,7 +1,6 @@
 'use client'
 import type { HomePagePayload, SettingsPayload } from '@/types'
 import { Time } from '@/components/hooks/useCurrentTime'
-import ArrowRT from '../../../app/public/Icons/ARROW-RT.svg'
 
 import { ArrowUpRight } from 'lucide-react'
 import { useContext } from 'react'
@@ -76,14 +75,17 @@ export default function Footer(props: FooterProps) {
           {/*  <div className="flex flex-row space-x-[10px]  ">
             <div className="MONO-NAV-PASSAGE ">2025 © ROJ THE GOAT</div>
           </div> */}
-          <div className="text-[#a1a1aa] hover:bg-gray-100/[0.2] MONO-NAV-PASSAGE-NEW  w-fit">
+          <div className="text-[#a1a1aa] group  MONO-NAV-PASSAGE-NEW  w-fit">
             <a
               onMouseLeave={handleLeaveLink}
               onMouseOver={handleHoverLink}
               href={`mailto:${process.env.NEXT_PUBLIC_ROJ_EMAIL || '/'}`}
               target="_blank"
             >
-              CRAFT THE UNEXPECTED + OLAMIDE@ROJTHEGOAT.COM
+              CRAFT THE UNEXPECTED +{' '}
+              <span className="group-hover:bg-gray-100/[0.2]">
+                OLAMIDE@ROJTHEGOAT.COM
+              </span>
             </a>
           </div>
 

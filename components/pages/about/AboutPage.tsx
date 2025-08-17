@@ -1,6 +1,9 @@
 'use client'
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
-import starIcon from '../../../app/public/Icons/Star Icon.svg'
+import starIcon from '../../../app/public/Images/star-single.svg'
+import { useContext } from 'react'
+import { MainContextWrapperType } from '@/components/global/ContextWrapper'
+import { ContextMain } from '@/components/global/ContextWrapper'
 import AboutPageFaceGen from './AboutPageFaceGen'
 import Marquee from 'react-fast-marquee'
 import FloatingHead from '../../../app/public/Roj About Floating Head.svg'
@@ -14,6 +17,7 @@ import { CustomPortableText } from '@/components/shared/CustomPortableText'
 import type { AboutPayload } from '@/types'
 import RojIconSvg from '../../../app/public/Icons/Roj Icon Svg.svg'
 import { DraggableImageProps } from './AboutDraggables'
+import { urlForImage } from '@/sanity/lib/utils'
 
 import AboutDraggables from './AboutDraggables'
 import dragOne from '../../../app/public/Images/About Draggables/drag-ab-1.png'
@@ -95,9 +99,11 @@ export function AboutPage({ data }: AboutPageProps) {
     pressAndAwards,
     services,
     technicalAbilities,
+    aboutImageDraggables,
+    pdfFile,
   } = data ?? {}
 
-  const draggables: DraggableImageProps[] = [
+  const baseDraggables: DraggableImageProps[] = [
     {
       /* Silverball  */
       src: dragOne.src,
@@ -107,7 +113,7 @@ export function AboutPage({ data }: AboutPageProps) {
       rotation: 0,
       imgStyles: 'w-[11.57vw]',
       alt: 'vl',
-      style: 'right-[27vw]  top-[6.43vw] absolute',
+      style: 'right-[24.13vw] sm:right-[27vw]  top-[6.43vw] absolute',
     },
     {
       /* Silver Car */
@@ -130,7 +136,7 @@ export function AboutPage({ data }: AboutPageProps) {
       alt: 'vl',
       imgStyles: 'w-[11.57vw]',
       style:
-        ' left-[-20px] sm:left-[12.45vw] top-[-9.26vw] w-[11.57vw] absolute',
+        ' left-[-15vw] sm:left-[12.45vw] top-[-9.26vw] w-[11.57vw] absolute',
     },
 
     {
@@ -142,7 +148,8 @@ export function AboutPage({ data }: AboutPageProps) {
       rotation: -15,
       alt: 'vl',
       imgStyles: 'w-[11.57vw]',
-      style: 'top-[70px] sm:top-[1.25vw] absolute left-[31.48vw] w-[11.57vw]',
+      style:
+        'top-[70px] sm:top-[1.25vw] absolute sm:left-[31.48vw] left-[4.23vw] w-[11.57vw]',
     },
     {
       /* Purple BG "R" */
@@ -153,7 +160,8 @@ export function AboutPage({ data }: AboutPageProps) {
       rotation: 0,
       imgStyles: 'w-[11.57vw]',
       alt: 'vl',
-      style: ' top-[-7.87vw]  absolute right-[4.26vw] w-[11.57vw]',
+      style:
+        ' top-[-7.87vw]  absolute right-[-14vw] sm:right-[4.26vw] w-[11.57vw]',
     },
     {
       /* Made with Coffee and Love Dark*/
@@ -164,7 +172,8 @@ export function AboutPage({ data }: AboutPageProps) {
       rotation: 0,
       imgStyles: 'w-[11.57vw]',
       alt: 'vl',
-      style: ' top-[0.65vw]  absolute right-[15.14vw] w-[11.57vw]',
+      style:
+        ' top-[0.65vw]  absolute right-[1.74vw] sm:right-[15.14vw] w-[11.57vw]',
     },
     {
       /* Be Kind Sticker*/
@@ -175,9 +184,27 @@ export function AboutPage({ data }: AboutPageProps) {
       rotation: 0,
       imgStyles: 'w-[11.57vw]',
       alt: 'vl',
-      style: ' top-[1.67vw]  absolute right-[30.51vw] w-[11.57vw]',
+      style:
+        ' sm:top-[1.67vw] top-[10vw]  absolute right-[42.04vw] sm:right-[30.51vw] w-[37.06vw] sm:w-[11.57vw]',
     },
   ]
+  const draggables: DraggableImageProps[] = baseDraggables.map(
+    (item, index) => {
+      const draggableImage: any = aboutImageDraggables
+        ? aboutImageDraggables[index]
+        : ''
+
+      const src = draggableImage
+        ? urlForImage(draggableImage)?.width(1000)?.url()
+        : ''
+
+      return {
+        ...item,
+        src: draggableImage ? (src ? src : '') : item.src, // fallback to existing src
+        alt: item.alt,
+      }
+    },
+  )
 
   const TechnicalAbilities = {
     name: 'Awards',
@@ -196,6 +223,20 @@ export function AboutPage({ data }: AboutPageProps) {
   }
 
   const { x } = useMediaQuery()
+
+  const { handleMouseStateChange } = useContext(
+    ContextMain,
+  ) as MainContextWrapperType
+
+  const handleHoverLink = () => {
+    handleMouseStateChange(null, 3)
+  }
+  const handleHoverFace = () => {
+    handleMouseStateChange(null, 2)
+  }
+  const handleLeaveLink = () => {
+    handleMouseStateChange(null, 0)
+  }
 
   return (
     <div className="w-full overflow-hidden  xl:pt-[11.4vw] lg:pt-[246px] md:pt-[150px] pt-[20px] pb-[120px] flex flex-col items-center">
@@ -230,6 +271,12 @@ export function AboutPage({ data }: AboutPageProps) {
 
         <div className="w-full flex flex-col items-center GEN-PAD">
           <div
+            onMouseLeave={() => {
+              handleLeaveLink()
+            }}
+            onMouseOver={() => {
+              handleHoverLink()
+            }}
             onClick={() => {
               setGenFace(true)
             }}
@@ -301,16 +348,31 @@ export function AboutPage({ data }: AboutPageProps) {
             </div>
           </div>
         </div>
-        <div className="xl:text-[2.96vw] sm:text-[32px] md:text-[48px] text-[5.88vw] flex flex-col md:pt-[180px] pt-[60px] xl:pt-[8.3vw] sm:pb-0 pb-[30px] justify-center items-center font-Ingram leading-[1]">
+        <div className="xl:text-[2.96vw] sm:text-[32px] md:text-[48px] text-[5.88vw] flex flex-col md:mt-[180px] mt-[60px] xl:mt-[8.3vw] sm:pb-0 pb-[30px] justify-center items-center font-Ingram leading-[1] group">
           <a
+            onMouseOver={() => {
+              handleHoverLink()
+            }}
+            onMouseLeave={() => {
+              handleLeaveLink()
+            }}
+            className="text-center"
             href={`mailto:${process.env.NEXT_PUBLIC_ROJ_EMAIL || '/'}`}
             target="_blank"
           >
             {' '}
-            <img
-              src={starIcon.src}
-              className="font-Ingram w-full px-[20px] sm:w-[44vw] text-bl"
-            ></img>
+            CRAFT THE UNEXPECTED
+            <div className="group-hover:text-bl duration-300 flex gap-x-[2vw] md:gap-x-[1vw] items-center">
+              <Image
+                alt="Star"
+                width={400}
+                height={400}
+                className=" w-[3vw] h-[3vw] origin-center transition-transform
+           group-hover:animate-magic-spin "
+                src={starIcon.src}
+              ></Image>
+              <span className="">OLAMIDE@ROJTHEGOAT.COM</span>
+            </div>
           </a>
         </div>
         <div className="mt-[40px]">

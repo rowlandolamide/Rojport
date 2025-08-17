@@ -118,4 +118,13 @@ export interface AboutPayload {
   services?: string[]
   technicalAbilities?: { name: string }[]
   pressAndAwards?: { title: string; link: string }[]
+  aboutImageDraggables?: {
+    asset: Image
+    width: number
+    height: number
+  }[]
+  pdfFile?: {
+    asset: File
+    url: string
+  }
 }
