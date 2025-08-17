@@ -271,7 +271,7 @@ export function AboutPage({ data }: AboutPageProps) {
         <Marquee
           direction="right"
           speed={x > 1460 ? 200 : 100}
-          className="absolute z-20 "
+          className=" z-20 h-fit"
         >
           {Array.from({ length: 3 }).map((i, index) => (
             <Image
@@ -281,7 +281,7 @@ export function AboutPage({ data }: AboutPageProps) {
               key={index}
               alt="Roj the goat"
               className={cn(
-                'sm:w-[145vw] w-[259vw] mx-[14px] sm:mx-[20px] xl:mx-[1.5vw]',
+                'sm:w-[145vw] h-[45px] sm:h-fit w-[259vw] mx-[14px] sm:mx-[20px] xl:mx-[1.5vw]',
               )}
             ></Image>
           ))}

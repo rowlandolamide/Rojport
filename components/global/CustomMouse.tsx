@@ -14,7 +14,7 @@ function CustomMouse(props: { x: number; y: number }) {
   useEffect(() => {
     if (textRef.current) {
       setWidth(textRef.current.offsetWidth)
-    }
+  }
   }, [mouseStates.displayStatesObj.text])
   return (
     <motion.div
