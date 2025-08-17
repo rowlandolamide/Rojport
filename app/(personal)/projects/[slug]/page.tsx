@@ -86,6 +86,7 @@ export default async function ProjectSlugRoute({ params }: Props) {
               isProjectSummary
               title={initial.data?.title || ''}
               overview
+              tags={initial.data?.tag}
               year={initial.data?.year}
               disciplines={initial.data?.disci}
               body={initial.data?.overview}
