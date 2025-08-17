@@ -64,6 +64,9 @@ export const aboutPageQuery = groq`
       asset,
       "lqip": asset->metadata.lqip,
     },
+    aboutImageMainFace,
+    aboutImageMainMobileFace,
+    aboutImageBouncingImage,
     pdfFile {
       _type,
       asset->{

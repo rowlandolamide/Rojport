@@ -118,6 +118,13 @@ export interface AboutPayload {
   services?: string[]
   technicalAbilities?: { name: string }[]
   pressAndAwards?: { title: string; link: string }[]
+  aboutImageMainFace?: { asset: Image; width: number; height: number }
+  aboutImageMainMobileFace?: { asset: Image; width: number; height: number }
+  aboutImageBouncingImage?: {
+    asset: Image
+    width: number
+    height: number
+  }
   aboutImageDraggables?: {
     asset: Image
     width: number

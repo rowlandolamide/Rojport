@@ -102,6 +102,9 @@ export function AboutPage({ data }: AboutPageProps) {
     technicalAbilities,
     aboutImageDraggables,
     pdfFile,
+    aboutImageBouncingImage,
+    aboutImageMainFace,
+    aboutImageMainMobileFace,
   } = data ?? {}
 
   const baseDraggables: DraggableImageProps[] = [
@@ -239,9 +242,23 @@ export function AboutPage({ data }: AboutPageProps) {
     handleMouseStateChange(null, 0)
   }
 
+  const AboutImage = aboutImageMainFace
+    ? urlForImage(aboutImageMainFace)?.url()
+    : ''
+  const AboutImageMobile = aboutImageMainFace
+    ? urlForImage(aboutImageMainMobileFace)?.url()
+    : ''
+  const AboutImageBounce = aboutImageMainFace
+    ? urlForImage(aboutImageBouncingImage)?.url()
+    : ''
+
   return (
     <div className="w-full overflow-hidden  xl:pt-[11.4vw] lg:pt-[246px] md:pt-[150px] pt-[20px] pb-[120px] flex flex-col items-center">
-      {genFace && <AboutPageFaceGen></AboutPageFaceGen>}
+      {genFace && (
+        <AboutPageFaceGen
+          bouncingImageUrl={AboutImageBounce || ''}
+        ></AboutPageFaceGen>
+      )}
 
       <div className="w-full flex flex-col items-center">
         <Image
@@ -290,7 +307,7 @@ export function AboutPage({ data }: AboutPageProps) {
               unoptimized
               className="sm:w-full w-[55vw] hidden sm:block object-top h-full object-cover "
               alt="about page"
-              src={FloatingHead.src}
+              src={AboutImage ? AboutImage : FloatingHead.src}
             ></Image>
             <Image
               width={500}
@@ -298,7 +315,7 @@ export function AboutPage({ data }: AboutPageProps) {
               unoptimized
               className="sm:w-full w-[55vw] sm:hidden object-top h-full object-cover "
               alt="about page"
-              src={FloatingHeadMobile.src}
+              src={AboutImageMobile ? AboutImageMobile : FloatingHeadMobile.src}
             ></Image>
             {/*       <InfiniteCarousel
               imageNodes={aboutImage?.map((item: any, i) => {
@@ -332,7 +349,7 @@ export function AboutPage({ data }: AboutPageProps) {
                     onMouseLeave={() => {
                       handleLeaveLink()
                     }}
-                    className="sm:mt-[57px] mt-[25.19px] 2xl:text-[0.9vw] flex gap-x-[0.3vw] items-center font-Ingram hover:text-bl duration-300"
+                    className="sm:mt-[57px] mt-[25.19px]  flex gap-x-[0.3vw] sm:gap-x-[0.15vw] items-center  hover:text-bl duration-300 TEXT-DOWNLOAD-RESUME"
                     href={
                       pdfFile
                         ? `/api/download?url=${pdfFile.asset.url}&filename="ROWLAND OLAMIDE'S RESUME"`
@@ -341,7 +358,7 @@ export function AboutPage({ data }: AboutPageProps) {
                     download="ROWLAND OLAMIDE'S RESUME.pdf "
                   >
                     <ArrowUpRight
-                      className="2xl:w-[0.9vw] w-[13px] "
+                      className="2xl:w-[0.8vw] lg:w-[0.7vw] w-[13px] "
                       strokeWidth={'1'}
                     ></ArrowUpRight>{' '}
                     <span> DOWNLOAD RESUME [PDF]</span>

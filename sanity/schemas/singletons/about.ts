@@ -162,6 +162,33 @@ export default defineType({
       },
       validation: (Rule) => Rule.required().error('A PDF file is required'),
     }),
+    defineField({
+      name: 'aboutImageMainFace',
+      title: 'About Image Heading Image',
+      description: 'The image at the top of the about page',
+      type: 'image',
+      options: {
+        hotspot: true, // allows selecting focus area
+      },
+    }),
+    defineField({
+      name: 'aboutImageMainMobileFace',
+      title: 'About Image Heading Image for Mobile',
+      description: 'The image at the top of the about page',
+      type: 'image',
+      options: {
+        hotspot: true, // allows selecting focus area
+      },
+    }),
+    defineField({
+      name: 'aboutImageBouncingImage',
+      title: 'About Image Bouncing Image',
+      description: 'Bouncing Image',
+      type: 'image',
+      options: {
+        hotspot: true, // allows selecting focus area
+      },
+    }),
   ],
   preview: {
     prepare() {
