@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils'
 
 function ProjectText(props: {
   body: any
+  tags?: string[]
   title: string
   overview?: boolean
   disciplines?: Array<
@@ -25,7 +26,14 @@ function ProjectText(props: {
         <h2
           className={`${props.isProjectSummary ? 'flex gap-y-[20px]' : 'hidden'} flex-col`}
         >
-          <div className="NEW-TITLES w-fit">Exploration</div>
+          {props.tags?.map((tag, i) => {
+            return (
+              <div key={i} className="NEW-TITLES w-fit whitespace-nowrap">
+                {tag}
+              </div>
+            )
+          })}
+
           <div className="NEW-TITLES w-fit">{props.year}</div>
         </h2>
 
