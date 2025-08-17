@@ -305,7 +305,7 @@ export function AboutPage({ data }: AboutPageProps) {
               width={500}
               height={300}
               unoptimized
-              className="sm:w-full w-[55vw] hidden sm:block object-top h-full object-cover "
+              className="sm:w-full max-w-[494px] m w-[55vw] hidden sm:block object-top h-full object-cover "
               alt="about page"
               src={AboutImage ? AboutImage : FloatingHead.src}
             ></Image>
@@ -313,7 +313,7 @@ export function AboutPage({ data }: AboutPageProps) {
               width={500}
               height={300}
               unoptimized
-              className="sm:w-full w-[55vw] sm:hidden object-top h-full object-cover "
+              className="sm:w-full w-[55vw] sm:hidden object-top h-full object-cover max-w-[228px]"
               alt="about page"
               src={AboutImageMobile ? AboutImageMobile : FloatingHeadMobile.src}
             ></Image>
