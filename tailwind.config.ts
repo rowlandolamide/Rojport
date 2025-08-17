@@ -100,13 +100,31 @@ module.exports = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
-      cursor: {
+      keyframes: {
+        'spin-pop': {
+          '0%': { transform: 'scale(0.9) rotate(0deg)' },
+          '50%': { transform: 'scale(1.1) rotate(180deg)' },
+          '80%': { transform: 'scale(1.1) rotate(350deg)' },
+          '100%': { transform: 'scale(1) rotate(360deg)' },
+        },
+        'magic-spin': {
+          '0%': { transform: 'scale(0.8) rotate(0deg)', opacity: '0.5' },
+
+          '10%': { transform: '', opacity: '0.2' },
+          '100%': { transform: 'scale(1.2) rotate(360deg)', opacity: '1' },
+        },
+      },
+      animation: {
+        'spin-pop': 'spin-pop 600ms cubic-bezier(.34,1.56,.64,1) both',
+        'magic-spin': 'magic-spin 300ms cubic-bezier(.22,1,.36,1) both',
+      },
+      /*      cursor: {
         default: `url(public/Icons/Mouse-New.svg), default`,
         pointer: `url(public/Icons/Pointer Mouse.svg), pointer`,
         grab: `url(public/Icons/Grab Mouse.svg), grab`,
         grabbing: `url(public/Icons/Grab Mouse.svg), grabbing`,
         move: `url(public/Icons/Grab Mouse.svg), move`,
-      },
+      }, */
     },
   },
   plugins: [require('@tailwindcss/typography'), require('tailwindcss-animate')],

@@ -134,6 +134,34 @@ export default defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'aboutImageDraggables',
+      title: 'About Image Draggables',
+      description: 'About Page Draggables',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          name: 'aboutImageImage',
+          title: 'About Image Item',
+          options: {
+            hotspot: true,
+          },
+        },
+      ],
+      validation: (Rule) =>
+        Rule.max(7).error('You can only add up to 7 images'),
+    }),
+    defineField({
+      name: 'pdfFile',
+      title: 'Portfolio PDF File',
+      description: 'Upload a single PDF file',
+      type: 'file',
+      options: {
+        accept: 'application/pdf', // 👈 restricts to PDF
+      },
+      validation: (Rule) => Rule.required().error('A PDF file is required'),
+    }),
   ],
   preview: {
     prepare() {

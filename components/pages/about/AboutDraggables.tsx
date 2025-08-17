@@ -38,7 +38,7 @@ const DraggableImage = ({
         width: 'fit',
         rotate: rotation,
       }}
-      className={cn(style, 'z-0')}
+      className={cn(style, 'z-0  w-fit ')}
     >
       <Image
         src={src}
@@ -46,7 +46,7 @@ const DraggableImage = ({
         width={width}
         height={0}
         unoptimized
-        className={cn('max-w-[27vw] sm:max-w-[250px]')}
+        className={cn('max-w-[35vw]  sm:max-w-[250px] w-[250px]')}
       />
     </motion.div>
   )
