@@ -212,6 +212,9 @@ html.lenis body {
 .TEXT-CNT-ABT {
   @apply xl:w-[32.5vw] md:w-[702px] w-full font-Geist lg:text-[0.93rem] lg:leading-[1.85rem] text-[13px] sm:text-[16px];
 }
+.TEXT-DOWNLOAD-RESUME {
+  @apply w-full  lg:text-[0.93rem] lg:leading-[1.85rem] text-[13px] font-Ingram sm:text-[16px];
+}
 
 .TEXT-MORE-DETAILS {
   @apply w-full font-Geist lg:text-[0.93rem] lg:leading-[1.85rem] text-[13px] sm:text-[16px];

@@ -5,7 +5,7 @@ import useMediaQuery from '@/components/hooks/useMediaQuery'
 import Image from 'next/image'
 import headImage from '../../../app/head - compressed.png'
 
-const AboutPageFaceGen = () => {
+const AboutPageFaceGen = (props: { bouncingImageUrl: string }) => {
   const { x, y } = useMediaQuery()
   const floatRef = useRef<HTMLDivElement>(null)
   const animationRef = useRef<gsap.core.Tween | null>(null)
@@ -75,7 +75,7 @@ const AboutPageFaceGen = () => {
         height={300}
         className="w-full h-fit"
         alt="head-img"
-        src={headImage.src}
+        src={props.bouncingImageUrl ? props.bouncingImageUrl : headImage.src}
       ></Image>
     </div>
   )
