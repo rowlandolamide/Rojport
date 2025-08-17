@@ -28,6 +28,7 @@ import dragFive from '../../../app/public/Images/About Draggables/drag-ab-5.svg'
 import dragSix from '../../../app/public/Images/About Draggables/drag-ab-6.png'
 import dragSeven from '../../../app/public/Images/About Draggables/drag-ab-7.png'
 import { useState } from 'react'
+import { ArrowUpRight } from 'lucide-react'
 
 export interface AboutPageProps {
   data: AboutPayload | null
@@ -322,7 +323,30 @@ export function AboutPage({ data }: AboutPageProps) {
                 <h1 className="MONO-NAV-PASSAGE mb-[23px] w-fit text-bl">
                   ABOUT ME
                 </h1>
-                <CustomPortableText value={overview}></CustomPortableText>
+                <>
+                  <CustomPortableText value={overview}></CustomPortableText>
+                  <a
+                    onMouseOver={() => {
+                      handleHoverLink()
+                    }}
+                    onMouseLeave={() => {
+                      handleLeaveLink()
+                    }}
+                    className="sm:mt-[57px] mt-[25.19px] 2xl:text-[0.9vw] flex gap-x-[0.3vw] items-center font-Ingram hover:text-bl duration-300"
+                    href={
+                      pdfFile
+                        ? `/api/download?url=${pdfFile.asset.url}&filename="ROWLAND OLAMIDE'S RESUME"`
+                        : '/'
+                    }
+                    download="ROWLAND OLAMIDE'S RESUME.pdf "
+                  >
+                    <ArrowUpRight
+                      className="2xl:w-[0.9vw] w-[13px] "
+                      strokeWidth={'1'}
+                    ></ArrowUpRight>{' '}
+                    <span> DOWNLOAD RESUME [PDF]</span>
+                  </a>
+                </>
               </h2>
             )}
             <div className="lg:block hidden">

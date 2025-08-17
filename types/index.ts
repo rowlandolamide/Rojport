@@ -124,7 +124,11 @@ export interface AboutPayload {
     height: number
   }[]
   pdfFile?: {
-    asset: File
+    asset: {
+      _ref: string
+      _type: string
+      url: string // 👈 added here
+    }
     url: string
   }
 }
