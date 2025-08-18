@@ -1,5 +1,5 @@
 'use client'
-import { createContext, useState } from 'react'
+import { createContext, SetStateAction, useState } from 'react'
 import useMouse from '@react-hook/mouse-position'
 import { useRef } from 'react'
 import { useCallback } from 'react'
@@ -36,7 +36,8 @@ export interface MainContextWrapperType {
       displayState: number
     }
   }
-
+  isSideBarOpen: boolean
+  setIsSideBarOpen: React.Dispatch<SetStateAction<boolean>>
   lenisCurrent: any
   setLenisCurrent: (current: any) => void
 }
@@ -48,6 +49,7 @@ function ContextWrapper({ children }: { children: React.ReactNode }) {
   const [lenisCurrent, setLenisCurrent] = useState(null)
   const mouse = useMouse(mouseref, { enterDelay: 100, leaveDelay: 100 })
 
+  const [isSideBarOpen, setIsSideBarOpen] = useState(false)
   const [overlay, setOverlay] = useState<MainContextWrapperType['overlay']>({
     open: false,
     index: 0,
@@ -101,6 +103,8 @@ function ContextWrapper({ children }: { children: React.ReactNode }) {
           },
           overlay: overlay,
           handleOverlay: handleOverlay,
+          setIsSideBarOpen,
+          isSideBarOpen,
         }}
       >
         <div className="relative" style={{ zIndex: 999 }}>

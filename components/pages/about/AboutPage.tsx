@@ -47,7 +47,7 @@ const ListContainer = ({
   isMoreDetailSection?: boolean
 }) => {
   return (
-    <div className="relative">
+    <div className="relative sm:max-w-none max-w-[150px] ">
       <h1 className="MONO-NAV-PASSAGE mb-[23px] w-fit text-bl">{name}</h1>
       {data && (
         <div>
@@ -199,7 +199,7 @@ export function AboutPage({ data }: AboutPageProps) {
         : ''
 
       const src = draggableImage
-        ? urlForImage(draggableImage)?.width(1000)?.url()
+        ? urlForImage(draggableImage)?.width(1000).quality(100)?.url()
         : ''
 
       return {
