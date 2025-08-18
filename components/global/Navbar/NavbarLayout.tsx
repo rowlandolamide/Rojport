@@ -68,7 +68,7 @@ export const SideMenu = ({
           </div>
         </div>
       </div>
-      <MobileFooter></MobileFooter>
+      <MobileFooter isSideBarOpen={isSideOpen}></MobileFooter>
     </div>
   )
 }
@@ -76,15 +76,12 @@ export const SideMenu = ({
 export default function Navbar(props: NavbarProps) {
   /* Current Time */
 
-  const [isSideOpen, setIsSideOpen] = useState(false)
-
   const pathname = usePathname()
 
   const isStudio = pathname.includes('studio')
 
-  const { handleMouseStateChange } = useContext(
-    ContextMain,
-  ) as MainContextWrapperType
+  const { handleMouseStateChange, isSideBarOpen, setIsSideBarOpen } =
+    useContext(ContextMain) as MainContextWrapperType
 
   const handleHoverLink = () => {
     handleMouseStateChange(null, 3)
@@ -96,11 +93,11 @@ export default function Navbar(props: NavbarProps) {
   return (
     <div className="relative">
       <SideMenu
-        setIsSideOpen={setIsSideOpen}
-        isSideOpen={isSideOpen}
+        setIsSideOpen={setIsSideBarOpen}
+        isSideOpen={isSideBarOpen}
       ></SideMenu>
       <div
-        className={`${isStudio ? 'hidden' : 'flex '} h-fit mix-blend-difference  text-[#a1a1aa]    z-50 top-[30px] fixed w-full xl:w-full flex-wrap justify-between items-center gap-x-5 GEN-PAD   ISOLATE `}
+        className={`${isStudio ? 'hidden' : 'flex '} h-fit mix-blend-difference  ${!isSideBarOpen ? 'text-[#a1a1aa] ' : 'text-[#FFF500]'}   z-50 top-[30px] fixed w-full xl:w-full flex-wrap justify-between items-center gap-x-5 GEN-PAD   ISOLATE `}
       >
         <div className="flex flex-row justify-between w-full md:items-center  ">
           <Link
@@ -113,7 +110,7 @@ export default function Navbar(props: NavbarProps) {
           <div className="md:hidden">
             <button
               onClick={() => {
-                setIsSideOpen((prev) => !prev)
+                setIsSideBarOpen((prev) => !prev)
               }}
               className="p-[10px] border rounded-[5px]"
             >
@@ -122,7 +119,7 @@ export default function Navbar(props: NavbarProps) {
                 alt="Hamburger Menu Open and Close Icon"
                 className="text-white"
                 width={12}
-                src={!isSideOpen ? hamburgerMenuIcon.src : closeXIcon.src}
+                src={!isSideBarOpen ? hamburgerMenuIcon.src : closeXIcon.src}
               ></img>
             </button>
           </div>

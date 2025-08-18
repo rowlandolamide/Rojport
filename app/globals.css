@@ -166,7 +166,7 @@ html.lenis body {
   @apply 2xl:whitespace-nowrap font-light font-PPnM lg:text-[0.93rem] lg:leading-[1.85rem] text-[12px] sm:text-[16px]  leading-[24px] sm:leading-[40px];
 }
 .DISCI-TEXT-PRJ-ABOUT {
-  @apply 2xl:whitespace-nowrap  font-Geist lg:text-[0.93rem] lg:leading-[1.85rem] text-[12px] sm:text-[16px]  leading-[24px] sm:leading-[40px];
+  @apply 2xl:whitespace-nowrap text-wrap  font-Geist lg:text-[0.93rem] lg:leading-[1.85rem] text-[12px] sm:text-[16px]  leading-[24px] sm:leading-[40px];
 }
 .PASSAGE-PRJ-TEXT {
   @apply font-light font-PPnM lg:text-[0.93rem]  md:w-[450px] lg:leading-[1.85rem] text-[12px] sm:text-[16px]  leading-[24px] sm:leading-[40px];

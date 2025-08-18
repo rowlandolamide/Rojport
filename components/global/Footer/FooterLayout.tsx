@@ -8,6 +8,7 @@ import {
   ContextMain,
   MainContextWrapperType,
 } from '@/components/global/ContextWrapper'
+import { cn } from '@/lib/utils'
 
 interface FooterProps {
   data: SettingsPayload
@@ -23,9 +24,20 @@ export const FooterLinsk = [
   { name: 'Email', link: process.env.NEXT_PUBLIC_ROJ_EMAIL || '/' },
 ]
 
-export const MobileFooter = ({ isMenuLinks }: { isMenuLinks?: boolean }) => {
+export const MobileFooter = ({
+  isMenuLinks,
+  isSideBarOpen,
+}: {
+  isMenuLinks?: boolean
+  isSideBarOpen: boolean
+}) => {
   return (
-    <div className="MONO-NAV-PASSAGE text-[#a1a1aa] flex flex-col items-center gap-y-[25px] z-0">
+    <div
+      className={cn(
+        'MONO-NAV-PASSAGE  flex flex-col items-center gap-y-[25px] z-0',
+        isSideBarOpen ? 'text-white' : 'text-[#a1a1aa]',
+      )}
+    >
       <a
         href={`mailto:${process.env.NEXT_PUBLIC_ROJ_EMAIL || '/'}`}
         target="_blank"
@@ -37,7 +49,7 @@ export const MobileFooter = ({ isMenuLinks }: { isMenuLinks?: boolean }) => {
           return (
             <a target="_blank" className="flex" key={i} href={item.link}>
               <ArrowUpRight
-                className="text-[#a1a1aa]"
+                className={cn(isSideBarOpen ? 'text-white' : 'text-[#a1a1aa]')}
                 width={13}
                 height={13}
               ></ArrowUpRight>
@@ -52,9 +64,8 @@ export const MobileFooter = ({ isMenuLinks }: { isMenuLinks?: boolean }) => {
 }
 
 export default function Footer(props: FooterProps) {
-  const { handleMouseStateChange } = useContext(
-    ContextMain,
-  ) as MainContextWrapperType
+  const { handleMouseStateChange, setIsSideBarOpen, isSideBarOpen } =
+    useContext(ContextMain) as MainContextWrapperType
 
   const handleHoverLink = () => {
     handleMouseStateChange(null, 3)
@@ -130,7 +141,7 @@ export default function Footer(props: FooterProps) {
           </div>
         </div>
         <div className="sm:hidden">
-          <MobileFooter></MobileFooter>
+          <MobileFooter isSideBarOpen={isSideBarOpen}></MobileFooter>
         </div>
       </div>
     </footer>
