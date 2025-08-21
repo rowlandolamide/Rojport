@@ -105,6 +105,13 @@ export interface SettingsPayload {
     b?: string
   }
   displayLastUpdated: boolean
+  socialLinks?: {
+    behance: string
+    email: string
+    instagram: string
+    linkedin: string
+    twitter: string
+  }
 }
 
 export interface AboutPayload {

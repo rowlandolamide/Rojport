@@ -165,6 +165,7 @@ export const projectPaths = groq`
 
 export const settingsQuery = groq`
   *[_type == "settings"][0]{
+    ...,
     footer,
     "menuItems": {
       "page": menuItems[_type == 'reference']->{
@@ -180,6 +181,7 @@ export const settingsQuery = groq`
     },
     ogImage,
     favIcon,
+    
     bgColor {
       'r': rgb.r,
       'g': rgb.g,
@@ -191,5 +193,6 @@ export const settingsQuery = groq`
       'b': rgb.b,
     },
     displayLastUpdated,
+  
   }
 `
