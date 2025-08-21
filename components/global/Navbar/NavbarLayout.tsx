@@ -23,9 +23,17 @@ interface NavbarProps {
 export const SideMenu = ({
   isSideOpen,
   setIsSideOpen,
+  socialLinks,
 }: {
   isSideOpen: boolean
   setIsSideOpen: React.Dispatch<SetStateAction<boolean>>
+  socialLinks: {
+    behance?: string
+    email?: string
+    instagram?: string
+    linkedin?: string
+    twitter?: string
+  }
 }) => {
   return (
     <div
@@ -68,7 +76,10 @@ export const SideMenu = ({
           </div>
         </div>
       </div>
-      <MobileFooter isSideBarOpen={isSideOpen}></MobileFooter>
+      <MobileFooter
+        soialLinks={socialLinks}
+        isSideBarOpen={isSideOpen}
+      ></MobileFooter>
     </div>
   )
 }
@@ -89,10 +100,13 @@ export default function Navbar(props: NavbarProps) {
   const handleLeaveLink = () => {
     handleMouseStateChange(null, 0)
   }
+  const { behance, email, instagram, linkedin, twitter } =
+    props.data?.socialLinks || {}
 
   return (
     <div className="relative">
       <SideMenu
+        socialLinks={{ behance, email, instagram, linkedin, twitter }}
         setIsSideOpen={setIsSideBarOpen}
         isSideOpen={isSideBarOpen}
       ></SideMenu>

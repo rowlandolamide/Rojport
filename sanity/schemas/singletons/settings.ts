@@ -9,7 +9,7 @@ export default defineType({
   // Uncomment below to have edits publish automatically as you type
   // liveEdit: true,
   fields: [
-    defineField({
+    /*     defineField({
       name: 'menuItems',
       title: 'Menu Item list',
       description: 'Links displayed on the header of your site.',
@@ -37,23 +37,23 @@ export default defineType({
               title: 'Title',
               name: 'title',
               type: 'string',
-              description: 'Display Text'
+              description: 'Display Text',
             },
             {
               title: 'URL',
               name: 'url',
               type: 'url',
               description: 'enter an external URL',
-              validation: Rule =>
-              Rule.uri({
-                scheme: ['http', 'https', 'mailto', 'tel']
-              }),
+              validation: (Rule) =>
+                Rule.uri({
+                  scheme: ['http', 'https', 'mailto', 'tel'],
+                }),
             },
           ],
           preview: {
             select: {
               title: 'title',
-              url: 'url'
+              url: 'url',
             },
             prepare({ title, url }) {
               return {
@@ -70,7 +70,8 @@ export default defineType({
       name: 'ogImage',
       title: 'Open Graph Image',
       type: 'image',
-      description: 'Displayed on social cards and search engine results. It should be 1200 X 630 pixels.',
+      description:
+        'Displayed on social cards and search engine results. It should be 1200 X 630 pixels.',
       options: {
         hotspot: true,
       },
@@ -93,12 +94,66 @@ export default defineType({
       name: 'textColor',
       title: 'Text color',
       type: 'color',
-    }),
-    defineField({
+    }), */
+    /*     defineField({
       title: 'Display "Last updated" at the footer of the website',
-      description: 'Turn on to display time whe you last added new project to your Home page',
+      description:
+        'Turn on to display time whe you last added new project to your Home page',
       name: 'displayLastUpdated',
       type: 'boolean',
+    }), */
+    defineField({
+      name: 'socialLinks',
+      title: 'Social Links',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'instagram',
+          title: 'Instagram',
+          type: 'url',
+          validation: (Rule) =>
+            Rule.uri({ scheme: ['http', 'https'] }).warning(
+              'Enter a valid Instagram URL',
+            ),
+        }),
+        defineField({
+          name: 'twitter',
+          title: 'Twitter',
+          type: 'url',
+          validation: (Rule) =>
+            Rule.uri({ scheme: ['http', 'https'] }).warning(
+              'Enter a valid Twitter URL',
+            ),
+        }),
+        defineField({
+          name: 'behance',
+          title: 'Behance',
+          type: 'url',
+          validation: (Rule) =>
+            Rule.uri({ scheme: ['http', 'https'] }).warning(
+              'Enter a valid Behance URL',
+            ),
+        }),
+        defineField({
+          name: 'linkedin',
+          title: 'LinkedIn',
+          type: 'url',
+          validation: (Rule) =>
+            Rule.uri({ scheme: ['http', 'https'] }).warning(
+              'Enter a valid LinkedIn URL',
+            ),
+        }),
+        defineField({
+          name: 'email',
+          title: 'Email',
+          type: 'string',
+          validation: (Rule) =>
+            Rule.regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, {
+              name: 'email',
+              invert: false,
+            }).error('Please enter a valid email address'),
+        }),
+      ],
     }),
   ],
   preview: {
