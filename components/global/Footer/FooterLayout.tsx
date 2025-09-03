@@ -53,7 +53,7 @@ export const MobileFooter = ({
     twitter?: string
   }
 }) => {
-  const { behance, email, instagram, linkedin, twitter } = soialLinks
+  const { behance, email, instagram, linkedin, twitter } = soialLinks || {}
   return (
     <div
       className={cn(
