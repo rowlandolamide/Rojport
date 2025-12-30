@@ -3,7 +3,11 @@ import { ImageResponse } from 'next/og'
 // No need to install it.
 
 export async function GET() {
-  return new ImageResponse(
+  return "Hello world"
+}
+
+
+/* ImageResponse(
     (
       <div
         style={{
@@ -25,5 +29,4 @@ export async function GET() {
       width: 1200,
       height: 630,
     },
-  )
-}
+  ) */
