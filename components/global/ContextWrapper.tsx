@@ -7,6 +7,7 @@ import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Overlay from './Overlay'
 
+
 const CustomMouse = dynamic(() => import('./CustomMouse'))
 
 import dynamic from 'next/dynamic'
@@ -110,6 +111,7 @@ function ContextWrapper({ children }: { children: React.ReactNode }) {
         <div className="relative" style={{ zIndex: 999 }}>
           <CustomMouse x={mouse.pageX || 0} y={mouse.pageY || 0}></CustomMouse>
         </div>
+       
         <AnimatePresence>
           <motion.div
             style={{ zIndex: 99 }}

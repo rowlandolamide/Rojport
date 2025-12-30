@@ -6,6 +6,27 @@ import type { BlockObject } from '@/sanity.types'
 import React from 'react'
 import { cn } from '@/lib/utils'
 
+export const components:any = {
+  marks: {
+    link: ({ value, children }) => {
+      console.log(value)
+      const isExternal = value?.href?.startsWith("http");
+
+
+      return (
+        <a
+          href={value.href}
+          target={isExternal ? "_blank" : undefined}
+          rel={isExternal ? "noopener noreferrer" : undefined}
+          className="text-blue-600 underline hover:text-blue-800 cursor-pointer transition-colors"
+        >
+          {children}
+        </a>
+      );
+    },
+  },
+};
+
 function ProjectText(props: {
   body: any
   tags?: string[]
@@ -39,7 +60,7 @@ function ProjectText(props: {
 
         <div className="TN  PASSAGE-PRJ-TEXT ">
           {' '}
-          <PortableText value={props.body}></PortableText>
+          <PortableText components={components} value={props.body}></PortableText>
         </div>
         <div className={cn(props.isProjectSummary ? '' : 'hidden')}>
           <div className="CREDIT-DISCI-TITLE ">CREDITS</div>
@@ -53,6 +74,7 @@ function ProjectText(props: {
                     key={index}
                   >
                     <PortableText
+                    components={components}
                       value={item.blockText ? item.blockText : []}
                     ></PortableText>
                   </div>

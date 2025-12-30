@@ -3,10 +3,11 @@ import { cn } from '@/lib/utils'
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
+
 import { ContextMain, MainContextWrapperType } from './ContextWrapper'
 
 function CustomMouse(props: { x: number; y: number }) {
-  const { mouseStates } = useContext(ContextMain) as MainContextWrapperType
+  const { mouseStates, overlay } = useContext(ContextMain) as MainContextWrapperType
 
   const { displayStatesObj } = mouseStates
   const [width, setWidth] = useState(0)
@@ -38,6 +39,7 @@ function CustomMouse(props: { x: number; y: number }) {
             : 'rounded-full',
           displayStatesObj.displayState === 3 ? 'scale-[1.4]' : '',
           displayStatesObj.displayState === 2 ? 'rounded-[6px] ' : '',
+          overlay.open ? 'invisible' : '',
         )}
       >
         <AnimatePresence key={mouseStates.displayStatesObj.text}>

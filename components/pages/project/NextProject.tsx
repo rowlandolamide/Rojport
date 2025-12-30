@@ -19,7 +19,7 @@ const NextProject = ({
     <div>
       <div className="flex gap-x-[10px] text-[15px] xl:text-[0.7rem] pb-[36px] 2xl:pb-[1.7vw]">
         <span className="MONO-LO border-none">RELATED PROJECTS</span>{' '}
-        <Link href={nxtProjectArr[0].slug} className="MONO-LO ">
+        <Link href={nxtProjectArr[0].slug} className="MONO-LO hover:bg-gray-200 cursor-pointer transition-colors ">
           NEXT PROJECT
         </Link>
       </div>

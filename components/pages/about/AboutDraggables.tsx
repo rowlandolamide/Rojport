@@ -13,6 +13,7 @@ export interface DraggableImageProps {
   alt?: string
   style: string
   imgStyles: string
+ newStyle?: string
 }
 
 const DraggableImage = ({
@@ -24,6 +25,7 @@ const DraggableImage = ({
   imgStyles,
   rotation = 0,
   alt = 'draggable image',
+  newStyle
 }: DraggableImageProps) => {
   const { x: bigX } = useMediaQuery()
 
@@ -37,8 +39,9 @@ const DraggableImage = ({
         cursor: 'grab',
         width: 'fit',
         rotate: rotation,
+      
       }}
-      className={cn(style, 'z-0  w-fit ')}
+      className={cn( newStyle,'z-0  w-fit ')}
     >
       <Image
         src={src}
@@ -46,7 +49,7 @@ const DraggableImage = ({
         width={width}
         height={0}
         unoptimized
-        className={cn('max-w-[35vw]  sm:max-w-[250px] w-[250px]')}
+        className={cn('max-w-[35vw]   sm:max-w-[10vw] ')}
       />
     </motion.div>
   )
@@ -63,6 +66,7 @@ function AboutDraggables(props: { dragArr: DraggableImageProps[] }) {
           imgStyles={i.imgStyles}
           width={i.width}
           x={i.x}
+          newStyle={i.newStyle}
           y={i.y}
           rotation={i.rotation}
         ></DraggableImage>

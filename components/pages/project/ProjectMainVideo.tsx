@@ -1,7 +1,7 @@
 'use client'
 
 import { useContext, useEffect } from 'react'
-
+import Vimeo from '@u-wave/react-vimeo'
 import { useRef, useState } from 'react'
 import ReactPlayer from 'react-player'
 import React from 'react'
@@ -9,6 +9,7 @@ import useMediaQuery from '@/components/hooks/useMediaQuery'
 import { Draggable } from 'gsap/Draggable'
 import { gsap } from 'gsap'
 import { FastForward, Pause, Play, X } from 'lucide-react'
+import ProjectMainVideoVimeo from './ProjectMainVideoVimeo'
 
 import {
   MainContextWrapperType,
@@ -269,28 +270,35 @@ export default function ProjectMainVideo({
       <div
         className={`${!isHovered ? 'opacity-0' : 'opacity-1'} duration-300 absolute z-20`}
       >
-        <RewindFastFoward
-          handleFastForward={FastForwardFunction}
-          handleRewind={RewindFunction}
-          isPlaying={isPlaying}
-          handlePausePlay={() => {
-            setIsPlaying((prev) => !prev)
-          }}
-        ></RewindFastFoward>
+        {!url.includes('vimeo') && (
+          <RewindFastFoward
+            handleFastForward={FastForwardFunction}
+            handleRewind={RewindFunction}
+            isPlaying={isPlaying}
+            handlePausePlay={() => {
+              setIsPlaying((prev) => !prev)
+            }}
+          ></RewindFastFoward>
+        )}
       </div>
       <div
         className={`${!isHovered ? 'opacity-0' : 'opacity-1'} duration-300 absolute bottom-[40px] z-20`}
       >
-        <Seek
-          videoRef={videoRef}
-          draggableWidth={widthOfSeekingDraggable}
-          width={videoContainerWidth}
-          ref={seekDraggable}
-        ></Seek>
+        {!url.includes('vimeo') && (
+          <Seek
+            videoRef={videoRef}
+            draggableWidth={widthOfSeekingDraggable}
+            width={videoContainerWidth}
+            ref={seekDraggable}
+          ></Seek>
+        )}
       </div>
 
       <div className="rounded-[3px] overflow-hidden w-full">
-        {
+      
+        {url.includes('vimeo') ? (
+          <ProjectMainVideoVimeo title={title} url={url}></ProjectMainVideoVimeo>
+        ) : (
           <ReactPlayer
             onEnded={() => {
               setIsPlaying(false)
@@ -315,7 +323,7 @@ export default function ProjectMainVideo({
             volume={videoStates.volume}
             url={url}
           ></ReactPlayer>
-        }
+        )}
       </div>
     </div>
   )

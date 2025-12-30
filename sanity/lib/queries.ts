@@ -60,6 +60,7 @@ export const aboutPageQuery = groq`
       "lqip": asset->metadata.lqip,
     },
     aboutImageDraggables[] {
+    
       _type,
       asset,
       "lqip": asset->metadata.lqip,

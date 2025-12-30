@@ -72,10 +72,10 @@ export const MobileFooter = ({
           .slice(0, 4)
           .map((item, i) => {
             return (
-              <a target="_blank" className="flex" key={i} href={item.link}>
+              <a target="_blank" className="flex items-center cursor-pointer" key={i} href={item.link}>
                 <ArrowUpRight
                   className={cn(
-                    isSideBarOpen ? 'text-white' : 'text-[#a1a1aa]',
+                    isSideBarOpen ? 'text-white' : 'text-[#a1a1aa]', 
                   )}
                   width={13}
                   height={13}
@@ -104,9 +104,9 @@ export default function Footer(props: FooterProps) {
   const { behance, email, instagram, linkedin, twitter } =
     props.data.socialLinks || {}
   return (
-    <footer className="xl:fixed w-full mb-[60px] xl:mb-0 xl:bottom-[30px] xl:text-base mix-blend-difference items-center   ">
+    <footer className="md:fixed w-full mb-[60px] md:mb-0 md:bottom-[30px] xl:text-base mix-blend-difference items-center   ">
       <div className="w-full relative GEN-PAD ">
-        <div className=" w-full sm:flex justify-between hidden  flex-col xl:flex-row xl:gap-y-0 gap-y-[10px]">
+        <div className=" w-full md:flex justify-between hidden  flex-col md:flex-row xl:gap-y-0 gap-y-[10px]">
           <div className="MONO-NAV-PASSAGE-NEW xl:block hidden text-[#a1a1aa]">
             © 2025 ROJ THE GOAT
           </div>
@@ -116,15 +116,16 @@ export default function Footer(props: FooterProps) {
           {/*  <div className="flex flex-row space-x-[10px]  ">
             <div className="MONO-NAV-PASSAGE ">2025 © ROJ THE GOAT</div>
           </div> */}
-          <div className="text-[#a1a1aa] group  MONO-NAV-PASSAGE-NEW  w-fit">
+          <div className="text-[#a1a1aa] group cursor-pointer MONO-NAV-PASSAGE-NEW  w-fit">
             <a
               onMouseLeave={handleLeaveLink}
+              className='cursor-pointer'
               onMouseOver={handleHoverLink}
               href={`mailto:${process.env.NEXT_PUBLIC_ROJ_EMAIL || '/'}`}
               target="_blank"
             >
               CRAFT THE UNEXPECTED +{' '}
-              <span className="group-hover:bg-gray-100/[0.2]">
+              <span className="group-hover:bg-gray-100/[0.2] cursor-pointer">
                 OLAMIDE@ROJTHEGOAT.COM
               </span>
             </a>
@@ -139,31 +140,30 @@ export default function Footer(props: FooterProps) {
                     onMouseOver={handleHoverLink}
                     href={`${ite.link}`}
                     target="_blank"
-                    className="MONO-NAV-PASSAGE-NEW flex hover:bg-gray-100/[0.2] items-center"
+                    className="MONO-NAV-PASSAGE-NEW cursor-pointer flex hover:bg-gray-100/[0.2]  items-center leading-none"
                     key={i}
                   >
                     <ArrowUpRight
-                      className="text-[#a1a1aa] w-[1.1vw]"
+                      className="text-[#a1a1aa] ARROW-STUFF cursor-pointer leading-none p-0 "
                       strokeWidth={2}
-                      width={24}
-                      height={24}
+                   
                     ></ArrowUpRight>
-                    {ite.name}
+                   <span className='cursor-pointer'>
+                     {ite.name}
+                   </span>
                   </a>
                 ) : (
                   <a
                     onMouseLeave={handleLeaveLink}
                     onMouseOver={handleHoverLink}
                     target="_blank"
-                    className="MONO-NAV-PASSAGE-NEW flex items-center hover:bg-gray-100/[0.2]"
+                    className="MONO-NAV-PASSAGE-NEW cursor-pointer flex items-center hover:bg-gray-100/[0.2] leading-none"
                     key={i}
                     href={`mailto:${ite.link}`}
                   >
                     <ArrowUpRight
-                      className="text-[#a1a1aa] w-[1.1vw]"
+                      className="text-[#a1a1aa] h-full ARROW-STUFF cursor-pointer"
                       strokeWidth={2}
-                      width={24}
-                      height={24}
                     ></ArrowUpRight>
                     {ite.name}
                   </a>
@@ -172,7 +172,7 @@ export default function Footer(props: FooterProps) {
             )}
           </div>
         </div>
-        <div className="sm:hidden">
+        <div className="md:hidden">
           <MobileFooter
             soialLinks={{ behance, email, instagram, linkedin, twitter }}
             isSideBarOpen={isSideBarOpen}
