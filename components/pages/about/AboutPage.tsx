@@ -205,7 +205,7 @@ export function AboutPage({ data }: AboutPageProps) {
         : ''
 
       const src = draggableImage
-        ? urlForImage(draggableImage)?.width(1000).quality(100)?.url()
+        ? urlForImage(draggableImage)?.width(1500).quality(100)?.url()
         : ''
 
       return {
