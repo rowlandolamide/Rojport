@@ -68,12 +68,12 @@ const AboutPageFaceGen = (props: { bouncingImageUrl: string }) => {
   return (
     <div
       ref={floatRef}
-      className=" fixed z-30  w-[12.5vw] rounded-full top-0 left-0 lg:block hidden"
+      className=" fixed z-30  w-[12.5vw] rounded-full top-0 left-0 lg:block hidden cursor-pointer"
     >
       <Image
         width={300}
         height={300}
-        className="w-full h-fit"
+        className="w-full h-fit cursor-pointer"
         alt="head-img"
         src={props.bouncingImageUrl ? props.bouncingImageUrl : headImage.src}
       ></Image>

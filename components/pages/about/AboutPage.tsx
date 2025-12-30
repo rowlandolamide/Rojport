@@ -279,7 +279,7 @@ export function AboutPage({ data }: AboutPageProps) {
         <Marquee
           direction="right"
           speed={x > 1460 ? 200 : 100}
-          className=" z-20 h-fit"
+          className=" z-10 h-fit"
         >
           {Array.from({ length: 3 }).map((i, index) => (
             <Image
@@ -295,7 +295,7 @@ export function AboutPage({ data }: AboutPageProps) {
           ))}
         </Marquee>
 
-        <div className="w-full flex flex-col items-center GEN-PAD">
+        <div className="w-full flex relative z-10 flex-col items-center GEN-PAD">
           <motion.div
             onMouseLeave={() => {
               handleLeaveLink()
@@ -407,7 +407,7 @@ export function AboutPage({ data }: AboutPageProps) {
             </div>
           </div>
         </div>
-       <div className='md:mt-[180px] mt-[60px] xl:mt-[8.3vw] sm:pb-0 pb-[30px]'>
+       <div className='md:mt-[180px] relative z-10 mt-[60px] xl:mt-[8.3vw] sm:pb-0 pb-[30px]'>
             <div className="w-full flex justify-center items-center  ">
           <Image
             src={RojIconSvg.src}
@@ -419,7 +419,7 @@ export function AboutPage({ data }: AboutPageProps) {
             )}
           ></Image>
         </div>
-         <div className="xl:text-[2.96vw] sm:text-[32px] md:text-[48px] text-[5.88vw] flex flex-col  justify-center items-center font-Ingram leading-[1] group">
+         <div className="xl:text-[2.96vw] sm:text-[32px] md:text-[48px] text-[5.88vw] flex flex-col  justify-center items-center font-Ingram leading-[1] group z-30 relative ">
           <a
             onMouseOver={() => {
               handleHoverLink()
@@ -447,7 +447,7 @@ export function AboutPage({ data }: AboutPageProps) {
           </a>
         </div>
        </div>
-        <div className="sm:fixed z-10 mt-[40px]  sm:top-[-8.5vh] bottom-0">
+        <div className="sm:absolute  mt-[40px]  sm:top-[-8.5vh] bottom-0 ">
           <AboutDraggables dragArr={draggables}></AboutDraggables>
         </div>
     

@@ -57,7 +57,7 @@ export const MobileFooter = ({
   return (
     <div
       className={cn(
-        'MONO-NAV-PASSAGE  flex flex-col items-center gap-y-[25px] z-0',
+        'MONO-NAV-PASSAGE  flex flex-col items-center gap-y-[25px] z-10',
         isSideBarOpen ? 'text-white' : 'text-[#a1a1aa]',
       )}
     >
@@ -104,7 +104,7 @@ export default function Footer(props: FooterProps) {
   const { behance, email, instagram, linkedin, twitter } =
     props.data.socialLinks || {}
   return (
-    <footer className="md:fixed w-full mb-[60px] md:mb-0 md:bottom-[30px] xl:text-base mix-blend-difference items-center   ">
+    <footer className="md:fixed w-full mb-[60px] md:mb-0 md:bottom-[30px] xl:text-base mix-blend-difference items-center   z-50">
       <div className="w-full relative GEN-PAD ">
         <div className=" w-full md:flex justify-between hidden  flex-col md:flex-row xl:gap-y-0 gap-y-[10px]">
           <div className="MONO-NAV-PASSAGE-NEW xl:block hidden text-[#a1a1aa]">
@@ -140,7 +140,7 @@ export default function Footer(props: FooterProps) {
                     onMouseOver={handleHoverLink}
                     href={`${ite.link}`}
                     target="_blank"
-                    className="MONO-NAV-PASSAGE-NEW cursor-pointer flex hover:bg-gray-100/[0.2]  items-center leading-none"
+                    className="MONO-NAV-PASSAGE-NEW cursor-pointer flex hover:bg-gray-100/[0.2]  items-center leading-none "
                     key={i}
                   >
                     <ArrowUpRight
