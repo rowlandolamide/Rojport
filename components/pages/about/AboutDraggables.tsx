@@ -30,6 +30,7 @@ const DraggableImage = ({
   const { x: bigX } = useMediaQuery()
 
   return (
+   <>
     <motion.div
       drag={bigX > 760}
       dragMomentum={false}
@@ -41,7 +42,7 @@ const DraggableImage = ({
         rotate: rotation,
       
       }}
-      className={cn( newStyle,'z-0  w-fit ')}
+      className={cn( newStyle,'z-0 hidden sm:block w-fit ')}
     >
       <Image
         src={src}
@@ -52,6 +53,30 @@ const DraggableImage = ({
         className={cn('max-w-[35vw]   sm:max-w-[10vw] ')}
       />
     </motion.div>
+    
+      <motion.div
+      drag={true}
+      dragMomentum={false}
+      whileTap={{ cursor: 'grabbing' }}
+      style={{
+        position: 'absolute',
+        cursor: 'grab',
+        width: 'fit',
+        rotate: rotation,
+      
+      }}
+      className={cn( style, 'z-0 sm:hidden w-fit ')}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={0}
+        unoptimized
+        className={cn('max-w-[35vw]   sm:max-w-[10vw] ')}
+      />
+    </motion.div>
+    </>
   )
 }
 

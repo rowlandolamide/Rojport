@@ -83,6 +83,8 @@ export default async function ProjectSlugRoute({ params }: Props) {
         <div className="py-[58px] 3xl:py-[5vw]  w-full flex items-center justify-center">
           <div className="2xl:max-w-[31vw] 3xl:max-w-[28vw] max-w-[450px] mx-auto w-full">
             <ProjectText
+
+            
               isProjectSummary
               title={initial.data?.title || ''}
               overview

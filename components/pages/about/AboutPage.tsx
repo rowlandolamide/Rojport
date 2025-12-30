@@ -438,7 +438,7 @@ export function AboutPage({ data }: AboutPageProps) {
                 alt="Star"
                 width={400}
                 height={400}
-                className=" w-[3vw] h-[3vw] origin-center transition-transform
+                className="sm:min-w-[40px] sm:min-h-[40px] w-[3vw] h-[3vw] origin-center transition-transform
            group-hover:animate-magic-spin "
                 src={starIcon.src}
               ></Image>
@@ -447,7 +447,7 @@ export function AboutPage({ data }: AboutPageProps) {
           </a>
         </div>
        </div>
-        <div className="fixed z-0 top-[-8.5vh] ">
+        <div className="sm:fixed z-10 mt-[40px]  sm:top-[-8.5vh] bottom-0">
           <AboutDraggables dragArr={draggables}></AboutDraggables>
         </div>
     
