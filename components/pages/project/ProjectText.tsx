@@ -18,7 +18,7 @@ export const components:any = {
           href={value.href}
           target={isExternal ? "_blank" : undefined}
           rel={isExternal ? "noopener noreferrer" : undefined}
-          className="text-blue-600 underline hover:text-blue-800 cursor-pointer transition-colors"
+          className="hover:text-blue-600 underline cursor-pointer transition-colors"
         >
           {children}
         </a>

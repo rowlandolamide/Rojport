@@ -113,7 +113,7 @@ export default function Navbar(props: NavbarProps) {
       <div
         className={`${isStudio ? 'hidden' : 'flex '} h-fit mix-blend-difference  ${!isSideBarOpen ? 'text-[#a1a1aa] ' : 'text-[#FFF500]'}   z-50 top-[30px] fixed w-full xl:w-full flex-wrap justify-between items-center gap-x-5 GEN-PAD   ISOLATE `}
       >
-        <div className="flex flex-row justify-between w-full md:items-center  ">
+        <div className="flex flex-row justify-between w-full max-w-[1550px] md:items-center  mx-auto">
           <Link
             href={'/'}
             scroll={false}

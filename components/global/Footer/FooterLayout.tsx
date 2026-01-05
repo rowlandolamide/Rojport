@@ -104,12 +104,12 @@ export default function Footer(props: FooterProps) {
   const { behance, email, instagram, linkedin, twitter } =
     props.data.socialLinks || {}
   return (
-    <footer className="md:fixed w-full mb-[60px] md:mb-0 md:bottom-[30px] xl:text-base mix-blend-difference items-center   z-50">
-      <div className="w-full relative GEN-PAD ">
+    <footer className="md:fixed GEN-PAD w-full mb-[60px] md:mb-0 md:bottom-[30px] xl:text-base mix-blend-difference items-center   z-50">
+      <div className="w-full relative   mx-auto max-w-[1550px] ">
         <div className=" w-full md:flex justify-between hidden  flex-col md:flex-row xl:gap-y-0 gap-y-[10px]">
-          <div className="MONO-NAV-PASSAGE-NEW xl:block hidden text-[#a1a1aa]">
+     {/*      <div className="MONO-NAV-PASSAGE-NEW xl:block hidden text-[#a1a1aa]">
             © 2025 ROJ THE GOAT
-          </div>
+          </div> */}
           <div className="MONO-EX hidden">
             <span>LAGOS, NIGERIA |</span> <Time></Time> WAT
           </div>
@@ -131,7 +131,7 @@ export default function Footer(props: FooterProps) {
             </a>
           </div>
 
-          <div className=" space-x-[10px] 2xl:space-x-[0.46vw] flex text-[#a1a1aa]">
+          <div className=" space-x-[10px] 2xl:space-x-[0.46vw] flex text-[#a1a1aa] ">
             {FooterLinsk({ behance, linkedin, email, instagram, twitter }).map(
               (ite, i) => {
                 return ite.name != 'Email' ? (
@@ -144,7 +144,7 @@ export default function Footer(props: FooterProps) {
                     key={i}
                   >
                     <ArrowUpRight
-                      className="text-[#a1a1aa] ARROW-STUFF cursor-pointer leading-none p-0 "
+                      className="text-[#a1a1aa]  ARROW-STUFF cursor-pointer leading-none p-0 "
                       strokeWidth={2}
                    
                     ></ArrowUpRight>
@@ -162,7 +162,7 @@ export default function Footer(props: FooterProps) {
                     href={`mailto:${ite.link}`}
                   >
                     <ArrowUpRight
-                      className="text-[#a1a1aa] h-full ARROW-STUFF cursor-pointer"
+                      className="text-[#a1a1aa]  h-full ARROW-STUFF cursor-pointer"
                       strokeWidth={2}
                     ></ArrowUpRight>
                     {ite.name}

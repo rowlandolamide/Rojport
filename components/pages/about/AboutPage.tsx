@@ -59,7 +59,7 @@ const ListContainer = ({
                 {links ? (
                   <a
                     target="_blank"
-                    className="text-blue-600 underline hover:text-blue-800 cursor-pointer  duration-300"
+                    className="hover:text-blue-600 underline cursor-pointer  duration-300"
                     href={links[index]}
                   >
                     {item}
@@ -314,7 +314,7 @@ export function AboutPage({ data }: AboutPageProps) {
     stiffness: 400,
     damping: 30,
   }}
-            className=" md:py-[180px] py-[60px] xl:py-[8.3vw] flex flex-col md:items-center gap-y-[20px] md:gap-y-[39px] xl:gap-y-[1.8vw]"
+            className=" md:py-[180px] py-[60px] xl:py-[8.3vw] flex flex-col md:items-center gap-y-[20px] md:gap-y-[39px] xl:gap-y-[1.8vw] cursor-pointer hover:scale-[0.99] transition-all duration-300 ease-in-out"
           >
             {/* About image */}
             <Image
@@ -408,17 +408,7 @@ export function AboutPage({ data }: AboutPageProps) {
           </div>
         </div>
        <div className='md:mt-[180px] relative z-10 mt-[60px] xl:mt-[8.3vw] sm:pb-0 pb-[30px]'>
-            <div className="w-full flex justify-center items-center  ">
-          <Image
-            src={RojIconSvg.src}
-            width={100}
-            height={100}
-            alt="Roj the goat Icon"
-            className={cn(
-              'min-w-[45px] w-[14vw] sm:w-[94px] xl:w-[4.35vw] mb-[40px] ',
-            )}
-          ></Image>
-        </div>
+        
          <div className="xl:text-[2.96vw] sm:text-[32px] md:text-[48px] text-[5.88vw] flex flex-col  justify-center items-center font-Ingram leading-[1] group z-30 relative ">
           <a
             onMouseOver={() => {
@@ -445,6 +435,18 @@ export function AboutPage({ data }: AboutPageProps) {
               <span className="cursor-pointer">OLAMIDE@ROJTHEGOAT.COM</span>
             </div>
           </a>
+        </div>
+
+            <div className="w-full flex justify-center items-center mt-[180px] ">
+          <Image
+            src={RojIconSvg.src}
+            width={100}
+            height={100}
+            alt="Roj the goat Icon"
+            className={cn(
+              'min-w-[45px] w-[14vw] sm:w-[94px] xl:w-[4.35vw] mb-[40px] ',
+            )}
+          ></Image>
         </div>
        </div>
         <div className="sm:absolute  mt-[40px]  sm:top-[-8.5vh] bottom-0 ">
