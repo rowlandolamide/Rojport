@@ -1,5 +1,5 @@
 'use client'
-import { createContext, SetStateAction, useState } from 'react'
+import { createContext, SetStateAction, useEffect, useState } from 'react'
 import useMouse from '@react-hook/mouse-position'
 import { useRef } from 'react'
 import { useCallback } from 'react'
@@ -87,6 +87,14 @@ function ContextWrapper({ children }: { children: React.ReactNode }) {
     setOverlay((prev) => ({ ...prev, open: false }))
   }, [])
 
+  const [isOpen, setIsOpen] = useState(true)
+  useEffect(()=>{
+setIsOpen(false)
+    
+  }, [])
+  
+ 
+
   return (
     <div className="relative" ref={mouseref}>
       <ContextMain.Provider
@@ -108,6 +116,11 @@ function ContextWrapper({ children }: { children: React.ReactNode }) {
           isSideBarOpen,
         }}
       >
+      <AnimatePresence>
+        <motion.div key={isOpen.toString()} initial={{ opacity: 1 }} animate={{ opacity: 1 }} transition={{duration: 0.3, delay: 0.6}} exit={{ opacity: 0 }} className=''>
+         {isOpen &&  <motion.div className='bg-white h-[100vh] w-[100vw] fixed z-50'></motion.div>}
+        </motion.div>
+      </AnimatePresence>
         <div className="relative" style={{ zIndex: 999 }}>
           <CustomMouse x={mouse.pageX || 0} y={mouse.pageY || 0}></CustomMouse>
         </div>
@@ -116,10 +129,13 @@ function ContextWrapper({ children }: { children: React.ReactNode }) {
           <motion.div
             style={{ zIndex: 99 }}
             className="fixed z-30 w-full "
-            transition={{ duration: 0.5 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            initial={{ opacity: 0 }}
+            transition={{ duration: 0.5 , delay: 0.5}}
+            animate={{ opacity: 1 , y: "0%"}}
+            exit={{ opacity: 0 , y: "10%"}}
+            initial={{ opacity: 0 , y: "10%"}}
+            onAnimationComplete={() => {
+              
+            }}
             key={overlay.open.toString()}
           >
             {overlay.open && (

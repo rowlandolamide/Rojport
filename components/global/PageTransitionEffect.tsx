@@ -82,5 +82,52 @@ const PageTransitionEffect = ({ children }: { children: React.ReactNode }) => {
     </AnimatePresence>
   )
 }
+export const PageTransitionStaticEffect = ({ children , trigger}: { children: React.ReactNode , trigger: boolean}) => {
+  const key = trigger.toString()
+
+  const [active, setActive] = useState(false)
+
+  useEffect(() => {}, [])
+
+  return (
+    <AnimatePresence presenceAffectsLayout initial={false} mode="sync">
+      <motion.div
+        key={key}
+        initial="hidden"
+        animate="enter"
+        exit="exit"
+        variants={variants}
+        onAnimationStart={() => {
+          setActive(true)
+        }}
+        onAnimationComplete={() => {
+          setActive(false)
+        }}
+        className=""
+        transition={{ ease: 'easeInOut', duration: 1.3 }}
+      >
+        {' '}
+        <div className={`fixed top-0 left-0 z-50`}>
+          <Suspense>
+            {typeof window === 'object' && (
+              <PixelTransition
+                onAnimationEnd={() => {
+                  setActive(false)
+                }}
+                baseText='/'
+                menuIsActive={active}
+                dimensions={{
+                  width: window.innerWidth,
+                  height: window.innerHeight,
+                }}
+              ></PixelTransition>
+            )}
+          </Suspense>
+        </div>
+      
+      </motion.div>
+    </AnimatePresence>
+  )
+}
 
 export default PageTransitionEffect

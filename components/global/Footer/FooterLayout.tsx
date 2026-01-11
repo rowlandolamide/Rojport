@@ -124,7 +124,7 @@ export default function Footer(props: FooterProps) {
               href={`mailto:${process.env.NEXT_PUBLIC_ROJ_EMAIL || '/'}`}
               target="_blank"
             >
-              CRAFT THE UNEXPECTED +{' '}
+             {props.data?.navbarText} <span>+</span>{" "}
               <span className="group-hover:bg-gray-100/[0.2] cursor-pointer">
                 OLAMIDE@ROJTHEGOAT.COM
               </span>

@@ -259,7 +259,7 @@ export function AboutPage({ data }: AboutPageProps) {
     : ''
 
   return (
-    <div className="w-full overflow-hidden  xl:pt-[11.4vw] lg:pt-[246px] md:pt-[150px] pt-[20px] pb-[120px] flex flex-col items-center">
+    <div className="w-full overflow-hidden  xl:pt-[11.4vw] lg:border-blue-500 lg:pt-[246px] md:pt-[150px] pt-[20px] pb-[120px] flex flex-col items-center  border-red-500">
       {genFace && (
         <AboutPageFaceGen
           bouncingImageUrl={AboutImageBounce || ''}
@@ -269,17 +269,11 @@ export function AboutPage({ data }: AboutPageProps) {
       
 
       <div className="w-full flex flex-col items-center">
-        <Image
-          src={AboutUsTitle.src}
-          width={100}
-          height={100}
-          alt="Roj the goat"
-          className={cn('sm:w-[65vw] w-full hidden')}
-        ></Image>
+      
         <Marquee
           direction="right"
           speed={x > 1460 ? 200 : 100}
-          className=" z-10 h-fit"
+          className=" z-10   sm:h-[100px] h-[70px] 2xl:h-[9vw]"
         >
           {Array.from({ length: 3 }).map((i, index) => (
             <Image
@@ -407,6 +401,7 @@ export function AboutPage({ data }: AboutPageProps) {
             </div>
           </div>
         </div>
+        
        <div className='md:mt-[180px] relative z-10 mt-[60px] xl:mt-[8.3vw] sm:pb-0 pb-[30px]'>
         
          <div className="xl:text-[2.96vw] sm:text-[32px] md:text-[48px] text-[5.88vw] flex flex-col  justify-center items-center font-Ingram leading-[1] group z-30 relative ">
@@ -428,8 +423,7 @@ export function AboutPage({ data }: AboutPageProps) {
                 alt="Star"
                 width={400}
                 height={400}
-                className="sm:min-w-[40px] sm:min-h-[40px] w-[3vw] h-[3vw] origin-center transition-transform
-           group-hover:animate-magic-spin "
+                className="sm:min-w-[40px] sm:min-h-[40px] w-[2vw] h-[2vw] min-w-[20px] min-h-[20px]  md:w-[3vw] md:h-[3vw] group-hover:scale-105 duration-150 "
                 src={starIcon.src}
               ></Image>
               <span className="cursor-pointer">OLAMIDE@ROJTHEGOAT.COM</span>

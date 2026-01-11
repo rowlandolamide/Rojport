@@ -155,6 +155,13 @@ export default defineType({
         }),
       ],
     }),
+    defineField({
+      name: "navbarText",
+      title: "Navbar Text",
+      type: "string",
+     
+    }),
+  
   ],
   preview: {
     prepare() {

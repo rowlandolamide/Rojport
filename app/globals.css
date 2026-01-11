@@ -206,7 +206,7 @@ html.lenis body {
 }
 
 .TEXT-CNT-PRJ {
-  @apply flex gap-y-[50px] sm:gap-y-[25px] flex-col lg:flex-row lg:gap-x-[5.5rem] xl:gap-x-[6.9rem];
+  @apply flex gap-y-[50px] sm:gap-y-[25px] flex-col lg:flex-row md:gap-x-[5.5rem]  lg:gap-x-[4.8rem] xl:gap-x-[6.9rem];
 }
 
 .TEXT-CNT-ABT {

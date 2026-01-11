@@ -112,6 +112,7 @@ export interface SettingsPayload {
     linkedin: string
     twitter: string
   }
+  navbarText?: string
 }
 
 export interface AboutPayload {

@@ -42,7 +42,7 @@ export const SideMenu = ({
         isSideOpen ? 'left-0 ' : 'ml-[130vw]',
       )}
     >
-      <div className="gap-y-[10px] mt-[19vh] items-center flex flex-col ">
+      <div className="gap-y-[10px] mt-[19vh] items-center sm:mt-[16vh] md:mt-[19vh] flex flex-col ">
         {[
           { title: 'Work', route: '/' },
           { title: 'Info', route: '/about' },
@@ -102,6 +102,8 @@ export default function Navbar(props: NavbarProps) {
   }
   const { behance, email, instagram, linkedin, twitter } =
     props.data?.socialLinks || {}
+
+    console.log(props.data?.navbarText)
 
   return (
     <div className="relative">
