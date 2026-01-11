@@ -28,7 +28,7 @@ export default function NotFound() {
    <div className='max-w-[620px] sm:w-[42vw] '>
          <img className='self-start sm:w-fit w-[42vw]' src={not_found.src} alt="" />
         <p className="text-base sm:text-xl font-light tracking-widest mb-8 leading-loose">
-            It seems like your PC wandered into the wrong neighborhood in cyberspace. Don't worry, we'll kindly guide you back to the right path!
+            It seems like your PC wandered into the wrong neighborhood in cyberspace. Don&apos;t worry, we&apos;ll kindly guide you back to the right path!
         </p>
         
         <div  className='p-2  overflow-hidden w-full h-[29px] rounded-[4px] border duration-100 border-white'>
