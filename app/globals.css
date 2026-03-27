@@ -120,14 +120,14 @@ html.lenis body {
 
 /* Texts Styling */
 .MONO-LO {
-  @apply text-[10px] sm:text-[12px] md:text-[0.7rem]  font-Ingram uppercase  leading-[14px] sm:leading-[16px]  xl:leading-[0.83rem] border border-black rounded-[5px] 3xl:rounded-[0.2rem] 3xl:border-[0.046rem] px-[12.5px] py-[8.3px] sm:py-[0.46rem] sm:px-[15px] xl:py-[0.46rem] xl:px-[0.7rem];
+  @apply text-[10px] sm:text-[12px] md:text-[0.7rem]  font-Ingram uppercase  leading-[14px] sm:leading-[16px]  xl:leading-[0.83rem] border border-black rounded-[5px] 3xl:rounded-[0.2rem] 3xl:border-[0.046rem] px-[12.5px] py-[8.3px] sm:py-[0.46rem] sm:px-[15px] xl:py-[0.46rem] xl:px-[0.7rem] ;
 }
 
 .MONO-NAV-PASSAGE {
   @apply text-[10px] sm:text-[12px] md:text-[0.7rem]  font-Ingram uppercase;
 }
 .MONO-NAV-PASSAGE-NEW {
-  @apply text-[14px] sm:text-[16px] md:text-[1.1rem]  font-Ingram uppercase;
+  @apply text-[14px] sm:text-[12px] lg:text-[14px] 2xl:text-[1.1rem]  font-Ingram uppercase;
 }
 .MONO-NAV-PASSAGE-SM {
   @apply text-[10px] sm:text-[12px] md:text-[0.6rem]  font-Ingram uppercase;
@@ -163,13 +163,13 @@ html.lenis body {
   @apply space-y-[2px];
 }
 .DISCI-TEXT-PRJ {
-  @apply 2xl:whitespace-nowrap font-light font-PPnM lg:text-[0.93rem] lg:leading-[1.85rem] text-[12px] sm:text-[16px]  leading-[24px] sm:leading-[40px];
+  @apply 2xl:whitespace-nowrap  font-Geist lg:text-[0.93rem] lg:leading-[1.85rem] text-[12px] sm:text-[16px]  leading-[24px] sm:leading-[40px];
 }
 .DISCI-TEXT-PRJ-ABOUT {
   @apply 2xl:whitespace-nowrap text-wrap  font-Geist lg:text-[0.93rem] lg:leading-[1.85rem] text-[12px] sm:text-[16px]  leading-[24px] sm:leading-[40px];
 }
 .PASSAGE-PRJ-TEXT {
-  @apply font-light font-PPnM lg:text-[0.93rem]  md:w-[450px] lg:leading-[1.85rem] text-[12px] sm:text-[16px]  leading-[24px] sm:leading-[40px];
+  @apply font-Geist lg:text-[0.93rem]  md:w-[450px] lg:leading-[1.85rem] text-[12px] sm:text-[16px]  leading-[24px] sm:leading-[40px] lg:text-[0.93rem] lg:leading-[1.85rem] text-[13px] sm:text-[16px] md:w-[555px] ;
 }
 
 /* End */
@@ -206,7 +206,7 @@ html.lenis body {
 }
 
 .TEXT-CNT-PRJ {
-  @apply flex gap-y-[50px] sm:gap-y-[25px] flex-col lg:flex-row lg:gap-x-[6.9rem];
+  @apply flex gap-y-[50px] sm:gap-y-[25px] flex-col lg:flex-row md:gap-x-[5.5rem]  lg:gap-x-[4.8rem] xl:gap-x-[6.9rem];
 }
 
 .TEXT-CNT-ABT {
@@ -251,6 +251,10 @@ html.lenis body {
 
 /* MouseStates */
 .MOUSE-TEXT {
-  @apply font-PPnM text-[15px] xl:text-[0.7rem] uppercase whitespace-nowrap;
+  @apply font-PPnM text-[12px] xl:text-[0.7rem] uppercase whitespace-nowrap;
 }
 /* End */
+
+.ARROW-STUFF{
+  @apply w-[14px] sm:w-[14px] lg:w-[14px] 2xl:w-[1.1vw] 2xl:max-w-[20px]
+}

@@ -7,7 +7,7 @@ import {
   MainContextWrapperType,
   ContextMain,
 } from '@/components/global/ContextWrapper'
-import { Plus } from 'lucide-react'
+
 import { urlForImage } from '@/sanity/lib/utils'
 
 function ProjectDisplayVideo(props: {
@@ -74,7 +74,8 @@ function ProjectDisplayVideo(props: {
         ></Image>{' '}
         {projectName}{' '}
       </button>
-      <ReactPlayer
+    {/*   <Vimeo video={"https://vimeo.com/1023347832?fl=pl&fe=sh"}></Vimeo> */}
+     <ReactPlayer
         height={'100%'}
         width={'100%'}
         light={placeHolderUrl}
@@ -89,7 +90,7 @@ function ProjectDisplayVideo(props: {
         url={url}
         onStart={beginningHandler}
         ref={videoRef}
-      ></ReactPlayer>
+      ></ReactPlayer> 
     </div>
   )
 }

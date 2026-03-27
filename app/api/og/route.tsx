@@ -1,9 +1,18 @@
-import { ImageResponse } from 'next/og'
+
 // App router includes @vercel/og.
 // No need to install it.
 
+
 export async function GET() {
-  return new ImageResponse(
+  return new Response("Hello world", {
+    headers: {
+      'Content-Type': 'text/plain',
+    },
+  })
+}
+
+
+/* ImageResponse(
     (
       <div
         style={{
@@ -25,5 +34,4 @@ export async function GET() {
       width: 1200,
       height: 630,
     },
-  )
-}
+  ) */

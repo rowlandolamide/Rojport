@@ -32,7 +32,7 @@
     "@sanity/vision": "3.47.1",
     "@studio-freight/react-lenis": "^0.0.47",
     "@tailwindcss/typography": "0.5.13",
-    "@u-wave/react-vimeo": "^0.9.11",
+    "@u-wave/react-vimeo": "^0.9.12",
     "class-variance-authority": "^0.7.0",
     "classnames": "2.5.1",
     "clsx": "^2.1.1",

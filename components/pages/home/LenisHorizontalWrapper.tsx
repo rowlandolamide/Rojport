@@ -3,7 +3,7 @@
 import React, { ReactNode, useEffect } from 'react'
 import { Lenis, ReactLenis } from '@studio-freight/react-lenis'
 import { usePathname } from 'next/navigation'
-
+import ReactPlayer from 'react-player'
 import { useContext } from 'react'
 
 import useMediaQuery from '@/components/hooks/useMediaQuery'
@@ -83,6 +83,28 @@ export default function LenisHorizontalWrapperAlt(props: {
   }, [pathname, lenisRef])
 
   return (
+ <>
+
+ <iframe
+  src="https://player.vimeo.com/video/1023347832"
+  width="640"
+  height="360"
+  
+  allow="autoplay; fullscreen; picture-in-picture"
+  
+></iframe>
+
+   <iframe
+      title="vimeo-player"
+      src={"https://vimeo.com/1023347832?fl=pl&fe=sh"}
+      width="640"
+      height="360"
+  
+    
+    
+    >
+    </iframe>
+    <ReactPlayer  url={"https://vimeo.com/1023347832?fl=pl&fe=sh"} style={{zIndex: 999}} controls={true}  loop></ReactPlayer>
     <div ref={refCallback}>
       <div className="">
         {' '}
@@ -100,6 +122,6 @@ export default function LenisHorizontalWrapperAlt(props: {
           {props.children}
         </ReactLenis>{' '}
       </div>
-    </div>
+    </div></>
   )
 }

@@ -42,7 +42,7 @@ export const SideMenu = ({
         isSideOpen ? 'left-0 ' : 'ml-[130vw]',
       )}
     >
-      <div className="gap-y-[10px] mt-[19vh] items-center flex flex-col ">
+      <div className="gap-y-[10px] mt-[19vh] items-center sm:mt-[16vh] md:mt-[19vh] flex flex-col ">
         {[
           { title: 'Work', route: '/' },
           { title: 'Info', route: '/about' },
@@ -52,7 +52,7 @@ export const SideMenu = ({
               onClick={() => {
                 setIsSideOpen(false)
               }}
-              className="MONO-NAV-EX border-white text-white"
+              className="MONO-NAV-EX cursor-pointer border-white text-white"
               href={item.route}
               key={i}
             >
@@ -103,6 +103,8 @@ export default function Navbar(props: NavbarProps) {
   const { behance, email, instagram, linkedin, twitter } =
     props.data?.socialLinks || {}
 
+    console.log(props.data?.navbarText)
+
   return (
     <div className="relative">
       <SideMenu
@@ -113,13 +115,13 @@ export default function Navbar(props: NavbarProps) {
       <div
         className={`${isStudio ? 'hidden' : 'flex '} h-fit mix-blend-difference  ${!isSideBarOpen ? 'text-[#a1a1aa] ' : 'text-[#FFF500]'}   z-50 top-[30px] fixed w-full xl:w-full flex-wrap justify-between items-center gap-x-5 GEN-PAD   ISOLATE `}
       >
-        <div className="flex flex-row justify-between w-full md:items-center  ">
+        <div className="flex flex-row justify-between w-full max-w-[1550px] md:items-center  mx-auto">
           <Link
             href={'/'}
             scroll={false}
             className=" hover:sm:text-gray-700 right-4    "
           >
-            <div className="MONO-NAV-PASSAGE-NEW">Roj the goat</div>
+            <div className="MONO-NAV-PASSAGE-NEW cursor-pointer">Roj the goat</div>
           </Link>
           <div className="md:hidden">
             <button
@@ -160,7 +162,7 @@ export default function Navbar(props: NavbarProps) {
                   onMouseLeave={handleLeaveLink}
                   onMouseOver={handleHoverLink}
                   className={cn(
-                    'MONO-NAV-PASSAGE-NEW flex items-center hover:bg-gray-100/[0.2] duration-300  border-white ',
+                    'MONO-NAV-PASSAGE-NEW flex items-center hover:bg-gray-100/[0.2] cursor-pointer duration-300  border-white ',
                     pathname === ite.link
                       ? 'text-yellow-400'
                       : 'text-[#a1a1aa]',
@@ -171,7 +173,7 @@ export default function Navbar(props: NavbarProps) {
                 >
                   <ArrowUpRight
                     className={cn(
-                      'w-[1.1vw]',
+                      'h-full ARROW-STUFF ',
                       pathname === ite.link
                         ? 'text-yellow-400'
                         : 'text-[#a1a1aa]',

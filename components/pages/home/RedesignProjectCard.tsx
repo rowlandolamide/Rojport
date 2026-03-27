@@ -46,10 +46,11 @@ function RedesignProjectCard(props: {
       onMouseOver={() => {
         handleMouseStateChange(title, 2)
       }}
-      className="group relative overflow-hidden"
+      className="group relative overflow-hidden "
       href={nextProjectItem ? slug : `projects/${slug}`}
     >
-      <div className="w-full h-full">
+      <div className='absolute top-0 left-0 w-full h-full  z-10 cursor-pointer'></div>
+      <div className="w-full h-full ">
         <div className="HOME-CNT-PRJ w-full h-full">
           {isVideoPlaying}
           <div
@@ -98,6 +99,7 @@ function RedesignProjectCard(props: {
                   style={{
                     zIndex: 0,
                     position: 'relative',
+                    cursor: 'pointer',
 
                     borderRadius: 3,
                     objectFit: 'cover',

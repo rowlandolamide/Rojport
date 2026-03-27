@@ -9,7 +9,6 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 import dynamic from 'next/dynamic'
 // import { Inter } from 'next/font/google'
 
-import { loadSettings } from '@/sanity/loader/loadQuery'
 
 // const sans = Inter({
 //   variable: '--font-sans',
@@ -48,7 +47,8 @@ export default async function RootLayout({
           {' '}
           <ScrollToTop></ScrollToTop>
           <ContextWrapper>
-            {<LenisHorizontalWrapper>{children}</LenisHorizontalWrapper>}
+            {children}
+      {/*       {<LenisHorizontalWrapper></LenisHorizontalWrapper>} */}
           </ContextWrapper>
         </Suspense>
         <GoogleAnalytics gaId="G-LKQSJP3D7G"></GoogleAnalytics>

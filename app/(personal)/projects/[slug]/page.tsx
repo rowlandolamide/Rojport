@@ -6,6 +6,7 @@ import Head from 'next/head'
 import { toPlainText } from 'next-sanity'
 import ProjectText from '@/components/pages/project/ProjectText'
 import ProjectImage from '@/components/pages/project/ProjectImage'
+import ProjectMainVideoVimeo from '@/components/pages/project/ProjectMainVideoVimeo'
 
 import { urlForOpenGraphImage } from '@/sanity/lib/utils'
 import { generateStaticSlugs } from '@/sanity/loader/generateStaticSlugs'
@@ -20,6 +21,7 @@ import Process from '@/components/pages/project/Process'
 
 import ProjectDisplayVideo from '@/components/pages/project/ProjectDisplayVideo'
 import { cn } from '@/lib/utils'
+import ProjectMainVideo from '@/components/pages/project/ProjectMainVideo'
 
 const ProjectWrapper = dynamic(
   () => import('@/components/pages/project/ProjectWrapper'),
@@ -71,18 +73,22 @@ export default async function ProjectSlugRoute({ params }: Props) {
         <meta name="description" content={`${initial.data?.description}`} />
       </Head>
       <div className="">
-        <div className="w-full pb-[58px] ">
-          <ProjectDisplayVideo
+        <div className="w-full flex items-center justify-center ">
+
+          <ProjectMainVideoVimeo url={initial.data?.mainVideo || ''} title={initial.data?.title || ''}></ProjectMainVideoVimeo>
+     {/*      <ProjectDisplayVideo
             placeHolderImage={initial.data?.coverImage}
             projectName={initial.data?.title || ''}
             videoTitle={initial.data?.mainVideoTitle || ''}
             url={initial.data?.mainVideo || ''}
-          ></ProjectDisplayVideo>
+          ></ProjectDisplayVideo> */}
         </div>
 
-        <div className="py-[58px] 3xl:py-[5vw]  w-full flex items-center justify-center">
+        <div className="py-[58px] 3xl:py-[4vw]  w-full flex items-center justify-center">
           <div className="2xl:max-w-[31vw] 3xl:max-w-[28vw] max-w-[450px] mx-auto w-full">
             <ProjectText
+
+            
               isProjectSummary
               title={initial.data?.title || ''}
               overview
@@ -94,7 +100,7 @@ export default async function ProjectSlugRoute({ params }: Props) {
           </div>
         </div>
 
-        <div className="space-y-[10px] lg:space-y-[0.46rem]">
+        <div className="space-y-[10px] lg:space-y-[0.46rem] max-w-[1550px] mx-auto">
           {initial.data?.content &&
             initial.data?.content?.map((item: any, i) => {
               const isLastImageType = () => {
@@ -204,7 +210,7 @@ export default async function ProjectSlugRoute({ params }: Props) {
         </div>
       </div>
       {drop.data && (
-        <div>
+        <div className='max-w-[1550px] mx-auto'>
           {drop.data.showcaseProjects &&
             drop.data.showcaseProjects.map((item, index) => {
               const allShowcasedProjects = drop.data.showcaseProjects

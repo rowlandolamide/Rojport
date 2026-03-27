@@ -75,7 +75,11 @@ export default defineType({
         },
       ],
     }),
-
+    defineField({
+      name: 'aboutPageText',
+      title: 'About Page Text',
+      type: 'string',
+    }),
     defineField({
       name: 'services',
       title: 'Services',

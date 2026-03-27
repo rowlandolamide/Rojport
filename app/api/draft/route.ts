@@ -15,6 +15,7 @@ export async function GET(request: Request) {
   if (!isValid) {
     return new Response('Invalid secret', { status: 401 })
   }
+  console.log("love")
 
   draftMode().enable()
 
